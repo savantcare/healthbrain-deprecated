@@ -100,7 +100,14 @@ export default {
 
       commit("setReminderList", newList)
       try {
-        const response = await fetch(`${REMINDER_API_URL}/${data.id}`, { method: "DELETE" });
+        data["discontinue"] = true
+        const response = await fetch(`${REMINDER_API_URL}/${data.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8"
+          },
+          body: JSON.stringify(data)
+        });
         if (!response.ok) {
           toast.toast("Failed to discontinue data", {
             title: "Error",
@@ -121,19 +128,24 @@ export default {
       }
     },
     async multidiscontinueReminder({ state, commit }, json) {
-      const { data, toast } = json
+      const { selectedIds, toast, selectedDatas } = json
       const originList = state.list
       const newList = originList.filter(item => {
-        return !data.includes(item.id)
+        return !selectedIds.includes(item.id)
       })
 
       commit("setReminderList", newList)
 
 
-      data.forEach(async item => {
+      selectedDatas.forEach(async item => {
         try {
-          await fetch(`${REMINDER_API_URL}/${item}`, {
-            method: "DELETE"
+          item['discontinue'] = true
+          await fetch(`${REMINDER_API_URL}/${item.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json;charset=utf-8"
+            },
+            body: JSON.stringify(item)
           });
         } catch (ex) {
           toast.toast("Server connection error", {

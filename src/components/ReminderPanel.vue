@@ -104,7 +104,7 @@ export default {
     },
     items() {
       return this.$store.state.reminder.list.filter(item => {
-        return item.patientId == this.id;
+        return item.patientId == this.id && item.discontinue != true;
       });
     },
     fields() {
@@ -179,12 +179,15 @@ export default {
     },
     multidiscontinue() {
       let selectedIds = [];
+      let selectedDatas = [];
       this.selected.forEach(item => {
         selectedIds.push(item.id);
+        selectedDatas.push(item);
       });
 
       this.$store.dispatch("multidiscontinueReminder", {
-        data: selectedIds,
+        selectedIds: selectedIds,
+        selectedDatas: selectedDatas,
         toast: this.$bvToast
       });
     },
