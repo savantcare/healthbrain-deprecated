@@ -6,28 +6,20 @@ export default {
   },
   mutations: {
     setReminderList(state, data) {
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      const patientId = urlParams.get("patient_id");
-      let newList = []
-      state.list.forEach(item => {
-        if (item.patientId != patientId) {
-          newList.push(item)
-        }
-      })
-      if (data.length > 0) {
-        data.forEach(item => {
-          newList.push(item)
-        })
-      }
-
-      state.list = newList
+      state.list = data
+    },
+    addNewReminder(state, data) {
+      state.list.push(data)
+    },
+    removeNewReminder(state) {
+      state.list.pop()
     }
   },
   actions: {
-    async saveReminder({ state }, json) {
+    async saveReminder({ commit }, json) {
       const { data, toast } = json
-      state.list.push(data)
+
+      commit("addNewReminder", data)
 
       try {
         const response = await fetch(REMINDER_API_URL, {
@@ -43,7 +35,7 @@ export default {
             variant: "danger",
             solid: true
           })
-          state.list.pop()
+          commit("removeNewReminder")
         }
       } catch (ex) {
         toast.toast("Server connection error", {
@@ -51,10 +43,10 @@ export default {
           variant: "danger",
           solid: true
         })
-        state.list.pop()
+        commit("removeNewReminder")
       }
     },
-    async updateReminder({ state }, json) {
+    async updateReminder({ state, commit }, json) {
       const { data, toast } = json
       const originList = state.list
       let newList = []
@@ -70,7 +62,8 @@ export default {
           newList.push(item);
         }
       });
-      state.list = newList
+
+      commit("setReminderList", newList)
       try {
         const response = await fetch(`${REMINDER_API_URL}/${data.id}`, {
           method: "PUT",
@@ -85,7 +78,8 @@ export default {
             variant: "danger",
             solid: true
           })
-          state.list = originList
+
+          commit("setReminderList", originList)
         }
       } catch (ex) {
         toast.toast("Server connection error", {
@@ -93,16 +87,18 @@ export default {
           variant: "danger",
           solid: true
         })
-        state.list = originList
+
+        commit("setReminderList", originList)
       }
     },
-    async discontinueReminder({ state }, json) {
+    async discontinueReminder({ state, commit }, json) {
       const { data, toast } = json
       const originList = state.list
       const newList = originList.filter(item => {
         return item.id != data.id
       })
-      state.list = newList
+
+      commit("setReminderList", newList)
       try {
         const response = await fetch(`${REMINDER_API_URL}/${data.id}`, { method: "DELETE" });
         if (!response.ok) {
@@ -111,7 +107,8 @@ export default {
             variant: "danger",
             solid: true
           })
-          state.list = originList
+
+          commit("setReminderList", originList)
         }
       } catch (ex) {
         toast.toast("Server connection error", {
@@ -119,16 +116,18 @@ export default {
           variant: "danger",
           solid: true
         })
-        state.list = originList
+
+        commit("setReminderList", originList)
       }
     },
-    async multidiscontinueReminder({ state }, json) {
+    async multidiscontinueReminder({ state, commit }, json) {
       const { data, toast } = json
       const originList = state.list
       const newList = originList.filter(item => {
         return !data.includes(item.id)
       })
-      state.list = newList
+
+      commit("setReminderList", newList)
 
 
       data.forEach(async item => {
@@ -142,11 +141,11 @@ export default {
             variant: "danger",
             solid: true
           })
-          state.list = originList
+          commit('setReminderList', originList)
         }
       })
     },
-    async getReminders({ state }, json) {
+    async getReminders({ commit }, json) {
       const { patientId, toast } = json
       try {
         const response = await fetch(
@@ -154,7 +153,8 @@ export default {
         );
         if (response.ok) {
           let json = await response.json();
-          state.list = json
+          console.log(json)
+          commit('setReminderList', json)
         } else {
           toast.toast("Failed to get data", {
             title: "Error",

@@ -6,28 +6,20 @@ export default {
   },
   mutations: {
     setRecommendationList(state, data) {
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      const patientId = urlParams.get("patient_id");
-      let newList = []
-      state.list.forEach(item => {
-        if (item.patientId != patientId) {
-          newList.push(item)
-        }
-      })
-      if (data.length > 0) {
-        data.forEach(item => {
-          newList.push(item)
-        })
-      }
-
-      state.list = newList
+      state.list = data
+    },
+    addNewRecommendation(state, data) {
+      state.list.push(data)
+    },
+    removeNewRecommendation(state) {
+      state.list.pop()
     }
   },
   actions: {
-    async saveRecommendation({ state }, json) {
+    async saveRecommendation({ commit }, json) {
       const { data, toast } = json
-      state.list.push(data)
+
+      commit("addNewRecommendation", data)
 
       try {
         const response = await fetch(RECOMMENDATION_API_URL, {
@@ -43,7 +35,7 @@ export default {
             variant: "danger",
             solid: true
           })
-          state.list.pop()
+          commit("removeNewRecommendation")
         }
       } catch (ex) {
         toast.toast("Server connection error", {
@@ -51,10 +43,10 @@ export default {
           variant: "danger",
           solid: true
         })
-        state.list.pop()
+        commit("removeNewRecommendation")
       }
     },
-    async updateRecommendation({ state }, json) {
+    async updateRecommendation({ state, commit }, json) {
       const { data, toast } = json
       const originList = state.list
       let newList = []
@@ -70,7 +62,8 @@ export default {
           newList.push(item);
         }
       });
-      state.list = newList
+
+      commit("setRecommendationList", newList)
       try {
         const response = await fetch(`${RECOMMENDATION_API_URL}/${data.id}`, {
           method: "PUT",
@@ -85,7 +78,8 @@ export default {
             variant: "danger",
             solid: true
           })
-          state.list = originList
+
+          commit("setRecommendationList", originList)
         }
       } catch (ex) {
         toast.toast("Server connection error", {
@@ -93,16 +87,18 @@ export default {
           variant: "danger",
           solid: true
         })
-        state.list = originList
+
+        commit("setRecommendationList", originList)
       }
     },
-    async discontinueRecommendation({ state }, json) {
+    async discontinueRecommendation({ state, commit }, json) {
       const { data, toast } = json
       const originList = state.list
       const newList = originList.filter(item => {
         return item.id != data.id
       })
-      state.list = newList
+
+      commit("setRecommendationList", newList)
       try {
         const response = await fetch(`${RECOMMENDATION_API_URL}/${data.id}`, { method: "DELETE" });
         if (!response.ok) {
@@ -111,7 +107,8 @@ export default {
             variant: "danger",
             solid: true
           })
-          state.list = originList
+
+          commit("setRecommendationList", originList)
         }
       } catch (ex) {
         toast.toast("Server connection error", {
@@ -119,16 +116,18 @@ export default {
           variant: "danger",
           solid: true
         })
-        state.list = originList
+
+        commit("setRecommendationList", originList)
       }
     },
-    async multidiscontinueRecommendation({ state }, json) {
+    async multidiscontinueRecommendation({ state, commit }, json) {
       const { data, toast } = json
       const originList = state.list
       const newList = originList.filter(item => {
         return !data.includes(item.id)
       })
-      state.list = newList
+
+      commit("setRecommendationList", newList)
 
 
       data.forEach(async item => {
@@ -142,11 +141,11 @@ export default {
             variant: "danger",
             solid: true
           })
-          state.list = originList
+          commit('setRecommendationList', originList)
         }
       })
     },
-    async getRecommendations({ state }, json) {
+    async getRecommendations({ commit }, json) {
       const { patientId, toast } = json
       try {
         const response = await fetch(
@@ -154,7 +153,8 @@ export default {
         );
         if (response.ok) {
           let json = await response.json();
-          state.list = json
+          console.log(json)
+          commit('setRecommendationList', json)
         } else {
           toast.toast("Failed to get data", {
             title: "Error",
