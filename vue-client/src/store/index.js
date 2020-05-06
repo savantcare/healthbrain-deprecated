@@ -6,7 +6,7 @@ Vue.use(Vuex)
 // modules
 import recommendationModule from './modules/recommendation'
 import reminderModule from './modules/reminder'
-import styleModule from './modules/style'
+import settingModule from './modules/setting'
 
 export default new Vuex.Store({
   state: {
@@ -22,7 +22,7 @@ export default new Vuex.Store({
   modules: {
     recommendation: recommendationModule,
     reminder: reminderModule,
-    style: styleModule
+    setting: settingModule
   },
   plugins: [
     createPersistedState()

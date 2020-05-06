@@ -34,11 +34,11 @@ export default {
     ReminderPanel
   },
   mounted() {
-    this.$store.dispatch("loadStyle");
+    this.$store.dispatch("loadSetting");
     // Join room
     const patientId = this.$route.query.patient_id;
     const role = this.$store.state.userRole;
-    console.log(role);
+
     this.$socket.emit("CREATE_ROOM", `room-${patientId}-${role}`);
   }
 };

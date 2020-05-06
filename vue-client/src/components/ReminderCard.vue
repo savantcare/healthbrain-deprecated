@@ -124,7 +124,7 @@ export default {
       return this.modalType == ADD_DIALOG ? "Save" : "Update";
     },
     style() {
-      return this.$store.state.style.value;
+      return this.$store.state.setting.style;
     }
   },
   mounted() {
@@ -144,16 +144,13 @@ export default {
     },
     save() {
       if (this.modalType == ADD_DIALOG) {
-        const today = new Date();
-        this.data["createdAt"] = today.toDateString();
         this.data["id"] = uniqid();
         this.data["patientId"] = this.id;
 
-        this.$store.dispatch("saveReminder", {
+        this.$store.dispatch("addReminder", {
           data: this.data,
           toast: this.$bvToast
         });
-        this.$socket.emit("EVENT_UPDATE_REMINDERS", this.items);
       } else {
         this.$store.dispatch("updateReminder", {
           data: this.data,

@@ -3,104 +3,48 @@ const bodyParser = require('body-parser')
 const jsonServer = require('json-server')
 const jwt = require('jsonwebtoken')
 
-const server = jsonServer.create()
-const router = jsonServer.router('./database.json')
-const userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
+const http = require('http')
+const app = require('express')()
+const cors = require("cors");
 
-server.use(bodyParser.urlencoded({ extended: true }))
-server.use(bodyParser.json())
 
-//server.use(function(req, res, next){
-//  setTimeout(next, 10000);
-//});
+var corsOptions = {
+  origin: "http://localhost:8080"
+};
 
-server.use(jsonServer.defaults());
+app.use(cors(corsOptions));
+// app.use(function (req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "X-Requested-With,content-type,cache-control"
+//   );
+
+//   // Set to true if you need the website to include cookies in the requests sent
+//   // to the API (e.g. in case you use sessions)
+//   res.setHeader("Access-Control-Allow-Credentials", true);
+
+//   // Pass to next layer of mddleware
+//   next();
+// });
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 
 const SECRET_KEY = '123456789'
-
-const expiresIn = '1h'
-
-// Create a token from a payload 
-function createToken(payload) {
-  return jwt.sign(payload, SECRET_KEY, { expiresIn })
-}
 
 // Verify the token 
 function verifyToken(token) {
   return jwt.verify(token, SECRET_KEY, (err, decode) => decode !== undefined ? decode : err)
 }
 
-// Check if the user exists in database
-function isAuthenticated({ email, password }) {
-  return userdb.users.findIndex(user => user.email === email && user.password === password) !== -1
-}
-
-// Register New User
-server.post('/auth/register', (req, res) => {
-  console.log("register endpoint called; request body:");
-  console.log(req.body);
-  const { email, password } = req.body;
-
-  if (isAuthenticated({ email, password }) === true) {
-    const status = 401;
-    const message = 'Email and Password already exist';
-    res.status(status).json({ status, message });
-    return
-  }
-
-  fs.readFile("./users.json", (err, data) => {
-    if (err) {
-      const status = 401
-      const message = err
-      res.status(status).json({ status, message })
-      return
-    };
-
-    // Get current users data
-    var data = JSON.parse(data.toString());
-
-    // Get the id of last user
-    var last_item_id = data.users[data.users.length - 1].id;
-
-    //Add new user
-    data.users.push({ id: last_item_id + 1, email: email, password: password }); //add some data
-    var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
-      if (err) {
-        const status = 401
-        const message = err
-        res.status(status).json({ status, message })
-        return
-      }
-    });
-  });
-
-  // Create token for new user
-  const access_token = createToken({ email })
-  console.log("Access Token:" + access_token);
-  res.status(200).json({ access_token })
-})
-
-// Login to one of the users from ./users.json
-server.post('/auth/login', (req, res) => {
-  console.log("login endpoint called; request body:");
-  console.log(req.body);
-  const { email, password } = req.body;
-  if (isAuthenticated({ email, password }) === false) {
-    const status = 401
-    const message = 'Incorrect email or password'
-    res.status(status).json({ status, message })
-    return
-  }
-  const userIdx = userdb.users.findIndex(user => user.email === email && user.password === password)
-  const user = userdb.users[userIdx]
-
-  const access_token = createToken({ email })
-  console.log("Access Token:" + access_token);
-  res.status(200).json({ access_token: access_token, role: user.role })
-})
-
-server.use(/^(?!\/auth).*$/, (req, res, next) => {
+app.use(/^(?!\/auth).*$/, (req, res, next) => {
   if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
     const status = 401
     const message = 'Error in authorization format'
@@ -125,30 +69,38 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
   }
 })
 
-server.use(router)
 
+
+const server = http.createServer(app)
 server.listen(8000, () => {
-  console.log('Run Auth API Server')
+  console.log("Node.js server is running")
 })
 
-const io = require('socket.io')()
+const db = require("./models");
+
+db.sequelize.sync();
+
+// require("./socket")(server)
+
+const io = require('socket.io')(server)
 io.on("connection", socket => {
   console.log(`Socket connected: ${socket.id}`)
-  // io.emit("test_emit", { param1: "value1", param2: "value2" })
 
-  socket.on("EVENT_UPDATE_RECOMMENDATIONS", data => {
-    const { list, roomId } = data
-    console.log(roomId)
-    io.to(`${roomId}-doctor`).emit("ON_UPDATE_RECOMMENDATIONS", list)
-  })
+  // socket.on("EVENT_UPDATE_RECOMMENDATIONS", data => {
+  //   const { list, roomId } = data
+  //   console.log(roomId)
+  //   io.to(`${roomId}-doctor`).emit("ON_UPDATE_RECOMMENDATIONS", list)
+  // })
 
-  socket.on("EVENT_UPDATE_REMINDERS", data => {
-    io.emit("ON_UPDATE_REMINDERS_FOR_PATIENT_ID_$X", data)
-  })
+  // socket.on("EVENT_UPDATE_REMINDERS", data => {
+  //   io.emit("ON_UPDATE_REMINDERS_FOR_PATIENT_ID_$X", data)
+  // })
 
   socket.on("CREATE_ROOM", roomId => {
     console.log(`join to room ${roomId}`)
     socket.join(roomId)
   })
 })
-io.listen(3000)
+
+const router = require('./routes')(io)
+app.use(router)

@@ -16,10 +16,38 @@ export default {
     },
     SOCKET_ON_UPDATE_RECOMMENDATIONS(state, updateList) {
       state.list = updateList
+    },
+    SOCKET_ADD_RECOMMENDATION(state, newData) {
+      if (state.list.length > 0) {
+        const lastData = state.list[state.list.length - 1]
+        if (lastData.id == newData.id) {
+          return
+        }
+      }
+
+      state.list.push(newData)
+    },
+    SOCKET_UPDATE_RECOMMENDATION(state, updateData) {
+      let newList = []
+      state.list.forEach(item => {
+        if (item.id != updateData.id) {
+          newList.push(item)
+        } else {
+          newList.push(updateData)
+        }
+      })
+      state.list = newList
+    },
+    SOCKET_DISCONTINUE_RECOMMENDATION(state, dispatchId) {
+      console.log("SOCKET_DISCONTINUE_RECOMMENDATION")
+      const newList = state.list.filter(item => {
+        return item.id != dispatchId
+      })
+      state.list = newList
     }
   },
   actions: {
-    async saveRecommendation({ commit }, json) {
+    async addRecommendation({ commit }, json) {
       const { data, toast } = json
 
       commit("addNewRecommendation", data)

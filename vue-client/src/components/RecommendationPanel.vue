@@ -126,7 +126,7 @@ export default {
       return this.modalType == ADD_DIALOG ? "Save" : "Update";
     },
     style() {
-      return this.$store.state.style.value;
+      return this.$store.state.setting.style;
     }
   },
   mounted() {
@@ -151,13 +151,9 @@ export default {
         this.data["id"] = uniqid();
         this.data["patientId"] = this.id;
 
-        this.$store.dispatch("saveRecommendation", {
+        this.$store.dispatch("addRecommendation", {
           data: this.data,
           toast: this.$bvToast
-        });
-        this.$socket.emit("EVENT_UPDATE_RECOMMENDATIONS", {
-          list: this.items,
-          roomId: `room-${this.id}`
         });
       } else {
         this.$store.dispatch("updateRecommendation", {

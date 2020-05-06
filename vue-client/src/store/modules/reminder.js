@@ -16,10 +16,38 @@ export default {
     },
     SOCKET_ON_UPDATE_REMINDERS(state, updateList) {
       state.list = updateList
+    },
+    SOCKET_ADD_REMINDER(state, newData) {
+      if (state.list.length > 0) {
+        const lastData = state.list[state.list.length - 1]
+        if (lastData.id == newData.id) {
+          return
+        }
+      }
+
+      state.list.push(newData)
+    },
+    SOCKET_UPDATE_REMINDER(state, updateData) {
+      let newList = []
+      state.list.forEach(item => {
+        if (item.id != updateData.id) {
+          newList.push(item)
+        } else {
+          newList.push(updateData)
+        }
+      })
+      state.list = newList
+    },
+    SOCKET_DISCONTINUE_REMINDER(state, dispatchId) {
+      console.log("SOCKET_DISCONTINUE_REMINDER")
+      const newList = state.list.filter(item => {
+        return item.id != dispatchId
+      })
+      state.list = newList
     }
   },
   actions: {
-    async saveReminder({ commit }, json) {
+    async addReminder({ commit }, json) {
       const { data, toast } = json
 
       commit("addNewReminder", data)
