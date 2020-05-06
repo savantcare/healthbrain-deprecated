@@ -9,7 +9,13 @@ const userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
 
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
+
+//server.use(function(req, res, next){
+//  setTimeout(next, 10000);
+//});
+
 server.use(jsonServer.defaults());
+
 
 const SECRET_KEY = '123456789'
 
