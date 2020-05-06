@@ -10,7 +10,12 @@ export default {
   },
   actions: {
     async loadStyle({ commit }) {
-      const response = await fetch(STYLE_API_URL);
+      const TOKEN = localStorage.getItem("token")
+      const response = await fetch(STYLE_API_URL, {
+        headers: {
+          "Authorization": "Bearer " + TOKEN
+        }
+      });
       if (response.ok) {
         const json = await response.json();
 

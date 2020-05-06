@@ -1,5 +1,5 @@
 import { REMINDER_API_URL } from "@/const.js"
-const TOKEN = localStorage.getItem("token")
+let TOKEN = localStorage.getItem("token")
 export default {
   state: {
     list: []
@@ -163,6 +163,9 @@ export default {
     },
     async getReminders({ commit }, json) {
       const { patientId, toast } = json
+      if (TOKEN == null) {
+        TOKEN = localStorage.getItem("token")
+      }
       try {
         const response = await fetch(
           `${REMINDER_API_URL}?patientId=${patientId}`, {

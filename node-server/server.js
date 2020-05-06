@@ -121,9 +121,3 @@ server.use(router)
 server.listen(8000, () => {
   console.log('Run Auth API Server')
 })
-
-const io = require('socket.io')()
-io.on("connection", socket => {
-  console.log(`Socket connected: ${socket.id}`)
-})
-io.listen(3000)
