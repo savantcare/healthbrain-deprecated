@@ -1,0 +1,48 @@
+{
+  "recommendations": [
+    {
+      "id": "1k9uj7cat",
+      "description": "patient 1 - recommendation 1",
+      "createdAt": "Wed May 06 2020",
+      "patientId": "1"
+    },
+    {
+      "description": "1231231231",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9uj80dy",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "asdfasdf",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9uj823d",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "patient 1 - recommendation 2",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9ulappm",
+      "patientId": "1"
+    }
+  ],
+  "reminders": [
+    {
+      "description": "patient 1- reminder 1",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9uj9zug",
+      "patientId": "1"
+    },
+    {
+      "id": "1k9uja52h",
+      "description": "patient 1 - reminder(2) ",
+      "createdAt": "Wed May 06 2020",
+      "patientId": "1",
+      "discontinue": true
+    }
+  ],
+  "style": {
+    "value": 2
+  }
+}
