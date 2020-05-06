@@ -25,6 +25,9 @@ import RecommendationPanel from "@/components/RecommendationPanel.vue";
 import ReminderCard from "@/components/ReminderCard.vue";
 import ReminderPanel from "@/components/ReminderPanel.vue";
 
+import io from "socket.io-client";
+import { SOCKET_API_URL } from "@/const.js";
+
 export default {
   name: "Home",
   components: {
@@ -32,6 +35,11 @@ export default {
     RecommendationPanel,
     ReminderCard,
     ReminderPanel
+  },
+  data() {
+    return {
+      socket: io(SOCKET_API_URL)
+    };
   },
   mounted() {
     this.$store.dispatch("loadStyle");

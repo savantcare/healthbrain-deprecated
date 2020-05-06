@@ -1,5 +1,5 @@
 import { REMINDER_API_URL } from "@/const.js"
-
+const TOKEN = localStorage.getItem("token")
 export default {
   state: {
     list: []
@@ -25,7 +25,8 @@ export default {
         const response = await fetch(REMINDER_API_URL, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json;charset=utf-8"
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify(data)
         })
@@ -68,7 +69,8 @@ export default {
         const response = await fetch(`${REMINDER_API_URL}/${data.id}`, {
           method: "PUT",
           headers: {
-            "Content-Type": "application/json;charset=utf-8"
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify(data)
         });
@@ -104,7 +106,8 @@ export default {
         const response = await fetch(`${REMINDER_API_URL}/${data.id}`, {
           method: "PATCH",
           headers: {
-            "Content-Type": "application/json;charset=utf-8"
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify(data)
         });
@@ -143,7 +146,8 @@ export default {
           await fetch(`${REMINDER_API_URL}/${item.id}`, {
             method: "PATCH",
             headers: {
-              "Content-Type": "application/json;charset=utf-8"
+              "Content-Type": "application/json;charset=utf-8",
+              "Authorization": "Bearer " + TOKEN
             },
             body: JSON.stringify(item)
           });
@@ -161,11 +165,14 @@ export default {
       const { patientId, toast } = json
       try {
         const response = await fetch(
-          `${REMINDER_API_URL}?patientId=${patientId}`
+          `${REMINDER_API_URL}?patientId=${patientId}`, {
+          headers: {
+            "Authorization": "Bearer " + TOKEN
+          }
+        }
         );
         if (response.ok) {
           let json = await response.json();
-          console.log(json)
           commit('setReminderList', json)
         } else {
           toast.toast("Failed to get data", {
