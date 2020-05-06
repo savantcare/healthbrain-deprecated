@@ -86,16 +86,6 @@ const io = require('socket.io')(server)
 io.on("connection", socket => {
   console.log(`Socket connected: ${socket.id}`)
 
-  // socket.on("EVENT_UPDATE_RECOMMENDATIONS", data => {
-  //   const { list, roomId } = data
-  //   console.log(roomId)
-  //   io.to(`${roomId}-doctor`).emit("ON_UPDATE_RECOMMENDATIONS", list)
-  // })
-
-  // socket.on("EVENT_UPDATE_REMINDERS", data => {
-  //   io.emit("ON_UPDATE_REMINDERS_FOR_PATIENT_ID_$X", data)
-  // })
-
   socket.on("CREATE_ROOM", roomId => {
     console.log(`join to room ${roomId}`)
     socket.join(roomId)
