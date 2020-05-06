@@ -139,6 +139,18 @@ io.on("connection", socket => {
   socket.on("EVENT_UPDATE_RECOMMENDATIONS", data => {
     const { list, roomId } = data
     console.log(roomId)
+    /*
+      Q) Why is the room name "roomId-doctor"?
+      Conside the following example:
+      The userRole doctor is allowed access to 80 vue components. The userRole "Doctor admin assitant (DA)" is allowed access to 20 vue components.
+      roomName = patient ID - user role.
+      When DA logs in they only listen to ${roomId}-da and when doctor logs in they only listen to ${roomId}-doctor
+      There is a different socker.on() for each panel
+      Now inside each socket.on() block I can decide one of 3 scenarios:
+      1. Publish only on ${roomId}-da
+      2. Publish only on ${roomId}-doctor
+      3. Publish both on ${roomId}-da and ${roomId}-doctor
+    */
     io.to(`${roomId}-doctor`).emit("ON_UPDATE_RECOMMENDATIONS", list)
   })
 
