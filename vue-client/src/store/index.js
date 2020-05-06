@@ -10,8 +10,12 @@ import styleModule from './modules/style'
 
 export default new Vuex.Store({
   state: {
+    userRole: ''
   },
   mutations: {
+    setUserRole(state, data) {
+      state.userRole = data
+    }
   },
   actions: {
   },

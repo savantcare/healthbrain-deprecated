@@ -57,8 +57,8 @@ export default {
         });
         if (response.ok) {
           const json = await response.json();
-          console.log(json);
-          const { access_token } = json;
+          const { access_token, role } = json;
+          this.$store.commit("setUserRole", role);
           localStorage.setItem("token", access_token);
           this.$router.push("/?patient_id=1");
         } else {

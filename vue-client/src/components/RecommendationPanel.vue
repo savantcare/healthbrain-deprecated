@@ -155,7 +155,10 @@ export default {
           data: this.data,
           toast: this.$bvToast
         });
-        this.$socket.emit("EVENT_UPDATE_RECOMMENDATIONS", this.items);
+        this.$socket.emit("EVENT_UPDATE_RECOMMENDATIONS", {
+          list: this.items,
+          roomId: `room-${this.id}`
+        });
       } else {
         this.$store.dispatch("updateRecommendation", {
           data: this.data,

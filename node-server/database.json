@@ -4,7 +4,8 @@
       "id": "1k9uj7cat",
       "description": "patient 1 - recommendation 1 (update)",
       "createdAt": "Wed May 06 2020",
-      "patientId": "1"
+      "patientId": "1",
+      "discontinue": true
     },
     {
       "description": "1231231231",
@@ -30,7 +31,8 @@
       "description": "patient 1 - recommendation 3",
       "createdAt": "Wed May 06 2020",
       "id": "1k9v0jffx",
-      "patientId": "1"
+      "patientId": "1",
+      "discontinue": true
     },
     {
       "description": "4",
@@ -66,6 +68,117 @@
       "id": "1k9v0yw1m",
       "patientId": "1",
       "discontinue": true
+    },
+    {
+      "description": "patient 1- recommendation 4 from browser1",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v1bedw",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "add data from browser2",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v1btvr",
+      "patientId": "1"
+    },
+    {
+      "description": "412",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v1fik8",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "p2 - recommendation 1",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v1h3sg",
+      "patientId": "2"
+    },
+    {
+      "description": "p3 - recommnedaion 1",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v1i0um",
+      "patientId": "3"
+    },
+    {
+      "description": "2",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v26ory",
+      "patientId": "2",
+      "discontinue": true
+    },
+    {
+      "description": "3",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v275iu",
+      "patientId": "2",
+      "discontinue": true
+    },
+    {
+      "description": "4",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v29sku",
+      "patientId": "2",
+      "discontinue": true
+    },
+    {
+      "description": "5",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v2aemx",
+      "patientId": "2",
+      "discontinue": true
+    },
+    {
+      "description": "6",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v2b588",
+      "patientId": "2",
+      "discontinue": true
+    },
+    {
+      "description": "123",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v2b8b7",
+      "patientId": "2",
+      "discontinue": true
+    },
+    {
+      "description": "a",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v2eiy4",
+      "patientId": "2"
+    },
+    {
+      "description": "b",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v2eons",
+      "patientId": "2"
+    },
+    {
+      "description": "new data",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v2gunx",
+      "patientId": "2"
+    },
+    {
+      "description": "same patient id case",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v2hch4",
+      "patientId": "2"
+    },
+    {
+      "description": "doctor data",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v33uu9",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "add data from doctor",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v36c62",
+      "patientId": "1"
     }
   ],
   "reminders": [

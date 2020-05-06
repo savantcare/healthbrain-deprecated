@@ -35,6 +35,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch("loadStyle");
+    // Join room
+    const patientId = this.$route.query.patient_id;
+    const role = this.$store.state.userRole;
+    console.log(role);
+    this.$socket.emit("CREATE_ROOM", `room-${patientId}-${role}`);
   }
 };
 </script>

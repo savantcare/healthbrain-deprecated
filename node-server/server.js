@@ -92,9 +92,12 @@ server.post('/auth/login', (req, res) => {
     res.status(status).json({ status, message })
     return
   }
+  const userIdx = userdb.users.findIndex(user => user.email === email && user.password === password)
+  const user = userdb.users[userIdx]
+
   const access_token = createToken({ email })
   console.log("Access Token:" + access_token);
-  res.status(200).json({ access_token })
+  res.status(200).json({ access_token: access_token, role: user.role })
 })
 
 server.use(/^(?!\/auth).*$/, (req, res, next) => {
@@ -134,11 +137,18 @@ io.on("connection", socket => {
   // io.emit("test_emit", { param1: "value1", param2: "value2" })
 
   socket.on("EVENT_UPDATE_RECOMMENDATIONS", data => {
-    io.emit("ON_UPDATE_RECOMMENDATIONS", data)
+    const { list, roomId } = data
+    console.log(roomId)
+    io.to(`${roomId}-doctor`).emit("ON_UPDATE_RECOMMENDATIONS", list)
   })
 
   socket.on("EVENT_UPDATE_REMINDERS", data => {
-    io.emit("ON_UPDATE_REMINDERS", data)
+    io.emit("ON_UPDATE_REMINDERS_FOR_PATIENT_ID_$X", data)
+  })
+
+  socket.on("CREATE_ROOM", roomId => {
+    console.log(`join to room ${roomId}`)
+    socket.join(roomId)
   })
 })
 io.listen(3000)
