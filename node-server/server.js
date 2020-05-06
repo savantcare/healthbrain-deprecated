@@ -121,3 +121,18 @@ server.use(router)
 server.listen(8000, () => {
   console.log('Run Auth API Server')
 })
+
+const io = require('socket.io')()
+io.on("connection", socket => {
+  console.log(`Socket connected: ${socket.id}`)
+  // io.emit("test_emit", { param1: "value1", param2: "value2" })
+
+  socket.on("EVENT_UPDATE_RECOMMENDATIONS", data => {
+    io.emit("ON_UPDATE_RECOMMENDATIONS", data)
+  })
+
+  socket.on("EVENT_UPDATE_REMINDERS", data => {
+    io.emit("ON_UPDATE_REMINDERS", data)
+  })
+})
+io.listen(3000)

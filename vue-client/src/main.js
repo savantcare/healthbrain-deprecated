@@ -6,6 +6,23 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 
+// Initialize socket.io
+import SocketIO from 'socket.io-client'
+import VueSocketIO from 'vue-socket.io';
+import { SOCKET_API_URL } from "@/const.js";
+
+Vue.use(new VueSocketIO({
+  debug: true,
+  connection: SocketIO(SOCKET_API_URL, {}),
+  vuex: {
+    store,
+    actionPrefix: "SOCKET_",
+    mutationPrefix: "SOCKET_"
+  }
+})
+);
+
+
 Vue.config.productionTip = false
 
 new Vue({

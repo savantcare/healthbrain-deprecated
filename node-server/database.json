@@ -2,7 +2,7 @@
   "recommendations": [
     {
       "id": "1k9uj7cat",
-      "description": "patient 1 - recommendation 1",
+      "description": "patient 1 - recommendation 1 (update)",
       "createdAt": "Wed May 06 2020",
       "patientId": "1"
     },
@@ -25,6 +25,47 @@
       "createdAt": "Wed May 06 2020",
       "id": "1k9ulappm",
       "patientId": "1"
+    },
+    {
+      "description": "patient 1 - recommendation 3",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v0jffx",
+      "patientId": "1"
+    },
+    {
+      "description": "4",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v0u6ij",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "5",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v0w7rm",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "5",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v0wher",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "6",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v0xb5k",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "7",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v0yw1m",
+      "patientId": "1",
+      "discontinue": true
     }
   ],
   "reminders": [
@@ -38,6 +79,34 @@
       "id": "1k9uja52h",
       "description": "patient 1 - reminder(2) ",
       "createdAt": "Wed May 06 2020",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "2",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v10pun",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "3",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v10ysk",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "4",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v11mb4",
+      "patientId": "1",
+      "discontinue": true
+    },
+    {
+      "description": "5",
+      "createdAt": "Wed May 06 2020",
+      "id": "1k9v11qha",
       "patientId": "1",
       "discontinue": true
     }

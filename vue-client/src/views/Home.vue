@@ -10,10 +10,10 @@
     </b-row>
     <b-row class="mt-2">
       <b-col cols="8">
-        <reminder-card></reminder-card>
+        <reminder-panel></reminder-panel>
       </b-col>
       <b-col cols="4">
-        <reminder-panel></reminder-panel>
+        <reminder-card></reminder-card>
       </b-col>
     </b-row>
   </b-container>
@@ -25,9 +25,6 @@ import RecommendationPanel from "@/components/RecommendationPanel.vue";
 import ReminderCard from "@/components/ReminderCard.vue";
 import ReminderPanel from "@/components/ReminderPanel.vue";
 
-import io from "socket.io-client";
-import { SOCKET_API_URL } from "@/const.js";
-
 export default {
   name: "Home",
   components: {
@@ -35,11 +32,6 @@ export default {
     RecommendationPanel,
     ReminderCard,
     ReminderPanel
-  },
-  data() {
-    return {
-      socket: io(SOCKET_API_URL)
-    };
   },
   mounted() {
     this.$store.dispatch("loadStyle");

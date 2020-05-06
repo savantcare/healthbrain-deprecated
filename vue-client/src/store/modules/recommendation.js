@@ -13,6 +13,9 @@ export default {
     },
     removeNewRecommendation(state) {
       state.list.pop()
+    },
+    SOCKET_ON_UPDATE_RECOMMENDATIONS(state, updateList) {
+      state.list = updateList
     }
   },
   actions: {
@@ -183,6 +186,10 @@ export default {
             variant: "danger",
             solid: true
           })
+          if (TOKEN != null) { // remove token from the localstorage if it's expired
+            localStorage.removeItem("token")
+            this.$router.push('/login')
+          }
         }
       } catch (ex) {
         toast.toast("Server connection error", {

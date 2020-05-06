@@ -155,6 +155,7 @@ export default {
           data: this.data,
           toast: this.$bvToast
         });
+        this.$socket.emit("EVENT_UPDATE_RECOMMENDATIONS", this.items);
       } else {
         this.$store.dispatch("updateRecommendation", {
           data: this.data,

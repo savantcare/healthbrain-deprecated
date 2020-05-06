@@ -153,6 +153,7 @@ export default {
           data: this.data,
           toast: this.$bvToast
         });
+        this.$socket.emit("EVENT_UPDATE_REMINDERS", this.items);
       } else {
         this.$store.dispatch("updateReminder", {
           data: this.data,
