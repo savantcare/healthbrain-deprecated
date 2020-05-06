@@ -1,4 +1,4 @@
-# recommendation-card
+# HealthBrain Vue-Client
 
 ## Project setup
 ```
