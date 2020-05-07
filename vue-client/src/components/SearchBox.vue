@@ -12,6 +12,7 @@
       v-model="searchKeyword"
       placeholder="(Type here - use backstick to highlight)"
       @keyup="keyupHandler"
+      @click="setFocus"
     ></b-form-input>
   </div>
 </template>
