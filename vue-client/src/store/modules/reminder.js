@@ -209,11 +209,21 @@ export default {
           let json = await response.json();
           commit('setReminderList', json)
         } else {
-          toast.toast("Failed to get data", {
-            title: "Error",
-            variant: "danger",
-            solid: true
-          })
+          if (response.status == '401') {
+            toast.toast("Token is expired", {
+              title: "Error",
+              variant: "danger",
+              solid: true
+            })
+            localStorage.removeItem("token")
+            window.location = "/"
+          } else {
+            toast.toast("Failed to get data", {
+              title: "Error",
+              variant: "danger",
+              solid: true
+            })
+          }
         }
       } catch (ex) {
         toast.toast("Server connection error", {

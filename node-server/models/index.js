@@ -23,5 +23,6 @@ db.users = require("./user.model.js")(sequelize, Sequelize);
 db.recommendations = require("./recommendation.model.js")(sequelize, Sequelize)
 db.reminders = require("./reminder.model.js")(sequelize, Sequelize)
 db.settings = require("./setting.model.js")(sequelize, Sequelize)
+db.userRoles = require('./userRole.model')(sequelize, Sequelize)
 
 module.exports = db;

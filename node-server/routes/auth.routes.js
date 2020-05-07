@@ -9,7 +9,7 @@ const expiresIn = '1h'
 const SECRET_KEY = '123456789'
 
 router.post('/register', async (req, res) => {
-  const { email, password, role } = req.body;
+  const { email, password, roleId } = req.body;
 
   if (await isAuthenticated({ email, password }) === true) {
     const status = 401;
@@ -19,9 +19,9 @@ router.post('/register', async (req, res) => {
   }
 
   try {
-    const newUser = await User.create({ email: email, password: password, role: role })
+    const newUser = await User.create({ email: email, password: password, roleId: roleId })
     const access_token = createToken({ email })
-    res.status(200).json({ access_token: access_token, role: newUser.role })
+    res.status(200).json({ access_token: access_token, role: newUser.roleId })
   } catch (err) {
     res.status(500).send({
       message: err.message || "Some error occurred while creating the User"
@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
   if (queryResult.length > 0) {
     const user = queryResult[0]
     const access_token = createToken({ email })
-    res.status(200).json({ access_token: access_token, role: user.role })
+    res.status(200).json({ access_token: access_token, roleId: user.roleId })
   } else {
     const status = 401
     const message = 'Incorrect email or password'
