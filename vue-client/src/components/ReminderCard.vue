@@ -1,10 +1,11 @@
 <template>
   <div>
     <b-card
-      :border-variant="isStyle1 ? 'info' : 'dark'"
-      :header="isStyle1 ? 'info' : 'dark'"
-      :header-bg-variant="isStyle1 ? 'info' : 'dark'"
+      :border-variant="getStyle()"
+      :header="getStyle()"
+      :header-bg-variant="getStyle()"
       header-text-variant="white"
+      id="reminderCard"
     >
       <template v-slot:header>
         <b-row align-h="between" :style="{height: isStyle1 ? '50px' : '30px'}">
@@ -16,36 +17,43 @@
               variant="danger"
               v-if="selected.length > 0"
               @click="multidiscontinue"
-            >discontinue</b-button>
+            >Discontinue</b-button>
           </b-row>
         </b-row>
       </template>
       <b-card-text>
-        <b-table
-          ref="selectableTable"
-          selectable
-          bordered
-          select-mode="multi"
-          :items="items"
-          @row-selected="onRowSelected"
-          responsive="sm"
-          :fields="fields"
-          :small="!isStyle1"
-        >
-          <template v-slot:cell(action)="item">
-            <b-button
-              :size="isStyle1 ? '' :'sm'"
-              variant="outline-primary"
-              @click="openEditModal(item)"
-            >Edit</b-button>
-            <b-button
-              variant="outline-danger"
-              @click="discontinueReminder(item)"
-              class="ml-2"
-              :size="isStyle1 ? '' : 'sm'"
-            >discontinue</b-button>
-          </template>
-        </b-table>
+        <table class="table table-bordered table-sm table-hover">
+          <thead>
+            <tr>
+              <th v-for="(field, index) in fields" :key="`field-${index}`" scope="col">{{field}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(item, index) in items"
+              :key="`item-${index}`"
+              @click="selectTableRow(item)"
+              style="cursor: pointer;"
+              :class="{'table-active': checkActiveStatus(item), 'table-primary': checkFocusStatus(index)}"
+            >
+              <td>{{item.description}}</td>
+              <td>{{item.createdAt}}</td>
+              <td v-if="selected.length == 0">
+                <b-button
+                  :size="isStyle1 ? '' :'sm'"
+                  variant="outline-primary"
+                  @click="openEditModal(item, $event)"
+                >Edit</b-button>
+                <b-button
+                  variant="outline-danger"
+                  @click="discontinueReminder(item)"
+                  class="ml-2"
+                  :size="isStyle1 ? '' : 'sm'"
+                >Discontinue</b-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </b-card-text>
     </b-card>
 
@@ -58,6 +66,7 @@
           v-model="data.description"
           :state="validation"
           rows="5"
+          autofocus
         ></b-form-textarea>
         <b-form-invalid-feedback :state="validation">Description content is required.</b-form-invalid-feedback>
       </b-form>
@@ -92,7 +101,9 @@ export default {
       },
       selected: [],
       modalType: ADD_DIALOG, // 1: add, 2: edit
-      timer: -1
+      timer: -1,
+      focusIndex: -1,
+      discontinueAction: false
     };
   },
   computed: {
@@ -109,9 +120,9 @@ export default {
     },
     fields() {
       if (this.selected.length > 0) {
-        return ["description", "createdAt"];
+        return ["Description", "Created At"];
       } else {
-        return ["description", "createdAt", "action"];
+        return ["Description", "Created At", "Action"];
       }
     },
     id() {
@@ -125,6 +136,17 @@ export default {
     },
     style() {
       return this.$store.state.setting.style;
+    },
+    focusComponent() {
+      return this.$store.state.focusComponent;
+    },
+    rightPanelComponents() {
+      return this.$store.state.rightPanel.list;
+    }
+  },
+  watch: {
+    focusComponent() {
+      this.focusIndex = 0;
     }
   },
   mounted() {
@@ -132,6 +154,8 @@ export default {
       patientId: this.id,
       toast: this.$bvToast
     });
+
+    window.addEventListener("keydown", this.keyHandler);
   },
   methods: {
     onRowSelected(items) {
@@ -144,6 +168,8 @@ export default {
     },
     save() {
       if (this.modalType == ADD_DIALOG) {
+        const today = new Date();
+        this.data["createdAt"] = today.toDateString();
         this.data["id"] = uniqid();
         this.data["patientId"] = this.id;
 
@@ -161,27 +187,30 @@ export default {
     },
     openEditModal(item) {
       this.data = {
-        id: this.items[item.index]["id"],
-        description: this.items[item.index]["description"],
-        createdAt: this.items[item.index]["createdAt"],
-        patientId: this.items[item.index]["patientId"]
+        id: item["id"],
+        description: item["description"],
+        createdAt: item["createdAt"],
+        patientId: item["patientId"]
       };
       this.modalShow = true;
       this.modalType = 2;
     },
     discontinueReminder(item) {
+      this.discontinueAction = true;
       this.$store.dispatch("discontinueReminder", {
-        data: item.item,
+        data: item,
         toast: this.$bvToast
       });
     },
     multidiscontinue() {
       let selectedIds = [];
       let selectedDatas = [];
+
       this.selected.forEach(item => {
         selectedIds.push(item.id);
         selectedDatas.push(item);
       });
+      this.selected = [];
 
       this.$store.dispatch("multidiscontinueReminder", {
         selectedIds: selectedIds,
@@ -191,10 +220,132 @@ export default {
     },
     getStyleClass() {
       return this.style == STYLE_1 ? "info" : "dark";
+    },
+    keyHandler(e) {
+      if (this.focusComponent != "reminder" || this.modalShow == true) {
+        return;
+      }
+
+      if (e.key == "a") {
+        this.showAddModal();
+      } else if (e.key == "ArrowDown") {
+        if (this.focusIndex < 1 + this.items.length) {
+          this.focusIndex += 1;
+        } else {
+          this.moveFocusToNextComponent();
+        }
+      } else if (e.key == "ArrowUp") {
+        if (this.focusIndex > 1) {
+          this.focusIndex -= 1;
+        } else {
+          this.moveFocusToPrevComponent();
+        }
+      } else if (e.key == "ArrowLeft") {
+        this.moveFocusToPrevComponent();
+      } else if (e.key == "ArrowRight") {
+        this.moveFocusToNextComponent();
+      } else if (e.key == "e") {
+        const rowIndex = this.focusIndex - 2;
+        if (rowIndex > -1) {
+          this.openEditModal(this.items[rowIndex]);
+        }
+      } else if (e.key == "d") {
+        const rowIndex = this.focusIndex - 2;
+        if (rowIndex > -1) {
+          this.discontinueReminder(this.items[rowIndex]);
+        }
+      }
+    },
+    moveFocusToNextComponent() {
+      // move focus to the next component
+      const nextComponent = this.rightPanelComponents[
+        this.getCurrentComponentIndex() + 1
+      ];
+
+      if (nextComponent == null) {
+        // set focus to the search-box
+        setTimeout(() => {
+          this.$store.commit("setFocusComponent", "search-box");
+        }, 50);
+      } else {
+        setTimeout(() => {
+          this.$store.commit("setFocusComponent", nextComponent["key"]);
+        }, 50);
+      }
+    },
+
+    moveFocusToPrevComponent() {
+      // move focus to the top component
+      if (this.getCurrentComponentIndex() == 0) {
+        // set focus to the search-box
+        setTimeout(() => {
+          this.$store.commit("setFocusComponent", "search-box");
+        }, 50);
+      } else {
+        const prevComponent = this.rightPanelComponents[
+          this.getCurrentComponentIndex() - 1
+        ];
+        setTimeout(() => {
+          this.$store.commit("setFocusComponent", prevComponent["key"]);
+        }, 50);
+      }
+    },
+
+    getCurrentComponentIndex() {
+      let currentComponentIndex = -1;
+      this.rightPanelComponents.forEach((item, index) => {
+        if (item.key == "reminder") {
+          currentComponentIndex = index;
+        }
+      });
+      return currentComponentIndex;
+    },
+    getStyle() {
+      if (this.focusComponent == "reminder") {
+        return this.focusIndex > 1 ? "warning" : "success";
+      }
+      return this.isStyle1 ? "info" : "dark";
+    },
+    selectTableRow(item) {
+      if (this.modalShow || this.discontinueAction) {
+        this.discontinueAction = false;
+        return;
+      }
+
+      let newList = [];
+      let isExistsRow = false;
+      this.selected.forEach(data => {
+        if (data.id == item.id) {
+          isExistsRow = true;
+        } else {
+          newList.push(data);
+        }
+      });
+      if (isExistsRow) {
+        this.selected = newList;
+      } else {
+        this.selected.push(item);
+      }
+    },
+    checkActiveStatus(item) {
+      let isActive = false;
+      this.selected.forEach(data => {
+        if (data.id == item.id) {
+          isActive = true;
+        }
+      });
+      return isActive;
+    },
+    checkFocusStatus(index) {
+      if (index + 2 == this.focusIndex) {
+        return true;
+      }
+      return false;
     }
   },
   beforeDestroy() {
     clearInterval(this.timer);
+    window.removeEventListener("keydown", this.keyHandler);
   }
 };
 </script>

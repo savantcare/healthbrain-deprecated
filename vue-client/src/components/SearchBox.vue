@@ -25,6 +25,7 @@ export default {
   },
   computed: {
     width() {
+      console.log(this.$store.state.rightPanel.width);
       return this.$store.state.rightPanel.width;
     },
     focusComponent() {
@@ -38,6 +39,20 @@ export default {
       return this.$store.state.SEARCH_COMPONENT_LIST.filter(item => {
         return item.search(this.searchKeyword) > -1;
       });
+    },
+    rightPanelComponents() {
+      return this.$store.state.rightPanel.list;
+    }
+  },
+  watch: {
+    focusComponent() {
+      if (this.focusComponent == "search-box") {
+        setTimeout(() => {
+          this.$refs.search_box.focus();
+        }, 50);
+      } else {
+        this.$refs.search_box.blur();
+      }
     }
   },
   mounted() {
@@ -45,10 +60,30 @@ export default {
   },
   methods: {
     keyupHandler(event) {
+      if (this.focusComponent != "search-box") {
+        return;
+      }
       if (event.keyCode == 13) {
         const action = this.keywordComponents[0];
         this.$emit("renderRightPanel", action);
         this.searchKeyword = "";
+      } else if (event.key == "ArrowDown") {
+        // focus to the first component
+        const firstComponent = this.rightPanelComponents[0]["key"];
+        setTimeout(() => {
+          this.$store.commit("setFocusComponent", firstComponent);
+        }, 50);
+
+        this.$refs.search_box.blur();
+      } else if (event.key == "ArrowUp") {
+        if (this.rightPanelComponents.length > 0) {
+          const lastComponent = this.rightPanelComponents[
+            this.rightPanelComponents.length - 1
+          ]["key"];
+          setTimeout(() => {
+            this.$store.commit("setFocusComponent", lastComponent);
+          }, 50);
+        }
       }
     },
     setFocus() {

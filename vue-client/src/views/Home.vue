@@ -8,11 +8,13 @@
       <SplitArea :size="30" :minsize="100">
         <!-- <recommendation-card></recommendation-card>
         <reminder-card></reminder-card>-->
-        <component
-          v-for="(component, index) in rightPanelComponents"
-          :key="`component-${index}`"
-          :is="component.value"
-        ></component>
+        <div v-if="rightPanelComponents.length > 0">
+          <component
+            v-for="(component, index) in rightPanelComponents"
+            :key="`component-${index}`"
+            :is="component.value"
+          ></component>
+        </div>
 
         <search-box ref="search_box" @renderRightPanel="renderRightPanel"></search-box>
       </SplitArea>
@@ -38,14 +40,26 @@ export default {
   },
   data() {
     return {
-      searchKeyword: "",
-      rightPanelComponents: [
-        { key: "recommendation", value: RecommendationCard },
-        { key: "reminder", value: ReminderCard }
-      ]
+      searchKeyword: ""
     };
   },
-  computed: {},
+  computed: {
+    focusComponent() {
+      return this.$store.state.focusComponent;
+    },
+    rightPanelComponents() {
+      return this.$store.state.rightPanel.list;
+    }
+  },
+  beforeCreate() {
+    // Initialize rightPanel components
+    const list = [
+      { key: "recommendation", value: RecommendationCard },
+      { key: "reminder", value: ReminderCard }
+    ];
+
+    this.$store.commit("setRightPanelList", list);
+  },
   mounted() {
     this.$store.dispatch("loadSetting");
     // Join room
@@ -70,7 +84,7 @@ export default {
     },
     renderRightPanel(action) {
       if (action == "clear") {
-        this.rightPanelComponents = [];
+        this.$store.commit("setRightPanelList", []);
       } else if (action.search("recommendation") > -1) {
         const newList = [];
         this.rightPanelComponents.forEach(item => {
@@ -83,7 +97,7 @@ export default {
           value: RecommendationCard
         });
 
-        this.rightPanelComponents = newList;
+        this.$store.commit("setRightPanelList", newList);
       } else if (action.search("reminder") > -1) {
         const newList = [];
         this.rightPanelComponents.forEach(item => {
@@ -96,14 +110,8 @@ export default {
           value: ReminderCard
         });
 
-        this.rightPanelComponents = newList;
+        this.$store.commit("setRightPanelList", newList);
       }
-      // if (this.rightPanelComponents.length > 0) {
-      //   this.$store.commit(
-      //     "setFocusComponent",
-      //     this.rightPanelComponents[0].key
-      //   );
-      // }
     }
   },
   beforeDestroy() {
