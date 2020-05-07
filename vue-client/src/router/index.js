@@ -14,6 +14,14 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('@/views/Login.vue')
+  },
+  {
+    path: '/test',
+    component: () => import('@/views/Test.vue')
+  },
+  {
+    path: '/remCard',
+    component: () => import('@/components/RecommendationCard.vue')
   }
 ]
 

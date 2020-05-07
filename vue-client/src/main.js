@@ -22,6 +22,8 @@ Vue.use(new VueSocketIO({
 })
 );
 
+import VueSplit from 'vue-split-panel'
+Vue.use(VueSplit)
 
 Vue.config.productionTip = false
 

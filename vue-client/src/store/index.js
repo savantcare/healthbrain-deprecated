@@ -7,14 +7,20 @@ Vue.use(Vuex)
 import recommendationModule from './modules/recommendation'
 import reminderModule from './modules/reminder'
 import settingModule from './modules/setting'
+import rightPanelModule from './modules/rightPanel'
 
 export default new Vuex.Store({
   state: {
-    userRole: ''
+    userRole: '',
+    SEARCH_COMPONENT_LIST: ["clear", "recommendations (rex)", "reminders (rem)"],
+    focusComponent: ""
   },
   mutations: {
     setUserRole(state, data) {
       state.userRole = data
+    },
+    setFocusComponent(state, value) {
+      state.focusComponent = value
     }
   },
   actions: {
@@ -22,7 +28,8 @@ export default new Vuex.Store({
   modules: {
     recommendation: recommendationModule,
     reminder: reminderModule,
-    setting: settingModule
+    setting: settingModule,
+    rightPanel: rightPanelModule
   },
   plugins: [
     createPersistedState()

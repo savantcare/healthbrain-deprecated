@@ -1,10 +1,11 @@
 <template>
   <div>
     <b-card
-      :border-variant="isStyle1 ? 'info' : 'dark'"
-      :header="isStyle1 ? 'info' : 'dark'"
-      :header-bg-variant="isStyle1 ? 'info' : 'dark'"
+      :border-variant="getStyle()"
+      :header="getStyle()"
+      :header-bg-variant="getStyle()"
       header-text-variant="white"
+      id="recommendationCard"
     >
       <template v-slot:header>
         <b-row align-h="between" :style="{height: isStyle1 ? '50px' : '30px'}">
@@ -127,6 +128,9 @@ export default {
     },
     style() {
       return this.$store.state.setting.style;
+    },
+    focusComponent() {
+      return this.$store.state.focusComponent;
     }
   },
   mounted() {
@@ -134,6 +138,8 @@ export default {
       patientId: this.id,
       toast: this.$bvToast
     });
+
+    window.addEventListener("keydown", this.keyHandler);
   },
   methods: {
     onRowSelected(items) {
@@ -193,10 +199,25 @@ export default {
     },
     getStyleClass() {
       return this.style == STYLE_1 ? "info" : "dark";
+    },
+    keyHandler(e) {
+      if (this.focusComponent != "recommendation") {
+        return;
+      }
+      if (e.key == "a") {
+        this.showAddModal();
+      }
+    },
+    getStyle() {
+      if (this.focusComponent == "recommendation") {
+        return "primary";
+      }
+      return this.isStyle1 ? "info" : "dark";
     }
   },
   beforeDestroy() {
     clearInterval(this.timer);
+    window.removeEventListener("keydown", this.keyHandler);
   }
 };
 </script>
