@@ -37,7 +37,7 @@ export default {
         return [];
       }
 
-      return this.$store.state.SEARCH_COMPONENT_LIST.filter(item => {
+      return this.$store.state.searchComponentList.filter(item => {
         return item.search(this.searchKeyword) > -1;
       });
     },

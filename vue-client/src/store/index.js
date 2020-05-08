@@ -14,7 +14,7 @@ import { ROLE_API_URL } from "@/const.js"
 export default new Vuex.Store({
   state: {
     userRole: '',
-    SEARCH_COMPONENT_LIST: ["clear", "recommendations (rex)", "reminders (rem)"],
+    searchComponentList: [],
     focusComponent: ""
   },
   mutations: {
@@ -25,7 +25,7 @@ export default new Vuex.Store({
       state.focusComponent = value
     },
     setSearchComponentList(state, list) {
-      state.SEARCH_COMPONENT_LIST = list
+      state.searchComponentList = list
     }
   },
   actions: {
