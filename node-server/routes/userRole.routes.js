@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const db = require('../models')
-const UserRole = db.other.userRoles
+const UserRole = db.userDB.userRoles
 
 router.post('/', async (req, res) => {
   try {

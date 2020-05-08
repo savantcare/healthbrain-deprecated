@@ -20,6 +20,7 @@ userDB.Sequelize = Sequelize
 userDB.sequelize = userSequelize
 
 userDB.users = require('../user.model.js')(userSequelize, Sequelize)
+userDB.userRoles = require('../userRole.model.js')(userSequelize, Sequelize)
 
 userDB.sequelize.sync()
 

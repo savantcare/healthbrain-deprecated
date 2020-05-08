@@ -20,7 +20,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.settings = require("./setting.model.js")(sequelize, Sequelize)
-db.userRoles = require('./userRole.model')(sequelize, Sequelize)
 
 db.sequelize.sync()
 
