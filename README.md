@@ -61,6 +61,7 @@ Possible solution:
 
 
 ## What are the tags used in code?
-Todo
-Question
-Fix
+Todo:
+Question:
+Fix:
+To find files with the Fix tag: healthbrain> grep -ir -n --exclude-dir={node_modules,.git} ' Fix:' ./

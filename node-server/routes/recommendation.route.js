@@ -14,7 +14,7 @@ module.exports = (io) => {
        */
       io.to(`room-${req.body.patientId}-doctor`).emit("ADD_RECOMMENDATION", newRecommendation)
       
-      res.send(newRecommendation) /* Fix: Instead of sending the whole objefct only OK needs to be sent*/
+      res.send(newRecommendation) /* Fix: Instead of sending the whole object only OK needs to be sent*/
     } catch (err) {
       res.status(500).send({
         message: err.message || "Some error occurred while creating the Recommenation"
@@ -48,7 +48,7 @@ module.exports = (io) => {
         }
       })
       io.to(`room-${req.body.patientId}-doctor`).emit("UPDATE_RECOMMENDATION", req.body)
-      res.send(queryResult) /* Fix: Instead of sending the whole objefct only OK needs to be sent*/
+      res.send(queryResult) /* Fix: Instead of sending the whole object only OK needs to be sent*/
     } catch (err) {
       res.status(500).send({
         message: err.message || "Some error occured while update the Recommendation"
