@@ -12,9 +12,16 @@ $ npm install
 $ docker run -p "80:80" -p "3306:3306" -v ${PWD}/app:/app mattrayner/lamp:latest-1804 
 
 # Ref: https://github.com/mattrayner/docker-lamp#using-the-image
-# Confirm mysql is running http://localhost/phpmyadmin/ login: admin password: comnes from docker logs
-
+# Confirm mysql is running http://localhost/phpmyadmin/ 
+# login: admin 
+# To get the mysql server password 
+$ docker logs  # Look at top lines
 # edit node_server/config.php to enter admin password
+
+# 1. Create 4 databases A. sc_user B. sc_setting C. sc_reminder D. sc_recommendation
+# 2. Insert the data: run sql statement inside the following 2 files:
+# user_roles.sql
+# users.sql
 
 $ npm run start-auth
 ```

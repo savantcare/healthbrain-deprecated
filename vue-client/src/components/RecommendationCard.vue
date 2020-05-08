@@ -229,6 +229,16 @@ export default {
         return;
       }
 
+      /* This code seems similar across 100 components. Should this be put into a seperate function and then called from 100 components?
+        **decision-to-make**
+        Each component will implement its own keyboard shortcuts. so 
+         Reminders will have following card header actions
+            a -> to add
+         Date of birth will not have card header actions
+         Recommendations will have:
+            a -> to add
+            d -> download as pdf
+      */
       if (e.key == "a") {
         this.showAddModal();
       } else if (e.key == "ArrowDown") {
