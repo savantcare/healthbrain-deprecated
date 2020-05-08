@@ -62,7 +62,7 @@ export default {
           body: JSON.stringify(data)
         })
         if (!response.ok) {
-          toast.toast("Failed to add data", {
+          toast.toast("Failed to add recommendation data", {
             title: "Error",
             variant: "danger",
             solid: true
@@ -106,7 +106,7 @@ export default {
           body: JSON.stringify(data)
         });
         if (!response.ok) {
-          toast.toast("Failed to update data", {
+          toast.toast("Failed to update recommendation data", {
             title: "Error",
             variant: "danger",
             solid: true
@@ -143,7 +143,7 @@ export default {
           body: JSON.stringify(data)
         });
         if (!response.ok) {
-          toast.toast("Failed to discontinue data", {
+          toast.toast("Failed to discontinue recommendation data", {
             title: "Error",
             variant: "danger",
             solid: true
@@ -218,7 +218,7 @@ export default {
             localStorage.removeItem("token")
             window.location = "/"
           } else {
-            toast.toast("Failed to get data", {
+            toast.toast("Failed to get recommendation data", {
               title: "Error",
               variant: "danger",
               solid: true
