@@ -10,8 +10,8 @@ module.exports = {
     acquire: 30000,
     idle: 10000
   },
-  DB_RECOMMENDATION: "hb_recommendation",
-  DB_REMINDER: "hb_reminder",
-  DB_USER: "hb_user",
-  DB_SETTING: "hb_setting"
+  DB_RECOMMENDATION: "sc_recommendation",
+  DB_REMINDER: "sc_reminder",
+  DB_USER: "sc_user",
+  DB_SETTING: "sc_setting"
 };
