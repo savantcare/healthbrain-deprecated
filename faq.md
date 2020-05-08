@@ -60,3 +60,7 @@ The goal is for recommendation-panel and recommendation-card to have the same vu
 [The code till 4th May](https://github.com/vikaskedia/healthbrain) implemented recommendation-panel and recommendation-card as two different npm packages. Different npm packages cannot share the same vuex store.
 
 Hence recommendation-panel and recommendation-card cannot be two seperate npm packages they have to be components of the same vue app.
+
+
+# Q4) What is the code review process?
+https://www.youtube.com/watch?v=8fx-EaOUK2E
