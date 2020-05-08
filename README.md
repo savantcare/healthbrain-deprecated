@@ -6,9 +6,9 @@
 
 1. When page is reloaded and there is no correction to DB server or a slow connection to DB server the page should load from localstorage immediately.
 
-2. When a page is already on the doctor browser and the doctor gives the commanbd "rec" then the recommendations show immediately from localcache and api is fired in the back. If the api returns new data the view is updated.
+2. When a page is already on the doctor browser and the doctor gives the commanbd "rec" then the recommendations show immediately from localcache and api is fired in the back. If the api returns new data the view is updated. (lazy-read)
 
-3. When doctor adds a rec, the view gets updated. If server update fails then the view is reverted.
+3. When doctor adds a rec, the view gets updated. If server update fails then the view is reverted. (lazy-write)
 
 4. When doctor is offline and open a patient file they see the page. #not-working
 
@@ -30,6 +30,9 @@ We get rec and rem component to work completely in the new architecture. Once th
 
 Within 2 weeks /p2 will get released once the architecture is finalized
 
+## What is the ideal component on which other components are based?
+Recommendation.
+
 ## How to run the app locally
 There are two parts in current architecture
 1. vue-client
@@ -41,10 +44,14 @@ Please read the README.md file in the each project folder.
 
 For the model component RecommendationCard the following files needed to be created:
 
-1. vue-client/src/components/RecommendationCard.vue file    -> This has the presentation layer (html), styling layer (css), JS to change the state
-2. vue-client/store/modules/recommendation.js               -> State of this component
-3. node-server/models/recommendation.model.js               -> Sequalize model of this component
-4. node-server/routes/recommendation.route.js               -> Routes of this component
+## Client side
+1. vue-client/src/components/RecommendationCard.vue file    -> This has the presentation layer (html), styling layer (css), JS to change the state. This file is compiled into seperate html js and css by vue-cli
+2. vue-client/store/modules/recommendation.js               -> Vue state of this component. Mutation functions to state. Socket functions to change state.
+
+## Server side
+1. node-server/models/database/recommendation.database.js   -> Sequalize connection details
+2. node-server/models/recommendation.model.js               -> Sequalize sql structure of this component
+3. node-server/routes/recommendation.route.js               -> Routes of this component and emit socket messages
 
 **Todo** 
 
@@ -52,3 +59,8 @@ How to keep these files in a seperate repo. How to run them independently.
 Possible solution:
 1. https://github.com/teambit/bit
 
+
+## What are the tags used in code?
+Todo
+Question
+Fix

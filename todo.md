@@ -1,27 +1,31 @@
 ## Work needed before declaring arch stable
 
-A. Search 
-   1. Highlight
-   2. Tab
-
-B. Code repeated between components.
+A. Code repeated between components.
    1. DB  
    2. KB traverse
 
-C. Offline refresh needs to work
+B. Seperate repo but 1 app for each component.
 
-D. Style ID does not make sense
+C. Search 
+   1. Highlight the search term in each row of the result.
+   2. Press enter to select highlighted row.
+   3. "rex " to execute the first command in the card header.
 
-E. Code refactor
+D. Offline refresh needs to work
+
+E. Style ID does not make sense
+
+F. Code refactor
 
    1. https://github.com/savantcare/healthbrain/blob/62d857092560bb2770611fd9cbef4012adbca00d/vue-client/src/store/modules/recommendation.js#L181 section for "Server connection error" is missing. Why not call discontinueRecommendation() in a for loop from inside multidiscontinueRecommendation (@jana)
 
-F. Discontinue instead of edit
+G. Discontinue instead of edit
 
    1. This is a health app. Time travel (rollback) needs to work (@raj)
 
-      1. Remove updateRecommendation and updateReminders. Because if an exisitng data row is updated then time travel not possible.
-      2. In the UI remove edit. Instead of edit it should be change. Change is discontinue the exisiting row and then add a new row.
+      A. Remove updateRecommendation and updateReminders. Because if an exisitng data row is updated then time travel not possible.
+      
+      B. In the UI remove edit. Instead of edit it should be change. Change is discontinue the exisiting row and then add a new row.
 
 
 ## Questions

@@ -1,7 +1,7 @@
 import { RECOMMENDATION_API_URL } from "@/const.js"
 let TOKEN = localStorage.getItem("token")
 export default {
-  state: {
+  state: {                       // Cannot be changed directly. Can only be changed through mutation
     list: []
   },
   mutations: {
@@ -14,11 +14,11 @@ export default {
     removeNewRecommendation(state) {
       state.list.pop()
     },
-    SOCKET_ON_UPDATE_RECOMMENDATIONS(state, updateList) {
+    SOCKET_ON_UPDATE_RECOMMENDATIONS(state, updateList) {   // Message received from socket server
       state.list = updateList
     },
-    SOCKET_ADD_RECOMMENDATION(state, newData) {
-      if (state.list.length > 0) {
+    SOCKET_ADD_RECOMMENDATION(state, newData) {         // Msg recd from node-server/routes/recommendation.route.js
+      if (state.list.length > 0) {                      // At the client where this data was added it needs to be skipped
         const lastData = state.list[state.list.length - 1]
         if (lastData.id == newData.id) {
           return
