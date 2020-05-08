@@ -57,9 +57,9 @@ server.listen(8000, () => {
   console.log("Node.js server is running")
 })
 
-const db = require("./models");
+require("./models");
 
-db.sequelize.sync();
+// db.sequelize.sync();
 
 // require("./socket")(server)
 

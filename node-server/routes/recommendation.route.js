@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const db = require('../models')
-const Recommendation = db.recommendations
+const Recommendation = db.recommendationDB.recommendations
 
 module.exports = (io) => {
   router.post('/', async (req, res) => {

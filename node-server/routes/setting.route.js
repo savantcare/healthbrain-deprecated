@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const db = require('../models')
-const Setting = db.settings
+const Setting = db.other.settings
 
 router.post('/', async (req, res) => {
   try {

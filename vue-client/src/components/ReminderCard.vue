@@ -6,6 +6,7 @@
       :header-bg-variant="getStyle()"
       header-text-variant="white"
       id="reminderCard"
+      @click="setFocusComponent"
     >
       <template v-slot:header>
         <b-row align-h="between" :style="{height: isStyle1 ? '50px' : '30px'}">
@@ -341,6 +342,10 @@ export default {
         return true;
       }
       return false;
+    },
+    setFocusComponent() {
+      this.$store.commit("setFocusComponent", "reminder");
+      this.focusIndex = 0;
     }
   },
   beforeDestroy() {
@@ -351,4 +356,7 @@ export default {
 </script>
 
 <style>
+#reminderCard {
+  cursor: pointer;
+}
 </style>

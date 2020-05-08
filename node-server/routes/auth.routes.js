@@ -3,7 +3,7 @@ const router = express.Router()
 const jwt = require('jsonwebtoken')
 
 const db = require('../models')
-const User = db.users
+const User = db.userDB.users
 
 const expiresIn = '1h'
 const SECRET_KEY = '123456789'

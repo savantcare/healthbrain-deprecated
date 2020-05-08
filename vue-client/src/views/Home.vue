@@ -70,6 +70,8 @@ export default {
 
     // Get Keyevent
     window.addEventListener("keydown", this.keydownHandler);
+
+    this.$store.commit("setFocusComponent", "");
   },
   methods: {
     onDrag(size) {

@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const db = require('../models')
-const Reminder = db.reminders
+const Reminder = db.reminderDB.reminders
 
 module.exports = (io) => {
   router.post('/', async (req, res) => {

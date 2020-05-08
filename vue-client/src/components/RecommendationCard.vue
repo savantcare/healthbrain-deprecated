@@ -6,6 +6,7 @@
       :header-bg-variant="getStyle()"
       header-text-variant="white"
       id="recommendationCard"
+      @click="setFocusComponent"
     >
       <template v-slot:header>
         <b-row align-h="between" :style="{height: isStyle1 ? '50px' : '30px'}">
@@ -343,6 +344,10 @@ export default {
         return true;
       }
       return false;
+    },
+    setFocusComponent() {
+      this.$store.commit("setFocusComponent", "recommendation");
+      this.focusIndex = 0;
     }
   },
   beforeDestroy() {
@@ -353,4 +358,7 @@ export default {
 </script>
 
 <style>
+#recommendationCard {
+  cursor: pointer;
+}
 </style>
