@@ -12,5 +12,6 @@ module.exports = {
   },
   DB_RECOMMENDATION: "hb_recommendation",
   DB_REMINDER: "hb_reminder",
-  DB_USER: "hb_user"
+  DB_USER: "hb_user",
+  DB_SETTING: "hb_setting"
 };
