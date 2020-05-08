@@ -7,5 +7,13 @@ module.exports = {
   SOCKET_API_URL: "http://localhost:8000",
 
   ADD_DIALOG: 1,
-  STYLE_1: 1
+  STYLE_1: 1,
+
+  // Tab constant values.
+  ADD_RECOMMENDATION: 1,
+  EDIT_RECOMMENDATION: 2,
+  MULTIPLE_CHANGE_RECOMMENDATION: 3,
+  ADD_REMINDER: 4,
+  EDIT_REMINDER: 5,
+  MULTIPLE_CHANGE_REMINDER: 6
 }

@@ -8,6 +8,7 @@ import recommendationModule from './modules/recommendation'
 import reminderModule from './modules/reminder'
 import settingModule from './modules/setting'
 import rightPanelModule from './modules/rightPanel'
+import tabDialogModule from './modules/tabDialog'
 
 import { ROLE_API_URL } from "@/const.js"
 
@@ -48,7 +49,8 @@ export default new Vuex.Store({
     recommendation: recommendationModule,
     reminder: reminderModule,
     setting: settingModule,
-    rightPanel: rightPanelModule
+    rightPanel: rightPanelModule,
+    tabDialog: tabDialogModule
   },
   plugins: [
     createPersistedState()

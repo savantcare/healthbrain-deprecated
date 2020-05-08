@@ -11,7 +11,19 @@
           <h5 v-if="isStyle1" class="m-md-2">Reminder Panel</h5>
           <span style="font-weight: bold;" v-else>Reminder Panel</span>
           <b-row class="mr-2">
-            <b-button variant="primary" v-if="selected.length == 0" @click="showAddModal">Add</b-button>
+            <b-button
+              variant="primary"
+              size="sm"
+              v-if="selected.length == 0"
+              @click="showAddModal"
+            >Add</b-button>
+            <b-button
+              size="sm"
+              variant="primary"
+              v-if="selected.length == 0"
+              @click="showMultiChangeModal"
+              class="ml-2"
+            >Multi change</b-button>
             <b-button
               variant="danger"
               v-if="selected.length > 0"
@@ -37,7 +49,7 @@
               :size="isStyle1 ? '' :'sm'"
               variant="outline-primary"
               @click="openEditModal(item)"
-            >Edit</b-button>
+            >Change</b-button>
             <b-button
               variant="outline-danger"
               @click="discontinueReminder(item)"
@@ -75,12 +87,36 @@
         </div>
       </template>
     </b-modal>
+
+    <b-modal v-model="multiChangeModalShow" centered size="lg" title="Reminder multi change">
+      <b-row cols="3">
+        <b-col v-for="(item, index) in reminders" :key="`item-${index}`">
+          <label>Description:</label>
+
+          <b-form-textarea id="textarea-state" rows="5" autofocus v-model="item.description"></b-form-textarea>
+          <b-form-invalid-feedback>Description content is required.</b-form-invalid-feedback>
+
+          <b-button
+            class="float-right mb-2 mt-2"
+            variant="primary"
+            size="sm"
+            @click="update(item)"
+          >Save</b-button>
+        </b-col>
+      </b-row>
+    </b-modal>
   </div>
 </template>
 
 <script>
 import uniqid from "uniqid";
-import { ADD_DIALOG, STYLE_1 } from "@/const.js";
+import {
+  ADD_DIALOG,
+  STYLE_1,
+  ADD_RECOMMENDATION,
+  EDIT_RECOMMENDATION,
+  MULTIPLE_CHANGE_RECOMMENDATION
+} from "@/const.js";
 
 export default {
   name: "ReminderPanel",
@@ -92,7 +128,9 @@ export default {
       },
       selected: [],
       modalType: ADD_DIALOG, // 1: add, 2: edit
-      timer: -1
+      timer: -1,
+      multiChangeModalShow: false,
+      reminders: []
     };
   },
   computed: {
@@ -138,9 +176,12 @@ export default {
       this.selected = items;
     },
     showAddModal() {
-      this.modalShow = true;
-      this.modalType = ADD_DIALOG;
-      this.data = { description: "" };
+      const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
+      this.$store.commit("setTabList", [
+        { key: ADD_RECOMMENDATION, value: addReminderTab.default }
+      ]);
+      this.$store.commit("setReminderTabType", ADD_RECOMMENDATION);
+      this.$store.commit("setTabDialogVisibility", true);
     },
     save() {
       if (this.modalType == ADD_DIALOG) {
@@ -162,14 +203,19 @@ export default {
       this.modalShow = false;
     },
     openEditModal(item) {
-      this.data = {
-        id: this.items[item.index]["id"],
-        description: this.items[item.index]["description"],
-        createdAt: this.items[item.index]["createdAt"],
-        patientId: this.items[item.index]["patientId"]
+      const data = {
+        id: item["id"],
+        description: item["description"],
+        createdAt: item["createdAt"],
+        patientId: item["patientId"]
       };
-      this.modalShow = true;
-      this.modalType = 2;
+      const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
+      this.$store.commit("setTabList", [
+        { key: ADD_RECOMMENDATION, value: addReminderTab.default }
+      ]);
+      this.$store.commit("setTabDialogVisibility", true);
+      this.$store.commit("setReminderTabType", EDIT_RECOMMENDATION);
+      this.$store.commit("setReminderData", data);
     },
     discontinueReminder(item) {
       this.$store.dispatch("discontinueReminder", {
@@ -193,6 +239,14 @@ export default {
     },
     getStyleClass() {
       return this.style == STYLE_1 ? "info" : "dark";
+    },
+    showMultiChangeModal() {
+      const tab = require("@/components/tab_components/MultiChangeReminderTab.vue");
+      this.$store.commit("setTabList", [
+        { key: MULTIPLE_CHANGE_RECOMMENDATION, value: tab.default }
+      ]);
+      this.$store.commit("setReminderTabType", MULTIPLE_CHANGE_RECOMMENDATION);
+      this.$store.commit("setTabDialogVisibility", true);
     }
   },
   beforeDestroy() {

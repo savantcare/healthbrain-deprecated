@@ -19,6 +19,8 @@
         <search-box ref="search_box" @renderRightPanel="renderRightPanel"></search-box>
       </SplitArea>
     </Split>
+
+    <tab-dialog></tab-dialog>
   </b-container>
 </template>
 
@@ -28,6 +30,7 @@ import RecommendationPanel from "@/components/RecommendationPanel.vue";
 import ReminderCard from "@/components/ReminderCard.vue";
 import ReminderPanel from "@/components/ReminderPanel.vue";
 import SearchBox from "@/components/SearchBox.vue";
+import TabDialog from "@/components/TabDialog.vue";
 
 export default {
   name: "Home",
@@ -36,7 +39,8 @@ export default {
     RecommendationPanel,
     ReminderCard,
     ReminderPanel,
-    SearchBox
+    SearchBox,
+    TabDialog
   },
   data() {
     return {

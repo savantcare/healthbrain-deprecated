@@ -26,7 +26,6 @@ export default {
   },
   computed: {
     width() {
-      console.log(this.$store.state.rightPanel.width);
       return this.$store.state.rightPanel.width;
     },
     focusComponent() {

@@ -13,7 +13,19 @@
           <h5 v-if="isStyle1" class="m-md-2">Reminder Card</h5>
           <span style="font-weight: bold;" v-else>Reminder Card</span>
           <b-row class="mr-2">
-            <b-button variant="primary" v-if="selected.length == 0" @click="showAddModal">Add</b-button>
+            <b-button
+              size="sm"
+              variant="primary"
+              v-if="selected.length == 0"
+              @click="showAddModal"
+            >Add</b-button>
+            <b-button
+              variant="primary"
+              v-if="selected.length == 0"
+              @click="showMultiChangeModal"
+              class="ml-2"
+              size="sm"
+            >Multi change</b-button>
             <b-button
               variant="danger"
               v-if="selected.length > 0"
@@ -33,18 +45,17 @@
             <tr
               v-for="(item, index) in items"
               :key="`item-${index}`"
-              @click="selectTableRow(item)"
               style="cursor: pointer;"
               :class="{'table-active': checkActiveStatus(item), 'table-primary': checkFocusStatus(index)}"
             >
-              <td>{{item.description}}</td>
-              <td>{{item.createdAt}}</td>
+              <td @click="selectTableRow(item)">{{item.description}}</td>
+              <td @click="selectTableRow(item)">{{item.createdAt}}</td>
               <td v-if="selected.length == 0">
                 <b-button
                   :size="isStyle1 ? '' :'sm'"
                   variant="outline-primary"
                   @click="openEditModal(item, $event)"
-                >Edit</b-button>
+                >Change</b-button>
                 <b-button
                   variant="outline-danger"
                   @click="discontinueReminder(item)"
@@ -57,43 +68,22 @@
         </table>
       </b-card-text>
     </b-card>
-
-    <b-modal v-model="modalShow" id="modal-center" centered :title="modalTitle">
-      <b-form @submit.stop.prevent>
-        <label>Description:</label>
-
-        <b-form-textarea
-          id="textarea-state"
-          v-model="data.description"
-          :state="validation"
-          rows="5"
-          autofocus
-        ></b-form-textarea>
-        <b-form-invalid-feedback :state="validation">Description content is required.</b-form-invalid-feedback>
-      </b-form>
-
-      <template v-slot:modal-footer>
-        <div class="float-right">
-          <b-button size="sm" @click="modalShow=false">Close</b-button>
-          <b-button
-            class="ml-2"
-            variant="primary"
-            size="sm"
-            @click="save"
-            :disabled="!validation"
-          >{{modalDialogButton}}</b-button>
-        </div>
-      </template>
-    </b-modal>
   </div>
 </template>
 
 <script>
 import uniqid from "uniqid";
-import { ADD_DIALOG, STYLE_1 } from "@/const.js";
+import {
+  ADD_DIALOG,
+  STYLE_1,
+  ADD_REMINDER,
+  EDIT_REMINDER,
+  MULTIPLE_CHANGE_REMINDER
+} from "@/const.js";
 
 export default {
   name: "ReminderCard",
+  components: {},
   data() {
     return {
       modalShow: false,
@@ -104,7 +94,9 @@ export default {
       modalType: ADD_DIALOG, // 1: add, 2: edit
       timer: -1,
       focusIndex: -1,
-      discontinueAction: false
+      discontinueAction: false,
+
+      showEditModal: false
     };
   },
   computed: {
@@ -163,9 +155,20 @@ export default {
       this.selected = items;
     },
     showAddModal() {
-      this.modalShow = true;
-      this.modalType = ADD_DIALOG;
-      this.data = { description: "" };
+      const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
+      this.$store.commit("setTabList", [
+        { key: ADD_REMINDER, value: addReminderTab.default }
+      ]);
+      this.$store.commit("setReminderTabType", ADD_REMINDER);
+      this.$store.commit("setTabDialogVisibility", true);
+    },
+    showMultiChangeModal() {
+      const tab = require("@/components/tab_components/MultiChangeReminderTab.vue");
+      this.$store.commit("setTabList", [
+        { key: MULTIPLE_CHANGE_REMINDER, value: tab.default }
+      ]);
+      this.$store.commit("setReminderTabType", MULTIPLE_CHANGE_REMINDER);
+      this.$store.commit("setTabDialogVisibility", true);
     },
     save() {
       if (this.modalType == ADD_DIALOG) {
@@ -187,14 +190,19 @@ export default {
       this.modalShow = false;
     },
     openEditModal(item) {
-      this.data = {
+      const data = {
         id: item["id"],
         description: item["description"],
         createdAt: item["createdAt"],
         patientId: item["patientId"]
       };
-      this.modalShow = true;
-      this.modalType = 2;
+      const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
+      this.$store.commit("setTabList", [
+        { key: ADD_REMINDER, value: addReminderTab.default }
+      ]);
+      this.$store.commit("setTabDialogVisibility", true);
+      this.$store.commit("setReminderTabType", EDIT_REMINDER);
+      this.$store.commit("setReminderData", data);
     },
     discontinueReminder(item) {
       this.discontinueAction = true;
@@ -229,6 +237,8 @@ export default {
 
       if (e.key == "a") {
         this.showAddModal();
+      } else if (e.key == "c") {
+        this.showEditModal = true;
       } else if (e.key == "ArrowDown") {
         if (this.focusIndex < 1 + this.items.length) {
           this.focusIndex += 1;
