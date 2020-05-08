@@ -12,7 +12,7 @@
       v-model="searchKeyword"
       placeholder="(Type here - use backstick to highlight)"
       @keyup="keyupHandler"
-      @click="setFocus"
+      @click="onClickSearchBox"
     ></b-form-input>
   </div>
 </template>
@@ -91,6 +91,10 @@ export default {
       setTimeout(() => {
         this.$refs.search_box.focus();
       }, 50);
+    },
+    onClickSearchBox() {
+      this.setFocus();
+      this.$store.commit("setFocusComponent", "search-box");
     }
   }
 };
