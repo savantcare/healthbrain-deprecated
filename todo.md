@@ -30,4 +30,5 @@ F. Discontinue instead of edit
 All three are related by the field parentID.
 R2 has two fields different from R1. These fields are discontinuedBy and discontinuedAt
 R3 has the new description.
-Can I avoid creating R2
+Can I avoid creating R2 by updating the value of discontinuedBy and discontinuedAt in R1.
+Currect choice: Update the 2 fields in R1 when a row is discontinued.
