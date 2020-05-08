@@ -1,7 +1,7 @@
 import { REMINDER_API_URL } from "@/const.js"
 let TOKEN = localStorage.getItem("token")
 export default {
-  state: {
+  state: {            // for doc read recommendation.js
     list: []
   },
   mutations: {
@@ -14,7 +14,7 @@ export default {
     removeNewReminder(state) {
       state.list.pop()
     },
-    SOCKET_ON_UPDATE_REMINDERS(state, updateList) {
+    SOCKET_ON_UPDATE_REMINDERS(state, updateList) {  // for doc read recommendation.js
       state.list = updateList
     },
     SOCKET_ADD_REMINDER(state, newData) {

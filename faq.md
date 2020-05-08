@@ -1,28 +1,27 @@
 # Q1) How to see app behavior when DB server connection is lost?
-healthbrain/node-server> npm run start-auth # this will start a local fake DB server
+The mysql server is run from docker (See node-server/README.md)
 
-Use the web app and then ctrl+c the console to exit out of start-auth
+Use the web app and then 
+
+$ docker stop [container-name-of-mysqld]
 
 Now refresh the web app.
 
 The data will come from localstorage but you will toast message saying:
 
-"Server connection error"
+"Filed to get "component name" data"
 
 This works using try catch examples
-1. [For recommendations](file:///gt/sc-prog-repos/healthbrain/vue-client/src/store/modules/recommendation.js#188)
-1. [For reminder](file:///gt/sc-prog-repos/healthbrain/vue-client/src/store/modules/reminder.js#188)
+1. [For recommendations](file:///gt/sc-prog-repos/healthbrain/vue-client/src/store/modules/recommendation.js#221)
+1. [For reminder](file:///gt/sc-prog-repos/healthbrain/vue-client/src/store/modules/reminder.js#221)
+
+To put the system back:
+$ docker start [container-name-of-mysqld]
+
 
 # Q2) How to see app behavior when DB server takes 10 seconds to reply to API?
 
-healthbrain/node-server> emacs node-server/server.js
-
-Comment out:
-```
-server.use(function(req, res, next){
-  setTimeout(next, 10000);
-});
-```
+**Todo** Find a way to slow down every query response by 10 seconds
 
 ## Scenario 1:
 
@@ -61,3 +60,7 @@ The goal is for recommendation-panel and recommendation-card to have the same vu
 [The code till 4th May](https://github.com/vikaskedia/healthbrain) implemented recommendation-panel and recommendation-card as two different npm packages. Different npm packages cannot share the same vuex store.
 
 Hence recommendation-panel and recommendation-card cannot be two seperate npm packages they have to be components of the same vue app.
+
+
+# Q4) What is the code review process?
+https://www.youtube.com/watch?v=8fx-EaOUK2E
