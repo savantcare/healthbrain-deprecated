@@ -3,12 +3,32 @@ const jwt = require('jsonwebtoken')
 
 const http = require('http')
 const app = require('express')()
+
 const cors = require("cors");
 
 
 var corsOptions = {
   origin: "http://localhost:8080"
 };
+
+/* 
+The following code section simulates a delay in respone from the server
+connect-pause module is explained at https://github.com/flesler/connect-pause
+
+In production mode delay is disabled.
+How to run the code in production mode?
+export NODE_ENV=production
+npm run start-auth
+*/
+var env = process.env.NODE_ENV || 'development'; // Ref: https://stackoverflow.com/questions/8449665/how-do-you-detect-the-environment-in-an-express-js-app
+console.log(env);
+if ( env === 'development' ) {
+  pause = require('connect-pause');
+  app.use(pause(1000));   // Change this to change the delay time.
+}
+/* End of delay section */
+
+
 
 app.use(cors(corsOptions));
 
