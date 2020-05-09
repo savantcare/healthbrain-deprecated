@@ -113,9 +113,9 @@ import uniqid from "uniqid";
 import {
   ADD_DIALOG,
   STYLE_1,
-  ADD_RECOMMENDATION,
-  EDIT_RECOMMENDATION,
-  MULTIPLE_CHANGE_RECOMMENDATION
+  ADD_REMINDER,
+  EDIT_REMINDER,
+  MULTIPLE_CHANGE_REMINDER
 } from "@/const.js";
 
 export default {
@@ -178,9 +178,9 @@ export default {
     showAddModal() {
       const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
       this.$store.commit("setTabList", [
-        { key: ADD_RECOMMENDATION, value: addReminderTab.default }
+        { key: ADD_REMINDER, value: addReminderTab.default }
       ]);
-      this.$store.commit("setReminderTabType", ADD_RECOMMENDATION);
+      this.$store.commit("setReminderTabType", ADD_REMINDER);
       this.$store.commit("setTabDialogVisibility", true);
     },
     save() {
@@ -202,7 +202,8 @@ export default {
       }
       this.modalShow = false;
     },
-    openEditModal(item) {
+    openEditModal(object) {
+      const { item } = object;
       const data = {
         id: item["id"],
         description: item["description"],
@@ -211,10 +212,10 @@ export default {
       };
       const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
       this.$store.commit("setTabList", [
-        { key: ADD_RECOMMENDATION, value: addReminderTab.default }
+        { key: ADD_REMINDER, value: addReminderTab.default }
       ]);
       this.$store.commit("setTabDialogVisibility", true);
-      this.$store.commit("setReminderTabType", EDIT_RECOMMENDATION);
+      this.$store.commit("setReminderTabType", EDIT_REMINDER);
       this.$store.commit("setReminderData", data);
     },
     discontinueReminder(item) {
@@ -243,9 +244,9 @@ export default {
     showMultiChangeModal() {
       const tab = require("@/components/tab_components/MultiChangeReminderTab.vue");
       this.$store.commit("setTabList", [
-        { key: MULTIPLE_CHANGE_RECOMMENDATION, value: tab.default }
+        { key: MULTIPLE_CHANGE_REMINDER, value: tab.default }
       ]);
-      this.$store.commit("setReminderTabType", MULTIPLE_CHANGE_RECOMMENDATION);
+      this.$store.commit("setReminderTabType", MULTIPLE_CHANGE_REMINDER);
       this.$store.commit("setTabDialogVisibility", true);
     }
   },

@@ -15,7 +15,8 @@ module.exports = (sequelize, Sequelize) => {
     },
     // Timestamps
     createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE
+    updatedAt: Sequelize.DATE,
+    discontinueAt: Sequelize.DATE
   });
 
   return Recommendation;

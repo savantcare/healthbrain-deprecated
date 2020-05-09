@@ -204,7 +204,8 @@ export default {
       }
       this.modalShow = false;
     },
-    openEditModal(item) {
+    openEditModal(object) {
+      const { item } = object;
       const data = {
         id: item["id"],
         description: item["description"],

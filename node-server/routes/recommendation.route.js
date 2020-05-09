@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const db = require('../models')
 const Recommendation = db.recommendationDB.recommendations
+const uniqid = require('uniqid')
 
 module.exports = (io) => {
   router.post('/', async (req, res) => {
@@ -13,7 +14,7 @@ module.exports = (io) => {
        Question: What is inside newRecommendation?
        */
       io.to(`room-${req.body.patientId}-doctor`).emit("ADD_RECOMMENDATION", newRecommendation)
-      
+
       res.send(newRecommendation) /* Fix: Instead of sending the whole object only OK needs to be sent*/
     } catch (err) {
       res.status(500).send({
@@ -40,15 +41,23 @@ module.exports = (io) => {
 
   router.put('/:id', async (req, res) => {    // Replace existing row with new row
     try {
-      const queryResult = await Recommendation.update({
-        description: req.body.description
+      // Update the existing object to discontinue.
+      await Recommendation.update({
+        discontinue: true,
+        discontinueAt: new Date()
       }, {
         where: {
           id: req.params.id
         }
       })
+
+      // Add new value
+      let newData = req.body
+      newData["id"] = uniqid()
+      await Recommendation.create(newData)
+
       io.to(`room-${req.body.patientId}-doctor`).emit("UPDATE_RECOMMENDATION", req.body)
-      res.send(queryResult) /* Fix: Instead of sending the whole object only OK needs to be sent*/
+      res.send("ok") /* Fix: Instead of sending the whole object only OK needs to be sent*/
     } catch (err) {
       res.status(500).send({
         message: err.message || "Some error occured while update the Recommendation"
@@ -59,7 +68,8 @@ module.exports = (io) => {
   router.patch('/:id', async (req, res) => {
     try {
       const queryResult = await Recommendation.update({
-        discontinue: true
+        discontinue: true,
+        discontinueAt: new Date()
       }, {
         where: {
           id: req.params.id
