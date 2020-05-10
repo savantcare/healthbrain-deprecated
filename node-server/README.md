@@ -12,7 +12,7 @@ $ npm install
 $ docker run -p "80:80" -p "3306:3306" -v ${PWD}/app:/app mattrayner/lamp:latest-1804 
 
 # Ref: https://github.com/mattrayner/docker-lamp#using-the-image
-# Confirm mysql is running http://localhost/phpmyadmin/ 
+# Confirm mysql is running http://[ip-address]/phpmyadmin/ 
 # login: admin 
 # To get the mysql server password 
 $ docker logs  # Look at top lines
