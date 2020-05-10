@@ -10,8 +10,6 @@ WORKDIR /gt/sc-prog-repos/healthbrain/vue-client
 
 RUN npm install 
 
-# npx takes care of 1. If serve is not installed then install it. 2. node_modules path issues
-CMD npx serve -s dist
-
+# The command to execute once this image finishes loading is given in docker-compose.yml
 
 

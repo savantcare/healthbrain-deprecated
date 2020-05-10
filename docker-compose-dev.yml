@@ -5,8 +5,12 @@ services:
     image: hb/vue
     tty: true
     ports:
-      - 80:5000    # "npm serve dist" listens on port 5000. This is prod minified build
-    command: npx serve -s dist  
+      - 8080:8080
+    command: npm run serve
+    volumes:
+      - /gt/sc-prog-repos/healthbrain/vue-client:/gt/sc-prog-repos/healthbrain/vue-client # This will allow hot reloading when files are changed on host
+      # dockerfile copied vue-client during image creation. On production this vue-client is used.
+      # On dev this volume specification in docker-compose mounts vue-client over the vue-client inside the image. Since this is a mount changes on host are seen in container.
   node:
     build: ./node-server/
     image: hb/node
