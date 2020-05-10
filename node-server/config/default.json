@@ -1,7 +1,7 @@
 {
   "HOST": "localhost",
-  "USER": "admin",
-  "PASSWORD": "02LRfrXILlF3",
+  "USER": "root",
+  "PASSWORD": "",
   "DB": "health_brain",
   "dialect": "mysql",
   "pool": {
