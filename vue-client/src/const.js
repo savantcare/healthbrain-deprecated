@@ -8,6 +8,7 @@ module.exports = {
 
   ADD_DIALOG: 1,
   STYLE_1: 1,
+  STYLE_2: 2,
 
   // Tab constant values.
   ADD_RECOMMENDATION: 1,

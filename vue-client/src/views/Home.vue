@@ -25,22 +25,27 @@
 </template>
 
 <script>
-import RecommendationCard from "@/components/RecommendationCard.vue";
 import RecommendationPanel from "@/components/RecommendationPanel.vue";
-import ReminderCard from "@/components/ReminderCard.vue";
 import ReminderPanel from "@/components/ReminderPanel.vue";
 import SearchBox from "@/components/SearchBox.vue";
 import TabDialog from "@/components/TabDialog.vue";
 
+// Right panel components
+import RecommendationCard from "@/components/RecommendationCard.vue";
+import ReminderCard from "@/components/ReminderCard.vue";
+import CombinationCard from "@/components/CombinationCard.vue";
+
 export default {
   name: "Home",
   components: {
-    RecommendationCard,
     RecommendationPanel,
-    ReminderCard,
     ReminderPanel,
     SearchBox,
-    TabDialog
+    TabDialog,
+    // Right panel components
+    RecommendationCard,
+    ReminderCard,
+    CombinationCard
   },
   data() {
     return {
@@ -59,7 +64,8 @@ export default {
     // Initialize rightPanel components
     const list = [
       { key: "recommendation", value: RecommendationCard },
-      { key: "reminder", value: ReminderCard }
+      { key: "reminder", value: ReminderCard },
+      { key: "combination", value: CombinationCard }
     ];
 
     this.$store.commit("setRightPanelList", list);
