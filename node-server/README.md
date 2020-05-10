@@ -23,7 +23,7 @@ $ docker logs  # Look at top lines
 # user_roles.sql
 # users.sql
 
-$ npm run start-auth
+$ npm run start
 ```
 
 Might need to run
