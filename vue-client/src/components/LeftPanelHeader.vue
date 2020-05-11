@@ -3,6 +3,10 @@
     <div id="patient-info" class="ml-2">
       <b>Patient 1</b>
       <span class="ml-2">30 years old</span>
+      <b-badge
+        class="ml-2"
+        :variant="activityStatus ? 'success' : 'danger'"
+      >{{activityStatus ? "Online" : "Offline"}}</b-badge>
     </div>
     <div class="mr-2">
       <b-form-checkbox
@@ -21,6 +25,11 @@ export default {
     return {
       tabMode: false
     };
+  },
+  computed: {
+    activityStatus() {
+      return this.$store.state.connectionStatus;
+    }
   },
   methods: {
     updateLeftPanel() {
