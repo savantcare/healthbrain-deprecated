@@ -70,7 +70,6 @@ https://www.youtube.com/watch?v=8fx-EaOUK2E
 ```bash
 git clone https://github.com/savantcare/healthbrain.git
 
-/healthbrain> docker-compose build --no-cache
 /healthbrain> docker-compose -f docker-compose-dev.yml up -d
 ```
 
