@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Offline from "v-offline";
+const Offline = () => import("v-offline");
 export default {
   components: {
     Offline

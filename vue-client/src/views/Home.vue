@@ -29,18 +29,19 @@
 </template>
 
 <script>
-import TabDialog from "@/components/TabDialog.vue";
+const TabDialog = () => import("@/components/TabDialog.vue");
 
 // Left panel components
-import RecommendationPanel from "@/components/RecommendationPanel.vue";
-import ReminderPanel from "@/components/ReminderPanel.vue";
-import LeftPanelHeader from "@/components/LeftPanelHeader.vue";
+const RecommendationPanel = () =>
+  import("@/components/RecommendationPanel.vue");
+const ReminderPanel = () => import("@/components/ReminderPanel.vue");
+const LeftPanelHeader = () => import("@/components/LeftPanelHeader.vue");
 
 // Right panel components
-import SearchBox from "@/components/SearchBox.vue";
-import RecommendationCard from "@/components/RecommendationCard.vue";
-import ReminderCard from "@/components/ReminderCard.vue";
-import CombinationCard from "@/components/CombinationCard.vue";
+const SearchBox = () => import("@/components/SearchBox.vue");
+const RecommendationCard = () => import("@/components/RecommendationCard.vue");
+const ReminderCard = () => import("@/components/ReminderCard.vue");
+const CombinationCard = () => import("@/components/CombinationCard.vue");
 
 export default {
   name: "Home",
