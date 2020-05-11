@@ -1,3 +1,4 @@
+// The module.exports is a special object which is included in every JS file in the Node. js application by default
 module.exports = {
   RECOMMENDATION_API_URL: "http://localhost:8000/recommendations",
   REMINDER_API_URL: "http://localhost:8000/reminders",

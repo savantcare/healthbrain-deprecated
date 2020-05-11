@@ -1,0 +1,32 @@
+version: '3'
+services:
+  vue:
+    image: node:14
+    tty: true
+    ports:
+      - 8080:8080
+    working_dir: /gt/sc-prog-repos/healthbrain/vue-client
+    command: bash -c "npm install && npm run serve"
+    volumes:
+      - /gt/sc-prog-repos/healthbrain/vue-client:/gt/sc-prog-repos/healthbrain/vue-client # This will allow hot reloading when files are changed on host
+      # dockerfile copied vue-client during image creation. On production this vue-client is used.
+      # On dev this volume specification in docker-compose mounts vue-client over the vue-client inside the image. Since this is a mount changes on host are seen in container.
+  node:
+    image: node:14
+    tty: true
+    environment:
+      - NODE_ENV=development      # This is neededed to load the correct override file from /node-server/config/ folder. For more read node-server/config/readme.md
+    ports:
+      - 8000:8000
+    working_dir: /gt/sc-prog-repos/healthbrain/node-server
+    command: bash -c "npm install && npm run start"
+    volumes:
+      - /gt/sc-prog-repos/healthbrain/node-server:/gt/sc-prog-repos/healthbrain/node-server # This will allow file changes on host to be available inside the docker container without recreating the docker image. 
+      # For reasons of this volume mount see the vue: section comments
+  mysqld:
+    image: mattrayner/lamp:latest-1804
+    volumes:
+      - /gt/sc-prog-repos/healthbrain/env/min-db-for-docker-dev:/var/lib/mysql
+    ports:
+      - "3306:3306"
+      - "81:80"

@@ -1,0 +1,24 @@
+version: '3'
+services:
+  vue:
+    build: ./vue-client/
+    image: hb/vue
+    tty: true
+    ports:
+      - 80:5000    # "npm serve dist" listens on port 5000. This is prod minified build
+    command: npx serve -s dist  
+  node:
+    build: ./node-server/
+    image: hb/node
+    tty: true
+    environment:
+      - NODE_ENV=production      # This is neededed to load the correct override file from /node-server/config/ folder. For more read node-server/config/readme.md
+    ports:
+      - 8000:8000
+  mysqld:
+    image: mattrayner/lamp:latest-1804
+    volumes:
+      - /gt/sc-data-repos/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+      - "81:80"

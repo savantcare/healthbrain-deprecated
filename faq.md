@@ -64,3 +64,27 @@ Hence recommendation-panel and recommendation-card cannot be two seperate npm pa
 
 # Q4) What is the code review process?
 https://www.youtube.com/watch?v=8fx-EaOUK2E
+
+
+# Q5) What is the fastest way to get the system running on your local development machine?
+```bash
+git clone https://github.com/savantcare/healthbrain.git
+
+/healthbrain> docker-compose -f docker-compose-dev.yml up -d
+```
+
+
+Give enough time for npm install to work:
+
+```bash
+/healthbrain> docker logs healthbrain_vue_1 -f
+/healthbrain> docker logs healthbrain_node_1 -f
+```
+
+Once the install finishes then:
+```
+In 3 incognito tabs open
+http://localhost:81/phpmyadmin/
+http://localhost:8080/login          user1@gmail.com    : 123
+http://localhost:8080/login          user1@gmail.com    : 123
+```
