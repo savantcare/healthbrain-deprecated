@@ -16,13 +16,16 @@ services:
     image: hb/node
     tty: true
     environment:
-      - NODE_ENV=production      # This is neededed to load the correct override file from /node-server/config/ folder. For more read node-server/config/readme.md
+      - NODE_ENV=development      # This is neededed to load the correct override file from /node-server/config/ folder. For more read node-server/config/readme.md
     ports:
       - 8000:8000
+    volumes:
+      - /gt/sc-prog-repos/healthbrain/node-server:/gt/sc-prog-repos/healthbrain/node-server # This will allow file changes on host to be available inside the docker container without recreating the docker image. 
+      # For reasons of this volume mount see the vue: section comments
   mysqld:
     image: mattrayner/lamp:latest-1804
     volumes:
-      - /gt/sc-data-repos/mysql:/var/lib/mysql
+      - /gt/sc-prog-repos/healthbrain/env/min-db-for-docker-dev:/var/lib/mysql
     ports:
       - "3306:3306"
       - "81:80"
