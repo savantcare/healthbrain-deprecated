@@ -84,7 +84,7 @@ Give enough time for npm install to work:
 Once the install finishes then:
 ```
 In 3 incognito tabs open
-http://localhost:81/phpmyadmin/
+http://localhost:81/phpmyadmin/      admin              : WUy3OsU5BYMM
 http://localhost:8080/login          user1@gmail.com    : 123
 http://localhost:8080/login          user1@gmail.com    : 123
 ```
