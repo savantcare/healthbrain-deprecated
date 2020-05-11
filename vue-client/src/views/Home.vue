@@ -1,17 +1,21 @@
 <template>
-  <b-container fluid>
+  <div>
     <Split style="height: 100vh;" @onDrag="onDrag">
       <SplitArea :size="70" :minsize="100">
-        <recommendation-panel></recommendation-panel>
-        <reminder-panel></reminder-panel>
+        <left-panel-header></left-panel-header>
+        <div v-if="leftPanelComponents.length > 0">
+          <component
+            v-for="(component, index) in leftPanelComponents"
+            :key="`left-component-${index}`"
+            :is="component"
+          ></component>
+        </div>
       </SplitArea>
       <SplitArea :size="30" :minsize="100">
-        <!-- <recommendation-card></recommendation-card>
-        <reminder-card></reminder-card>-->
         <div v-if="rightPanelComponents.length > 0">
           <component
             v-for="(component, index) in rightPanelComponents"
-            :key="`component-${index}`"
+            :key="`right-component-${index}`"
             :is="component.value"
           ></component>
         </div>
@@ -21,16 +25,19 @@
     </Split>
 
     <tab-dialog></tab-dialog>
-  </b-container>
+  </div>
 </template>
 
 <script>
-import RecommendationPanel from "@/components/RecommendationPanel.vue";
-import ReminderPanel from "@/components/ReminderPanel.vue";
-import SearchBox from "@/components/SearchBox.vue";
 import TabDialog from "@/components/TabDialog.vue";
 
+// Left panel components
+import RecommendationPanel from "@/components/RecommendationPanel.vue";
+import ReminderPanel from "@/components/ReminderPanel.vue";
+import LeftPanelHeader from "@/components/LeftPanelHeader.vue";
+
 // Right panel components
+import SearchBox from "@/components/SearchBox.vue";
 import RecommendationCard from "@/components/RecommendationCard.vue";
 import ReminderCard from "@/components/ReminderCard.vue";
 import CombinationCard from "@/components/CombinationCard.vue";
@@ -38,11 +45,14 @@ import CombinationCard from "@/components/CombinationCard.vue";
 export default {
   name: "Home",
   components: {
+    TabDialog,
+    // Left panel components
     RecommendationPanel,
     ReminderPanel,
-    SearchBox,
-    TabDialog,
+    LeftPanelHeader,
+
     // Right panel components
+    SearchBox,
     RecommendationCard,
     ReminderCard,
     CombinationCard
@@ -58,17 +68,24 @@ export default {
     },
     rightPanelComponents() {
       return this.$store.state.rightPanel.list;
+    },
+    leftPanelComponents() {
+      return this.$store.state.leftPanel.list;
     }
   },
   beforeCreate() {
     // Initialize rightPanel components
-    const list = [
+    const rightPanelList = [
       { key: "recommendation", value: RecommendationCard },
       { key: "reminder", value: ReminderCard },
       { key: "combination", value: CombinationCard }
     ];
 
-    this.$store.commit("setRightPanelList", list);
+    this.$store.commit("setRightPanelList", rightPanelList);
+
+    // Initialize leftPanel components
+    const leftPanelList = [RecommendationPanel, ReminderPanel];
+    this.$store.commit("setLeftPanelList", leftPanelList);
   },
   mounted() {
     this.$store.dispatch("loadSetting");

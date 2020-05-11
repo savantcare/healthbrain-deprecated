@@ -1,5 +1,9 @@
 <template>
-  <b-tab title="Multi change reminder">
+  <b-tab>
+    <template v-slot:title>
+      Multi change reminder
+      <b-button size="sm" variant="danger" @click="closeTab">x</b-button>
+    </template>
     <b-row cols="3">
       <b-col v-for="(item, index) in reminders" :key="`item-${index}`">
         <label>Description:</label>
@@ -19,6 +23,7 @@
 </template>
 
 <script>
+import { MULTIPLE_CHANGE_REMINDER } from "@/const.js";
 export default {
   computed: {
     items() {
@@ -28,6 +33,9 @@ export default {
     },
     id() {
       return this.$route.query.patient_id;
+    },
+    tabList() {
+      return this.$store.state.tabDialog.tabList;
     }
   },
   data() {
@@ -51,6 +59,12 @@ export default {
         data: item,
         toast: this.$bvToast
       });
+    },
+    closeTab() {
+      const newList = this.tabList.filter(item => {
+        return item.key != MULTIPLE_CHANGE_REMINDER;
+      });
+      this.$store.commit("setTabList", newList);
     }
   }
 };

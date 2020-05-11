@@ -1,5 +1,9 @@
 <template>
-  <b-tab :title="modalTitle">
+  <b-tab>
+    <template v-slot:title>
+      {{modalTitle}}
+      <b-button size="sm" variant="danger" @click="closeTab">x</b-button>
+    </template>
     <label>Description:</label>
 
     <b-form-textarea
@@ -55,6 +59,9 @@ export default {
     },
     updateData() {
       return this.$store.state.tabDialog.recommendationData;
+    },
+    tabList() {
+      return this.$store.state.tabDialog.tabList;
     }
   },
   methods: {
@@ -80,6 +87,12 @@ export default {
         });
       }
       this.$store.commit("setTabDialogVisibility", false);
+    },
+    closeTab() {
+      const newList = this.tabList.filter(item => {
+        return item.key != ADD_RECOMMENDATION;
+      });
+      this.$store.commit("setTabList", newList);
     }
   },
   mounted() {
