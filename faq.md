@@ -68,9 +68,21 @@ https://www.youtube.com/watch?v=8fx-EaOUK2E
 
 # Q5) What is the fastest way to get the system running on your local development machine?
 ```bash
-git clone
+git clone https://github.com/savantcare/healthbrain.git
+
+/healthbrain> docker-compose build --no-cache
 /healthbrain> docker-compose -f docker-compose-dev.yml up -d
 ```
+
+
+Give enough time for npm install to work:
+
+```bash
+/healthbrain> docker logs healthbrain_vue_1 -f
+/healthbrain> docker logs healthbrain_node_1 -f
+```
+
+Once the install finishes then:
 ```
 In 3 incognito tabs open
 http://localhost:81/phpmyadmin/
