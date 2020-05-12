@@ -13,6 +13,12 @@ module.exports = (sequelize, Sequelize) => {
     patientId: {
       type: Sequelize.DECIMAL
     },
+    createdByUserId: {
+      type: Sequelize.DECIMAL
+    },
+    discontinuedByUserId: {
+      type: Sequelize.DECIMAL
+    },
     // Timestamps
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,
