@@ -86,7 +86,7 @@ export default {
           toast: this.$bvToast
         });
       }
-      this.$store.commit("setTabDialogVisibility", false);
+      this.description = "";
     },
     closeTab() {
       const newList = this.tabList.filter(item => {
