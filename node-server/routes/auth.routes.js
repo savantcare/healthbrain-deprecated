@@ -9,7 +9,7 @@ const expiresIn = '1h'
 const SECRET_KEY = '123456789'
 
 router.post('/register', async (req, res) => {
-  const { email, password, roleId } = req.body;
+  const { email, password } = req.body;
 
   if (await isAuthenticated({ email, password }) === true) {
     const status = 401;
@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
   }
 
   try {
-    const newUser = await User.create({ email: email, password: password, roleId: roleId })
+    const newUser = await User.create(req.body)
     const access_token = createToken({ email })
     res.status(200).json({ access_token: access_token, role: newUser.roleId })
   } catch (err) {

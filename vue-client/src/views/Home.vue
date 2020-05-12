@@ -85,8 +85,9 @@ export default {
     this.$store.commit("setRightPanelList", rightPanelList);
 
     // Initialize leftPanel components
-    const leftPanelList = [RecommendationPanel, ReminderPanel];
-    this.$store.commit("setLeftPanelList", leftPanelList);
+
+    // const leftPanelList = [RecommendationPanel, ReminderPanel];
+    // this.$store.commit("setLeftPanelList", leftPanelList);
   },
   mounted() {
     this.$store.dispatch("loadSetting");
