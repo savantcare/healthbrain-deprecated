@@ -5,16 +5,16 @@
 
 * [Why write a new patient file app?](#why-write-a-new-patient-file-app)
 * [Why re-write the exisiting angular in vue?](#why-re-write-the-exisiting-angular-in-vue)
-* Why is each component not a seperate npm package?
+* Why is each component not a seperate npm package?(#why-is-each-component-not-a-seperate-npm-package)
 * [What is the migration plan?](#what-is-the-migration-plan)
 * [What is the ideal component on which other components are based?](#what-is-the-ideal-component-on-which-other-components-are-based?)
 * [What is needed to write a new component?](#what-is-needed-to-write-a-new-component)
 * [What are the tags used in code?](#what-are-the-tags-used-in-code)
-* What is the code review process?
+* [What is the code review process?](#what-is-the-code-review-process)
 * [How to run the app locally?](#how-to-run-the-app-locally)
-* How to see app behavior when DB connection is lost?
-* How to see app behavior when DB takes 10 seconds for API response?
-* How is the state of patient on a historical date generated?
+* [How to see app behavior when DB connection is lost?](#how-to-see-app-behavior-when-db-server-connection-is-lost)
+* [How to see app behavior when DB takes 10 seconds for API response?](#how-to-see-app-behavior-when-db-server-takes-10-seconds-for-api-response)
+* [How is the state of patient on a historical date generated?](#how-is-the-state-of-patient-on-a-historical-date-generated)
 
 ## Why write a new patient file app?
 
@@ -37,11 +37,11 @@ The current angular app was developed to discover the psychiatrists needs. The s
 
 ### B. Developer benefits
 
-1. On server side interaction with the DB should happen through a ORM like sequlize. 
+1. On server side interaction with the DB should happen through a ORM like [sequelize](https://sequelize.org/). 
 
     1A. So standard queries are already written.
 
-    1B. DB migrations can happen. [file:///node-server/models/recommendation.model.js]
+    1B. DB migrations can happen. [file://./node-server/models/recommendation.model.js]
 
 2. Maintian state on the client. When recommendation card state changes the rec panel changes its view automatically.
 In the current angular app the recommendation panel was listening on socket to update its view.
