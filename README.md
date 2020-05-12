@@ -5,7 +5,9 @@
 
 * [Why write a new patient file app?](#why-write-a-new-patient-file-app)
 * [Why re-write the exisiting angular in vue?](#why-re-write-the-exisiting-angular-in-vue)
-* Why is each component not a seperate npm package?(#why-is-each-component-not-a-seperate-npm-package)
+* [Why is each component not a seperate npm package?](#why-is-each-component-not-a-seperate-npm-package)
+* [Why does the patient app have a left side and a right side?]
+* [Why does the left side have two tabs on the top right corner?]
 * [What is the migration plan?](#what-is-the-migration-plan)
 * [What is the ideal component on which other components are based?](#what-is-the-ideal-component-on-which-other-components-are-based?)
 * [What is needed to write a new component?](#what-is-needed-to-write-a-new-component)
@@ -23,7 +25,7 @@
 
 ## Why re-write the exisiting angular in vue?
 
-The current angular app was developed to discover the psychiatrists needs. The system was not pre-architected to deliver the discovered features.
+The current angular app was developed to discover the psychiatrists needs. The system could not have been pre-architected to deliver the discovered features.
 
 ### A. User experience benefits
 
@@ -41,7 +43,7 @@ The current angular app was developed to discover the psychiatrists needs. The s
 
     1A. So standard queries are already written.
 
-    1B. DB migrations can happen. [file://./node-server/models/recommendation.model.js]
+    1B. DB migrations can happen. [https://github.com/savantcare/healthbrain/blob/master/node-server/models/recommendation.model.js]
 
 2. Maintian state on the client. When recommendation card state changes the rec panel changes its view automatically.
 In the current angular app the recommendation panel was listening on socket to update its view.
@@ -55,6 +57,22 @@ The goal is for recommendation-panel and recommendation-card to have the same vu
 [The code till 4th May](https://github.com/vikaskedia/healthbrain) implemented recommendation-panel and recommendation-card as two different npm packages. Different npm packages cannot share the same vuex store.
 
 Hence recommendation-panel and recommendation-card cannot be two seperate npm packages they have to be components of the same vue app.
+
+## Why does the patient app have a left side and a right side?
+
+Left side shows the state of the patient on a particular date.
+
+![state-of-patient](./docs/state-of-patient-on-a-specific-date.png)
+
+ Right side is to change the current state of the patient.
+
+![Change state of patient](./docs/change-state-of-the-patient.png)
+
+Psychiatrist needs to be able to look at multiple historical states to make decisions and change the current state.
+
+## Why does the left side have two tabs on the top right corner?
+The 1st tab shows the health components and the 2nd tab shows the non-health components. There is a master table of components. And each component is either a health component or a "not-health" component.
+![patient file](./docs/two-tabs-in-the-header.png)
 
 ## What is the migration plan?
 We get rec and rem component to work completely in the new architecture. Once they are cerifited then 10 developers are given the responsibility of delivered 5 components each week.
