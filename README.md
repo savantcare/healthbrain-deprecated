@@ -6,14 +6,14 @@
 * [Why write a new patient file app?](#why-write-a-new-patient-file-app)
 * [Why re-write the exisiting angular in vue?](#why-re-write-the-exisiting-angular-in-vue)
 * [Why is each component not a seperate npm package?](#why-is-each-component-not-a-seperate-npm-package)
-* [Why does the patient app have a left side and a right side?]
-* [Why does the left side have two tabs on the top right corner?]
+* [Why does the patient app have a left side and a right side?](#why-does-the-patient-app-have-a-left-side-and-a-right-side)
+* [Why does the left side have two tabs on the top right corner?](#why-does-the-left-side-have-two-tabs-on-the-top-right-corner)
 * [What is the migration plan?](#what-is-the-migration-plan)
 * [What is the ideal component on which other components are based?](#what-is-the-ideal-component-on-which-other-components-are-based?)
 * [What is needed to write a new component?](#what-is-needed-to-write-a-new-component)
-* [What are the tags used in code?](#what-are-the-tags-used-in-code)
+* [What tags are used in code?](#what-tags-are-used-in-code)
 * [What is the code review process?](#what-is-the-code-review-process)
-* [How to run the app locally?](#how-to-run-the-app-locally)
+* [How to run the app locally?](#how-to-run-the-app-locally?)
 * [How to see app behavior when DB connection is lost?](#how-to-see-app-behavior-when-db-server-connection-is-lost)
 * [How to see app behavior when DB takes 10 seconds for API response?](#how-to-see-app-behavior-when-db-server-takes-10-seconds-for-api-response)
 * [How is the state of patient on a historical date generated?](#how-is-the-state-of-patient-on-a-historical-date-generated)
@@ -26,6 +26,8 @@
 ## Why re-write the exisiting angular in vue?
 
 The current angular app was developed to discover the psychiatrists needs. The system could not have been pre-architected to deliver the discovered features.
+
+During the rewrite some new benefits are being delivered.
 
 ### A. User experience benefits
 
@@ -102,7 +104,7 @@ Possible solution:
 1. https://github.com/teambit/bit
 
 
-## What are the tags used in code?
+## What tags are used in code?
 
  * Todo:
  * Question:
@@ -115,7 +117,7 @@ healthbrain> grep -ir -n --exclude-dir={node_modules,.git} ' Fix:' ./
 ## What is the code review process?
 https://www.youtube.com/watch?v=8fx-EaOUK2E
 
-## How to run the app locally
+## How to run the app locally?
 
 ```bash
 git clone https://github.com/savantcare/healthbrain.git
