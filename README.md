@@ -8,12 +8,13 @@
 * [Why is each component not a seperate npm package?](#why-is-each-component-not-a-seperate-npm-package)
 * [Why does the patient app have a left side and a right side?](#why-does-the-patient-app-have-a-left-side-and-a-right-side)
 * [Why does the left side have two tabs on the top right corner?](#why-does-the-left-side-have-two-tabs-on-the-top-right-corner)
+* [Why does the 2nd page have prev and next?](#why-does-the-2nd-page-have-prev-and-next)
 * [What is the migration plan?](#what-is-the-migration-plan)
-* [What is the ideal component on which other components are based?](#what-is-the-ideal-component-on-which-other-components-are-based?)
+* [What is the ideal component on which other components are based?](#what-is-the-ideal-component-on-which-other-components-are-based)
 * [What is needed to write a new component?](#what-is-needed-to-write-a-new-component)
 * [What tags are used in code?](#what-tags-are-used-in-code)
 * [What is the code review process?](#what-is-the-code-review-process)
-* [How to run the app locally?](#how-to-run-the-app-locally?)
+* [How to run the app locally?](#how-to-run-the-app-locally)
 * [How to see app behavior when DB connection is lost?](#how-to-see-app-behavior-when-db-server-connection-is-lost)
 * [How to see app behavior when DB takes 10 seconds for API response?](#how-to-see-app-behavior-when-db-server-takes-10-seconds-for-api-response)
 * [How is the state of patient on a historical date generated?](#how-is-the-state-of-patient-on-a-historical-date-generated)
@@ -75,6 +76,11 @@ Psychiatrist needs to be able to look at multiple historical states to make deci
 ## Why does the left side have two tabs on the top right corner?
 The 1st tab shows the health components and the 2nd tab shows the non-health components. There is a master table of components. And each component is either a health component or a "not-health" component.
 ![patient file](./docs/two-tabs-in-the-header.png)
+
+## Why does the 2nd page have prev and next?
+
+![patient file](./docs/page-in-2nd-layer.png)
+
 
 ## What is the migration plan?
 We get rec and rem component to work completely in the new architecture. Once they are cerifited then 10 developers are given the responsibility of delivered 5 components each week.
