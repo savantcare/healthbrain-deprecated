@@ -32,6 +32,10 @@
           size="sm"
           @click="update(item)"
         >Save</b-button>
+
+        <br />
+
+        <history-component :id="item.recommendationID"></history-component>
       </b-col>
     </b-row>
   </b-tab>
@@ -39,6 +43,7 @@
 
 <script>
 import { MULTIPLE_CHANGE_RECOMMENDATION } from "@/const.js";
+const HistoryComponent = () => import("./RecommendationHistory");
 export default {
   computed: {
     items() {
@@ -62,7 +67,8 @@ export default {
           id: item["id"],
           description: item["description"],
           createdAt: item["createdAt"],
-          patientId: item["patientId"]
+          patientId: item["patientId"],
+          recommendationID: item["recommendationID"]
         });
       });
 
@@ -77,6 +83,9 @@ export default {
       }
 
       return list.slice(start, end);
+    },
+    userId() {
+      return this.$store.state.userId;
     }
   },
   data() {
@@ -84,11 +93,11 @@ export default {
       currentPage: 1
     };
   },
-  mounted() {
-    console.log(this.pageCount);
-  },
+  mounted() {},
   methods: {
     update(item) {
+      item["discontinuedByUserId"] = this.userId;
+      item["createdByUserId"] = this.userId;
       this.$store.dispatch("updateRecommendation", {
         data: item,
         toast: this.$bvToast
@@ -106,6 +115,9 @@ export default {
     gotoNextPage() {
       this.currentPage += 1;
     }
+  },
+  components: {
+    HistoryComponent
   }
 };
 </script>

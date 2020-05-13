@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const db = require('../models')
 const Recommendation = db.recommendationDB.recommendations
+const User = db.userDB.users
 
 module.exports = (io) => {
   router.post('/', async (req, res) => {
@@ -84,7 +85,69 @@ module.exports = (io) => {
       res.send(queryResult) /* Fix: Instead of sending the whole objefct only OK needs to be sent*/
     } catch (err) {
       res.status(500).send({
-        message: err.message || "Some error occured while patch the Recommendationh"
+        message: err.message || "Some error occured while patch the Recommendation"
+      })
+    }
+  })
+
+  router.get('/getHistory/:id', async (req, res) => {
+    try {
+      const histories = await Recommendation.findAll({
+        where: {
+          recommendationID: req.params.id
+        }
+      })
+      /**
+       * Expect result:
+       *  {
+       *    "content": "History 1",
+       *    "info": "Added by {User} on {Date}" || "Updated by {User} on {Date}"
+       *  }
+       * 
+       */
+
+      const promises = histories.map(async history => {
+        const { description, createdByUserId, discontinuedByUserId, createdAt, discontinueAt } = history
+        if (discontinuedByUserId == null) { // The case which there is no update history
+          try {
+            const user = await User.findOne({
+              attributes: ['name'],
+              where: { id: createdByUserId }
+            })
+
+            const { name } = user
+            const data = {
+              content: description,
+              info: `Added by ${name} on ${new Date(createdAt).toDateString()}`
+            }
+            console.log(data)
+            return data
+          } catch (err) {
+            return err.message || "Some error occured while get user info"
+          }
+        } else { // The case which there is an update history
+          try {
+            const user = await User.findOne({
+              attributes: ['name'],
+              where: { id: discontinuedByUserId }
+            })
+
+            const { name } = user
+            return {
+              content: description,
+              info: `Changed by ${name} on ${new Date(discontinueAt).toDateString()}`
+            }
+          } catch (err) {
+            return err.message || "Some error occured while get user info"
+          }
+        }
+      })
+
+      const result = await Promise.all(promises)
+      res.send(result)
+    } catch (err) {
+      res.status(500).send({
+        message: err.message || "Some error occured while get the recommendation history"
       })
     }
   })

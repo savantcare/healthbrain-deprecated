@@ -22,7 +22,6 @@ export default {
         })
         if (response.ok) {
           const components = await response.json()
-          console.log(components)
           let availableComponents = []
           components.forEach(item => {
             const component = LEFT_SIDE_COMPONENTS.filter(leftComponent => {
