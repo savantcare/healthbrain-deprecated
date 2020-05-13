@@ -26,5 +26,13 @@ export default {
         commit("setStyle", style)
       }
     }
+  },
+  getters: {
+    style(state) {
+      if (state.style == 1) {
+        return "info"
+      }
+      return "dark"
+    }
   }
 }

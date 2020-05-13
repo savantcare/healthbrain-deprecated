@@ -13,7 +13,8 @@ module.exports = (io) => {
        So components that DA does not have access to they will not get the message
        Question: What is inside newReminder?
        */
-      io.to(`room-${req.body.patientId}-doctor`).emit("ADD_RECOMMENDATION", newReminder)
+      io.to(`room-${req.body.patientId}-doctor`).emit("ADD_REMINDER", newReminder)
+      io.to(`room-${req.body.patientId}-receptionist`).emit("ADD_REMINDER", newReminder)
 
       res.send(newReminder) /* Fix: Instead of sending the whole object only OK needs to be sent*/
     } catch (err) {
@@ -56,7 +57,7 @@ module.exports = (io) => {
       newData["id"] = uniqid()
       await Reminder.create(newData)
 
-      io.to(`room-${req.body.patientId}-doctor`).emit("UPDATE_RECOMMENDATION", req.body)
+      io.to(`room-${req.body.patientId}-doctor`).emit("UPDATE_REMINDER", req.body)
       res.send("ok") /* Fix: Instead of sending the whole object only OK needs to be sent*/
     } catch (err) {
       res.status(500).send({
@@ -75,7 +76,7 @@ module.exports = (io) => {
           id: req.params.id
         }
       })
-      io.to(`room-${req.body.patientId}-doctor`).emit("DISCONTINUE_RECOMMENDATION", req.params.id)
+      io.to(`room-${req.body.patientId}-doctor`).emit("DISCONTINUE_REMINDER", req.params.id)
       res.send(queryResult) /* Fix: Instead of sending the whole objefct only OK needs to be sent*/
     } catch (err) {
       res.status(500).send({

@@ -24,7 +24,6 @@ export default {
           return
         }
       }
-
       state.list.push(newData)
     },
     SOCKET_UPDATE_RECOMMENDATION(state, updateData) {
@@ -232,6 +231,13 @@ export default {
           solid: true
         })
       }
+    }
+  },
+  getters: {
+    recommendations(state) {
+      return state.list.filter(item => {
+        return item.discontinue != true
+      })
     }
   }
 }

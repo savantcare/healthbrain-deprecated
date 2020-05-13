@@ -47,6 +47,11 @@ export default {
       return Math.ceil(this.rows / this.perPage);
     }
   },
+  watch: {
+    id() {
+      this.getHistory();
+    }
+  },
   mounted() {
     this.getHistory();
   },

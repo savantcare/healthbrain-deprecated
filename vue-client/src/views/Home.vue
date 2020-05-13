@@ -79,14 +79,13 @@ export default {
     // Initialize rightPanel components
     const rightPanelList = [
       { key: "recommendation", value: RecommendationCard },
-      { key: "reminder", value: ReminderCard },
-      { key: "combination", value: CombinationCard }
+      { key: "reminder", value: ReminderCard }
+      // { key: "combination", value: CombinationCard }
     ];
 
     this.$store.commit("setRightPanelList", rightPanelList);
 
     // Initialize leftPanel components
-
     // const leftPanelList = [RecommendationPanel, ReminderPanel];
     // this.$store.commit("setLeftPanelList", leftPanelList);
   },
@@ -95,6 +94,7 @@ export default {
     // Join room
     const patientId = this.$route.query.patient_id;
     const role = this.$store.state.userRole;
+    console.log(role);
 
     this.$socket.emit("CREATE_ROOM", `room-${patientId}-${role}`);
 
@@ -102,16 +102,112 @@ export default {
     window.addEventListener("keydown", this.keydownHandler);
 
     this.$store.commit("setFocusComponent", "");
+    this.$store.commit("setRightPanelFocusRowIndex", -1);
+
+    this.updateRightPanelRows();
   },
   methods: {
     onDrag(size) {
-      const rightSize = Math.floor(size[1]);
-      this.$store.commit("setRightPanelWidth", `${rightSize}% `);
+      const rightSize = size[1];
+      this.$store.commit("setRightPanelWidth", `calc(${rightSize}% - 4px) `);
     },
     keydownHandler(event) {
+      /**
+       * Global Key-Handler for Right-Panel components
+       */
+      let { focusRowIndex } = this.$store.state.rightPanel;
+      const { rows, searchKeyword } = this.$store.state.rightPanel;
+
+      /**
+       * Exception where make the Global key-handler not working.
+       */
+      if (searchKeyword.length > 0) {
+        return;
+      }
+
       if (event.key == "`") {
-        this.$store.commit("setFocusComponent", "search-box");
-        this.$refs.search_box.setFocus();
+        // Set focus to the <search-box>
+        focusRowIndex = rows.length - 1;
+        // this.$refs.search_box.setFocus();
+        this.$store.commit("setRightPanelFocusRowIndex", focusRowIndex);
+      } else if (event.key == "ArrowDown") {
+        if (focusRowIndex == rows.length - 1) {
+          focusRowIndex = 0;
+        } else {
+          focusRowIndex += 1;
+        }
+        this.$store.commit("setRightPanelFocusRowIndex", focusRowIndex);
+      } else if (event.key == "ArrowUp") {
+        if (focusRowIndex == 0) {
+          focusRowIndex = rows.length - 1;
+        } else {
+          focusRowIndex -= 1;
+        }
+        this.$store.commit("setRightPanelFocusRowIndex", focusRowIndex);
+      }
+
+      const focusRow = rows[focusRowIndex];
+      if (focusRow == null) {
+        return;
+      }
+
+      /**
+       * Card component <Row> actions
+       */
+      const info = focusRow.split("-");
+      const component = info[0];
+      const index = info[1];
+      const { visibility } = this.$store.state.tabDialog;
+      if (visibility == true) {
+        return;
+      }
+      if (index > 0) {
+        if (event.key == "c") {
+          if (component == "recommendation") {
+            const { recommendations } = this.$store.getters;
+            const selectedItem = recommendations[index - 1];
+            this.$store.commit("showEditRecommendationsModal", selectedItem);
+          } else if (component == "reminder") {
+            const { reminders } = this.$store.getters;
+            const selectedItem = reminders[index - 1];
+            this.$store.commit("showEditReminderModal", selectedItem);
+          }
+        } else if (event.key == "d") {
+          if (component == "recommendation") {
+            const { recommendations } = this.$store.getters;
+            const selectedItem = recommendations[index - 1];
+            this.$store.dispatch("discontinueRecommendation", {
+              data: selectedItem,
+              toast: this.$bvToast
+            });
+          } else if (component == "reminder") {
+            const { reminders } = this.$store.getters;
+            const selectedItem = reminders[index - 1];
+            this.$store.dispatch("discontinueReminder", {
+              data: selectedItem,
+              toast: this.$bvToast
+            });
+          }
+          this.updateRightPanelRows();
+        }
+        return;
+      }
+
+      /**
+       * Card components <Header> actions
+       */
+      if (event.key == "a") {
+        if (component == "recommendation") {
+          this.$store.commit("showAddRecommendationModal");
+        } else if (component == "reminder") {
+          this.$store.commit("showAddReminderModal");
+        }
+      } else if (event.key == "m") {
+        if (component == "recommendation") {
+          this.$store.commit("showMultiChangeRecommendationModal");
+        } else if (component == "reminder") {
+          this.$store.commit("showMultiChangeReminderModal");
+        }
       }
     },
     renderRightPanel(action) {
@@ -144,6 +240,10 @@ export default {
 
         this.$store.commit("setRightPanelList", newList);
       }
+      this.updateRightPanelRows();
+    },
+    updateRightPanelRows() {
+      this.$store.dispatch("updateRightPanelRow");
     }
   },
   beforeDestroy() {

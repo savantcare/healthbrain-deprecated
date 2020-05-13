@@ -4,7 +4,7 @@
       <b-list-group-item
         v-for="(item, index) in keywordComponents"
         :key="`search-${index}`"
-        :active="index == 0"
+        :active="index == selectedIndex"
       >{{item}}</b-list-group-item>
     </b-list-group>
     <b-form-input
@@ -19,17 +19,16 @@
 
 <script>
 export default {
+  name: "search-box",
   data() {
     return {
-      searchKeyword: ""
+      searchKeyword: "",
+      selectedIndex: 0
     };
   },
   computed: {
     width() {
       return this.$store.state.rightPanel.width;
-    },
-    focusComponent() {
-      return this.$store.state.focusComponent;
     },
     keywordComponents() {
       if (this.searchKeyword.length == 0) {
@@ -40,60 +39,55 @@ export default {
         return item.search(this.searchKeyword) > -1;
       });
     },
-    rightPanelComponents() {
-      return this.$store.state.rightPanel.list;
+    focusRow() {
+      return this.$store.getters.rightPanelFocusRow;
     }
   },
   watch: {
-    focusComponent() {
-      if (this.focusComponent == "search-box") {
-        setTimeout(() => {
-          this.$refs.search_box.focus();
-        }, 50);
-      } else {
-        this.$refs.search_box.blur();
+    focusRow() {
+      if (this.focusRow == this.$options.name) {
+        this.setFocus();
+      } else if (this.focusRow != null) {
+        this.removeFocus();
       }
     }
   },
   mounted() {
-    this.$store.commit("setRightPanelWidth", "30%");
+    this.$store.commit("setRightPanelWidth", "calc(30% - 4px)");
   },
   methods: {
     keyupHandler(event) {
-      if (this.focusComponent != "search-box") {
-        return;
-      }
       if (event.keyCode == 13) {
-        const action = this.keywordComponents[0];
+        const action = this.keywordComponents[this.selectedIndex];
         this.$emit("renderRightPanel", action);
         this.searchKeyword = "";
       } else if (event.key == "ArrowDown") {
-        // focus to the first component
-        const firstComponent = this.rightPanelComponents[0]["key"];
-        setTimeout(() => {
-          this.$store.commit("setFocusComponent", firstComponent);
-        }, 50);
-
-        this.$refs.search_box.blur();
+        if (this.selectedIndex < this.keywordComponents.length - 1) {
+          this.selectedIndex += 1;
+        }
       } else if (event.key == "ArrowUp") {
-        if (this.rightPanelComponents.length > 0) {
-          const lastComponent = this.rightPanelComponents[
-            this.rightPanelComponents.length - 1
-          ]["key"];
-          setTimeout(() => {
-            this.$store.commit("setFocusComponent", lastComponent);
-          }, 50);
+        if (this.selectedIndex > 0) {
+          this.selectedIndex -= 1;
         }
       }
+      if (this.searchKeyword.length == 0) {
+        this.selectedIndex = 0;
+      }
+      this.$store.commit("setRightPanelSearchKeyword", this.searchKeyword);
     },
     setFocus() {
       setTimeout(() => {
         this.$refs.search_box.focus();
       }, 50);
     },
+    removeFocus() {
+      setTimeout(() => {
+        this.$refs.search_box.blur();
+      }, 50);
+    },
     onClickSearchBox() {
-      this.setFocus();
-      this.$store.commit("setFocusComponent", "search-box");
+      // const { rows } = this.$store.state.rightPanel;
+      // this.$store.commit("setRightPanelFocusRowIndex", rows.length - 1);
     }
   }
 };

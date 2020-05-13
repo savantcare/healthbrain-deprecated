@@ -83,6 +83,8 @@ export default {
           data: data,
           toast: this.$bvToast
         });
+
+        this.$store.dispatch("updateRightPanelRow");
       } else {
         this.updateData["description"] = this.description;
         this.updateData["discontinuedByUserId"] = this.userId;

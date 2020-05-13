@@ -48,6 +48,7 @@ export default new Vuex.Store({
       })
       if (response.ok) {
         const json = await response.json()
+        commit("setUserRole", json.name)
         let componentList = json.availableComponents.split(',')
         componentList.push("clear")
         commit("setSearchComponentList", componentList)

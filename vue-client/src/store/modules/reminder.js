@@ -233,5 +233,12 @@ export default {
         })
       }
     }
+  },
+  getters: {
+    reminders(state) {
+      return state.list.filter(item => {
+        return item.discontinue != true
+      })
+    }
   }
 }
