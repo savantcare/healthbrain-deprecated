@@ -25,6 +25,11 @@ Vue.use(new VueSocketIO({
 import VueSplit from 'vue-split-panel'
 Vue.use(VueSplit)
 
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+
 Vue.config.productionTip = false
 
 new Vue({

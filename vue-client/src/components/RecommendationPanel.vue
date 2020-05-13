@@ -210,7 +210,8 @@ export default {
         id: item["id"],
         description: item["description"],
         createdAt: item["createdAt"],
-        patientId: item["patientId"]
+        patientId: item["patientId"],
+        recommendationID: item["recommendationID"]
       };
       const addRecommendationTab = require("@/components/tab_components/AddRecommendationTab.vue");
       this.$store.commit("setTabList", [

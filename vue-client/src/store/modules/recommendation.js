@@ -20,7 +20,7 @@ export default {
     SOCKET_ADD_RECOMMENDATION(state, newData) {         // Msg recd from node-server/routes/recommendation.route.js
       if (state.list.length > 0) {                      // At the client where this data was added it needs to be skipped
         const lastData = state.list[state.list.length - 1]
-        if (lastData.id == newData.id) {
+        if (lastData.recommendationID == newData.recommendationID) {
           return
         }
       }

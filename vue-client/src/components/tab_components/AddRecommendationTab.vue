@@ -62,6 +62,9 @@ export default {
     },
     tabList() {
       return this.$store.state.tabDialog.tabList;
+    },
+    userId() {
+      return this.$store.state.userId;
     }
   },
   methods: {
@@ -70,9 +73,10 @@ export default {
         const today = new Date();
         const data = {
           createdAt: today.toDateString(),
-          id: uniqid(),
+          recommendationID: uniqid(),
           patientId: this.id,
-          description: this.description
+          description: this.description,
+          createdByUserId: this.userId
         };
 
         this.$store.dispatch("addRecommendation", {
@@ -81,6 +85,9 @@ export default {
         });
       } else {
         this.updateData["description"] = this.description;
+        this.updateData["discontinuedByUserId"] = this.userId;
+        this.updateData["createdByUserId"] = this.userId;
+
         this.$store.dispatch("updateRecommendation", {
           data: this.updateData,
           toast: this.$bvToast

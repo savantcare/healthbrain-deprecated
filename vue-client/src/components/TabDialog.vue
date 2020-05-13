@@ -1,11 +1,11 @@
 <template>
   <b-modal v-model="visibility" centered hide-header hide-footer size="lg" @hidden="onCloseDialog">
     <b-card no-body>
-      <b-tabs card>
+      <b-tabs v-model="tabIndex" card>
         <component v-for="(tab, index) in tabList" :key="`tab-${index}`" :is="tab.value"></component>
 
         <b-tab title="New Tab" v-if="showNewTab">
-          <b-form-input autofocus v-model="keyword" @keydown="searchBoxKeyDownHandler"></b-form-input>
+          <b-form-input ref="search_input" v-model="keyword" @keydown="searchBoxKeyDownHandler"></b-form-input>
           <b-list-group class="ml-2 mr-2">
             <b-list-group-item
               v-for="(item, index) in searchTabList"
@@ -56,7 +56,8 @@ export default {
         { key: ADD_REMINDER, value: "Add reminder" },
         { key: MULTIPLE_CHANGE_REMINDER, value: "Multi change reminder" }
       ],
-      keyword: ""
+      keyword: "",
+      tabIndex: 0
     };
   },
   computed: {
@@ -92,6 +93,12 @@ export default {
   methods: {
     newTab() {
       this.showNewTab = true;
+      setTimeout(() => {
+        this.tabIndex += 1;
+        setTimeout(() => {
+          this.$refs.search_input.focus();
+        }, 100);
+      }, 100);
     },
     onCloseDialog() {
       this.showNewTab = false;

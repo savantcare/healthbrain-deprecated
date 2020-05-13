@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const db = require('../models')
 const Recommendation = db.recommendationDB.recommendations
-const uniqid = require('uniqid')
 
 module.exports = (io) => {
   router.post('/', async (req, res) => {
@@ -44,7 +43,8 @@ module.exports = (io) => {
       // Update the existing object to discontinue.
       await Recommendation.update({
         discontinue: true,
-        discontinueAt: new Date()
+        discontinueAt: new Date(),
+        discontinuedByUserId: req.body.discontinuedByUserId
       }, {
         where: {
           id: req.params.id
@@ -52,8 +52,13 @@ module.exports = (io) => {
       })
 
       // Add new value
-      let newData = req.body
-      newData["id"] = uniqid()
+      const newData = {
+        recommendationID: req.body.recommendationID,
+        patientId: req.body.patientId,
+        createdByUserId: req.body.createdByUserId,
+        description: req.body.description,
+        createdAt: new Date()
+      }
       await Recommendation.create(newData)
 
       io.to(`room-${req.body.patientId}-doctor`).emit("UPDATE_RECOMMENDATION", req.body)

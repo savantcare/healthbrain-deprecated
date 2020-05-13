@@ -57,11 +57,12 @@ export default {
         });
         if (response.ok) {
           const json = await response.json();
-          const { access_token, roleId } = json;
+          const { access_token, roleId, userId } = json;
           localStorage.setItem("token", access_token);
           this.$store.dispatch("getRoleDetails", roleId);
           // this.$store.commit("setUserRole", role);
           this.$router.push("/?patient_id=1");
+          this.$store.commit("setUserId", userId);
         } else {
           this.$bvToast.toast("Authentication failed", {
             title: "Error",

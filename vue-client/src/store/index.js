@@ -18,7 +18,8 @@ export default new Vuex.Store({
     userRole: '',
     searchComponentList: [],
     focusComponent: "",
-    connectionStatus: true // true: online, false: offline
+    connectionStatus: true, // true: online, false: offline
+    userId: -1
   },
   mutations: {
     setUserRole(state, data) {
@@ -32,6 +33,9 @@ export default new Vuex.Store({
     },
     setConnectionStatus(state, value) {
       state.connectionStatus = value
+    },
+    setUserId(state, value) {
+      state.userId = value
     }
   },
   actions: {
