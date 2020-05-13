@@ -21,6 +21,7 @@ recommendationDB.sequelize = recommendationSequelize
 
 recommendationDB.recommendations = require('../recommendation.model.js')(recommendationSequelize, Sequelize)
 
-recommendationDB.sequelize.sync()
+recommendationDB.sequelize.sync()//  This creates the table if it doesn't exist (and does nothing if it already exists)
+// Ref: https://sequelize.org/master/manual/model-basics.html#model-synchronization
 
 module.exports = recommendationDB

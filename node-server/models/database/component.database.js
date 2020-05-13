@@ -21,6 +21,7 @@ componentDB.sequelize = componentSequelize
 
 componentDB.components = require('../component.model.js')(componentSequelize, Sequelize)
 
-componentDB.sequelize.sync()
+
+componentDB.sequelize.sync() // see doc at recommendation.database.js
 
 module.exports = componentDB
