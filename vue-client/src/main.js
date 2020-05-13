@@ -30,6 +30,9 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 
+const VueScrollTo = require('vue-scrollto')
+Vue.use(VueScrollTo)
+
 Vue.config.productionTip = false
 
 new Vue({

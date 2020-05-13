@@ -15,7 +15,7 @@
       align="center"
       class="mt-2"
       size="sm"
-      v-if="rows > 1"
+      v-if="pageCount > 1"
     ></b-pagination>
   </div>
 </template>
@@ -42,6 +42,9 @@ export default {
       const start = (this.currentPage - 1) * this.perPage;
       const end = this.currentPage * this.perPage;
       return this.history.slice(start, end);
+    },
+    pageCount() {
+      return Math.ceil(this.rows / this.perPage);
     }
   },
   mounted() {

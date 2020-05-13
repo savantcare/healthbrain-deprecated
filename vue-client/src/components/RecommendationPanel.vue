@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="recommendation">
     <b-card
       :border-variant="isStyle1 ? 'info' : 'dark'"
       :header="isStyle1 ? 'info' : 'dark'"

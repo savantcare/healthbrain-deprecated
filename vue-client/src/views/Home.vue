@@ -1,8 +1,9 @@
 <template>
   <div>
     <Split style="height: 100vh;" @onDrag="onDrag">
-      <SplitArea :size="70" :minsize="100">
+      <SplitArea :size="70" :minsize="100" id="leftPanel">
         <left-panel-header></left-panel-header>
+        <!-- <div style="width: 100px; height: 500px"></div> -->
         <div v-if="leftPanelComponents.length > 0">
           <component
             v-for="(component, index) in leftPanelComponents"

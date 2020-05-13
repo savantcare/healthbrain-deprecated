@@ -11,26 +11,43 @@
       <template v-slot:header>
         <b-row align-h="between" :style="{height: isStyle1 ? '50px' : '30px'}">
           <h5 v-if="isStyle1" class="m-md-2">Recommendation Card</h5>
-          <span style="font-weight: bold;" v-else>Recommendation Card</span>
+          <span style="font-weight: bold;" v-else>Recommendation</span>
           <b-row class="mr-2">
             <b-button
               size="sm"
               variant="primary"
               v-if="selected.length == 0"
               @click="showAddModal"
-            >Add</b-button>
+              v-b-tooltip.hover.bottom="'Add recommendation'"
+            >A</b-button>
             <b-button
               variant="primary"
               v-if="selected.length == 0"
               @click="showMultiChangeModal"
               class="ml-2"
               size="sm"
-            >Multi change</b-button>
+              v-b-tooltip.hover.bottom="'Multi change recommendation'"
+            >M</b-button>
             <b-button
-              variant="danger"
-              v-if="selected.length > 0"
-              @click="multidiscontinue"
-            >Discontinue</b-button>
+              variant="primary"
+              v-if="selected.length == 0"
+              class="ml-2"
+              size="sm"
+              v-b-tooltip.hover.bottom="'Focus to recommendation'"
+              v-scroll-to="{
+                el: '#recommendation',
+                container: '#leftPanel',
+                duration: 500,
+                easing: 'linear',
+                offset: -200,
+                force: true,
+                cancelable: true,
+                onStart: focusPanel,
+                x: false,
+                y: true
+              }"
+            >F</b-button>
+            <b-button variant="danger" v-if="selected.length > 0" @click="multidiscontinue">D</b-button>
           </b-row>
         </b-row>
       </template>
@@ -49,19 +66,21 @@
               :class="{'table-active': checkActiveStatus(item), 'table-primary': checkFocusStatus(index)}"
             >
               <td @click="selectTableRow(item)">{{item.description}}</td>
-              <td @click="selectTableRow(item)">{{item.createdAt}}</td>
+              <td @click="selectTableRow(item)">{{new Date(item.createdAt).toDateString()}}</td>
               <td v-if="selected.length == 0">
                 <b-button
                   :size="isStyle1 ? '' :'sm'"
                   variant="outline-primary"
                   @click="openEditModal(item, $event)"
-                >Change</b-button>
+                  v-b-tooltip.hover.bottom="'Change'"
+                >C</b-button>
                 <b-button
                   variant="outline-danger"
                   @click="discontinueRecommendation(item)"
                   class="ml-2"
                   :size="isStyle1 ? '' : 'sm'"
-                >Discontinue</b-button>
+                  v-b-tooltip.hover.bottom="'Discontinue'"
+                >D</b-button>
               </td>
             </tr>
           </tbody>
@@ -199,7 +218,8 @@ export default {
         id: item["id"],
         description: item["description"],
         createdAt: item["createdAt"],
-        patientId: item["patientId"]
+        patientId: item["patientId"],
+        recommendationID: item["recommendationID"]
       };
       const addRecommendationTab = require("@/components/tab_components/AddRecommendationTab.vue");
       this.$store.commit("setTabList", [
@@ -371,6 +391,9 @@ export default {
     setFocusComponent() {
       this.$store.commit("setFocusComponent", "recommendation");
       this.focusIndex = 0;
+    },
+    focusPanel() {
+      console.log("focus panel");
     }
   },
   beforeDestroy() {
