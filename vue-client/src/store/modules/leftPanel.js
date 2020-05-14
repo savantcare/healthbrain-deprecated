@@ -1,8 +1,12 @@
 import { COMPONENT_API_URL, LEFT_SIDE_COMPONENTS } from '@/const.js'
+import $ from "jquery";
+
 export default {
   state: {
     list: [],
-    currentDate: ""
+    currentDate: "",
+    zoomValue: 1,
+    originSize: null
   },
   mutations: {
     setLeftPanelList(state, value) {
@@ -10,6 +14,9 @@ export default {
     },
     setLeftPanelCurrentDate(state, value) {
       state.currentDate = value
+    },
+    setLeftPanelZoomValue(state, value) {
+      state.zoomValue = value
     }
   },
   actions: {
@@ -36,12 +43,37 @@ export default {
             }
           })
           commit("setLeftPanelList", availableComponents)
+          // dispatch("zoomLeftPanel")
         }
       } catch (ex) {
         toast.toast("Server connection error", {
           title: "Error",
           variant: "danger",
           solid: true
+        })
+      }
+    },
+    zoomLeftPanel({ state }) {
+      const r = state.zoomValue
+      $("#leftPanelContent").css({
+        "-webkit-transform": "scale(" + r + ")",
+        "-moz-transform": "scale(" + r + ")",
+        "-ms-transform": "scale(" + r + ")",
+        "-o-transform": "scale(" + r + ")",
+        transform: "scale(" + r + ")"
+      });
+
+      var height = document.getElementById("leftPanelContent").offsetHeight;
+      var windowHeight = $(document).outerHeight() - 100;
+      height = Math.ceil(height * r)
+
+      if (height > windowHeight) {
+        $("#leftPanelContent").css({
+          position: "initial"
+        })
+      } else {
+        $("#leftPanelContent").css({
+          position: "fixed"
         })
       }
     }

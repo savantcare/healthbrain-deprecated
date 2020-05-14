@@ -8,9 +8,22 @@
           class="ml-2"
           :variant="activityStatus ? 'success' : 'danger'"
         >{{activityStatus ? "Online" : "Offline"}}</b-badge>
-        {{currentDate}}
+        <span>{{currentDate}}</span>
       </div>
-      <div class="mr-2">
+      <div class="mr-2" style="display: flex; align-items: center;">
+        <div class="mr-2">
+          <b-icon-dash-circle
+            style="cursor: pointer;"
+            v-b-tooltip.hover.bottom="'Zoom out'"
+            @click="zoomOut"
+          ></b-icon-dash-circle>
+          <b-icon-plus-circle
+            class="ml-2"
+            style="cursor: pointer;"
+            v-b-tooltip.hover.bottom="'Zoom in'"
+            @click="zoomIn"
+          ></b-icon-plus-circle>
+        </div>
         <b-form-checkbox v-model="tabMode" name="check-button" switch>Health components</b-form-checkbox>
       </div>
     </div>
@@ -19,6 +32,7 @@
 
 <script>
 import { USER_API_URL } from "@/const.js";
+import $ from "jquery";
 export default {
   data() {
     return {
@@ -32,6 +46,9 @@ export default {
     },
     currentDate() {
       return this.$store.state.leftPanel.currentDate;
+    },
+    zoomValue() {
+      return this.$store.state.leftPanel.zoomValue;
     }
   },
   watch: {
@@ -42,13 +59,28 @@ export default {
   mounted() {
     this.getPatientInfo();
     this.updateLeftPanel();
+    // this.zoomValue = this.$store.state.leftPanel.zoomValue;
+    // this.zoomLeftPanel();
   },
   methods: {
-    updateLeftPanel() {
-      this.$store.dispatch("getLeftPanelComponents", {
+    async updateLeftPanel() {
+      await this.$store.dispatch("getLeftPanelComponents", {
         type: this.tabMode == true ? 1 : 2,
         toast: this.$bvToast
       });
+
+      setTimeout(() => {
+        var width = document.getElementById("leftPanelContent").offsetWidth;
+        var height = document.getElementById("leftPanelContent").offsetHeight;
+        var windowWidth = $(document).outerWidth();
+        var windowHeight = $(document).outerHeight();
+        windowWidth = windowWidth * (70 / 100);
+        windowHeight = windowHeight - 100;
+
+        const r = Math.min(windowWidth / width, windowHeight / height);
+        this.$store.commit("setLeftPanelZoomValue", r);
+        this.$store.dispatch("zoomLeftPanel");
+      }, 100);
     },
     async getPatientInfo() {
       let TOKEN = localStorage.getItem("token");
@@ -81,6 +113,18 @@ export default {
           solid: true
         });
       }
+    },
+    zoomOut() {
+      let value = this.zoomValue;
+      value -= 0.1;
+      this.$store.commit("setLeftPanelZoomValue", value);
+      this.$store.dispatch("zoomLeftPanel");
+    },
+    zoomIn() {
+      let value = this.zoomValue;
+      value += 0.1;
+      this.$store.commit("setLeftPanelZoomValue", value);
+      this.$store.dispatch("zoomLeftPanel");
     }
   }
 };

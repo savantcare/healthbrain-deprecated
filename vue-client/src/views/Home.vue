@@ -4,13 +4,17 @@
       <SplitArea :size="70" :minsize="100" id="leftPanel">
         <left-panel-header></left-panel-header>
         <date-slider></date-slider>
-        <!-- <div style="width: 100px; height: 700px"></div> -->
-        <div v-if="leftPanelComponents.length > 0">
-          <component
-            v-for="(component, index) in leftPanelComponents"
-            :key="`left-component-${index}`"
-            :is="component"
-          ></component>
+        <div id="leftPanelContainer">
+          <div id="leftPanelContent">
+            <div style="width: 100%; height: 700px;"></div>
+            <div v-if="leftPanelComponents.length > 0">
+              <component
+                v-for="(component, index) in leftPanelComponents"
+                :key="`left-component-${index}`"
+                :is="component"
+              ></component>
+            </div>
+          </div>
         </div>
       </SplitArea>
       <SplitArea :size="30" :minsize="100">
@@ -45,7 +49,6 @@ const SearchBox = () => import("@/components/SearchBox.vue");
 const RecommendationCard = () => import("@/components/RecommendationCard.vue");
 const ReminderCard = () => import("@/components/ReminderCard.vue");
 const CombinationCard = () => import("@/components/CombinationCard.vue");
-
 export default {
   name: "Home",
   components: {
@@ -64,7 +67,8 @@ export default {
   },
   data() {
     return {
-      searchKeyword: ""
+      searchKeyword: "",
+      leftPanelWidth: 70
     };
   },
   computed: {
@@ -97,7 +101,6 @@ export default {
     // Join room
     const patientId = this.$route.query.patient_id;
     const role = this.$store.state.userRole;
-    console.log(role);
 
     this.$socket.emit("CREATE_ROOM", `room-${patientId}-${role}`);
 
@@ -113,6 +116,7 @@ export default {
     onDrag(size) {
       const rightSize = size[1];
       this.$store.commit("setRightPanelWidth", `calc(${rightSize}% - 4px) `);
+      this.leftPanelWidth = size[0];
     },
     keydownHandler(event) {
       /**
@@ -255,3 +259,24 @@ export default {
 };
 </script>
 
+<style scoped>
+#leftPanelContainer {
+  overflow-x: visible;
+  white-space: nowrap;
+}
+
+#leftPanelContent {
+  left: 0;
+  position: fixed;
+  overflow: visible;
+  -moz-transform-origin: top left;
+  -ms-transform-origin: top left;
+  -o-transform-origin: top left;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+</style>
