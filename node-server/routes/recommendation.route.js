@@ -2,6 +2,7 @@ const router = require('express').Router()
 const db = require('../models')
 const Recommendation = db.recommendationDB.recommendations
 const User = db.userDB.users
+const { Op } = require("sequelize")
 
 module.exports = (io) => {
   router.post('/', async (req, res) => {
@@ -148,6 +149,31 @@ module.exports = (io) => {
     } catch (err) {
       res.status(500).send({
         message: err.message || "Some error occured while get the recommendation history"
+      })
+    }
+  })
+
+  router.post("/getHistoryByDate", async (req, res) => {
+    const { startDate, endDate } = req.body
+    try {
+      const history = await Recommendation.findAll({
+        where: {
+          createdAt: {
+            [Op.and]: [
+              {
+                [Op.gte]: startDate
+              },
+              {
+                [Op.lte]: endDate
+              }
+            ]
+          }
+        }
+      })
+      res.send(history)
+    } catch (err) {
+      res.status(500).send({
+        message: err.message || "Some error occured while get historical data"
       })
     }
   })

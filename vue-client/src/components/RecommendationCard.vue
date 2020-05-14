@@ -94,15 +94,12 @@ export default {
   components: {},
   data() {
     return {
-      selected: [],
-      showEditModal: false
+      selected: []
     };
   },
   computed: {
     items() {
-      return this.$store.state.recommendation.list.filter(item => {
-        return item.patientId == this.id && item.discontinue != true;
-      });
+      return this.$store.getters.recommendations;
     },
     fields() {
       if (this.selected.length > 0) {

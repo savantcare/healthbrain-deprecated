@@ -15,44 +15,52 @@
               size="sm"
               v-if="selected.length == 0"
               @click="showAddModal"
-            >Add</b-button>
+            >A</b-button>
             <b-button
               size="sm"
               variant="primary"
               v-if="selected.length == 0"
               @click="showMultiChangeModal"
               class="ml-2"
-            >Multi change</b-button>
-            <b-button
-              variant="danger"
-              v-if="selected.length > 0"
-              @click="multidiscontinue"
-            >discontinue</b-button>
+            >M</b-button>
+            <b-button variant="danger" v-if="selected.length > 0" @click="multidiscontinue">D</b-button>
           </b-row>
         </b-row>
       </template>
       <b-card-text>
-        <b-table
-          ref="selectableTable"
-          selectable
-          bordered
-          select-mode="multi"
-          :items="items"
-          @row-selected="onRowSelected"
-          responsive="sm"
-          :fields="fields"
-          small
-        >
-          <template v-slot:cell(action)="item">
-            <b-button size="sm" variant="outline-primary" @click="openEditModal(item)">Change</b-button>
-            <b-button
-              variant="outline-danger"
-              @click="discontinueRecommendation(item)"
-              class="ml-2"
-              size="sm"
-            >discontinue</b-button>
-          </template>
-        </b-table>
+        <table class="table table-bordered table-sm table-hover">
+          <thead>
+            <tr>
+              <th v-for="(field, index) in fields" :key="`field-${index}`" scope="col">{{field}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(item, index) in items"
+              :key="`item-${index}`"
+              style="cursor: pointer;"
+              :class="{'table-active': checkActiveStatus(item)}"
+            >
+              <td @click="onRowSelected(item)">{{item.description}}</td>
+              <td @click="onRowSelected(item)">{{getFormatDate(item.createdAt)}}</td>
+              <td v-if="selected.length == 0">
+                <b-button
+                  size="sm"
+                  variant="outline-primary"
+                  @click="openEditModal(item, $event)"
+                  v-b-tooltip.hover.bottom="'Change'"
+                >C</b-button>
+                <b-button
+                  variant="outline-danger"
+                  @click="discontinueRecommendation(item)"
+                  class="ml-2"
+                  size="sm"
+                  v-b-tooltip.hover.bottom="'Discontinue'"
+                >D</b-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </b-card-text>
     </b-card>
   </div>
@@ -64,27 +72,31 @@ export default {
   data() {
     return {
       selected: [],
-      recommendations: []
+      updateStatus: 0 // Value for monitor the update status of panel.
     };
   },
   computed: {
     items() {
-      return this.$store.state.recommendation.list.filter(item => {
-        return item.patientId == this.id && item.discontinue != true;
-      });
+      return this.$store.getters.panelRecommendations;
     },
     fields() {
       if (this.selected.length > 0) {
-        return ["description", "createdAt"];
+        return ["Description", "Created At"];
       } else {
-        return ["description", "createdAt", "action"];
+        return ["Cescription", "Created At", "Action"];
       }
     },
     id() {
       return this.$route.query.patient_id;
     },
     style() {
+      if (this.updateStatus > 0) {
+        return "success";
+      }
       return this.$store.getters.style;
+    },
+    itemCount() {
+      return this.items.length;
     }
   },
   mounted() {
@@ -93,9 +105,30 @@ export default {
       toast: this.$bvToast
     });
   },
+  watch: {
+    itemCount() {
+      this.updateStatus = 1;
+      setTimeout(() => {
+        this.updateStatus = 0;
+      }, 2000);
+    }
+  },
   methods: {
-    onRowSelected(items) {
-      this.selected = items;
+    onRowSelected(item) {
+      let newList = [];
+      let isExistsRow = false;
+      this.selected.forEach(data => {
+        if (data.id == item.id) {
+          isExistsRow = true;
+        } else {
+          newList.push(data);
+        }
+      });
+      if (isExistsRow) {
+        this.selected = newList;
+      } else {
+        this.selected.push(item);
+      }
     },
     showAddModal() {
       this.$store.commit("showAddRecommendationModal");
@@ -126,6 +159,19 @@ export default {
     },
     showMultiChangeModal() {
       this.$store.commit("showMultiChangeRecommendationModal");
+    },
+    checkActiveStatus(item) {
+      let isActive = false;
+      this.selected.forEach(data => {
+        if (data.id == item.id) {
+          isActive = true;
+        }
+      });
+      return isActive;
+    },
+    getFormatDate(date) {
+      let custom = { year: "numeric", month: "short", day: "numeric" };
+      return new Date(date).toLocaleDateString("en-us", custom);
     }
   },
   beforeDestroy() {

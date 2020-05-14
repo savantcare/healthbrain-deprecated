@@ -2,7 +2,8 @@ import { RECOMMENDATION_API_URL } from "@/const.js"
 let TOKEN = localStorage.getItem("token")
 export default {
   state: {                       // Cannot be changed directly. Can only be changed through mutation
-    list: []
+    list: [],
+    currentDate: new Date()
   },
   mutations: {
     setRecommendationList(state, data) {
@@ -14,6 +15,13 @@ export default {
     removeNewRecommendation(state) {
       state.list.pop()
     },
+    setRecommendationCurrentDate(state, value) {
+      state.currentDate = value
+    },
+
+    /**
+     * Socket Listeners
+     */
     SOCKET_ON_UPDATE_RECOMMENDATIONS(state, updateList) {   // Message received from socket server
       state.list = updateList
     },
@@ -237,6 +245,12 @@ export default {
     recommendations(state) {
       return state.list.filter(item => {
         return item.discontinue != true
+      })
+    },
+    panelRecommendations(state) {
+      return state.list.filter(item => {
+        const itemDate = new Date(item.createdAt)
+        return item.discontinue != true && itemDate <= state.currentDate
       })
     }
   }

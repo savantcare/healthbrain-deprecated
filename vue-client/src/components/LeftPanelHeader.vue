@@ -1,15 +1,18 @@
 <template>
-  <div id="left-panel-header">
-    <div id="patient-info" class="ml-2">
-      <b v-if="patientInfo">{{patientInfo.name}}</b>
-      <span class="ml-2" v-if="patientInfo">{{patientInfo.age + " years old"}}</span>
-      <b-badge
-        class="ml-2"
-        :variant="activityStatus ? 'success' : 'danger'"
-      >{{activityStatus ? "Online" : "Offline"}}</b-badge>
-    </div>
-    <div class="mr-2">
-      <b-form-checkbox v-model="tabMode" name="check-button" switch>Health components</b-form-checkbox>
+  <div>
+    <div id="left-panel-header">
+      <div id="patient-info" class="ml-2">
+        <b v-if="patientInfo">{{patientInfo.name}}</b>
+        <span class="ml-2" v-if="patientInfo">{{patientInfo.age + " years old"}}</span>
+        <b-badge
+          class="ml-2"
+          :variant="activityStatus ? 'success' : 'danger'"
+        >{{activityStatus ? "Online" : "Offline"}}</b-badge>
+        {{currentDate}}
+      </div>
+      <div class="mr-2">
+        <b-form-checkbox v-model="tabMode" name="check-button" switch>Health components</b-form-checkbox>
+      </div>
     </div>
   </div>
 </template>
@@ -26,6 +29,9 @@ export default {
   computed: {
     activityStatus() {
       return this.$store.state.connectionStatus;
+    },
+    currentDate() {
+      return this.$store.state.leftPanel.currentDate;
     }
   },
   watch: {

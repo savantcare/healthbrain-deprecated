@@ -3,7 +3,8 @@
     <Split style="height: 100vh;" @onDrag="onDrag">
       <SplitArea :size="70" :minsize="100" id="leftPanel">
         <left-panel-header></left-panel-header>
-        <!-- <div style="width: 100px; height: 500px"></div> -->
+        <date-slider></date-slider>
+        <!-- <div style="width: 100px; height: 700px"></div> -->
         <div v-if="leftPanelComponents.length > 0">
           <component
             v-for="(component, index) in leftPanelComponents"
@@ -37,6 +38,7 @@ const RecommendationPanel = () =>
   import("@/components/RecommendationPanel.vue");
 const ReminderPanel = () => import("@/components/ReminderPanel.vue");
 const LeftPanelHeader = () => import("@/components/LeftPanelHeader.vue");
+const DateSlider = () => import("@/components/DateSlider.vue");
 
 // Right panel components
 const SearchBox = () => import("@/components/SearchBox.vue");
@@ -52,6 +54,7 @@ export default {
     RecommendationPanel,
     ReminderPanel,
     LeftPanelHeader,
+    DateSlider,
 
     // Right panel components
     SearchBox,

@@ -33,6 +33,10 @@ Vue.use(BootstrapVueIcons)
 const VueScrollTo = require('vue-scrollto')
 Vue.use(VueScrollTo)
 
+import { SliderPlugin } from "@syncfusion/ej2-vue-inputs";
+Vue.use(SliderPlugin);
+
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -1,11 +1,15 @@
 import { COMPONENT_API_URL, LEFT_SIDE_COMPONENTS } from '@/const.js'
 export default {
   state: {
-    list: []
+    list: [],
+    currentDate: ""
   },
   mutations: {
     setLeftPanelList(state, value) {
       state.list = value
+    },
+    setLeftPanelCurrentDate(state, value) {
+      state.currentDate = value
     }
   },
   actions: {

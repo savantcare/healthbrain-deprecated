@@ -9,6 +9,7 @@
     "_comment": "VK added npx in may 20 since Ubuntu was not finding vue-cli-service in command line"
   },
   "dependencies": {
+    "@syncfusion/ej2-vue-inputs": "^18.1.52",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.6.4",
     "jquery": "^3.5.1",
