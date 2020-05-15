@@ -8,7 +8,7 @@ const cors = require("cors");
 
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: "*"
 };
 
 /* 
@@ -22,7 +22,7 @@ npm run start-auth
 */
 var env = process.env.NODE_ENV || 'development'; // Ref: https://stackoverflow.com/questions/8449665/how-do-you-detect-the-environment-in-an-express-js-app
 console.log(env);
-if ( env === 'development' ) {
+if (env === 'development') {
   pause = require('connect-pause');
   app.use(pause(1000));   // Change this to change the delay time.
 }

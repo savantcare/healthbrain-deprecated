@@ -1,17 +1,19 @@
 <template>
   <div>
-    <div id="left-panel-header">
-      <div id="patient-info" class="ml-2">
-        <b v-if="patientInfo">{{patientInfo.name}}</b>
-        <span class="ml-2" v-if="patientInfo">{{patientInfo.age + " years old"}}</span>
+    <b-row id="left-panel-header">
+      <b-col cols="3" id="patient-info" class="pr-0">
+        <b class="ml-2" v-if="patientInfo">{{patientInfo.name}}</b>
+        <span class="ml-2" v-if="patientInfo">({{patientInfo.age + " years old"}})</span>
         <b-badge
           class="ml-2"
           :variant="activityStatus ? 'success' : 'danger'"
         >{{activityStatus ? "Online" : "Offline"}}</b-badge>
-        <span>{{currentDate}}</span>
-      </div>
-      <div class="mr-2" style="display: flex; align-items: center;">
-        <div class="mr-2">
+      </b-col>
+      <b-col cols="7" class="pl-0 pr-0">
+        <date-slider></date-slider>
+      </b-col>
+      <b-col cols="2" style="display: flex; align-items: center;" class="pl-0">
+        <!-- <div>
           <b-icon-dash-circle
             style="cursor: pointer;"
             v-b-tooltip.hover.bottom="'Zoom out'"
@@ -23,17 +25,26 @@
             v-b-tooltip.hover.bottom="'Zoom in'"
             @click="zoomIn"
           ></b-icon-plus-circle>
-        </div>
-        <b-form-checkbox v-model="tabMode" name="check-button" switch>Health components</b-form-checkbox>
-      </div>
-    </div>
+        </div>-->
+        <b-form-checkbox
+          style="font-size: 12px;"
+          v-model="tabMode"
+          name="check-button"
+          switch
+        >Switch components</b-form-checkbox>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
 <script>
 import { USER_API_URL } from "@/const.js";
-import $ from "jquery";
+// import $ from "jquery";
+import DateSlider from "./DateSlider";
 export default {
+  components: {
+    DateSlider
+  },
   data() {
     return {
       tabMode: true,
@@ -69,18 +80,24 @@ export default {
         toast: this.$bvToast
       });
 
-      setTimeout(() => {
-        var width = document.getElementById("leftPanelContent").offsetWidth;
-        var height = document.getElementById("leftPanelContent").offsetHeight;
-        var windowWidth = $(document).outerWidth();
-        var windowHeight = $(document).outerHeight();
-        windowWidth = windowWidth * (70 / 100);
-        windowHeight = windowHeight - 100;
+      // setTimeout(() => {
+      //   var width = document.getElementById("leftPanelContent").offsetWidth;
+      //   var height = document.getElementById("leftPanelContent").offsetHeight;
+      //   var windowWidth = $(document).outerWidth();
+      //   var windowHeight = $(document).outerHeight();
+      //   windowWidth = windowWidth * (70 / 100);
+      //   windowHeight = windowHeight - 100;
 
-        const r = Math.min(windowWidth / width, windowHeight / height);
-        this.$store.commit("setLeftPanelZoomValue", r);
-        this.$store.dispatch("zoomLeftPanel");
-      }, 100);
+      //   console.log(height + " : " + windowHeight);
+
+      //   let r = 1;
+      //   if (height > windowHeight) {
+      //     r = Math.min(windowWidth / width, windowHeight / height);
+      //   }
+
+      //   this.$store.commit("setLeftPanelZoomValue", r);
+      //   this.$store.dispatch("zoomLeftPanel");
+      // }, 100);
     },
     async getPatientInfo() {
       let TOKEN = localStorage.getItem("token");
@@ -133,11 +150,11 @@ export default {
 <style scoped>
 #left-panel-header {
   background-color: #563d7c;
-  height: 50px;
-  width: 100%;
-  display: flex;
+  /* height: 50px; */
+  /* width: 100%; */
+  /* display: flex; */
   color: white;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 </style>

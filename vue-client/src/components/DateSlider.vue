@@ -11,9 +11,9 @@
         :max="maxVal"
         :value="value"
         :tooltip="tooltip"
-        :ticks="ticks"
         v-on:renderingTicks="onRenderingTicks"
         v-on:tooltipChange="onTooltipChange"
+        cssClass="date-slider"
       ></ejs-slider>
       <b-icon-caret-right style="cursor: pointer;" @click="moveToNextDate"></b-icon-caret-right>
     </div>
@@ -30,7 +30,7 @@ export default {
       value: new Date("2013-06-15").getTime(),
       stepVal: 86400000,
       // Slider ticks customization
-      ticks: { placement: "After", largeStep: 3 * 86400000 }
+      ticks: { placement: "After", largeStep: 4 * 86400000 }
     };
   },
   mounted() {

@@ -36,6 +36,7 @@ Vue.use(VueScrollTo)
 import { SliderPlugin } from "@syncfusion/ej2-vue-inputs";
 Vue.use(SliderPlugin);
 
+import './registerServiceWorker'
 
 Vue.config.productionTip = false
 

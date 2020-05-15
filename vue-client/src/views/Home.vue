@@ -3,17 +3,26 @@
     <Split style="height: 100vh;" @onDrag="onDrag">
       <SplitArea :size="70" :minsize="100" id="leftPanel">
         <left-panel-header></left-panel-header>
-        <date-slider></date-slider>
         <div id="leftPanelContainer">
           <div id="leftPanelContent">
-            <div style="width: 100%; height: 700px;"></div>
-            <div v-if="leftPanelComponents.length > 0">
-              <component
-                v-for="(component, index) in leftPanelComponents"
-                :key="`left-component-${index}`"
-                :is="component"
-              ></component>
-            </div>
+            <!-- <div v-if="leftPanelComponents.length > 0">
+              <b-row>
+                <b-col
+                  v-for="(component, index) in leftPanelComponents"
+                  :key="`left-component-${index}`"
+                >
+                  <component :is="component"></component>
+                </b-col>
+                <b-col>
+                </b-col>
+              </b-row>
+            </div>-->
+            <b-row cols="4" style="margin-left: 1px;">
+              <b-col v-for="i in 32" :key="i" style="padding: 0px;">
+                <test-panel></test-panel>
+              </b-col>
+            </b-row>
+            <b-pagination total-rows="32" align="center" per-page="16" aria-controls="my-table"></b-pagination>
           </div>
         </div>
       </SplitArea>
@@ -43,6 +52,7 @@ const RecommendationPanel = () =>
 const ReminderPanel = () => import("@/components/ReminderPanel.vue");
 const LeftPanelHeader = () => import("@/components/LeftPanelHeader.vue");
 const DateSlider = () => import("@/components/DateSlider.vue");
+const TestPanel = () => import("@/components/LeftPanelTestComponent.vue");
 
 // Right panel components
 const SearchBox = () => import("@/components/SearchBox.vue");
@@ -58,6 +68,7 @@ export default {
     ReminderPanel,
     LeftPanelHeader,
     DateSlider,
+    TestPanel,
 
     // Right panel components
     SearchBox,
@@ -260,23 +271,4 @@ export default {
 </script>
 
 <style scoped>
-#leftPanelContainer {
-  overflow-x: visible;
-  white-space: nowrap;
-}
-
-#leftPanelContent {
-  left: 0;
-  position: fixed;
-  overflow: visible;
-  -moz-transform-origin: top left;
-  -ms-transform-origin: top left;
-  -o-transform-origin: top left;
-  -webkit-transform-origin: top left;
-  transform-origin: top left;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
 </style>

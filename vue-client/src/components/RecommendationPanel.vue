@@ -1,5 +1,5 @@
 <template>
-  <div id="recommendation">
+  <div id="recommendation-panel">
     <b-card
       :border-variant="style"
       :header="style"

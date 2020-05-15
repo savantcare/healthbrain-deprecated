@@ -1,5 +1,5 @@
 import { COMPONENT_API_URL, LEFT_SIDE_COMPONENTS } from '@/const.js'
-import $ from "jquery";
+// import $ from "jquery";
 
 export default {
   state: {
@@ -53,29 +53,29 @@ export default {
         })
       }
     },
-    zoomLeftPanel({ state }) {
-      const r = state.zoomValue
-      $("#leftPanelContent").css({
-        "-webkit-transform": "scale(" + r + ")",
-        "-moz-transform": "scale(" + r + ")",
-        "-ms-transform": "scale(" + r + ")",
-        "-o-transform": "scale(" + r + ")",
-        transform: "scale(" + r + ")"
-      });
+    zoomLeftPanel() {
+      // const r = state.zoomValue
+      // $("#leftPanelContent").css({
+      //   "-webkit-transform": "scale(" + r + ")",
+      //   "-moz-transform": "scale(" + r + ")",
+      //   "-ms-transform": "scale(" + r + ")",
+      //   "-o-transform": "scale(" + r + ")",
+      //   transform: "scale(" + r + ")"
+      // });
 
-      var height = document.getElementById("leftPanelContent").offsetHeight;
-      var windowHeight = $(document).outerHeight() - 100;
-      height = Math.ceil(height * r)
+      // var height = document.getElementById("leftPanelContent").offsetHeight;
+      // var windowHeight = $(document).outerHeight() - 100;
+      // height = Math.ceil(height * r)
 
-      if (height > windowHeight) {
-        $("#leftPanelContent").css({
-          position: "initial"
-        })
-      } else {
-        $("#leftPanelContent").css({
-          position: "fixed"
-        })
-      }
+      // if (height > windowHeight || r == 1) {
+      //   $("#leftPanelContent").css({
+      //     position: "initial"
+      //   })
+      // } else {
+      //   $("#leftPanelContent").css({
+      //     position: "fixed"
+      //   })
+      // }
     }
   }
 }
