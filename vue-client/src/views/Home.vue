@@ -5,24 +5,19 @@
         <left-panel-header></left-panel-header>
         <div id="leftPanelContainer">
           <div id="leftPanelContent">
-            <!-- <div v-if="leftPanelComponents.length > 0">
-              <b-row>
-                <b-col
-                  v-for="(component, index) in leftPanelComponents"
-                  :key="`left-component-${index}`"
-                >
-                  <component :is="component"></component>
-                </b-col>
-                <b-col>
-                </b-col>
-              </b-row>
-            </div>-->
-            <b-row cols="4" style="margin-left: 1px;">
+            <div v-if="leftPanelComponents.length > 0">
+              <component
+                :is="component"
+                v-for="(component, index) in leftPanelComponents"
+                :key="`left-component-${index}`"
+              ></component>
+            </div>
+            <!-- <b-row cols="4" style="margin-left: 1px;">
               <b-col v-for="i in 32" :key="i" style="padding: 0px;">
                 <test-panel></test-panel>
               </b-col>
             </b-row>
-            <b-pagination total-rows="32" align="center" per-page="16" aria-controls="my-table"></b-pagination>
+            <b-pagination total-rows="32" align="center" per-page="16" aria-controls="my-table"></b-pagination>-->
           </div>
         </div>
       </SplitArea>
