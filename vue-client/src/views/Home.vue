@@ -44,6 +44,8 @@ const TabDialog = () => import("@/components/TabDialog.vue");
 // Left panel components
 const RecommendationPanel = () =>
   import("@/components/RecommendationPanel.vue");
+const DiagnosisPanel = () =>
+  import("@/components/DiagnosisPanel.vue");
 const ReminderPanel = () => import("@/components/ReminderPanel.vue");
 const LeftPanelHeader = () => import("@/components/LeftPanelHeader.vue");
 const DateSlider = () => import("@/components/DateSlider.vue");
@@ -61,6 +63,7 @@ export default {
     // Left panel components
     RecommendationPanel,
     ReminderPanel,
+    DiagnosisPanel,
     LeftPanelHeader,
     DateSlider,
     TestPanel,

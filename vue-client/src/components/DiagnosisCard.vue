@@ -9,7 +9,7 @@
     >
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
-          <span style="font-weight: bold;">Reminders</span>
+          <span style="font-weight: bold;">Diagnosis</span>
           <b-row class="mr-2">
             <b-button
               size="sm"
@@ -122,7 +122,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("getReminders", {
+    this.$store.dispatch("getDiagnosis", {
       patientId: this.id,
       toast: this.$bvToast
     });
@@ -138,7 +138,7 @@ export default {
       this.$store.commit("showMultiChangeReminderModal");
     },
     openEditModal(item) {
-      this.$store.commit("showEditRemindersModal", item);
+      this.$store.commit("showEditDiagnosisModal", item);
     },
     discontinueReminder(item) {
       this.$store.dispatch("discontinueReminder", {

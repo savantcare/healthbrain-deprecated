@@ -8,8 +8,8 @@
     >
       <template v-slot:header>
         <b-row align-h="between" :style="{height: isStyle1 ? '50px' : '30px'}">
-          <h5 v-if="isStyle1" class="m-md-2">Reminders</h5>
-          <span style="font-weight: bold;" v-else>Reminders</span>
+          <h5 v-if="isStyle1" class="m-md-2">Diagnosis</h5>
+          <span style="font-weight: bold;" v-else>Diagnosis</span>
           <b-row class="mr-2">
             <b-button
               variant="primary"
@@ -90,7 +90,7 @@
 
     <b-modal v-model="multiChangeModalShow" centered size="lg" title="Reminder multi change">
       <b-row cols="3">
-        <b-col v-for="(item, index) in reminders" :key="`item-${index}`">
+        <b-col v-for="(item, index) in Diagnosis" :key="`item-${index}`">
           <label>Description:</label>
 
           <b-form-textarea id="textarea-state" rows="5" autofocus v-model="item.description"></b-form-textarea>
@@ -130,7 +130,7 @@ export default {
       modalType: ADD_DIALOG, // 1: add, 2: edit
       timer: -1,
       multiChangeModalShow: false,
-      reminders: []
+      Diagnosis: []
     };
   },
   computed: {
@@ -166,7 +166,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("getReminders", {
+    this.$store.dispatch("getDiagnosis", {
       patientId: this.id,
       toast: this.$bvToast
     });

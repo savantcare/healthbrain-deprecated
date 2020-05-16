@@ -9,7 +9,7 @@
     >
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
-          <span style="font-weight: bold;">Recommendation</span>
+          <span style="font-weight: bold;">Recommendations</span>
           <b-row class="mr-2">
             <b-button
               size="sm"
