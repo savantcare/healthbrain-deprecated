@@ -8,7 +8,7 @@
     >
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
-          <span style="font-weight: bold;">Recommendation Panel</span>
+          <span style="font-weight: bold;">Recommendations</span>
           <b-row class="mr-2">
             <b-button
               variant="primary"
@@ -83,7 +83,7 @@ export default {
       if (this.selected.length > 0) {
         return ["Description", "Created At"];
       } else {
-        return ["Cescription", "Created At", "Action"];
+        return ["Description", "Created At", "Action"];
       }
     },
     id() {
