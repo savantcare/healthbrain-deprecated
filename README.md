@@ -240,3 +240,6 @@ Dis-Advantages of architecture 2:
 pwa app does not run from localhost. So the following steps needs to be followed:
 
 Alexey will give the details here
+
+We can test PWA app by install the following chrome extension:
+https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb
