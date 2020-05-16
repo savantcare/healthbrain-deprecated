@@ -236,3 +236,7 @@ Dis-Advantages of architecture 2:
 1. How to run sql query over a JSON on the browser client side.
 
 
+## How to test the PWA app?
+pwa app does not run from localhost. So the following steps needs to be followed:
+
+Alexey will give the details here
