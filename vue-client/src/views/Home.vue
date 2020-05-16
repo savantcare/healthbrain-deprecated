@@ -54,6 +54,7 @@ const SearchBox = () => import("@/components/SearchBox.vue");
 const RecommendationCard = () => import("@/components/RecommendationCard.vue");
 const ReminderCard = () => import("@/components/ReminderCard.vue");
 const CombinationCard = () => import("@/components/CombinationCard.vue");
+
 export default {
   name: "Home",
   components: {
@@ -85,7 +86,7 @@ export default {
       return this.$store.state.rightPanel.list;
     },
     leftPanelComponents() {
-      return this.$store.state.leftPanel.list;
+      return this.$store.getters.leftPanelList;
     }
   },
   beforeCreate() {

@@ -39,9 +39,10 @@ export default {
               return leftComponent.key == item.name
             })
             if (component != null) {
-              availableComponents.push(component[0].value)
+              availableComponents.push(component[0].key)
             }
           })
+          console.log(availableComponents)
           commit("setLeftPanelList", availableComponents)
           // dispatch("zoomLeftPanel")
         }
@@ -76,6 +77,18 @@ export default {
       //     position: "fixed"
       //   })
       // }
+    }
+  },
+  getters: {
+    leftPanelList(state) {
+      let list = []
+      state.list.forEach(item => {
+        const leftComponent = LEFT_SIDE_COMPONENTS.filter(component => {
+          return component.key == item
+        })
+        list.push(leftComponent[0].value)
+      })
+      return list
     }
   }
 }
