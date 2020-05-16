@@ -133,8 +133,7 @@ export default {
     showAddModal() {
       this.$store.commit("showAddRecommendationModal");
     },
-    openEditModal(object) {
-      const { item } = object;
+    openEditModal(item) {
       this.$store.commit("showEditRecommendationsModal", item);
     },
     discontinueRecommendation(item) {

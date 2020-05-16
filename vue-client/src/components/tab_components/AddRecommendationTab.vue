@@ -85,6 +85,7 @@ export default {
         });
 
         this.$store.dispatch("updateRightPanelRow");
+        this.description = "";
       } else {
         this.updateData["description"] = this.description;
         this.updateData["discontinuedByUserId"] = this.userId;
@@ -95,7 +96,6 @@ export default {
           toast: this.$bvToast
         });
       }
-      this.description = "";
     },
     closeTab() {
       const newList = this.tabList.filter(item => {

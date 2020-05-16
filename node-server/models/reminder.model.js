@@ -1,8 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
   const Reminder = sequelize.define("reminder", {
     id: {
-      type: Sequelize.STRING,
-      primaryKey: true
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    reminderID: {
+      type: Sequelize.STRING
     },
     description: {
       type: Sequelize.STRING

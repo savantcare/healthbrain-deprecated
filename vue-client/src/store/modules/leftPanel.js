@@ -42,7 +42,7 @@ export default {
               availableComponents.push(component[0].key)
             }
           })
-          console.log(availableComponents)
+
           commit("setLeftPanelList", availableComponents)
           // dispatch("zoomLeftPanel")
         }

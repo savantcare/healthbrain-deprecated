@@ -1,8 +1,9 @@
 import { REMINDER_API_URL } from "@/const.js"
 let TOKEN = localStorage.getItem("token")
 export default {
-  state: {            // for doc read recommendation.js
-    list: []
+  state: {                       // Cannot be changed directly. Can only be changed through mutation
+    list: [],
+    currentDate: new Date()
   },
   mutations: {
     setReminderList(state, data) {
@@ -14,17 +15,23 @@ export default {
     removeNewReminder(state) {
       state.list.pop()
     },
-    SOCKET_ON_UPDATE_REMINDERS(state, updateList) {  // for doc read recommendation.js
+    setReminderCurrentDate(state, value) {
+      state.currentDate = value
+    },
+
+    /**
+     * Socket Listeners
+     */
+    SOCKET_ON_UPDATE_REMINDERS(state, updateList) {   // Message received from socket server
       state.list = updateList
     },
-    SOCKET_ADD_REMINDER(state, newData) {
-      if (state.list.length > 0) {
+    SOCKET_ADD_REMINDER(state, newData) {         // Msg recd from node-server/routes/reminder.route.js
+      if (state.list.length > 0) {                      // At the client where this data was added it needs to be skipped
         const lastData = state.list[state.list.length - 1]
-        if (lastData.id == newData.id) {
+        if (lastData.reminderID == newData.reminderID) {
           return
         }
       }
-
       state.list.push(newData)
     },
     SOCKET_UPDATE_REMINDER(state, updateData) {
@@ -238,6 +245,12 @@ export default {
     reminders(state) {
       return state.list.filter(item => {
         return item.discontinue != true
+      })
+    },
+    panelReminders(state) {
+      return state.list.filter(item => {
+        const itemDate = new Date(item.createdAt)
+        return item.discontinue != true && itemDate <= state.currentDate
       })
     }
   }
