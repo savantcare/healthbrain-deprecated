@@ -57,11 +57,16 @@ Features needed:
 3. Actions for each data row invoked using keyboard single key.
 4. When multiple rows are selected then invoke "Multi select actions"
 5. Tabbed tables -> First tab shows table 1 and 2nd tab shows table 2. Used at "Your recommendations" "Others recommendations"
-analyzing-features-of-card-table.png
+
+For the tabs each tab can be a table component. And the tabs are displayed using Vue’s <component> element with the is special attribute:
+https://vuejs.org/v2/guide/components.html#Dynamic-Components
 
 Some good table libraries are:
+
 https://github.com/huangshuwei/vue-easytable
+
 https://github.com/ratiw/vuetable-2
+
 https://github.com/xaksis/vue-good-table
 
 
