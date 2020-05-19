@@ -66,19 +66,24 @@ Hence recommendation-panel and recommendation-card cannot be two seperate npm pa
 
 ## Q5) How to reduce boilerplate code?
 
-Divide all vue components into:
+Have three types of components? #Todo
 
-1. UI 
+1. UI components: Reusable across the whole app. They communicate just by using props and events, not holding any application logic.
 
-2. Layout componentns
+2. Layout components: App will have only 1 of these. Like header and footer.
 
-3. Domain components: These will reuse a lot of the UI components.
+3. Domain components: 
 
 Ref: https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
+
 
 ## Q6) How to do theming for the app while each component maintains its own scoped local context style?
 
 https://vuedose.tips/tips/theming-using-custom-properties-in-vuejs-components/
+
+https://medium.com/maestral-solutions/coloring-your-app-implementing-live-theming-with-vue-js-and-styled-components-29e428900394
+
+https://bootstrap-vue.org/docs/reference/theming
 
 ## Q7) How is the state of patient on a historical date generated?
 
