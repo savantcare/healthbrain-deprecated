@@ -14,6 +14,10 @@ During the rewrite some new benefits are being delivered.
 
 4. When doctor is offline and open a patient file they see the page. #not-working
 
+5. In each table column has priorities. So when less space is available low priority columns get hidden https://phppot.com/css/automatic-column-hiding-using-css-in-responsive-table
+
+6. When there is space two components can come beside each other. https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_two_columns_responsive
+
 ### B. Developer benefits
 
 1. On server side interaction with the DB should happen through a ORM like [sequelize](https://sequelize.org/). 
