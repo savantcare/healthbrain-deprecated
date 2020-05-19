@@ -63,6 +63,9 @@ Simpler to understand
 
 More github stars. Take this as a voting from worldwide developers.
 
+Easy way to do common action of:
+1. Multi add in forms: https://www.youtube.com/watch?v=Efr7SUrBUQw
+
 ## How was laravel compared to expressJS?
 
 Laravel: Used by 660 and Stars 59K
@@ -108,7 +111,7 @@ Within 2 weeks /p2 will get released once the architecture is finalized
 ## What is the ideal component on which other components are based?
 Recommendation.
 
-## What is needed to write a new component
+## What is needed to write a new component?
 
 For the model component RecommendationCard the following files needed to be created:
 
@@ -130,13 +133,13 @@ Possible solution:
 
 ## What tags are used in code?
 
- * Todo:
- * Question:
- * Fix:
+ * Todo
+ * Question
+ * Fix
 
 To find files with Fix tag: 
 
-healthbrain> grep -ir -n --exclude-dir={node_modules,.git} ' Fix:' ./
+healthbrain> grep -ir -n --exclude-dir={node_modules,.git} ' Fix' ./
 
 ## What is the code review process?
 https://www.youtube.com/watch?v=8fx-EaOUK2E
@@ -257,10 +260,29 @@ Dis-Advantages of architecture 2:
 ## How to test the PWA app?
 pwa app does not run from localhost. So the following steps needs to be followed:
 
-Alexey will give the details here
-
 We can test PWA app by install the following chrome extension:
 https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb
+
+## How to reduce boiler plate code? 
+
+Have three types of components? #Todo
+
+1. UI components: Reusable across the whole app. They communicate just by using props and events, not holding any application logic.
+
+2. Layout components: App will have only 1 of these. Like header and footer.
+
+3. Domain components: 
+
+Ref: https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
+
+## How to keep CSS scoped and also allow global style definations? #Todo
+
+https://vuedose.tips/tips/theming-using-custom-properties-in-vuejs-components/
+
+https://medium.com/maestral-solutions/coloring-your-app-implementing-live-theming-with-vue-js-and-styled-components-29e428900394
+
+
+https://bootstrap-vue.org/docs/reference/theming
 
 ## Mins of meeting
 
