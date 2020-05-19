@@ -45,6 +45,28 @@ Simple concepts to do common UI patterns
     Doing multiple adds in same form https://www.youtube.com/watch?v=Efr7SUrBUQw
 
 
+## Should a table library be used or developed internally?
+
+
+![card-table-features](./docs/analyzing-features-of-card-table.png)
+
+Features needed:
+
+1. KB to go up and down the data rows
+2. Multi select
+3. Actions for each data row invoked using keyboard single key.
+4. When multiple rows are selected then invoke "Multi select actions"
+5. Tabbed tables -> First tab shows table 1 and 2nd tab shows table 2. Used at "Your recommendations" "Others recommendations"
+analyzing-features-of-card-table.png
+
+Some good table libraries are:
+https://github.com/huangshuwei/vue-easytable
+https://github.com/ratiw/vuetable-2
+https://github.com/xaksis/vue-good-table
+
+
+
+
 ## Q3) Why was expressJS chosen over laravel?
 
 Laravel: Used by 660 and Stars 59K
@@ -79,6 +101,34 @@ Have three types of components? #Todo
 3. Domain components: 
 
 Ref: https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
+
+
+## How are the components structured?
+
+### Option1:
+
+<RecommendationCard>
+
+<CardHeader Prop{Title=Recommendation}>
+</CardHeader>
+
+<DataTable Prop{row1:(a,b),row2:(c,d)}>
+</DataTable>
+
+</RecommendationCard>
+
+### Option2:
+
+<GenericCard Prop{Title=Recommendation, row1:(a,b),row2:(c,d)} >
+
+</GenericCard>
+
+Why is Option 1 better:
+
+Theory: RecommendationCard is using libraries and in option 2 RecommendationCard is using a framework. Ref: https://www.programcreek.com/2011/09/what-is-the-difference-between-a-java-library-and-a-framework/
+
+Practical:
+1. Under option 1 I can decide not to use the cardHeader sub component and write my own card header in some cases like "Date of birth component"
 
 
 ## Q6) How to do theming for the app while each component maintains its own scoped local context style?
