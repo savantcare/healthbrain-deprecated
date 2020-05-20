@@ -24,11 +24,7 @@
               @click="showMultiChangeModal"
               class="ml-2"
             >M</b-button>
-            <b-button
-              variant="danger"
-              v-if="selected.length > 0"
-              @click="multidiscontinue"
-            >D</b-button>
+            <b-button variant="danger" v-if="selected.length > 0" @click="multidiscontinue">D</b-button>
           </b-row>
         </b-row>
       </template>
@@ -176,7 +172,7 @@ export default {
       this.selected = items;
     },
     showAddModal() {
-      const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
+      const addReminderTab = require("@/components/tab/AddReminderTab.vue");
       this.$store.commit("setTabList", [
         { key: ADD_REMINDER, value: addReminderTab.default }
       ]);
@@ -210,7 +206,7 @@ export default {
         createdAt: item["createdAt"],
         patientId: item["patientId"]
       };
-      const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
+      const addReminderTab = require("@/components/tab/AddReminderTab.vue");
       this.$store.commit("setTabList", [
         { key: ADD_REMINDER, value: addReminderTab.default }
       ]);
@@ -242,7 +238,7 @@ export default {
       return this.style == STYLE_1 ? "info" : "dark";
     },
     showMultiChangeModal() {
-      const tab = require("@/components/tab_components/MultiChangeReminderTab.vue");
+      const tab = require("@/components/tab/MultiChangeReminderTab.vue");
       this.$store.commit("setTabList", [
         { key: MULTIPLE_CHANGE_REMINDER, value: tab.default }
       ]);

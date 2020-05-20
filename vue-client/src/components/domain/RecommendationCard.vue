@@ -13,58 +13,22 @@
           <card-header-actions actions="[A,M,F,D]"></card-header-actions>
         </b-row>
       </template>
-
-      <!-- <b-card-text>
-        <table class="table table-bordered table-sm table-hover">
-          <thead>
-            <tr>
-              <th v-for="(field, index) in fields" :key="`field-${index}`" scope="col">{{field}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="(item, index) in items"
-              :key="`item-${index}`"
-              style="cursor: pointer;"
-              :class="{'table-active': checkActiveStatus(item), 'table-primary': checkFocusStatus(index)}"
-            >
-              <td @click="selectTableRow(item)">{{item.description}}</td>
-              <td @click="selectTableRow(item)">{{new Date(item.createdAt).toDateString()}}</td>
-              <td v-if="selected.length == 0">
-                <CardDataRowActions actions="[C,D]" :item="item" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </b-card-text>-->
-      <vue-good-table
-        :columns="columns"
-        :rows="items"
-        :select-options="{ enabled: true, disableSelectInfo: true }"
-        :row-style-class="getRowStyleClass"
-        @on-selected-rows-change="selectionChanged"
-      >
-        <template slot="table-row" slot-scope="props">
-          <div v-if="props.column.field == 'action'">
-            <CardDataRowActions actions="[C,D]" :item="props.row" />
-          </div>
-          <span
-            v-else-if="props.column.field == 'createdAt'"
-          >{{new Date(props.formattedRow[props.column.field]).toDateString()}}</span>
-          <span v-else>{{props.formattedRow[props.column.field]}}</span>
-        </template>
-      </vue-good-table>
+      <DataViewTable :data="tableData" />
     </b-card>
   </div>
 </template>
 
 <script>
-import CardHeader from "./ui_components/CardHeader";
-import CardHeaderActions from "./ui_components/CardHeaderActions";
-import CardDataRowActions from "./ui_components/CardDataRowActions";
+import CardHeader from "../ui/CardHeader";
+import CardHeaderActions from "../ui/CardHeaderActions";
+import DataViewTable from "../ui/DataViewTable/Implementaion.vue";
 export default {
   name: "recommendation",
-  components: { CardHeader, CardHeaderActions, CardDataRowActions },
+  components: {
+    CardHeader,
+    CardHeaderActions,
+    DataViewTable
+  },
   data() {
     return {
       selected: [],
@@ -83,9 +47,60 @@ export default {
           sortable: false
         }
       ]
+      // tableData:
     };
   },
   computed: {
+    tableData() {
+      const rows = this.$store.getters.recommendations;
+      return [
+        {
+          label: "Yours",
+          columns: [
+            {
+              label: "Description",
+              field: "description"
+            },
+            {
+              label: "Created At",
+              field: "createdAt"
+            }
+          ],
+          rows: rows,
+          actions: ["C", "D"]
+        },
+        {
+          label: "Other's",
+          columns: [
+            {
+              label: "Description",
+              field: "description"
+            },
+            {
+              label: "Created At",
+              field: "createdAt"
+            }
+          ],
+          rows: rows,
+          actions: ["C"]
+        },
+        {
+          label: "Custom",
+          columns: [
+            {
+              label: "Description",
+              field: "description"
+            },
+            {
+              label: "Created At",
+              field: "createdAt"
+            }
+          ],
+          rows: rows,
+          actions: ["D"]
+        }
+      ];
+    },
     items() {
       return this.$store.getters.recommendations;
     },

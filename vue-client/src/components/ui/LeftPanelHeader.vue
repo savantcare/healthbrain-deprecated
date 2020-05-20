@@ -40,7 +40,7 @@
 <script>
 import { USER_API_URL } from "@/const.js";
 // import $ from "jquery";
-import DateSlider from "./DateSlider";
+import DateSlider from "../ui/DateSlider";
 export default {
   components: {
     DateSlider

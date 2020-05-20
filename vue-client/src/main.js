@@ -45,6 +45,10 @@ import 'vue-good-table/dist/vue-good-table.css'
 
 Vue.use(VueGoodTablePlugin);
 
+import VueTabs from 'vue-nav-tabs'
+import 'vue-nav-tabs/themes/vue-tabs.css'
+Vue.use(VueTabs)
+
 Vue.config.productionTip = false
 
 new Vue({

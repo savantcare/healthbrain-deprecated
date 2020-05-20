@@ -15,39 +15,19 @@
       </template>
 
       <b-card-text>
-        <table class="table table-bordered table-sm table-hover">
-          <thead>
-            <tr>
-              <th v-for="(field, index) in fields" :key="`field-${index}`" scope="col">{{field}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="(item, index) in items"
-              :key="`item-${index}`"
-              style="cursor: pointer;"
-              :class="{'table-active': checkActiveStatus(item), 'table-primary': checkFocusStatus(index)}"
-            >
-              <td @click="selectTableRow(item)">{{item.description}}</td>
-              <td @click="selectTableRow(item)">{{new Date(item.createdAt).toDateString()}}</td>
-              <td v-if="selected.length == 0">
-                <CardDataRowActions actions="[C,D]" :item="item" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <DataViewTable :data="tableData" />
       </b-card-text>
     </b-card>
   </div>
 </template>
 
 <script>
-import CardHeader from "./ui_components/CardHeader";
-import CardHeaderActions from "./ui_components/CardHeaderActions";
-import CardDataRowActions from "./ui_components/CardDataRowActions";
+import CardHeader from "../ui/CardHeader";
+import CardHeaderActions from "../ui/CardHeaderActions";
+import DataViewTable from "../ui/DataViewTable/Implementaion.vue";
 export default {
   name: "reminder",
-  components: { CardHeader, CardHeaderActions, CardDataRowActions },
+  components: { CardHeader, CardHeaderActions, DataViewTable },
   data() {
     return {
       selected: [],
@@ -75,6 +55,56 @@ export default {
     },
     focusRow() {
       return this.$store.getters.rightPanelFocusRow;
+    },
+    tableData() {
+      const rows = this.$store.getters.reminders;
+      return [
+        {
+          label: "Yours",
+          columns: [
+            {
+              label: "Description",
+              field: "description"
+            },
+            {
+              label: "Created At",
+              field: "createdAt"
+            }
+          ],
+          rows: rows,
+          actions: ["C", "D"]
+        },
+        {
+          label: "Other's",
+          columns: [
+            {
+              label: "Description",
+              field: "description"
+            },
+            {
+              label: "Created At",
+              field: "createdAt"
+            }
+          ],
+          rows: rows,
+          actions: ["C"]
+        },
+        {
+          label: "Custom",
+          columns: [
+            {
+              label: "Description",
+              field: "description"
+            },
+            {
+              label: "Created At",
+              field: "createdAt"
+            }
+          ],
+          rows: rows,
+          actions: ["D"]
+        }
+      ];
     }
   },
   mounted() {

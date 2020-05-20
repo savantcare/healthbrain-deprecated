@@ -112,28 +112,27 @@ export default {
           case MULTIPLE_CHANGE_RECOMMENDATION:
             newTab = {
               key: MULTIPLE_CHANGE_RECOMMENDATION,
-              value: require("./tab_components/MultiChangeRecommendationTab")
-                .default
+              value: require("../tab/MultiChangeRecommendationTab").default
             };
             break;
           case ADD_RECOMMENDATION:
             newTab = {
               key: ADD_RECOMMENDATION,
-              value: require("./tab_components/AddRecommendationTab").default
+              value: require("../tab/AddRecommendationTab").default
             };
             this.$store.commit("setRecommendationTabType", ADD_RECOMMENDATION);
             break;
           case ADD_REMINDER:
             newTab = {
               key: ADD_REMINDER,
-              value: require("./tab_components/AddReminderTab").default
+              value: require("../tab/AddReminderTab").default
             };
             this.$store.commit("setReminderTabType", ADD_REMINDER);
             break;
           case MULTIPLE_CHANGE_REMINDER:
             newTab = {
               key: MULTIPLE_CHANGE_REMINDER,
-              value: require("./tab_components/MultiChangeReminderTab").default
+              value: require("../tab/MultiChangeReminderTab").default
             };
             break;
         }

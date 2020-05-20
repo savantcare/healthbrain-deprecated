@@ -259,7 +259,7 @@ export default {
       this.selected = recommendationItems;
     },
     showAddModal() {
-      const addRecommendationTab = require("@/components/tab_components/AddRecommendationTab.vue");
+      const addRecommendationTab = require("@/components/tab/AddRecommendationTab.vue");
       this.$store.commit("setTabList", [
         { key: ADD_RECOMMENDATION, value: addRecommendationTab.default }
       ]);
@@ -267,7 +267,7 @@ export default {
       this.$store.commit("setTabDialogVisibility", true);
     },
     showMultiChangeModal() {
-      const tab = require("@/components/tab_components/MultiChangeRecommendationTab.vue");
+      const tab = require("@/components/tab/MultiChangeRecommendationTab.vue");
       this.$store.commit("setTabList", [
         { key: MULTIPLE_CHANGE_RECOMMENDATION, value: tab.default }
       ]);
@@ -303,7 +303,7 @@ export default {
         createdAt: item["createdAt"],
         patientId: item["patientId"]
       };
-      const addRecommendationTab = require("@/components/tab_components/AddRecommendationTab.vue");
+      const addRecommendationTab = require("@/components/tab/AddRecommendationTab.vue");
       this.$store.commit("setTabList", [
         { key: ADD_RECOMMENDATION, value: addRecommendationTab.default }
       ]);

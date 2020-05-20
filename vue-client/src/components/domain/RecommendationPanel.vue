@@ -8,67 +8,25 @@
     >
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
-          <span style="font-weight: bold;">Recommendations</span>
-          <b-row class="mr-2">
-            <b-button
-              variant="primary"
-              size="sm"
-              v-if="selected.length == 0"
-              @click="showAddModal"
-            >A</b-button>
-            <b-button
-              size="sm"
-              variant="primary"
-              v-if="selected.length == 0"
-              @click="showMultiChangeModal"
-              class="ml-2"
-            >M</b-button>
-            <b-button variant="danger" v-if="selected.length > 0" @click="multidiscontinue">D</b-button>
-          </b-row>
+          <card-header title="Recommendation"></card-header>
+          <card-header-actions actions="[A,M,F,D]"></card-header-actions>
         </b-row>
       </template>
+
       <b-card-text>
-        <table class="table table-bordered table-sm table-hover">
-          <thead>
-            <tr>
-              <th v-for="(field, index) in fields" :key="`field-${index}`" scope="col">{{field}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="(item, index) in items"
-              :key="`item-${index}`"
-              style="cursor: pointer;"
-              :class="{'table-active': checkActiveStatus(item)}"
-            >
-              <td @click="onRowSelected(item)">{{item.description}}</td>
-              <td @click="onRowSelected(item)">{{getFormatDate(item.createdAt)}}</td>
-              <td v-if="selected.length == 0">
-                <b-button
-                  size="sm"
-                  variant="outline-primary"
-                  @click="openEditModal(item, $event)"
-                  v-b-tooltip.hover.bottom="'Change'"
-                >C</b-button>
-                <b-button
-                  variant="outline-danger"
-                  @click="discontinueRecommendation(item)"
-                  class="ml-2"
-                  size="sm"
-                  v-b-tooltip.hover.bottom="'Discontinue'"
-                >D</b-button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <DataViewTable :data="tableData" />
       </b-card-text>
     </b-card>
   </div>
 </template>
 
 <script>
+import CardHeader from "../ui/CardHeader";
+import CardHeaderActions from "../ui/CardHeaderActions";
+import DataViewTable from "../ui/DataViewTable/Implementaion.vue";
 export default {
   name: "recommendation-panel",
+  components: { CardHeader, CardHeaderActions, DataViewTable },
   data() {
     return {
       selected: [],
@@ -97,6 +55,56 @@ export default {
     },
     itemCount() {
       return this.items.length;
+    },
+    tableData() {
+      const rows = this.$store.getters.recommendations;
+      return [
+        {
+          label: "Yours",
+          columns: [
+            {
+              label: "Description",
+              field: "description"
+            },
+            {
+              label: "Created At",
+              field: "createdAt"
+            }
+          ],
+          rows: rows,
+          actions: ["C", "D"]
+        },
+        {
+          label: "Other's",
+          columns: [
+            {
+              label: "Description",
+              field: "description"
+            },
+            {
+              label: "Created At",
+              field: "createdAt"
+            }
+          ],
+          rows: rows,
+          actions: ["C"]
+        },
+        {
+          label: "Custom",
+          columns: [
+            {
+              label: "Description",
+              field: "description"
+            },
+            {
+              label: "Created At",
+              field: "createdAt"
+            }
+          ],
+          rows: rows,
+          actions: ["D"]
+        }
+      ];
     }
   },
   mounted() {

@@ -31,7 +31,7 @@ export default {
       state.reminderData = value
     },
     showAddRecommendationModal(state) {
-      const addRecommendationTab = require("@/components/tab_components/AddRecommendationTab.vue");
+      const addRecommendationTab = require("@/components/tab/AddRecommendationTab.vue");
       state.tabList = [
         { key: ADD_RECOMMENDATION, value: addRecommendationTab.default }
       ]
@@ -39,7 +39,7 @@ export default {
       state.visibility = true
     },
     showMultiChangeRecommendationModal(state) {
-      const tab = require("@/components/tab_components/MultiChangeRecommendationTab.vue");
+      const tab = require("@/components/tab/MultiChangeRecommendationTab.vue");
       state.tabList = [
         { key: MULTIPLE_CHANGE_RECOMMENDATION, value: tab.default }
       ]
@@ -47,7 +47,7 @@ export default {
       state.visibility = true
     },
     showEditRecommendationsModal(state, data) {
-      const addRecommendationTab = require("@/components/tab_components/AddRecommendationTab.vue");
+      const addRecommendationTab = require("@/components/tab/AddRecommendationTab.vue");
       state.tabList = [
         { key: ADD_RECOMMENDATION, value: addRecommendationTab.default }
       ]
@@ -56,7 +56,7 @@ export default {
       state.recommendationData = data
     },
     showAddReminderModal(state) {
-      const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
+      const addReminderTab = require("@/components/tab/AddReminderTab.vue");
       state.tabList = [
         { key: ADD_REMINDER, value: addReminderTab.default }
       ]
@@ -64,7 +64,7 @@ export default {
       state.visibility = true
     },
     showMultiChangeReminderModal(state) {
-      const tab = require("@/components/tab_components/MultiChangeReminderTab.vue");
+      const tab = require("@/components/tab/MultiChangeReminderTab.vue");
       state.tabList = [
         { key: MULTIPLE_CHANGE_REMINDER, value: tab.default }
       ]
@@ -72,7 +72,7 @@ export default {
       state.visibility = true
     },
     showEditReminderModal(state, data) {
-      const addReminderTab = require("@/components/tab_components/AddReminderTab.vue");
+      const addReminderTab = require("@/components/tab/AddReminderTab.vue");
       state.tabList = [
         { key: ADD_REMINDER, value: addReminderTab.default }
       ]
