@@ -42,6 +42,7 @@ In the current angular app the recommendation panel was listening on socket to u
     1. vuex
     2. https://github.com/vue-generators/vue-form-generator
     3. https://github.com/robinvdvleuten/vuex-persistedstate
+    4. https://github.com/shentao/vue-multiselect
 
 4. Simple concepts to do common UI patterns
     Doing multiple adds in same form https://www.youtube.com/watch?v=Efr7SUrBUQw
@@ -55,7 +56,7 @@ In the current angular app the recommendation panel was listening on socket to u
 Features needed:
 
 1. KB to go up and down the data rows
-2. Multi select
+2. Multi select using only KB or mouse.
 3. Actions for each data row invoked using keyboard single key.
 4. When multiple rows are selected then invoke "Multi select actions"
 5. Tabbed tables -> First tab shows table 1 and 2nd tab shows table 2. Used at "Your recommendations" "Others recommendations"
@@ -63,13 +64,24 @@ Features needed:
 For the tabs each tab can be a table component. And the tabs are displayed using Vue’s <component> element with the is special attribute:
 https://vuejs.org/v2/guide/components.html#Dynamic-Components
 
-Some good table libraries are:
+6. Drag to reorder rows
 
-https://github.com/huangshuwei/vue-easytable
+7. Responsive tables https://elvery.net/demo/responsive-tables/ -> less important columns are hidden and that data is sent to tooltip. For e.g. in case of recommendations -> Created at and Actions are less important columns and they are hidden when width is less. The content of created at is sent to tooltip.
 
-https://github.com/ratiw/vuetable-2
+| Libraries compared                           |  Responsive            |  Stars          | Size
+|--                                            |--                      |--               |--
+| https://github.com/huangshuwei/vue-easytable |                        |                 |
+| https://github.com/ratiw/vuetable-2          |                        |                 |
+| https://github.com/xaksis/vue-good-table     |                        |                 |
 
-https://github.com/xaksis/vue-good-table
+
+## Current choice:
+
+Example of draggable and responsive table in VUE https://jsfiddle.net/d7jqtkon/
+
+Libraries used:
+1. https://sortablejs.github.io/Vue.Draggable/#/table-example -> This gives draggable feature
+2. https://bootstrap-vue.org/docs/components/table -> This gives responsive feature
 
 
 # Q5) Why was expressJS chosen over laravel?
@@ -178,4 +190,4 @@ Advantages of architecture 2:
 1. Less number of queries to server.
 
 Dis-Advantages of architecture 2:
-1. How to run sql query over a JSON on the browser client side.
+1. How to run sql query over a JSON on the browser client side. Research https://vuex-orm.org/
