@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+.bit
+.bitmap
 
 # local env files
 .env.local

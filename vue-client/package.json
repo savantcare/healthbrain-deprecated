@@ -9,6 +9,7 @@
     "_comment": "VK added npx in may 20 since Ubuntu was not finding vue-cli-service in command line"
   },
   "dependencies": {
+    "@bit/alexey1221.healthbrain.recommendation-card": "0.0.1",
     "@syncfusion/ej2-vue-inputs": "^18.1.52",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.6.4",
@@ -19,6 +20,7 @@
     "uniqid": "^5.2.0",
     "v-offline": "^1.2.1",
     "vue": "^2.6.11",
+    "vue-good-table": "^2.19.3",
     "vue-router": "^3.1.6",
     "vue-scrollto": "^2.18.1",
     "vue-socket.io": "^3.0.7",
@@ -66,5 +68,12 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "bit": {
+    "env": {
+      "compiler": "bit.envs/compilers/vue@0.1.4"
+    },
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
+  }
 }

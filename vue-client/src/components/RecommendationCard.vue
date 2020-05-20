@@ -9,47 +9,12 @@
     >
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
-          <span style="font-weight: bold;">Recommendations</span>
-          <b-row class="mr-2">
-            <b-button
-              size="sm"
-              variant="primary"
-              v-if="selected.length == 0"
-              @click="showAddModal"
-              v-b-tooltip.hover.bottom="'Add recommendation'"
-            >A</b-button>
-            <b-button
-              variant="primary"
-              v-if="selected.length == 0"
-              @click="showMultiChangeModal"
-              class="ml-2"
-              size="sm"
-              v-b-tooltip.hover.bottom="'Multi change recommendation'"
-            >M</b-button>
-            <b-button
-              variant="primary"
-              v-if="selected.length == 0"
-              class="ml-2"
-              size="sm"
-              v-b-tooltip.hover.bottom="'Focus to recommendation'"
-              v-scroll-to="{
-                el: '#recommendation',
-                container: '#leftPanel',
-                duration: 500,
-                easing: 'linear',
-                offset: -200,
-                force: true,
-                cancelable: true,
-                onStart: focusPanel,
-                x: false,
-                y: true
-              }"
-            >F</b-button>
-            <b-button variant="danger" v-if="selected.length > 0" @click="multidiscontinue">D</b-button>
-          </b-row>
+          <card-header title="Recommendation"></card-header>
+          <card-header-actions actions="[A,M,F,D]"></card-header-actions>
         </b-row>
       </template>
-      <b-card-text>
+
+      <!-- <b-card-text>
         <table class="table table-bordered table-sm table-hover">
           <thead>
             <tr>
@@ -66,35 +31,58 @@
               <td @click="selectTableRow(item)">{{item.description}}</td>
               <td @click="selectTableRow(item)">{{new Date(item.createdAt).toDateString()}}</td>
               <td v-if="selected.length == 0">
-                <b-button
-                  size="sm"
-                  variant="outline-primary"
-                  @click="openEditModal(item, $event)"
-                  v-b-tooltip.hover.bottom="'Change'"
-                >C</b-button>
-                <b-button
-                  variant="outline-danger"
-                  @click="discontinueRecommendation(item)"
-                  class="ml-2"
-                  size="sm"
-                  v-b-tooltip.hover.bottom="'Discontinue'"
-                >D</b-button>
+                <CardDataRowActions actions="[C,D]" :item="item" />
               </td>
             </tr>
           </tbody>
         </table>
-      </b-card-text>
+      </b-card-text>-->
+      <vue-good-table
+        :columns="columns"
+        :rows="items"
+        :select-options="{ enabled: true, disableSelectInfo: true }"
+        :row-style-class="getRowStyleClass"
+        @on-selected-rows-change="selectionChanged"
+      >
+        <template slot="table-row" slot-scope="props">
+          <div v-if="props.column.field == 'action'">
+            <CardDataRowActions actions="[C,D]" :item="props.row" />
+          </div>
+          <span
+            v-else-if="props.column.field == 'createdAt'"
+          >{{new Date(props.formattedRow[props.column.field]).toDateString()}}</span>
+          <span v-else>{{props.formattedRow[props.column.field]}}</span>
+        </template>
+      </vue-good-table>
     </b-card>
   </div>
 </template>
 
 <script>
+import CardHeader from "./ui_components/CardHeader";
+import CardHeaderActions from "./ui_components/CardHeaderActions";
+import CardDataRowActions from "./ui_components/CardDataRowActions";
 export default {
   name: "recommendation",
-  components: {},
+  components: { CardHeader, CardHeaderActions, CardDataRowActions },
   data() {
     return {
-      selected: []
+      selected: [],
+      columns: [
+        {
+          label: "Description",
+          field: "description"
+        },
+        {
+          label: "Created At",
+          field: "createdAt"
+        },
+        {
+          label: "Action",
+          field: "action",
+          sortable: false
+        }
+      ]
     };
   },
   computed: {
@@ -144,7 +132,7 @@ export default {
       });
       this.$store.dispatch("updateRightPanelRow");
     },
-    multidiscontinue() {
+    multiDiscontinue() {
       let selectedIds = [];
       let selectedDatas = [];
 
@@ -200,6 +188,19 @@ export default {
     },
     focusPanel() {
       console.log("focus panel");
+    },
+    getRowStyleClass(row) {
+      const { originalIndex } = row;
+      if (this.focusRow == `${this.$options.name}-${originalIndex + 1}`) {
+        return "table-primary";
+      }
+      return "";
+    },
+    selectionChanged(params) {
+      this.selected = params.selectedRows;
+      // const { pageIndex } = params;
+      // const selectedObject = this.items[pageIndex];
+      // console.log(selectedObject);
     }
   }
 };

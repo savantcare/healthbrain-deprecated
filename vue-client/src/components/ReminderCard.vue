@@ -9,46 +9,11 @@
     >
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
-          <span style="font-weight: bold;">Reminders</span>
-          <b-row class="mr-2">
-            <b-button
-              size="sm"
-              variant="primary"
-              v-if="selected.length == 0"
-              @click="showAddModal"
-              v-b-tooltip.hover.bottom="'Add reminder'"
-            >A</b-button>
-            <b-button
-              variant="primary"
-              v-if="selected.length == 0"
-              @click="showMultiChangeModal"
-              class="ml-2"
-              size="sm"
-              v-b-tooltip.hover.bottom="'Multi change reminder'"
-            >M</b-button>
-            <b-button
-              variant="primary"
-              v-if="selected.length == 0"
-              class="ml-2"
-              size="sm"
-              v-b-tooltip.hover.bottom="'Focus to reminder'"
-              v-scroll-to="{
-                el: '#reminder',
-                container: '#leftPanel',
-                duration: 500,
-                easing: 'linear',
-                offset: -200,
-                force: true,
-                cancelable: true,
-                onStart: focusPanel,
-                x: false,
-                y: true
-              }"
-            >F</b-button>
-            <b-button variant="danger" v-if="selected.length > 0" @click="multidiscontinue">D</b-button>
-          </b-row>
+          <card-header title="Reminder"></card-header>
+          <card-header-actions actions="[A,M,F]"></card-header-actions>
         </b-row>
       </template>
+
       <b-card-text>
         <table class="table table-bordered table-sm table-hover">
           <thead>
@@ -66,19 +31,7 @@
               <td @click="selectTableRow(item)">{{item.description}}</td>
               <td @click="selectTableRow(item)">{{new Date(item.createdAt).toDateString()}}</td>
               <td v-if="selected.length == 0">
-                <b-button
-                  size="sm"
-                  variant="outline-primary"
-                  @click="openEditModal(item, $event)"
-                  v-b-tooltip.hover.bottom="'Change'"
-                >C</b-button>
-                <b-button
-                  variant="outline-danger"
-                  @click="discontinueReminder(item)"
-                  class="ml-2"
-                  size="sm"
-                  v-b-tooltip.hover.bottom="'Discontinue'"
-                >D</b-button>
+                <CardDataRowActions actions="[C,D]" :item="item" />
               </td>
             </tr>
           </tbody>
@@ -89,9 +42,12 @@
 </template>
 
 <script>
+import CardHeader from "./ui_components/CardHeader";
+import CardHeaderActions from "./ui_components/CardHeaderActions";
+import CardDataRowActions from "./ui_components/CardDataRowActions";
 export default {
   name: "reminder",
-  components: {},
+  components: { CardHeader, CardHeaderActions, CardDataRowActions },
   data() {
     return {
       selected: [],
@@ -138,7 +94,7 @@ export default {
       this.$store.commit("showMultiChangeReminderModal");
     },
     openEditModal(item) {
-      this.$store.commit("showEditRemindersModal", item);
+      this.$store.commit("showEditReminderModal", item);
     },
     discontinueReminder(item) {
       this.$store.dispatch("discontinueReminder", {
