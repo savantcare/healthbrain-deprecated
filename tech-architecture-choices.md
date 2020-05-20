@@ -1,14 +1,16 @@
-## Q1) Why re-write the exisiting angular in vue?
+# Q1) Why re-write the exisiting angular app?
 
-The current angular app was developed to discover the psychiatrists needs. The system could not have been pre-architected to deliver the discovered features.
+1. The current angular app was developed to discover the psychiatrists needs. The system could not have been pre-architected to deliver the discovered features.
 
-During the rewrite some new benefits are being delivered.
+2. The current angular app is in 1.x and LTS ends in July 2021. Also good libraries are not being developed on Angular 1.x
 
-### A. User experience benefits
+# Q2) What new features are built into the new architecture?
 
-1. When page is reloaded and there is no connection to DB server or a slow connection to DB server the page should load from localstorage immediately.
+## A. User experience benefits
 
-2. When a page is already on the doctor browser and the doctor gives the commanbd "rec" then the recommendations show immediately from localcache and api is fired in the back. If the api returns new data the view is updated. (lazy-read)
+1. When page is reloaded and there is no/slow connection to DB server the page should load from localstorage immediately.
+
+2. When a component is already on the doctor browser and the doctor gives the commanbd "rec" then the recommendations show immediately from localcache and api is fired in the back. If the api returns new data the view is updated. (lazy-read)
 
 3. When doctor adds a rec, the view gets updated. If server update fails then the view is reverted. (lazy-write)
 
@@ -18,34 +20,34 @@ During the rewrite some new benefits are being delivered.
 
 6. When there is space two components can come beside each other. https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_two_columns_responsive
 
-### B. Developer benefits
+## B. Developer benefits
 
 1. On server side interaction with the DB should happen through a ORM like [sequelize](https://sequelize.org/). 
 
     1A. So standard queries are already written.
 
-    1B. DB migrations can happen. [https://github.com/savantcare/healthbrain/blob/master/node-server/models/recommendation.model.js]
+    1B. DB versioning and migrations can happen. [https://github.com/savantcare/healthbrain/blob/master/node-server/models/recommendation.model.js]
 
 2. Maintian state on the client. When recommendation card state changes the rec panel changes its view automatically.
 In the current angular app the recommendation panel was listening on socket to update its view.
 
-3. No HTML is generated on the server. All view is inside the .vue component. This view works on json returned by the server api
+3. No HTML is generated on server. All view is inside the .vue component. This view works on json returned by the server api. This allows different UIs to be written.
 
-## Q2) Why was vue chosen over angular latest version?
-Useful libraries
-1. vuex
-2. https://github.com/vue-generators/vue-form-generator
-3. https://github.com/robinvdvleuten/vuex-persistedstate
+# Q3) Why was vue chosen over angular latest version?
+1. More github stars. Take this as a voting from worldwide developers.
 
-Simpler to understand
+2. Simpler to understand
 
-More github stars. Take this as a voting from worldwide developers.
+3. Useful libraries
+    1. vuex
+    2. https://github.com/vue-generators/vue-form-generator
+    3. https://github.com/robinvdvleuten/vuex-persistedstate
 
-Simple concepts to do common UI patterns
+4. Simple concepts to do common UI patterns
     Doing multiple adds in same form https://www.youtube.com/watch?v=Efr7SUrBUQw
 
 
-## Should a table library be used or developed internally?
+# Q4) Should a table library be used or developed internally?
 
 
 ![card-table-features](./docs/analyzing-features-of-card-table.png)
@@ -70,9 +72,7 @@ https://github.com/ratiw/vuetable-2
 https://github.com/xaksis/vue-good-table
 
 
-
-
-## Q3) Why was expressJS chosen over laravel?
+# Q5) Why was expressJS chosen over laravel?
 
 Laravel: Used by 660 and Stars 59K
 
@@ -80,14 +80,14 @@ express nodejs: used by 6.6M and Stars 49K
 
 Sequlize nodejs: Used by 190K and Stars 22K
 
-## Q4) Why each component should be in its own repo?
+# Q6) Why each component should be in its own repo?
 
 When recommendation a new version is released Sanjay wants to do git pull only for recommendation repo on the prod server.
 
-### Q4.1) Why not try branching concept?
+## Q6.1) Why not try branching concept?
 Sometimes we need to invite external developers to work on a component and we do not want to give them access to the git repo containing other components
 
-## Q4.2) Why is each component not a seperate npm package?
+## Q6.2) Why is each component not a seperate npm package?
 
 The goal is for recommendation-panel and recommendation-card to have the same vuex store. So when the state changes in recommendation-panel the view of recommendation-card is automatically updated.
 
@@ -95,7 +95,7 @@ The goal is for recommendation-panel and recommendation-card to have the same vu
 
 Hence recommendation-panel and recommendation-card cannot be two seperate npm packages they have to be components of the same vue app.
 
-## Q5) How to reduce boilerplate code?
+# Q7) How to reduce boilerplate code?
 
 Have three types of components? #Todo
 
@@ -108,9 +108,9 @@ Have three types of components? #Todo
 Ref: https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
 
 
-## How are the components structured?
+# Q8) How are the components structured?
 
-### Option1:
+## Option1:
 
 <RecommendationCard>
 
@@ -122,7 +122,7 @@ Ref: https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
 
 </RecommendationCard>
 
-### Option2:
+## Option2:
 
 <GenericCard Prop{Title=Recommendation, row1:(a,b),row2:(c,d)} >
 
@@ -136,7 +136,7 @@ Practical:
 1. Under option 1 I can decide not to use the cardHeader sub component and write my own card header in some cases like "Date of birth component"
 
 
-## Q6) How to do theming for the app while each component maintains its own scoped local context style?
+# Q9) How to do theming for the app while each component maintains its own scoped local context style?
 
 https://vuedose.tips/tips/theming-using-custom-properties-in-vuejs-components/
 
@@ -144,9 +144,9 @@ https://medium.com/maestral-solutions/coloring-your-app-implementing-live-themin
 
 https://bootstrap-vue.org/docs/reference/theming
 
-## Q7) How is the state of patient on a historical date generated?
+# Q10) How is the state of patient on a historical date generated?
 
-### Architecture 1
+## Architecture 1
 
 Suppose doctor wants the state of the paitent on 15th Jan 2020:
 
@@ -166,7 +166,7 @@ This requires the same API as above.
 Dis-Advantages of architecture 1:
 1. Too many sql queries. But the data center is big and there are read only copies of MYSQL running from RAM ready to serve these queries. It is better to offload the complexity to the hardware instead of software. Wisdom says it is better to have expensive hardware and simple software.
 
-### Architecture 2
+## Architecture 2
 
 The first query is:
 select * from recommendationsTable where patientID=1;

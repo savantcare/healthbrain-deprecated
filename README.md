@@ -4,8 +4,6 @@
 
 
 * [Why write a new patient file app?](#why-write-a-new-patient-file-app)
-* [Why re-write the exisiting angular in vue?](#why-re-write-the-exisiting-angular-in-vue)
-* [Why is each component not a seperate npm package?](#why-is-each-component-not-a-seperate-npm-package)
 * [Why does the patient app have a left side and a right side?](#why-does-the-patient-app-have-a-left-side-and-a-right-side)
 * [Why does the left side have two tabs on the top right corner?](#why-does-the-left-side-have-two-tabs-on-the-top-right-corner)
 * [Why does the 2nd page have prev and next?](#why-does-the-2nd-page-have-prev-and-next)
@@ -17,7 +15,6 @@
 * [How to run the app locally?](#how-to-run-the-app-locally)
 * [How to see app behavior when DB connection is lost?](#how-to-see-app-behavior-when-db-server-connection-is-lost)
 * [How to see app behavior when DB takes 10 seconds for API response?](#how-to-see-app-behavior-when-db-server-takes-10-seconds-for-api-response)
-* [How is the state of patient on a historical date generated?](#how-is-the-state-of-patient-on-a-historical-date-generated)
 
 ## Why write a new patient file app?
 
