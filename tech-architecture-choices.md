@@ -190,4 +190,4 @@ Advantages of architecture 2:
 1. Less number of queries to server.
 
 Dis-Advantages of architecture 2:
-1. How to run sql query over a JSON on the browser client side. Research https://vuex-orm.org/
+1. How to run sql query over a JSON on the browser client side. Use https://vuex-orm.org/ with https://github.com/vuex-orm/plugin-axios and https://github.com/vuex-orm/plugin-soft-delete (bring discontinued to industry standard by calling it soft delete)
