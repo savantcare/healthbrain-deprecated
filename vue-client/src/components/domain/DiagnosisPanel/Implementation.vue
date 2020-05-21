@@ -115,7 +115,7 @@ import {
 } from "@/const.js";
 
 export default {
-  name: "ReminderPanel",
+  name: "RemindersPanel",
   data() {
     return {
       modalShow: false,

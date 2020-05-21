@@ -53,10 +53,10 @@ Recommendation.
 
 ## What is needed to write a new component?
 
-For the model component RecommendationCard the following files needed to be created:
+For the model component RecommendationsCard the following files needed to be created:
 
 ## Client side
-1. vue-client/src/components/RecommendationCard.vue file    -> This has the presentation layer (html), styling layer (css), JS to change the state. This file is compiled into seperate html js and css by vue-cli
+1. vue-client/src/components/RecommendationsCard.vue file    -> This has the presentation layer (html), styling layer (css), JS to change the state. This file is compiled into seperate html js and css by vue-cli
 2. vue-client/store/modules/recommendation.js               -> Vue state of this component. Mutation functions to state. Socket functions to change state.
 
 ## Server side

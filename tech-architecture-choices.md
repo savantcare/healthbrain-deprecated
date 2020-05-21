@@ -124,7 +124,7 @@ Ref: https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
 
 ## Option1:
 
-<RecommendationCard>
+<RecommendationsCard>
 
 <CardHeader Prop{Title=Recommendation}>
 </CardHeader>
@@ -132,7 +132,7 @@ Ref: https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
 <DataTable Prop{row1:(a,b),row2:(c,d)}>
 </DataTable>
 
-</RecommendationCard>
+</RecommendationsCard>
 
 ## Option2:
 
@@ -142,7 +142,7 @@ Ref: https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
 
 Why is Option 1 better:
 
-Theory: RecommendationCard is using libraries and in option 2 RecommendationCard is using a framework. Ref: https://www.programcreek.com/2011/09/what-is-the-difference-between-a-java-library-and-a-framework/
+Theory: RecommendationsCard is using libraries and in option 2 RecommendationsCard is using a framework. Ref: https://www.programcreek.com/2011/09/what-is-the-difference-between-a-java-library-and-a-framework/
 
 Practical:
 1. Under option 1 I can decide not to use the cardHeader sub component and write my own card header in some cases like "Date of birth component"

@@ -28,7 +28,7 @@ import CardHeader from "@/components/ui/CardHeader";
 import CardHeaderActions from "@/components/ui/CardHeaderActions";
 import DataViewTable from "@/components/ui/DataViewTable/Implementaion.vue";
 export default {
-  name: "ReminderPanel",
+  name: "RemindersPanel",
   components: { CardHeader, CardHeaderActions, DataViewTable },
   data() {
     return {
