@@ -43,9 +43,11 @@ const TabDialog = () => import("@/components/ui/TabDialog.vue");
 
 // Left panel components
 const RecommendationPanel = () =>
-  import("@/components/domain/RecommendationPanel.vue");
-const ReminderPanel = () => import("@/components/domain/ReminderPanel.vue");
-const DiagnosisPanel = () => import("@/components/domain/DiagnosisPanel/Implementation.vue");
+  import("@/components/domain/RecommendationPanel/Implementation.vue");
+const ReminderPanel = () =>
+  import("@/components/domain/ReminderPanel/Implementation.vue");
+const DiagnosisPanel = () =>
+  import("@/components/domain/DiagnosisPanel/Implementation.vue");
 const LeftPanelHeader = () => import("@/components/ui/LeftPanelHeader.vue");
 const DateSlider = () => import("@/components/ui/DateSlider.vue");
 const TestPanel = () => import("@/components/LeftPanelTestComponent.vue");
@@ -53,11 +55,10 @@ const TestPanel = () => import("@/components/LeftPanelTestComponent.vue");
 // Right panel components
 const SearchBox = () => import("@/components/ui/SearchBox.vue");
 const RecommendationCard = () =>
-  import("@/components/domain/RecommendationCard.vue");
-const ReminderCard = () => import("@/components/domain/ReminderCard.vue");
+  import("@/components/domain/RecommendationCard/Implementation.vue");
+const ReminderCard = () =>
+  import("@/components/domain/ReminderCard/Implementation.vue");
 const CombinationCard = () => import("@/components/CombinationCard.vue");
-
-// import RecommendationCard from "@bit/alexey1221.healthbrain.recommendation-card";
 
 export default {
   name: "Home",

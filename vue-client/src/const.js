@@ -11,8 +11,8 @@ module.exports = {
   COMPONENT_API_URL: "http://localhost:8000/components",
 
   LEFT_SIDE_COMPONENTS: [
-    { key: "recommendation", value: () => import('./components/domain/RecommendationPanel.vue') },
-    { key: "reminder", value: () => import('./components/domain/ReminderPanel.vue') },
+    { key: "recommendation", value: () => import('./components/domain/RecommendationPanel/Implementation.vue') },
+    { key: "reminder", value: () => import('./components/domain/ReminderPanel/Implementation.vue') },
     { key: "other", value: () => import('./components/LeftSideOtherPanel.vue') }
   ],
 

@@ -1,52 +1,57 @@
 <template>
   <div>
-    <b-card id="recommendationCard">
+    <b-card id="reminderCard">
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
-          <card-header title="Recommendation"></card-header>
-          <card-header-actions actions="[A,M,F,D]"></card-header-actions>
+          <card-header title="Reminder"></card-header>
+          <card-header-actions actions="[A,M,F]"></card-header-actions>
         </b-row>
       </template>
-      <DataViewTable :data="tableData" />
+
+      <b-card-text>
+        <DataViewTable :data="tableData" />
+      </b-card-text>
     </b-card>
   </div>
 </template>
 
 <script>
-import CardHeader from "../ui/CardHeader";
-import CardHeaderActions from "../ui/CardHeaderActions";
-import DataViewTable from "../ui/DataViewTable/Implementaion.vue";
+import CardHeader from "@/components/ui/CardHeader";
+import CardHeaderActions from "@/components/ui/CardHeaderActions";
+import DataViewTable from "@/components/ui/DataViewTable/Implementaion.vue";
 export default {
-  name: "recommendation",
-  components: {
-    CardHeader,
-    CardHeaderActions,
-    DataViewTable
-  },
+  name: "reminder",
+  components: { CardHeader, CardHeaderActions, DataViewTable },
   data() {
     return {
       selected: [],
-      columns: [
-        {
-          label: "Description",
-          field: "description"
-        },
-        {
-          label: "Created At",
-          field: "createdAt"
-        },
-        {
-          label: "Action",
-          field: "action",
-          sortable: false
-        }
-      ]
-      // tableData:
+      showEditModal: false
     };
   },
   computed: {
+    items() {
+      return this.$store.state.reminder.list.filter(item => {
+        return item.patientId == this.id && item.discontinue != true;
+      });
+    },
+    fields() {
+      if (this.selected.length > 0) {
+        return ["Description", "Created At"];
+      } else {
+        return ["Description", "Created At", "Action"];
+      }
+    },
+    id() {
+      return this.$route.query.patient_id;
+    },
+    style() {
+      return this.$store.getters.style;
+    },
+    focusRow() {
+      return this.$store.getters.rightPanelFocusRow;
+    },
     tableData() {
-      const rows = this.$store.getters.recommendations;
+      const rows = this.$store.getters.reminders;
       return [
         {
           label: "Yours",
@@ -94,29 +99,10 @@ export default {
           actions: ["D"]
         }
       ];
-    },
-    items() {
-      return this.$store.getters.recommendations;
-    },
-    fields() {
-      if (this.selected.length > 0) {
-        return ["Description", "Created At"];
-      } else {
-        return ["Description", "Created At", "Action"];
-      }
-    },
-    id() {
-      return this.$route.query.patient_id;
-    },
-    style() {
-      return this.$store.getters.style;
-    },
-    focusRow() {
-      return this.$store.getters.rightPanelFocusRow;
     }
   },
   mounted() {
-    this.$store.dispatch("getRecommendations", {
+    this.$store.dispatch("getReminders", {
       patientId: this.id,
       toast: this.$bvToast
     });
@@ -126,22 +112,22 @@ export default {
       this.selected = items;
     },
     showAddModal() {
-      this.$store.commit("showAddRecommendationModal");
+      this.$store.commit("showAddReminderModal");
     },
     showMultiChangeModal() {
-      this.$store.commit("showMultiChangeRecommendationModal");
+      this.$store.commit("showMultiChangeReminderModal");
     },
     openEditModal(item) {
-      this.$store.commit("showEditRecommendationsModal", item);
+      this.$store.commit("showEditReminderModal", item);
     },
-    discontinueRecommendation(item) {
-      this.$store.dispatch("discontinueRecommendation", {
+    discontinueReminder(item) {
+      this.$store.dispatch("discontinueReminder", {
         data: item,
         toast: this.$bvToast
       });
       this.$store.dispatch("updateRightPanelRow");
     },
-    multiDiscontinue() {
+    multidiscontinue() {
       let selectedIds = [];
       let selectedDatas = [];
 
@@ -151,7 +137,7 @@ export default {
       });
       this.selected = [];
 
-      this.$store.dispatch("multidiscontinueRecommendation", {
+      this.$store.dispatch("multidiscontinueReminder", {
         selectedIds: selectedIds,
         selectedDatas: selectedDatas,
         toast: this.$bvToast
@@ -197,26 +183,13 @@ export default {
     },
     focusPanel() {
       console.log("focus panel");
-    },
-    getRowStyleClass(row) {
-      const { originalIndex } = row;
-      if (this.focusRow == `${this.$options.name}-${originalIndex + 1}`) {
-        return "table-primary";
-      }
-      return "";
-    },
-    selectionChanged(params) {
-      this.selected = params.selectedRows;
-      // const { pageIndex } = params;
-      // const selectedObject = this.items[pageIndex];
-      // console.log(selectedObject);
     }
   }
 };
 </script>
 
 <style>
-#recommendationCard {
+#reminderCard {
   cursor: pointer;
 }
 </style>

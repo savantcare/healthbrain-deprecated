@@ -24,9 +24,9 @@ import {
   EDIT_REMINDER,
   MULTIPLE_CHANGE_REMINDER
 } from "@/const.js";
-import CardHeader from "../ui/CardHeader";
-import CardHeaderActions from "../ui/CardHeaderActions";
-import DataViewTable from "../ui/DataViewTable/Implementaion.vue";
+import CardHeader from "@/components/ui/CardHeader";
+import CardHeaderActions from "@/components/ui/CardHeaderActions";
+import DataViewTable from "@/components/ui/DataViewTable/Implementaion.vue";
 export default {
   name: "ReminderPanel",
   components: { CardHeader, CardHeaderActions, DataViewTable },

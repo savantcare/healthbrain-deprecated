@@ -1,3 +1,4 @@
+@@ -1,186 +0,0 @@
 <template>
   <div id="recommendation-panel">
     <b-card>
@@ -16,9 +17,9 @@
 </template>
 
 <script>
-import CardHeader from "../ui/CardHeader";
-import CardHeaderActions from "../ui/CardHeaderActions";
-import DataViewTable from "../ui/DataViewTable/Implementaion.vue";
+import CardHeader from "@/components/ui/CardHeader";
+import CardHeaderActions from "@/components/ui/CardHeaderActions";
+import DataViewTable from "@/components/ui/DataViewTable/Implementaion.vue";
 export default {
   name: "recommendation-panel",
   components: { CardHeader, CardHeaderActions, DataViewTable },
