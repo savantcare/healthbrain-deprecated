@@ -56,10 +56,7 @@ CREATE TABLE `reminders`
 -- Dumping data for table `reminders`
 --
 
-INSERT INTO `reminders` (`
-id`,
-`reminderID
-`, `description`, `discontinue`, `patientId`, `createdByUserId`, `discontinuedByUserId`, `createdAt`, `updatedAt`, `discontinueAt`) VALUES
+INSERT INTO `reminders` (`id`,`reminderID`, `description`, `discontinue`, `patientId`, `createdByUserId`, `discontinuedByUserId`, `createdAt`, `updatedAt`, `discontinueAt`) VALUES
 (1, '1ka9f6zis', 'e1', NULL, '1', '1', NULL, '2020-05-15 16:00:00', '2020-05-16 09:20:23', NULL),
 (2, '1ka9f8e1a', 'R2', NULL, '1', '1', NULL, '2020-05-15 16:00:00', '2020-05-16 09:21:28', NULL),
 (3, '1ka9f9zhu', 'r3', 1, '1', '2', '1', '2020-05-15 16:00:00', '2020-05-16 09:24:10', '2020-05-16 09:24:10'),
