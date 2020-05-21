@@ -2,12 +2,12 @@
   <div>
     <b-card id="recommendationCard">
       <template v-slot:header>
-        <b-row align-h="between" style="height: 30px">
+        <b-row align-h="between">
           <card-header title="Recommendation"></card-header>
           <card-header-actions actions="[A,M,F,D]"></card-header-actions>
         </b-row>
       </template>
-      <DataViewTable :data="tableData" />
+      <DataViewTable :data="tableData" title="recommendation" type="card" />
     </b-card>
   </div>
 </template>
@@ -97,13 +97,6 @@ export default {
     },
     items() {
       return this.$store.getters.recommendations;
-    },
-    fields() {
-      if (this.selected.length > 0) {
-        return ["Description", "Created At"];
-      } else {
-        return ["Description", "Created At", "Action"];
-      }
     },
     id() {
       return this.$route.query.patient_id;

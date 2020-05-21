@@ -9,7 +9,7 @@
       </template>
 
       <b-card-text>
-        <DataViewTable :data="tableData" />
+        <DataViewTable :data="tableData" title="reminder" type="card" />
       </b-card-text>
     </b-card>
   </div>

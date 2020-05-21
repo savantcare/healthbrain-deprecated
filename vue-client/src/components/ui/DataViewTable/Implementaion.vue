@@ -10,7 +10,11 @@
             </tr>
           </thead>
           <draggable v-model="tab.rows" tag="tbody">
-            <tr v-for="(row, index) in tab.rows" :key="`row-${index}`">
+            <tr
+              v-for="(row, index) in tab.rows"
+              :key="`row-${index}`"
+              :class="{'bg-secondary': checkFocusRow(index)}"
+            >
               <td
                 v-for="(column, index) in tab.columns"
                 :key="`cell-${index}`"
@@ -41,11 +45,23 @@
 <script>
 import draggable from "vuedraggable";
 export default {
-  props: ["data"],
+  props: ["data", "title", "type"],
   components: {
     draggable
   },
-  methods: {}
+  computed: {
+    focusRow() {
+      return this.$store.getters.rightPanelFocusRow;
+    }
+  },
+  methods: {
+    checkFocusRow(index) {
+      if (this.type == "card") {
+        return this.focusRow == `${this.title}-${index + 1}`;
+      }
+      return false;
+    }
+  }
 };
 </script>
 <style scoped>
