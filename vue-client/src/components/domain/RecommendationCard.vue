@@ -1,12 +1,6 @@
 <template>
   <div>
-    <b-card
-      :border-variant="getStyle()"
-      :header="getStyle()"
-      :header-bg-variant="getStyle()"
-      header-text-variant="white"
-      id="recommendationCard"
-    >
+    <b-card id="recommendationCard">
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
           <card-header title="Recommendation"></card-header>

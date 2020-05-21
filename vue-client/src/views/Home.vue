@@ -271,5 +271,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.card-header {
+  background-color: #343a40 !important;
+  color: white;
+}
 </style>

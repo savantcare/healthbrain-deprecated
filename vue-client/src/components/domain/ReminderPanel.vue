@@ -1,11 +1,6 @@
 <template>
   <div>
-    <b-card
-      :border-variant="isStyle1 ? 'info' : 'dark'"
-      :header="isStyle1 ? 'info' : 'dark'"
-      :header-bg-variant="isStyle1 ? 'info' : 'dark'"
-      header-text-variant="white"
-    >
+    <b-card>
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
           <card-header title="Reminder"></card-header>

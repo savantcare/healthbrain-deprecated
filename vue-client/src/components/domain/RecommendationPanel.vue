@@ -1,11 +1,6 @@
 <template>
   <div id="recommendation-panel">
-    <b-card
-      :border-variant="style"
-      :header="style"
-      :header-bg-variant="style"
-      header-text-variant="white"
-    >
+    <b-card>
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
           <card-header title="Recommendation"></card-header>
