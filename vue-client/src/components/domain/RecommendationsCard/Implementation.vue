@@ -25,23 +25,7 @@ export default {
   },
   data() {
     return {
-      selected: [],
-      columns: [
-        {
-          label: "Description",
-          field: "description"
-        },
-        {
-          label: "Created At",
-          field: "createdAt"
-        },
-        {
-          label: "Action",
-          field: "action",
-          sortable: false
-        }
-      ]
-      // tableData:
+      selected: []
     };
   },
   computed: {
@@ -53,11 +37,18 @@ export default {
           columns: [
             {
               label: "Description",
-              field: "description"
+              field: "description",
+              priority: 1
             },
             {
               label: "Created At",
-              field: "createdAt"
+              field: "createdAt",
+              priority: 2
+            },
+            {
+              label: "Action",
+              field: "action",
+              priority: 3
             }
           ],
           rows: rows,
@@ -68,11 +59,18 @@ export default {
           columns: [
             {
               label: "Description",
-              field: "description"
+              field: "description",
+              priority: 1
             },
             {
               label: "Created At",
-              field: "createdAt"
+              field: "createdAt",
+              priority: 2
+            },
+            {
+              label: "Action",
+              field: "action",
+              priority: 3
             }
           ],
           rows: rows,
@@ -83,11 +81,18 @@ export default {
           columns: [
             {
               label: "Description",
-              field: "description"
+              field: "description",
+              priority: 1
             },
             {
               label: "Created At",
-              field: "createdAt"
+              field: "createdAt",
+              priority: 2
+            },
+            {
+              label: "Action",
+              field: "action",
+              priority: 3
             }
           ],
           rows: rows,

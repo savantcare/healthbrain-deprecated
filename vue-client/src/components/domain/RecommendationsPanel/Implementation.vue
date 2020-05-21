@@ -60,11 +60,18 @@ export default {
           columns: [
             {
               label: "Description",
-              field: "description"
+              field: "description",
+              priority: 1
             },
             {
               label: "Created At",
-              field: "createdAt"
+              field: "createdAt",
+              priority: 2
+            },
+            {
+              label: "Action",
+              field: "action",
+              priority: 3
             }
           ],
           rows: rows,
@@ -75,11 +82,18 @@ export default {
           columns: [
             {
               label: "Description",
-              field: "description"
+              field: "description",
+              priority: 1
             },
             {
               label: "Created At",
-              field: "createdAt"
+              field: "createdAt",
+              priority: 2
+            },
+            {
+              label: "Action",
+              field: "action",
+              priority: 3
             }
           ],
           rows: rows,
@@ -90,11 +104,18 @@ export default {
           columns: [
             {
               label: "Description",
-              field: "description"
+              field: "description",
+              priority: 1
             },
             {
               label: "Created At",
-              field: "createdAt"
+              field: "createdAt",
+              priority: 2
+            },
+            {
+              label: "Action",
+              field: "action",
+              priority: 3
             }
           ],
           rows: rows,

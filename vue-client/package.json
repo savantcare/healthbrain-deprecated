@@ -21,6 +21,7 @@
     "uniqid": "^5.2.0",
     "v-offline": "^1.2.1",
     "vue": "^2.6.11",
+    "vue-element-resize-event": "^0.1.0",
     "vue-good-table": "^2.19.3",
     "vue-nav-tabs": "^0.5.7",
     "vue-router": "^3.1.6",
