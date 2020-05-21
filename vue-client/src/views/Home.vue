@@ -42,10 +42,10 @@
 const TabDialog = () => import("@/components/ui/TabDialog.vue");
 
 // Left panel components
-const RecommendationPanel = () =>
-  import("@/components/domain/RecommendationPanel/Implementation.vue");
-const ReminderPanel = () =>
-  import("@/components/domain/ReminderPanel/Implementation.vue");
+const RecommendationsPanel = () =>
+  import("@/components/domain/RecommendationsPanel/Implementation.vue");
+const RemindersPanel = () =>
+  import("@/components/domain/RemindersPanel/Implementation.vue");
 const DiagnosisPanel = () =>
   import("@/components/domain/DiagnosisPanel/Implementation.vue");
 const LeftPanelHeader = () => import("@/components/ui/LeftPanelHeader.vue");
@@ -54,10 +54,10 @@ const TestPanel = () => import("@/components/LeftPanelTestComponent.vue");
 
 // Right panel components
 const SearchBox = () => import("@/components/ui/SearchBox.vue");
-const RecommendationCard = () =>
-  import("@/components/domain/RecommendationCard/Implementation.vue");
-const ReminderCard = () =>
-  import("@/components/domain/ReminderCard/Implementation.vue");
+const RecommendationsCard = () =>
+  import("@/components/domain/RecommendationsCard/Implementation.vue");
+const RemindersCard = () =>
+  import("@/components/domain/RemindersCard/Implementation.vue");
 const CombinationCard = () => import("@/components/CombinationCard.vue");
 
 export default {
@@ -65,8 +65,8 @@ export default {
   components: {
     TabDialog,
     // Left panel components
-    RecommendationPanel,
-    ReminderPanel,
+    RecommendationsPanel,
+    RemindersPanel,
     DiagnosisPanel,
     LeftPanelHeader,
     DateSlider,
@@ -74,8 +74,8 @@ export default {
 
     // Right panel components
     SearchBox,
-    RecommendationCard,
-    ReminderCard,
+    RecommendationsCard,
+    RemindersCard,
     CombinationCard
   },
   data() {
@@ -98,15 +98,15 @@ export default {
   beforeCreate() {
     // Initialize rightPanel components
     const rightPanelList = [
-      { key: "recommendation", value: RecommendationCard },
-      { key: "reminder", value: ReminderCard }
+      { key: "recommendation", value: RecommendationsCard },
+      { key: "reminder", value: RemindersCard }
       // { key: "combination", value: CombinationCard }
     ];
 
     this.$store.commit("setRightPanelList", rightPanelList);
 
     // Initialize leftPanel components
-    // const leftPanelList = [RecommendationPanel, ReminderPanel];
+    // const leftPanelList = [RecommendationsPanel, RemindersPanel];
     // this.$store.commit("setLeftPanelList", leftPanelList);
   },
   mounted() {
@@ -242,7 +242,7 @@ export default {
         });
         newList.push({
           key: "recommendation",
-          value: RecommendationCard
+          value: RecommendationsCard
         });
 
         this.$store.commit("setRightPanelList", newList);
@@ -255,7 +255,7 @@ export default {
         });
         newList.push({
           key: "reminder",
-          value: ReminderCard
+          value: RemindersCard
         });
 
         this.$store.commit("setRightPanelList", newList);
