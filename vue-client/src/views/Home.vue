@@ -45,7 +45,7 @@ const TabDialog = () => import("@/components/ui/TabDialog.vue");
 const RecommendationPanel = () =>
   import("@/components/domain/RecommendationPanel.vue");
 const ReminderPanel = () => import("@/components/domain/ReminderPanel.vue");
-const DiagnosisPanel = () => import("@/components/domain/DiagnosisPanel.vue");
+const DiagnosisPanel = () => import("@/components/domain/DiagnosisPanel/Implementation.vue");
 const LeftPanelHeader = () => import("@/components/ui/LeftPanelHeader.vue");
 const DateSlider = () => import("@/components/ui/DateSlider.vue");
 const TestPanel = () => import("@/components/LeftPanelTestComponent.vue");
