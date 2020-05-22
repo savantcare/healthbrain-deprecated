@@ -26,7 +26,7 @@ services:
   mysqld:
     image: mattrayner/lamp:latest-1804
     volumes:
-      - ./env/min-db-for-docker-dev:/var/lib/mysql
+      - ./db/var-lib-mysql:/var/lib/mysql
     ports:
       - "3306:3306"
       - "81:80"
