@@ -273,7 +273,7 @@ export default {
 </script>
 
 <style>
-.card-header {
+.card .card-header {
   background-color: #343a40 !important;
   color: white;
 }

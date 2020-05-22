@@ -4,20 +4,7 @@
       Multi change recommendation
       <b-button size="sm" variant="danger" @click="closeTab">x</b-button>
     </template>
-    <div style="display: flex; justify-content: space-between">
-      <div style="cursor: pointer;" @click="gotoPrevPage">
-        <div v-if="currentPage > 1">
-          <b-icon-arrow-left></b-icon-arrow-left>
-          <span>Prev</span>
-        </div>
-      </div>
-      <div style="cursor:pointer;" @click="gotoNextPage">
-        <div v-if="currentPage < pageCount">
-          <span>Next</span>
-          <b-icon-arrow-right></b-icon-arrow-right>
-        </div>
-      </div>
-    </div>
+    <TabPagination />
 
     <b-row cols="3" align-h="around">
       <b-col v-for="(item, index) in recommendations" :key="`item-${index}`">
@@ -44,6 +31,7 @@
 <script>
 import { MULTIPLE_CHANGE_RECOMMENDATION } from "@/const.js";
 const HistoryComponent = () => import("./RecommendationHistory");
+import TabPagination from "@/components/ui/TabPagination/Implementation.vue";
 export default {
   computed: {
     items() {
@@ -117,7 +105,8 @@ export default {
     }
   },
   components: {
-    HistoryComponent
+    HistoryComponent,
+    TabPagination
   }
 };
 </script>
