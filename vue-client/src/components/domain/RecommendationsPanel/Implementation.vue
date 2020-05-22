@@ -160,9 +160,9 @@ export default {
     openEditModal(item) {
       this.$store.commit("showEditRecommendationsModal", item);
     },
-    discontinueRecommendation(item) {
+    discontinueItem(item) {
       this.$store.dispatch("discontinueRecommendation", {
-        data: item.item,
+        data: item,
         toast: this.$bvToast
       });
     },
@@ -182,15 +182,6 @@ export default {
     },
     showMultiChangeModal() {
       this.$store.commit("showMultiChangeRecommendationModal");
-    },
-    checkActiveStatus(item) {
-      let isActive = false;
-      this.selected.forEach(data => {
-        if (data.id == item.id) {
-          isActive = true;
-        }
-      });
-      return isActive;
     },
     getFormatDate(date) {
       let custom = { year: "numeric", month: "short", day: "numeric" };

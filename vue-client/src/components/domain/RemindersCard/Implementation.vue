@@ -140,7 +140,7 @@ export default {
     openEditModal(item) {
       this.$store.commit("showEditReminderModal", item);
     },
-    discontinueReminder(item) {
+    discontinueItem(item) {
       this.$store.dispatch("discontinueReminder", {
         data: item,
         toast: this.$bvToast

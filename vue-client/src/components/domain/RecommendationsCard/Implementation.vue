@@ -130,7 +130,7 @@ export default {
     openEditModal(item) {
       this.$store.commit("showEditRecommendationsModal", item);
     },
-    discontinueRecommendation(item) {
+    discontinueItem(item) {
       this.$store.dispatch("discontinueRecommendation", {
         data: item,
         toast: this.$bvToast
@@ -176,21 +176,6 @@ export default {
         this.selected.push(item);
       }
     },
-    checkActiveStatus(item) {
-      let isActive = false;
-      this.selected.forEach(data => {
-        if (data.id == item.id) {
-          isActive = true;
-        }
-      });
-      return isActive;
-    },
-    checkFocusStatus(index) {
-      if (this.focusRow == `${this.$options.name}-${index + 1}`) {
-        return true;
-      }
-      return false;
-    },
     focusPanel() {
       console.log("focus panel");
     },
@@ -200,9 +185,6 @@ export default {
         return "table-primary";
       }
       return "";
-    },
-    selectionChanged(params) {
-      this.selected = params.selectedRows;
     }
   }
 };

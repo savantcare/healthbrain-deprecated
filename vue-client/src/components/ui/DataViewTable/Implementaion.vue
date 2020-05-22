@@ -18,9 +18,10 @@
             <tr
               v-for="(row, row_index) in tab.rows"
               :key="`row-${row_index}`"
-              :class="{'bg-secondary': checkFocusRow(row_index)}"
+              :class="{'bg-secondary text-white': checkFocusRow(row_index), 'bg-success text-white': checkActiveStatus(row)}"
               @mouseover="handleMouseOver(row_index)"
               @mouseleave="handleMouseLeave()"
+              @click="selectTableRow(row)"
             >
               <td
                 v-for="(column, index) in tab.columns"
@@ -33,6 +34,7 @@
                     variant="outline-primary"
                     v-b-tooltip.hover.bottom="'Change'"
                     v-if="tab.actions.indexOf('C') > -1"
+                    @click="openEditModal(row)"
                   >C</b-button>
                   <b-button
                     variant="outline-danger"
@@ -40,6 +42,7 @@
                     size="sm"
                     v-b-tooltip.hover.bottom="'Discontinue'"
                     v-if="tab.actions.indexOf('D') > -1"
+                    @click="discontinueItem(row)"
                   >D</b-button>
                 </div>
 
@@ -118,6 +121,24 @@ export default {
         return false;
       }
       return true;
+    },
+    openEditModal(item) {
+      this.$parent.openEditModal(item);
+    },
+    discontinueItem(item) {
+      this.$parent.discontinueItem(item);
+    },
+    selectTableRow(item) {
+      this.$parent.selectTableRow(item);
+    },
+    checkActiveStatus(item) {
+      let isActive = false;
+      this.$parent.selected.forEach(data => {
+        if (data.id == item.id) {
+          isActive = true;
+        }
+      });
+      return isActive;
     }
   }
 };
