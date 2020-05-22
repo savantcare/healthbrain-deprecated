@@ -166,6 +166,10 @@ pwa app does not run from localhost. So the following steps needs to be followed
 We can test PWA app by install the following chrome extension:
 https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb
 
+## How to start mysqld inside docker?
+
+/healthbrain> docker-compose -f docker-compose-dev.yml up -d mysqld
+
 ## Mins of meeting
 
 ### 18th May 2020
