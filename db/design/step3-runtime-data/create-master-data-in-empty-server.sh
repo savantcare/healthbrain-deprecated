@@ -9,5 +9,5 @@
 for file in **/*.sql
 do
     echo $file
-    mysql -u root -p WUy3OsU5BYMM < $file
+    mysql -u root --password=WUy3OsU5BYMM < $file
 done
