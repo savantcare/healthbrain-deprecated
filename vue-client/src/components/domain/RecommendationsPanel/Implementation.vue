@@ -3,10 +3,7 @@
   <div id="recommendation-panel">
     <b-card>
       <template v-slot:header>
-        <b-row align-h="between" style="height: 30px">
-          <card-header title="Recommendation"></card-header>
-          <card-header-actions actions="[A,M,F,D]"></card-header-actions>
-        </b-row>
+        <CardHeader title="Recommendation" actions="[A,M,F,D]" />
       </template>
 
       <b-card-text>
@@ -18,11 +15,10 @@
 
 <script>
 import CardHeader from "@/components/ui/CardHeader";
-import CardHeaderActions from "@/components/ui/CardHeaderActions";
 import DataViewTable from "@/components/ui/DataViewTable/Implementaion.vue";
 export default {
   name: "recommendation-panel",
-  components: { CardHeader, CardHeaderActions, DataViewTable },
+  components: { CardHeader, DataViewTable },
   data() {
     return {
       selected: [],
@@ -71,7 +67,8 @@ export default {
             {
               label: "",
               field: "action",
-              responsiveness_priority: 3
+              responsiveness_priority: 3,
+              display: "on-row-active"
             }
           ],
           rows: rows,
@@ -93,7 +90,8 @@ export default {
             {
               label: "",
               field: "action",
-              responsiveness_priority: 3
+              responsiveness_priority: 3,
+              display: "on-row-active"
             }
           ],
           rows: rows,
@@ -115,7 +113,8 @@ export default {
             {
               label: "",
               field: "action",
-              responsiveness_priority: 3
+              responsiveness_priority: 3,
+              display: "on-row-active"
             }
           ],
           rows: rows,
