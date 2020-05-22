@@ -38,17 +38,18 @@ export default {
             {
               label: "Description",
               field: "description",
-              priority: 1
+              responsiveness_priority: 1
             },
             {
               label: "Created At",
               field: "createdAt",
-              priority: 2
+              responsiveness_priority: 2
             },
             {
-              label: "Action",
+              label: "",
               field: "action",
-              priority: 3
+              responsiveness_priority: 3,
+              display: "on-row-active"
             }
           ],
           rows: rows,
@@ -60,17 +61,17 @@ export default {
             {
               label: "Description",
               field: "description",
-              priority: 1
+              responsiveness_priority: 1
             },
             {
               label: "Created At",
               field: "createdAt",
-              priority: 2
+              responsiveness_priority: 2
             },
             {
-              label: "Action",
+              label: "",
               field: "action",
-              priority: 3
+              responsiveness_priority: 3
             }
           ],
           rows: rows,
@@ -82,17 +83,17 @@ export default {
             {
               label: "Description",
               field: "description",
-              priority: 1
+              responsiveness_priority: 1
             },
             {
               label: "Created At",
               field: "createdAt",
-              priority: 2
+              responsiveness_priority: 2
             },
             {
-              label: "Action",
+              label: "",
               field: "action",
-              priority: 3
+              responsiveness_priority: 3
             }
           ],
           rows: rows,

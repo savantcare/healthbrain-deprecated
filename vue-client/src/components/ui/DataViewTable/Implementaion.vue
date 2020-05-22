@@ -8,22 +8,26 @@
               <th
                 v-for="(column, index) in tab.columns"
                 :key="`column-${index}`"
-                :style="{display: column.priority * 120 > width ? 'none' : ''}"
-              >{{column.label}}</th>
+                :style="{display: column.responsiveness_priority * 120 > width ? 'none' : ''}"
+              >
+                <span v-if="checkColumnHeaderVisibility(column)">{{column.label}}</span>
+              </th>
             </tr>
           </thead>
           <draggable v-model="tab.rows" tag="tbody">
             <tr
-              v-for="(row, index) in tab.rows"
-              :key="`row-${index}`"
-              :class="{'bg-secondary': checkFocusRow(index)}"
+              v-for="(row, row_index) in tab.rows"
+              :key="`row-${row_index}`"
+              :class="{'bg-secondary': checkFocusRow(row_index)}"
+              @mouseover="handleMouseOver(row_index)"
+              @mouseleave="handleMouseLeave()"
             >
               <td
                 v-for="(column, index) in tab.columns"
                 :key="`cell-${index}`"
-                :style="{display: column.priority * 120 > width ? 'none' : ''}"
+                :style="{display: column.responsiveness_priority * 120 > width ? 'none' : ''}"
               >
-                <div v-if="column.field == 'action'">
+                <div v-if="(column.field == 'action' && checkCellVisibility(column, row_index))">
                   <b-button
                     size="sm"
                     variant="outline-primary"
@@ -38,7 +42,10 @@
                     v-if="tab.actions.indexOf('D') > -1"
                   >D</b-button>
                 </div>
-                <span v-else>{{row[column.field]}}</span>
+
+                <span
+                  v-if="column.field != 'action' && checkCellVisibility(column, row_index)"
+                >{{row[column.field]}}</span>
               </td>
             </tr>
           </draggable>
@@ -57,7 +64,8 @@ export default {
   },
   data() {
     return {
-      width: 1000
+      width: 1000,
+      mouseOverRowIndex: -1
     };
   },
   computed: {
@@ -75,6 +83,41 @@ export default {
     },
     handleResize(data) {
       this.width = data.target.clientWidth;
+    },
+    handleMouseOver(index) {
+      this.mouseOverRowIndex = index;
+    },
+    handleMouseLeave() {
+      this.mouseOverRowIndex = -1;
+    },
+    checkCellVisibility(column, row_index) {
+      if (column.display == null) {
+        return true;
+      }
+      if (this.checkFocusRow(row_index) == true) {
+        return true;
+      }
+      if (column.display == "on-row-active") {
+        if (this.mouseOverRowIndex == row_index) {
+          return true;
+        }
+        return false;
+      }
+
+      return true;
+    },
+    checkColumnHeaderVisibility(column) {
+      if (column.display == null) {
+        return true;
+      }
+
+      if (column.display == "on-row-active") {
+        if (this.mouseOverRowIndex > -1) {
+          return true;
+        }
+        return false;
+      }
+      return true;
     }
   }
 };
