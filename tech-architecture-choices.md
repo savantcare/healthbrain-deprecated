@@ -40,7 +40,7 @@ In the current angular app the recommendation panel was listening on socket to u
 
 3. Useful libraries
     1. vuex
-    2. https://github.com/vue-generators/vue-form-generator
+    2. https://github.com/vue-generators/vue-form-generator ( https://blog.logrocket.com/how-to-build-reusable-forms-using-vue-form-generator/ )
     3. https://github.com/robinvdvleuten/vuex-persistedstate
     4. https://github.com/shentao/vue-multiselect
 
