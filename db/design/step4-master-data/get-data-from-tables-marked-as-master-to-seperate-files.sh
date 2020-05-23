@@ -2,9 +2,9 @@
 
 TIMESTAMP=$(date +"%F")
 BACKUP_DIR="/dev/shm/mysql/"
-MYSQL_USER="root"
+MYSQL_USER="stanford2008"
 MYSQL=/usr/bin/mysql
-MYSQL_PASSWORD="jaikalima"
+MYSQL_PASSWORD="jaidurgama"
 MYSQLDUMP=/usr/bin/mysqldump
  
 mkdir -p "$BACKUP_DIR"
