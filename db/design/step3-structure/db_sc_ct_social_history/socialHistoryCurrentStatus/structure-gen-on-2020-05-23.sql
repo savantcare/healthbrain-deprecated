@@ -1,7 +1,7 @@
-use DB_SC_SocialHistory;
+use db_sc_ct_social_history;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: DB_SC_SocialHistory
+-- Host: localhost    Database: db_sc_ct_social_history
 -- ------------------------------------------------------
 -- Server version	5.7.26-0ubuntu0.18.04.1-log
 
@@ -58,7 +58,7 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `generate_uuid4_for_SHCS` BEFORE INSERT ON `socialHistoryCurrentStatus` FOR EACH ROW begin
     DECLARE P1 VARCHAR(36);
     DECLARE P2 bigint(21);
-    SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'DB_SC_SocialHistory' AND TABLE_NAME = 'socialHistoryCurrentStatus' INTO @P2;
+    SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'db_sc_ct_social_history' AND TABLE_NAME = 'socialHistoryCurrentStatus' INTO @P2;
     
     Select uuid_v4_custom(@P2) INTO @P1;
     

@@ -2,7 +2,7 @@
 # 1. There is no delete related 4 fields since it is a time travel DB
 # 2. There is no need for firstParentID and discontinue related 4 fields and since it will be MariDB temporal feature
 
-use DB_SC_SocialHistory;
+use db_sc_ct_social_history;
 
 ALTER TABLE `birthplace`
   DROP `firstParentID`,
