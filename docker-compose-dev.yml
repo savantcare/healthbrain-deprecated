@@ -26,7 +26,8 @@ services:
   mysqld:
     image: mattrayner/lamp:latest-1804
     volumes:
-      - ./db/:/var/lib/
+      - ./db/var-lib-mysql:/var/lib/mysql
+      - ./db/design:/var/lib/db-design
     ports:
       - "3306:3306"
       - "81:80"
