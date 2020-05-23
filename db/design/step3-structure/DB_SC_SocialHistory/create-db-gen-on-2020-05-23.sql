@@ -1,1 +1,1 @@
-create database db_sc_social_history
+create database DB_SC_SocialHistory

@@ -1,7 +1,7 @@
-use db_sc_social_history;
+use DB_SC_SocialHistory;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: db_sc_social_history
+-- Host: localhost    Database: DB_SC_SocialHistory
 -- ------------------------------------------------------
 -- Server version	5.7.26-0ubuntu0.18.04.1-log
 
