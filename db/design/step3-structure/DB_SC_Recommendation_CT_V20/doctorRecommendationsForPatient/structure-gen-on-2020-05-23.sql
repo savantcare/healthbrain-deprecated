@@ -24,30 +24,21 @@ DROP TABLE IF EXISTS `doctorRecommendationsForPatient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `doctorRecommendationsForPatient` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstParentId` int(11) DEFAULT NULL,
-  `priority` int(11) DEFAULT NULL,
+  `uuid`  BINARY(16) NOT NULL,
+  `uuidOfRecommendationMadeFor` BINARY(16) NOT NULL,
   `recommendationDescription` longtext,
-  `uidOfRecommendationMadeBy` int(10) unsigned NOT NULL,
-  `uidOfRecommendationMadeFor` int(10) unsigned NOT NULL,
+  `notes` text DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL,
   `isAutoRex` int(11) DEFAULT NULL,
-  `recommendationCreated` datetime NOT NULL,
-  `timeZoneOfRecommendationCreated` char(5) NOT NULL,
-  `deletedByUID` int(11) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL COMMENT 'rename to deletedOnDateTime',
-  `deletedTimeZone` varchar(5) DEFAULT NULL,
-  `deletedFromIPAddress` varchar(255) DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL COMMENT 'rename to discontinuedOnDateTime',
-  `discontinuedTimeZone` varchar(5) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(255) DEFAULT NULL,
-  `notes` varchar(255) DEFAULT NULL COMMENT 'Why this recommendation is discontinued?',
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `originId` int(11) NOT NULL,
   `parentId` int(11) DEFAULT NULL,
   `order_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_firstParentId` (`firstParentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=30139 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=30139 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,3 +51,11 @@ CREATE TABLE `doctorRecommendationsForPatient` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed
+
+/*
+Question:
+What are the following fields needed for: 
+ `originId` int(11) NOT NULL,
+  `parentId` int(11) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL,
+*/
