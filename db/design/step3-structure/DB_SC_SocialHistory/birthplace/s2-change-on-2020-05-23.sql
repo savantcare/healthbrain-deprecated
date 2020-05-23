@@ -45,7 +45,13 @@ SELECT * FROM birthplace FOR SYSTEM_TIME ALL;
 # How to see rows between start and end time?
 SELECT * FROM birthplace FOR SYSTEM_TIME BETWEEN (NOW() - INTERVAL 1 YEAR) AND NOW();
 
-# TODO: Can this table be partitioned
+# TODO:
+# Question1: Can this table be partitioned
 # While primary keys are supported on partitioned tables, foreign keys referencing partitioned tables are not supported. (Foreign key references from a partitioned table to some other table are supported
 # Ref: https://mariadb.com/kb/en/temporal-data-tables/+comments/3678
 # https://mariadb.com/kb/en/temporal-data-tables/#storing-the-history-separately
+
+# Question2: How should time be stored
+# Seems like UTC is a easier option
+
+# Question 3: Can the user who created it be stored coming from mysql user and the app users mapped to mysql user 
