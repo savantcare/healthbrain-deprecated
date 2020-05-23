@@ -2,14 +2,14 @@
 
 TIMESTAMP=$(date +"%F")
 BACKUP_DIR="./"
-MYSQL_USER="admin"
+MYSQL_USER="stanford2008"
 MYSQL=/usr/bin/mysql
-MYSQL_PASSWORD="WUy3OsU5BYMM"
+MYSQL_PASSWORD="jaidurgama"
 MYSQLDUMP=/usr/bin/mysqldump
  
 mkdir -p "$BACKUP_DIR"
  
-databases=`$MYSQL --user=$MYSQL_USER -p$MYSQL_PASSWORD -e "SHOW DATABASES;" | grep -Ev "(Database|information_schema|performance_schema)" | grep "DB_SC"`
+allDatabases=`$MYSQL --user=$MYSQL_USER -p$MYSQL_PASSWORD -e "SHOW DATABASES;" | grep -Ev "(Database|information_schema|performance_schema)" | grep "DB_SC"`
 
 # Not writing the time stamp in the file name so it is easy to know if there is a diff using git diff or gitlab web interface.
 
@@ -17,10 +17,16 @@ databases=`$MYSQL --user=$MYSQL_USER -p$MYSQL_PASSWORD -e "SHOW DATABASES;" | gr
 # --- Dump completed on 2020-01-29  9:10:06
 # +-- Dump completed on 2020-01-29  9:11:14
 
+when=$(date +%F);
 
-for db in $databases; do
+for db in $allDatabases; do
     echo "== Working on $db =="
     mkdir $db
-    when=$(date +%F);
-    $MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_PASSWORD --databases $db --no-data --skip-dump-date > "$BACKUP_DIR/$db/structure-on-$when.sql"
+
+    allTableNames=`mysql $db -u $MYSQL_USER -p$MYSQL_PASSWORD -N -e 'show tables'`
+
+    for table in $allTableNames; do
+	mkdir $db/$table
+	$MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_PASSWORD --databases $db $table --no-data --skip-dump-date > "$BACKUP_DIR/$db/$table/structure-on-$when.sql"
+    done
 done
