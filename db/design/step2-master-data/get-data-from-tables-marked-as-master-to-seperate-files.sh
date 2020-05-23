@@ -30,7 +30,8 @@ for db in $allDatabaseNames; do
 	echo "use $db" > $db/$table.sql
 	
 	echo "Executing the command mysqldump --databases $db -u $MYSQL_USER -p$MYSQL_PASSWORD $table --skip-dump-date > $db/$table.sql"
-	mysqldump $db -u $MYSQL_USER -p$MYSQL_PASSWORD $table --skip-dump-date >> $db/$table.sql
+	when=$(date +%F);
+	mysqldump $db -u $MYSQL_USER -p$MYSQL_PASSWORD $table --skip-dump-date >> $db/$table-$when.sql
     done
 
 
