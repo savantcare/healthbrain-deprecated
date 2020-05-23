@@ -23,6 +23,7 @@ use DB_SC_SocialHistory
 DROP TABLE IF EXISTS `birthplace`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `birthplace` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uidOfPatient` int(11) unsigned NOT NULL,
@@ -31,14 +32,19 @@ CREATE TABLE `birthplace` (
   `createdByUID` int(11) unsigned DEFAULT NULL,
   `createdOnDateTime` datetime DEFAULT NULL,
   `createdOnTimeZone` varchar(255) DEFAULT NULL,
+  `deletedByUID` int(11) unsigned DEFAULT NULL,
+  `deletedOnDateTime` datetime DEFAULT NULL,
+  `deletedOnTimeZone` varchar(255) DEFAULT NULL,
+  `deletedFromIPAddress` varchar(20) DEFAULT NULL,
   `discontinuedByUID` int(11) unsigned DEFAULT NULL,
   `discontinuedOnDateTime` datetime DEFAULT NULL,
   `discontinuedOnTimeZone` varchar(255) DEFAULT NULL,
   `discontinuedFromIPAddress` varchar(20) DEFAULT NULL,
-  `notes` text,
+  `discontinueNotes` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4315 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
