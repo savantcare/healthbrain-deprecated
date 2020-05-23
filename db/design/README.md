@@ -8,3 +8,9 @@ UUID values do not expose the information about your data so they are safer to u
 UUID values can be generated anywhere that avoid a round trip to the database server. It also simplifies logic in the application. For example, to insert data into a parent table and child tables, you have to insert into the parent table first, get generated id and then insert data into the child tables. By using UUID, you can generate the primary key value of the parent table up front and insert rows into both parent and child tables at the same time within a transaction.
 
 Ref: https://www.mysqltutorial.org/mysql-uuid/
+
+Questions:
+1. Should I use binary_short?
+https://mariadb.com/kb/en/uuid_short/
+2. Should I use sequntial UUID?
+https://stackoverflow.com/questions/50493449/how-can-i-generate-a-uuid-guid-in-mariadb-10-1
