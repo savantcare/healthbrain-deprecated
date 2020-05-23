@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TIMESTAMP=$(date +"%F")
-BACKUP_DIR="/dev/shm/mysql/"
+BACKUP_DIR="./"
 MYSQL_USER="admin"
 MYSQL=/usr/bin/mysql
 MYSQL_PASSWORD="WUy3OsU5BYMM"
@@ -19,5 +19,8 @@ databases=`$MYSQL --user=$MYSQL_USER -p$MYSQL_PASSWORD -e "SHOW DATABASES;" | gr
 
 
 for db in $databases; do
-  $MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_PASSWORD --databases $db --no-data --skip-dump-date > "$BACKUP_DIR/$db/structure-on-$(date +%F).sql"
+    echo "== Working on $db =="
+    mkdir $db
+    when=$(date +%F);
+    $MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_PASSWORD --databases $db --no-data --skip-dump-date > "$BACKUP_DIR/$db/structure-on-$when.sql"
 done
