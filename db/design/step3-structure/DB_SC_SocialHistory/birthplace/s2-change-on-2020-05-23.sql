@@ -32,7 +32,7 @@ ALTER TABLE `birthplace` CHANGE `recordChangedOnDateTime` `recordChangedOnDateTi
 
 # Why?
 # Proper ordering helps
-ALTER TABLE `birthplace` CHANGE `notes` `notes` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL AFTER `value`
+ALTER TABLE `birthplace` CHANGE `notes` `notes` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL AFTER `value`;
 
 # Why?
 # Enabled temporal DB
