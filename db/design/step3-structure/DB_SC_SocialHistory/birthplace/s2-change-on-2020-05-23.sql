@@ -19,10 +19,14 @@ ALTER TABLE `birthplace` CHANGE `discontinueNotes` `notes` TEXT CHARACTER SET la
 
 # Why
 # 1. ipaddress and created (3 fields) needs to be recorded both during creation and deletion
-ALTER TABLE `birthplace` CHANGE `discontinuedFromIPAddress` `recordChangeFromIPAddress` VARCHAR(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
-ALTER TABLE `birthplace` CHANGE `createdByUID` `recordChangeByUID` INT(11) UNSIGNED NULL DEFAULT NULL;
-ALTER TABLE `birthplace` CHANGE `createdOnDateTime` `recordChangeOnDateTime` DATETIME NULL DEFAULT NULL;
-ALTER TABLE `birthplace` CHANGE `createdOnTimeZone` `recordChangeOnTimeZone` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `birthplace` CHANGE `discontinuedFromIPAddress` `recordChangedFromIPAddress` VARCHAR(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `birthplace` CHANGE `createdByUID` `recordChangedByUID` INT(11) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `birthplace` CHANGE `createdOnDateTime` `recordChangedOnDateTime` DATETIME NULL DEFAULT NULL;
+ALTER TABLE `birthplace` CHANGE `createdOnTimeZone` `recordChangedOnTimeZone` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+# Why
+# I do not want to set change on date time from app and let mysql take care of it
+ALTER TABLE `birthplace` CHANGE `createdOnDateTime` `createdOnDateTime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
 
 # Why?
 # Proper ordering helps
