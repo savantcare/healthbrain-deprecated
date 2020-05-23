@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,10 +29,10 @@ CREATE TABLE `tm_mailing_list` (
   `emp_full_name` varchar(150) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
   `mail_type` enum('submit_pending','reminder','block') DEFAULT NULL,
-  `ts_dates` text DEFAULT NULL,
+  `ts_dates` text,
   `ts_start_date` date DEFAULT NULL,
   `ts_end_date` date DEFAULT NULL,
-  `mail_content` text DEFAULT NULL,
+  `mail_content` text,
   `is_mail_sent` tinyint(1) unsigned DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),

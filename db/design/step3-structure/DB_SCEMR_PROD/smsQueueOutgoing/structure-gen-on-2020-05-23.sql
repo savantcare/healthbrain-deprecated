@@ -1,14 +1,14 @@
 use DB_SCEMR_PROD;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,14 +29,14 @@ CREATE TABLE `smsQueueOutgoing` (
   `destination` varchar(255) DEFAULT NULL COMMENT 'should be numbers only, having country code and phone number without any delimiter. otherwise notify developer by email.',
   `authID` varchar(255) NOT NULL DEFAULT 'MAMGU0MTC2ODG5YMRHMZ' COMMENT 'auth_id of plivo acount',
   `authToken` varchar(255) NOT NULL DEFAULT 'MGI0YWU4ZDM2ZTcyYzdhNjFlNjljOTg3MGI0ODNk' COMMENT 'auth_token of plivo account',
-  `smsContent` text DEFAULT NULL,
+  `smsContent` text,
   `debugMode` enum('TRUE','FALSE') NOT NULL DEFAULT 'FALSE' COMMENT 'will be used by developer for testing',
   `emergencyMessage` enum('Yes','No') NOT NULL DEFAULT 'No',
-  `additionalInfo` text DEFAULT NULL COMMENT 'info to debug if malformed entry happens',
+  `additionalInfo` text COMMENT 'info to debug if malformed entry happens',
   `respectiveDeveloper` varchar(255) DEFAULT NULL COMMENT 'to whom send email incase of malformed entry',
   `reminderID` int(11) unsigned DEFAULT NULL,
   `errorFound` enum('yes','no') NOT NULL DEFAULT 'no',
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=180 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

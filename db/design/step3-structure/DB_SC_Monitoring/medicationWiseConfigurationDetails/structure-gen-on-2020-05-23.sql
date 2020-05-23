@@ -1,14 +1,14 @@
 use DB_SC_Monitoring;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Monitoring
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -28,7 +28,7 @@ CREATE TABLE `medicationWiseConfigurationDetails` (
   `drug_name` varchar(255) NOT NULL,
   `is_it_condition_or_frequency` enum('Condition','Frequency') NOT NULL,
   `condition_or_frequency_id` int(11) NOT NULL,
-  `specifier` text DEFAULT NULL,
+  `specifier` text,
   `created_by` int(11) NOT NULL,
   `created_on` datetime NOT NULL,
   `created_on_time_zone` varchar(3) NOT NULL,

@@ -1,14 +1,14 @@
 use DB_SC_Central;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Central
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,9 +26,9 @@ DROP TABLE IF EXISTS `surescriptsAuditLogMasters`;
 CREATE TABLE `surescriptsAuditLogMasters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=System 1=Prescription',
+  `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=System 1=Prescription',
   `description` varchar(255) DEFAULT NULL,
-  `createdAt` datetime DEFAULT current_timestamp(),
+  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

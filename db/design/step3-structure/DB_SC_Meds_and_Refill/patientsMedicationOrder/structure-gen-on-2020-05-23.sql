@@ -1,14 +1,14 @@
 use DB_SC_Meds_and_Refill;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Meds_and_Refill
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -31,8 +31,8 @@ CREATE TABLE `patientsMedicationOrder` (
   `created_at` datetime NOT NULL,
   `created_at_timezone` varchar(50) DEFAULT NULL,
   `isItLocked` enum('no','yes') NOT NULL DEFAULT 'no',
-  `noteToPharmacist` text DEFAULT NULL,
-  `directionToPatient` text DEFAULT NULL,
+  `noteToPharmacist` text,
+  `directionToPatient` text,
   `deletedByUid` int(11) DEFAULT NULL,
   `deletedDateTime` datetime DEFAULT NULL,
   `deletedTimeZone` varchar(11) DEFAULT NULL,
@@ -52,11 +52,11 @@ CREATE TABLE `patientsMedicationOrder` (
   `pharmacySCID` varchar(255) DEFAULT NULL,
   `otherNote` varchar(255) DEFAULT NULL,
   `orderingProviderId` int(11) DEFAULT NULL,
-  `isDraft` int(4) NOT NULL DEFAULT 0,
-  `isCancelled` int(4) NOT NULL DEFAULT 0,
+  `isDraft` int(4) NOT NULL DEFAULT '0',
+  `isCancelled` int(4) NOT NULL DEFAULT '0',
   `medicationEffectFrom` datetime DEFAULT NULL,
-  `surescriptsStatus` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Not Submit 1= Submit but not verified 2=Error from response 3=Pending 4=Verified(010) status 5=CancelRx pending(000) 6=CancelRx done',
-  `autoHdr` tinyint(1) NOT NULL DEFAULT 0,
+  `surescriptsStatus` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0=Not Submit 1= Submit but not verified 2=Error from response 3=Pending 4=Verified(010) status 5=CancelRx pending(000) 6=CancelRx done',
+  `autoHdr` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `medicationForPatientId` (`uidOfPatient`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36666 DEFAULT CHARSET=latin1;

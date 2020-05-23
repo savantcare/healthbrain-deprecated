@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -33,8 +33,8 @@ CREATE TABLE `main_departments` (
   `state` int(11) unsigned DEFAULT NULL,
   `city` int(11) unsigned DEFAULT NULL,
   `address1` text NOT NULL,
-  `address2` text DEFAULT NULL,
-  `address3` text DEFAULT NULL,
+  `address2` text,
+  `address3` text,
   `timezone` int(11) DEFAULT NULL,
   `depthead` int(11) unsigned DEFAULT NULL,
   `unitid` int(11) DEFAULT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `main_departments` (
   `modifiedby` int(11) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT 1,
+  `isactive` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -64,12 +64,12 @@ DELIMITER ;;
 			        update main_leavemanagement_summary lm set lm.department_name = concat(new.deptname," (",new.deptcode,")"),lm.modifieddate = utc_timestamp() 
 			        where lm.department_id = new.id and lm.isactive = 1;
 				
-				
+				#start of main_employees_summary
 				update main_employees_summary es set es.department_name = new.deptname,es.modifieddate = utc_timestamp() 
 			        where es.department_id = new.id and es.isactive = 1;
-				
+				#end of main_employees_summary
 			        
-			        
+			        # Start Updating BusinessUnit Id and Name if business unit is 0  
 			        if new.unitid = 0 then 
 				begin 
 				       update main_leavemanagement_summary lm set lm.businessunit_id = 0,lm.businessunit_name = NULL,
@@ -78,9 +78,9 @@ DELIMITER ;;
 			               ls.modifieddate = utc_timestamp() where ls.department_id = new.id and ls.isactive = 1;
 				end;
 				end if; 
+			        # End
 			        
-			        
-			        
+			        # Start Updating BusinessUnit Id and Name if business unit is not 0
 			        if new.unitid != 0 then 
 				begin 
 			               select unitcode into unit_code from main_businessunits where id = new.unitid;
@@ -92,7 +92,7 @@ DELIMITER ;;
 			               where ls.department_id = new.id and ls.isactive = 1;
 				end;
 				end if;
-			        
+			        # End
 			    END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;

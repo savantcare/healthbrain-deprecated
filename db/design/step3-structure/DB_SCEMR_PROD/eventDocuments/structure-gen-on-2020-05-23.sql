@@ -1,14 +1,14 @@
 use DB_SCEMR_PROD;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `eventDocuments`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `eventDocuments` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uploadID` int(11) unsigned NOT NULL DEFAULT 0,
-  `fileContent` longblob DEFAULT NULL,
+  `uploadID` int(11) unsigned NOT NULL DEFAULT '0',
+  `fileContent` longblob,
   `fileName` varchar(128) NOT NULL DEFAULT '',
   `fileType` varchar(128) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `foruploadid` (`uploadID`),

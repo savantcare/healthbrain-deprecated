@@ -1,14 +1,14 @@
 use DB_SCEMR_PROD;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,8 +25,8 @@ DROP TABLE IF EXISTS `userPhoneNumbers`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `userPhoneNumbers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` int(11) unsigned DEFAULT 0,
-  `phoneNumberTypeID` tinyint(4) unsigned DEFAULT 0 COMMENT 'the type id comes from contactPhoneNumberMasterTypes',
+  `uid` int(11) unsigned DEFAULT '0',
+  `phoneNumberTypeID` tinyint(4) unsigned DEFAULT '0' COMMENT 'the type id comes from contactPhoneNumberMasterTypes',
   `phoneNumber` varchar(128) NOT NULL DEFAULT '',
   `countryDialCode` varchar(4) DEFAULT '1',
   `isDeleted` enum('No','Yes') NOT NULL,

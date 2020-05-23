@@ -1,14 +1,14 @@
 use DB_SCEMR_PROD;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -33,7 +33,7 @@ CREATE TABLE `eligibleForClaimsOfPatient` (
   `curlRequestSend` text NOT NULL,
   `stageID` int(11) NOT NULL,
   `claimReferenceID` varchar(200) DEFAULT NULL,
-  `isUpdatedOnClaimsReportTable` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = Not updated, 1 = Updated',
+  `isUpdatedOnClaimsReportTable` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = Not updated, 1 = Updated',
   PRIMARY KEY (`id`),
   KEY `stageID` (`stageID`),
   CONSTRAINT `eligibleForClaimsOfPatient_ibfk_1` FOREIGN KEY (`stageID`) REFERENCES `eligibleClaimStage` (`id`),

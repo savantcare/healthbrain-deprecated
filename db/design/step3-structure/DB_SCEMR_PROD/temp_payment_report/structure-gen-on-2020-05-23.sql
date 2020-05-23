@@ -1,14 +1,14 @@
 use DB_SCEMR_PROD;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `temp_payment_report`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `temp_payment_report` (
-  `paymentTableId` int(11) unsigned NOT NULL DEFAULT 0,
+  `paymentTableId` int(11) unsigned NOT NULL DEFAULT '0',
   `cptCodeForAppointmentID` int(11) unsigned NOT NULL,
-  `paymentAmountClaimedIncludingFinanceCharges` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `paymentAmountClaimedForSCExcludingFinanceCharges` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `paymentAmountReceived` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `paymentAmountBadDebt` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `transactionFee` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `paymentAmountClaimedIncludingFinanceCharges` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `paymentAmountClaimedForSCExcludingFinanceCharges` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `paymentAmountReceived` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `paymentAmountBadDebt` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `transactionFee` decimal(10,2) NOT NULL DEFAULT '0.00',
   `tansactionID` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `paymentStatusID` tinyint(4) unsigned DEFAULT NULL,
   `paymentStatus` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
@@ -43,7 +43,7 @@ CREATE TABLE `temp_payment_report` (
   `insuranceUIDOnCreationDateIfClaimFilingIsRequired` int(11) unsigned DEFAULT NULL,
   `nameOfInsuranceCompanyPaymentRecdFrom` varchar(257) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `eventId` int(11) unsigned DEFAULT NULL,
-  `isCptLocked` enum('Yes','No') CHARACTER SET utf8 DEFAULT NULL,
+  `isCptLocked` enum('Yes','No') CHARACTER SET utf8,
   `isPaymentLocked` enum('Yes','No') CHARACTER SET utf8 NOT NULL DEFAULT 'No',
   `cptCreatedAt` datetime DEFAULT NULL,
   `cptUpdatedAt` datetime DEFAULT NULL,

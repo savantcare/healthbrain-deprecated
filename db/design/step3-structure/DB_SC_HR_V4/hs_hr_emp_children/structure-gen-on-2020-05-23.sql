@@ -1,14 +1,14 @@
 use DB_SC_HR_V4;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR_V4
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `hs_hr_emp_children`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `hs_hr_emp_children` (
-  `emp_number` int(7) NOT NULL DEFAULT 0,
-  `ec_seqno` decimal(2,0) NOT NULL DEFAULT 0,
+  `emp_number` int(7) NOT NULL DEFAULT '0',
+  `ec_seqno` decimal(2,0) NOT NULL DEFAULT '0',
   `ec_name` varchar(100) DEFAULT '',
   `ec_date_of_birth` date DEFAULT NULL,
   PRIMARY KEY (`emp_number`,`ec_seqno`),

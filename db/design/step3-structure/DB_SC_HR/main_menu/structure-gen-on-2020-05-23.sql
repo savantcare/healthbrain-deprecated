@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -32,13 +32,13 @@ CREATE TABLE `main_menu` (
   `iconPath` varchar(255) DEFAULT NULL,
   `parent` int(11) unsigned DEFAULT NULL,
   `menuOrder` int(11) unsigned DEFAULT NULL,
-  `nav_ids` text DEFAULT NULL,
-  `isactive` tinyint(1) unsigned DEFAULT 1,
+  `nav_ids` text,
+  `isactive` tinyint(1) unsigned DEFAULT '1',
   `modulename` varchar(50) DEFAULT NULL,
-  `segment_flag` tinyint(1) DEFAULT 2,
+  `segment_flag` tinyint(1) DEFAULT '2',
   `org_menuid` int(11) unsigned DEFAULT NULL,
-  `menufields` text DEFAULT NULL COMMENT 'select,insert,update references',
-  `menuQuery` text DEFAULT NULL,
+  `menufields` text COMMENT 'select,insert,update references',
+  `menuQuery` text,
   `hasJoins` tinyint(4) DEFAULT NULL,
   `modelName` varchar(255) DEFAULT NULL,
   `functionName` varchar(255) DEFAULT NULL,

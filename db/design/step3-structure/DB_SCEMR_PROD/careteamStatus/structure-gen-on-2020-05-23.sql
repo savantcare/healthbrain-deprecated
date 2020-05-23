@@ -1,9 +1,9 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

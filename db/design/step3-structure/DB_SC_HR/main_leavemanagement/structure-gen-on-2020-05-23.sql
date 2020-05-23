@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,7 +29,7 @@ CREATE TABLE `main_leavemanagement` (
   `weekend_startday` int(11) unsigned DEFAULT NULL,
   `weekend_endday` int(11) unsigned DEFAULT NULL,
   `businessunit_id` int(11) unsigned DEFAULT NULL,
-  `department_id` int(11) unsigned DEFAULT 0,
+  `department_id` int(11) unsigned DEFAULT '0',
   `hr_id` int(11) DEFAULT NULL,
   `hours_day` int(11) DEFAULT NULL,
   `is_satholiday` tinyint(1) DEFAULT NULL COMMENT '1-Yes,2-No',
@@ -60,7 +60,7 @@ DELIMITER ;;
 				    select month_name into calmonth_name from tbl_months where monthid = new.cal_startmonth;
 				    select week_name into weekend_name1 from tbl_weeks where week_id = new.weekend_startday;
 				    select week_name into weekend_name2 from tbl_weeks where week_id = new.weekend_endday;
-				    
+				    #select department_id into dept_id from main_employees where user_id = new.user_id;
 				    select b.id,concat(d.deptname," (",d.deptcode,")") ,
 				    if(b.unitcode != "000",concat(b.unitcode,"","-"),"") into bunit_id,dept_name,buss_unit_name 
 				    FROM `main_departments` AS `d` LEFT JOIN `main_businessunits` AS `b` ON b.id=d.unitid 

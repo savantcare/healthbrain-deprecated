@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -33,15 +33,15 @@ CREATE TABLE `main_requisition` (
   `department_id` int(11) unsigned DEFAULT NULL,
   `jobtitle` int(11) unsigned DEFAULT NULL,
   `req_no_positions` int(11) unsigned DEFAULT NULL,
-  `selected_members` int(11) unsigned DEFAULT 0 COMMENT 'count of selected members',
-  `filled_positions` int(11) unsigned DEFAULT 0,
-  `jobdescription` text DEFAULT NULL,
+  `selected_members` int(11) unsigned DEFAULT '0' COMMENT 'count of selected members',
+  `filled_positions` int(11) unsigned DEFAULT '0',
+  `jobdescription` text,
   `req_skills` text NOT NULL,
   `req_qualification` varchar(150) DEFAULT NULL,
   `req_exp_years` varchar(10) NOT NULL,
   `emp_type` int(11) unsigned DEFAULT NULL,
   `req_priority` tinyint(1) unsigned DEFAULT NULL COMMENT '1- High, 2- Medium,3- Low',
-  `additional_info` text DEFAULT NULL,
+  `additional_info` text,
   `req_status` enum('Initiated','Approved','Rejected','Closed','On hold','Complete','In process') DEFAULT NULL,
   `approver1` bigint(20) unsigned DEFAULT NULL,
   `approver2` bigint(20) unsigned DEFAULT NULL,

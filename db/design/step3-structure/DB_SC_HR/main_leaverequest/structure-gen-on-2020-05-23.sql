@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,8 +26,8 @@ DROP TABLE IF EXISTS `main_leaverequest`;
 CREATE TABLE `main_leaverequest` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned DEFAULT NULL,
-  `reason` text DEFAULT NULL,
-  `approver_comments` text DEFAULT NULL,
+  `reason` text,
+  `approver_comments` text,
   `leavetypeid` int(11) unsigned DEFAULT NULL,
   `leaveday` tinyint(1) DEFAULT NULL COMMENT '1-full day,2-half day',
   `from_date` date DEFAULT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `main_leaverequest` (
   `modifiedby` int(11) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT 1,
+  `isactive` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -94,9 +94,9 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `main_leaverequest_aft_upd` AFTER UPDATE ON `main_leaverequest` FOR EACH ROW BEGIN
 				    declare user_name,repmanager_name,leave_type_name,dept_name,buss_unit_name varchar(200);
 				    declare dept_id,bunit_id bigint(20);
-				    
-				    
-				    
+				    #select userfullname into user_name from main_users where id = new.user_id;
+				    #select userfullname into repmanager_name from main_users where id = new.rep_mang_id;
+				    #select leavetype into leave_type_name from main_employeeleavetypes where id = new.leavetypeid;
 				    select department_id into dept_id from main_employees where user_id = new.user_id;
 				    select b.id,concat(d.deptname," (",d.deptcode,")") ,
 				    if(b.unitcode != "000",concat(b.unitcode,"","-"),"") into bunit_id,dept_name,buss_unit_name 

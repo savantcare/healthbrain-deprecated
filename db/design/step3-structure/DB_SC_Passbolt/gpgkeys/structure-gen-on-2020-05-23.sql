@@ -1,14 +1,14 @@
 use DB_SC_Passbolt;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Passbolt
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,14 +27,14 @@ CREATE TABLE `gpgkeys` (
   `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `key` text COLLATE utf8_unicode_ci NOT NULL,
-  `bits` int(11) DEFAULT 2048,
+  `bits` int(11) DEFAULT '2048',
   `uid` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `key_id` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `fingerprint` varchar(51) COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `expires` datetime DEFAULT NULL,
   `key_created` datetime DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `created_by` varchar(36) COLLATE utf8_unicode_ci NOT NULL,

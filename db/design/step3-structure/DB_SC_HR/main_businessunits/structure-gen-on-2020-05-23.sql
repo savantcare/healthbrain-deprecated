@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,22 +27,22 @@ CREATE TABLE `main_businessunits` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `unitname` varchar(255) NOT NULL,
   `unitcode` varchar(50) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `startdate` date DEFAULT NULL,
   `country` int(11) unsigned DEFAULT NULL,
   `state` int(11) unsigned DEFAULT NULL,
   `city` int(11) unsigned DEFAULT NULL,
-  `address1` text DEFAULT NULL,
-  `address2` text DEFAULT NULL,
-  `address3` text DEFAULT NULL,
+  `address1` text,
+  `address2` text,
+  `address3` text,
   `timezone` int(11) DEFAULT NULL,
   `unithead` varchar(255) DEFAULT NULL,
-  `service_desk_flag` tinyint(1) unsigned DEFAULT 1 COMMENT '1=buwise,0=deptwise',
+  `service_desk_flag` tinyint(1) unsigned DEFAULT '1' COMMENT '1=buwise,0=deptwise',
   `createdby` int(11) unsigned DEFAULT NULL,
   `modifiedby` int(11) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT 1,
+  `isactive` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,9 +63,9 @@ DELIMITER ;;
 				        
 				        update main_leavemanagement_summary lm set lm.businessunit_name = if(NEW.unitcode != "000",concat(NEW.unitcode,"","-"),""),lm.modifieddate = utc_timestamp() 
 				        where lm.businessunit_id = new.id and lm.isactive = 1;
-					
+					#start of main_employees_summary
 					update main_employees_summary set businessunit_name = new.unitname,modifieddate = utc_timestamp() where businessunit_id = new.id and isactive = 1;
-					
+					#end of main_employees_summary
 				    END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;

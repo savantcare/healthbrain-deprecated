@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `main_sd_requests`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `main_sd_requests` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `request_for` tinyint(1) DEFAULT 1 COMMENT '1=service request, 2= asset request',
+  `request_for` tinyint(1) DEFAULT '1' COMMENT '1=service request, 2= asset request',
   `service_desk_id` bigint(20) unsigned DEFAULT NULL COMMENT 'if request_for is equal to 2 then dump id from asset table',
   `service_desk_conf_id` bigint(20) unsigned DEFAULT NULL,
   `service_request_id` bigint(20) unsigned DEFAULT NULL COMMENT 'If request_for is equal to 2 then dump category from asset table',
   `priority` tinyint(1) unsigned DEFAULT NULL COMMENT '1=low,2=medium,3=high',
   `description` varchar(250) DEFAULT NULL,
-  `attachment` text DEFAULT NULL,
+  `attachment` text,
   `status` enum('Open','Cancelled','Management approved','Management rejected','To management approve','Manager approved','Closed','Rejected','Manager rejected','To manager approve') DEFAULT NULL,
   `raised_by` bigint(20) unsigned DEFAULT NULL,
   `ticket_number` varchar(20) DEFAULT NULL,

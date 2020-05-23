@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -39,14 +39,14 @@ CREATE TABLE `main_pa_initialization` (
   `category_id` varchar(250) DEFAULT NULL COMMENT 'comma separated question category ids',
   `initialize_status` tinyint(1) unsigned DEFAULT NULL COMMENT '1=initlaize,2=initialize later',
   `status` tinyint(1) unsigned DEFAULT NULL COMMENT '1=open, 2= close , 3= Force Close.Appraisal staus for the particular period',
-  `pa_group_ids` text DEFAULT NULL COMMENT 'Comma separated group ids',
-  `manager_ids` text DEFAULT NULL COMMENT 'Comma separated manager ids,Whenever manager completes initalization his id has to be appended',
+  `pa_group_ids` text COMMENT 'Comma separated group ids',
+  `manager_ids` text COMMENT 'Comma separated manager ids,Whenever manager completes initalization his id has to be appended',
   `manager_level_type` tinyint(1) unsigned DEFAULT NULL COMMENT '1=configure l1,2=use reporting mangers',
-  `comments` text DEFAULT NULL COMMENT 'To capture hr comments if forceful close of initialization',
-  `group_settings` tinyint(1) DEFAULT 0 COMMENT '0=default screen,1= all, 2=groupwise',
-  `employee_response` tinyint(1) DEFAULT 1 COMMENT '1-No response,2-Response',
+  `comments` text COMMENT 'To capture hr comments if forceful close of initialization',
+  `group_settings` tinyint(1) DEFAULT '0' COMMENT '0=default screen,1= all, 2=groupwise',
+  `employee_response` tinyint(1) DEFAULT '1' COMMENT '1-No response,2-Response',
   `appraisal_ratings` tinyint(1) unsigned DEFAULT NULL COMMENT 'same value as from implementation',
-  `management_appraisal` tinyint(1) unsigned DEFAULT 0 COMMENT '1=management included,0=no management',
+  `management_appraisal` tinyint(1) unsigned DEFAULT '0' COMMENT '1=management included,0=no management',
   `isactive` tinyint(1) unsigned DEFAULT NULL COMMENT '0=inactive,1=active',
   `performance_app_flag` tinyint(4) DEFAULT NULL,
   `createdby` bigint(20) unsigned DEFAULT NULL COMMENT 'id of created user',

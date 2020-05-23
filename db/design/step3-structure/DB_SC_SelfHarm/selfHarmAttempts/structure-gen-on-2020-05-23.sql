@@ -1,14 +1,14 @@
 use DB_SC_SelfHarm;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_SelfHarm
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,7 +29,7 @@ CREATE TABLE `selfHarmAttempts` (
   `createdByUid` int(11) NOT NULL,
   `firstParentId` int(11) NOT NULL,
   `selfHarmType` enum('suicide','plannedSuicide','selfhurt') NOT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `howManyTimes` int(11) DEFAULT NULL,
   `mostRecentAttempts` date DEFAULT NULL,
   `selfHarmStartDate` date DEFAULT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `selfHarmAttempts` (
   `deletedOnDateTime` datetime DEFAULT NULL,
   `deletedOnTimeZone` varchar(255) DEFAULT NULL,
   `deletedFromIPAddress` varchar(255) DEFAULT NULL,
-  `notes` text DEFAULT NULL,
+  `notes` text,
   `typeOfSection` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4215 DEFAULT CHARSET=latin1;

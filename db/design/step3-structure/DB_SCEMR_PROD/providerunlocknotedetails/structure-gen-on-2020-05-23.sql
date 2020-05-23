@@ -1,9 +1,9 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -44,7 +44,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `providerunlocknotedetails` AS (select `unlockedReportSlab`.`scEmployeeUID` AS `scEmployeeUID`,`unlockedReportSlab`.`eventID` AS `eventId`,`unlockedReportSlab`.`eventStartDateTime` AS `eventStartDateTime`,`unlockedReportSlab`.`slab` AS `slab` from `unlockedReportSlab` where (`unlockedReportSlab`.`allNotesAreLocked` <> 'Yes') order by `unlockedReportSlab`.`scEmployeeUID`,`unlockedReportSlab`.`eventStartDateTime`) */;
+/*!50001 VIEW `providerunlocknotedetails` AS (select `unlockedReportSlab`.`scEmployeeUID` AS `scEmployeeUID`,`unlockedReportSlab`.`eventID` AS `eventId`,`unlockedReportSlab`.`eventStartDateTime` AS `eventStartDateTime`,`unlockedReportSlab`.`slab` AS `slab` from `DB_SCEMR_PROD`.`unlockedReportSlab` where (`unlockedReportSlab`.`allNotesAreLocked` <> 'Yes') order by `unlockedReportSlab`.`scEmployeeUID`,`unlockedReportSlab`.`eventStartDateTime`) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;

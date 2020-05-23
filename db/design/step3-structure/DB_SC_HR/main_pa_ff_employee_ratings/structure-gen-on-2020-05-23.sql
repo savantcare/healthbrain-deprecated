@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -28,11 +28,11 @@ CREATE TABLE `main_pa_ff_employee_ratings` (
   `ff_initialization_id` bigint(20) unsigned DEFAULT NULL,
   `manager_id` bigint(20) DEFAULT NULL,
   `employee_id` bigint(20) unsigned DEFAULT NULL,
-  `question_ids` text DEFAULT NULL,
-  `employee_response` text DEFAULT NULL COMMENT '{''Q1'':{''Comment'':''good'',''Rating'':''rating_id''},''Q2'':{''Comment'':''excellent'',''Rating'':''rating_id''}}',
+  `question_ids` text,
+  `employee_response` text COMMENT '{''Q1'':{''Comment'':''good'',''Rating'':''rating_id''},''Q2'':{''Comment'':''excellent'',''Rating'':''rating_id''}}',
   `ff_status` enum('Pending employee ratings','Completed') DEFAULT NULL,
   `consolidated_rating` float(10,2) DEFAULT NULL,
-  `additional_comments` text DEFAULT NULL,
+  `additional_comments` text,
   `createdby` bigint(20) unsigned DEFAULT NULL,
   `createdby_role` bigint(20) unsigned DEFAULT NULL,
   `createdby_group` bigint(20) unsigned DEFAULT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `main_pa_ff_employee_ratings` (
   `modifiedby_group` bigint(20) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT 1,
+  `isactive` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

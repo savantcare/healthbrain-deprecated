@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,7 +27,7 @@ CREATE TABLE `main_pa_ratings` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `pa_configured_id` bigint(20) unsigned DEFAULT NULL,
   `pa_initialization_id` bigint(20) DEFAULT NULL,
-  `rating_type` tinyint(1) DEFAULT 1 COMMENT '1=(1-5),2=(1-10)',
+  `rating_type` tinyint(1) DEFAULT '1' COMMENT '1=(1-5),2=(1-10)',
   `rating_value` int(11) unsigned DEFAULT NULL COMMENT 'Rating value',
   `rating_text` varchar(100) DEFAULT NULL COMMENT 'Rating text',
   `createdby` bigint(20) unsigned DEFAULT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `main_pa_ratings` (
   `modifiedby_group` bigint(20) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT 1,
+  `isactive` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='This table is used to add ratings text in json format.';
 /*!40101 SET character_set_client = @saved_cs_client */;

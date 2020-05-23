@@ -1,14 +1,14 @@
 use DB_SC_HR;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,19 +27,19 @@ CREATE TABLE `main_pa_employee_ratings` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `pa_initialization_id` bigint(20) unsigned DEFAULT NULL,
   `employee_id` bigint(20) unsigned DEFAULT NULL,
-  `employee_response` text DEFAULT NULL COMMENT '{''Q1'':{''Comment'':''good'',''Rating'':''rating_id''},''Q2'':{''Comment'':''excellent'',''Rating'':''rating_id''}}',
-  `manager_response` text DEFAULT NULL COMMENT '{''Q1'':{''Comment'':''good'',''Rating'':''rating_id''},''Q2'':{''Comment'':''excellent'',''Rating'':''rating_id''}}',
-  `skill_response` text DEFAULT NULL COMMENT '{''skill_id'':''rating_id''}',
+  `employee_response` text COMMENT '{''Q1'':{''Comment'':''good'',''Rating'':''rating_id''},''Q2'':{''Comment'':''excellent'',''Rating'':''rating_id''}}',
+  `manager_response` text COMMENT '{''Q1'':{''Comment'':''good'',''Rating'':''rating_id''},''Q2'':{''Comment'':''excellent'',''Rating'':''rating_id''}}',
+  `skill_response` text COMMENT '{''skill_id'':''rating_id''}',
   `line_manager_1` bigint(20) DEFAULT NULL,
   `line_manager_2` bigint(20) DEFAULT NULL,
   `line_manager_3` bigint(20) DEFAULT NULL,
   `line_manager_4` bigint(20) DEFAULT NULL,
   `line_manager_5` bigint(20) DEFAULT NULL,
-  `line_comment_1` text DEFAULT NULL COMMENT '{''rating_id'':''comment''}',
-  `line_comment_2` text DEFAULT NULL COMMENT '{''rating_id'':''comment''}',
-  `line_comment_3` text DEFAULT NULL COMMENT '{''rating_id'':''comment''}',
-  `line_comment_4` text DEFAULT NULL,
-  `line_comment_5` text DEFAULT NULL,
+  `line_comment_1` text COMMENT '{''rating_id'':''comment''}',
+  `line_comment_2` text COMMENT '{''rating_id'':''comment''}',
+  `line_comment_3` text COMMENT '{''rating_id'':''comment''}',
+  `line_comment_4` text,
+  `line_comment_5` text,
   `line_rating_1` int(11) unsigned DEFAULT NULL,
   `line_rating_2` int(11) unsigned DEFAULT NULL,
   `line_rating_3` int(11) unsigned DEFAULT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `main_pa_employee_ratings` (
   `modifiedby_group` bigint(20) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT 1,
+  `isactive` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `NewIndex1` (`pa_initialization_id`),
   KEY `NewIndex2` (`employee_id`),

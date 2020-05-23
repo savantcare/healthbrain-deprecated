@@ -1,14 +1,14 @@
 use DB_SC_PatientFileSecurity;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_PatientFileSecurity
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,9 +27,9 @@ CREATE TABLE `informationOfOpenPatientFile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `openOnUid` int(11) NOT NULL COMMENT 'Open user id',
   `openByUid` int(11) NOT NULL COMMENT 'login user id',
-  `openDateTime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'is server date time',
+  `openDateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'is server date time',
   `note` varchar(255) DEFAULT NULL,
-  `details` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'machine information' CHECK (json_valid(`details`)),
+  `details` json DEFAULT NULL COMMENT 'machine information',
   PRIMARY KEY (`id`),
   KEY `openUid` (`openOnUid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7221 DEFAULT CHARSET=latin1;

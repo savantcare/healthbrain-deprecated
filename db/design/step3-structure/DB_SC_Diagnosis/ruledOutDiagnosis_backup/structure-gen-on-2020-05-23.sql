@@ -1,14 +1,14 @@
 use DB_SC_Diagnosis;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Diagnosis
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `ruledOutDiagnosis_backup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ruledOutDiagnosis_backup` (
-  `id` int(11) unsigned NOT NULL DEFAULT 0,
+  `id` int(11) unsigned NOT NULL DEFAULT '0',
   `ruledOutOnUID` int(11) unsigned NOT NULL,
   `ruledOutByUID` int(11) unsigned NOT NULL,
   `diagnosisId` int(11) NOT NULL,
@@ -32,12 +32,12 @@ CREATE TABLE `ruledOutDiagnosis_backup` (
   `icd10Code` varchar(50) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
   `isItLocked` varchar(10) NOT NULL DEFAULT 'no',
-  `createdAt` datetime DEFAULT current_timestamp(),
+  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
   `endDate` timestamp NULL DEFAULT NULL,
   `createdAtTimezone` varchar(30) DEFAULT NULL,
   `ruledOutBy` int(10) unsigned DEFAULT NULL,
   `ruledOutOn` datetime DEFAULT NULL,
-  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `isDeleted` int(11) NOT NULL DEFAULT '0',
   `deletedByUID` int(11) DEFAULT NULL,
   `deletedOnDateTime` datetime DEFAULT NULL,
   `deletedTimeZone` varchar(5) DEFAULT NULL,

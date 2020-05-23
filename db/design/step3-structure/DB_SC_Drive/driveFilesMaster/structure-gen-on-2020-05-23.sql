@@ -1,14 +1,14 @@
 use DB_SC_Drive;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Drive
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,7 +27,7 @@ CREATE TABLE `driveFilesMaster` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `fileName` varchar(255) DEFAULT NULL,
-  `content` longblob DEFAULT NULL,
+  `content` longblob,
   `uidOfCreatedBy` int(11) unsigned DEFAULT NULL,
   `createdOnTimezone` varchar(100) DEFAULT NULL,
   `createdOn` datetime DEFAULT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `driveFilesMaster` (
   `videoParentID` int(11) DEFAULT NULL,
   `deletedBy` int(11) unsigned DEFAULT NULL,
   `deletedDate` timestamp NULL DEFAULT NULL,
-  `isDeleted` int(1) NOT NULL DEFAULT 0,
+  `isDeleted` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `uidOfCreatedByIndex` (`uidOfCreatedBy`),
   FULLTEXT KEY `driveFile_index` (`name`)

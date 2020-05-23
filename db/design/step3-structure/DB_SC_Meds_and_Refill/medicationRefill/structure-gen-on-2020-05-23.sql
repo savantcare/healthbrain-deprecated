@@ -1,14 +1,14 @@
 use DB_SC_Meds_and_Refill;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Meds_and_Refill
 -- ------------------------------------------------------
--- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,14 +25,14 @@ DROP TABLE IF EXISTS `medicationRefill`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `medicationRefill` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `medicationPatientID` int(11) unsigned DEFAULT 0,
-  `uidOfCreatedBy` int(11) unsigned DEFAULT 0,
+  `medicationPatientID` int(11) unsigned DEFAULT '0',
+  `uidOfCreatedBy` int(11) unsigned DEFAULT '0',
   `uidPrescribeBy` int(11) DEFAULT NULL,
   `uidPrescribedBy` int(11) DEFAULT NULL,
-  `numberOfRefills` int(11) unsigned DEFAULT 0,
-  `qty` int(11) unsigned DEFAULT 0,
+  `numberOfRefills` int(11) unsigned DEFAULT '0',
+  `qty` int(11) unsigned DEFAULT '0',
   `toBeOrderedOn` date DEFAULT NULL,
-  `noteForPatient` text DEFAULT NULL,
+  `noteForPatient` text,
   `status` tinyint(3) unsigned NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `createdAtTimeZone` varchar(3) DEFAULT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `medicationRefill` (
   `updatedAtTimeZone` varchar(3) DEFAULT NULL,
   `isItLocked` enum('yes','no') NOT NULL DEFAULT 'no',
   `isDeleted` int(1) NOT NULL,
-  `directionsForPatient` text DEFAULT NULL,
+  `directionsForPatient` text,
   PRIMARY KEY (`id`),
   KEY `medsPatientIdWithMedsRefill` (`medicationPatientID`),
   KEY `statusId` (`status`),
