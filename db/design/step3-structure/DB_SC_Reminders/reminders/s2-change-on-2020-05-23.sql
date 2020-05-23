@@ -12,8 +12,8 @@ ALTER TABLE `reminders`
   DROP `deletedFromIPAddress`,
   DROP `discontinuedByUID`,
   DROP `discontinuedOnDateTime`,
-  DROP `discontinuedOnTimeZone`;
-
+  DROP `discontinuedTimeZone`,
+  DROP `originId`;
 
 # Why
 # 1. ipaddress and created (3 fields) needs to be recorded both during creation and deletion
@@ -26,11 +26,17 @@ ALTER TABLE `reminders` CHANGE `createdTimeZone` `recordChangedOnTimeZone` VARCH
 # I do not want to set change on date time from app and let mysql take care of it
 ALTER TABLE `reminders` CHANGE `recordChangedOnDateTime` `recordChangedOnDateTime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
 
+# Organize the sequence
+ALTER TABLE `reminders` CHANGE `notes` `notes` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL AFTER `description`;
+ALTER TABLE `reminders` CHANGE `priority` `priority` INT(4) NULL DEFAULT NULL AFTER `notes`;
+
+# More readable
+ALTER TABLE `reminders` CHANGE `reminderStartDate` `remindMeOnDate` DATETIME NOT NULL;
+
 # Why?
 # Enabled temporal DB
 ALTER TABLE reminders ADD SYSTEM VERSIONING;
 # Ref: https://mariadb.com/kb/en/temporal-data-tables/#adding-or-removing-system-versioning-tofrom-a-table
-
 
 # How to see the extra columns created give the command?
 # SELECT value, ROW_START, ROW_END FROM reminders;
