@@ -19,5 +19,5 @@ databases=`$MYSQL --user=$MYSQL_USER -p$MYSQL_PASSWORD -e "SHOW DATABASES;" | gr
 
 
 for db in $databases; do
-  $MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_PASSWORD --databases $db --no-data --skip-dump-date > "$BACKUP_DIR/$db-structure.sql"
+  $MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_PASSWORD --databases $db --no-data --skip-dump-date > "$BACKUP_DIR/$db/structure-on-$(date +%F).sql"
 done
