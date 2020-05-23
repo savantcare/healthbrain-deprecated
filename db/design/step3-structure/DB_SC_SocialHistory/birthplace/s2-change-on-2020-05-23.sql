@@ -45,13 +45,25 @@ SELECT * FROM birthplace FOR SYSTEM_TIME ALL;
 # How to see rows between start and end time?
 SELECT * FROM birthplace FOR SYSTEM_TIME BETWEEN (NOW() - INTERVAL 1 YEAR) AND NOW();
 
-# TODO:
-# Question1: Can this table be partitioned
-# While primary keys are supported on partitioned tables, foreign keys referencing partitioned tables are not supported. (Foreign key references from a partitioned table to some other table are supported
-# Ref: https://mariadb.com/kb/en/temporal-data-tables/+comments/3678
-# https://mariadb.com/kb/en/temporal-data-tables/#storing-the-history-separately
+/* TODO:
 
-# Question2: How should time be stored
-# Seems like UTC is a easier option
+ Need to answer following questions for better design of all the other tables
 
-# Question 3: Can the user who created it be stored coming from mysql user and the app users mapped to mysql user 
+ Q1) How should recordChangeOnDateTime time be stored?
+ History: The dateTime and TimeZone was stored seperately due to 2038 problem as expplained in: https://stackoverflow.com/questions/2012589/php-mysql-year-2038-bug-what-is-it-how-to-solve-it
+ Option1: Let mysql manage it set recordChangeOnDateTime to update_timestamp internal feature of mariaDB
+ Reasons:
+ 1. Storing timezone makes no change since it can be changed by the user on the client. IP address given the location of the user better then the time zone. IP address is also not accurate 100% due to use of VPN. But is more trackable then browser TZ change.
+ 2. Storing in UTC will solve probkems related to PST and PDT. The timestamp column only supports dates 1970-01-01 00:00:01 to 2038-01-19 03:14:07 UTC, due to a limitation. Internally a MySQL timestamp column is stored as UTC but when selecting a date MySQL will automatically convert it to the current session timezone
+
+ Q2) How should other application realated time be stored?
+ Seems like UTC is a easier option
+
+ Q3) Can this table be partitioned?
+ While primary keys are supported on partitioned tables, foreign keys referencing partitioned tables are not supported. (Foreign key references from a partitioned table to some other table are supported
+ Ref: https://mariadb.com/kb/en/temporal-data-tables/+comments/3678
+ https://mariadb.com/kb/en/temporal-data-tables/#storing-the-history-separately
+
+ Q4) Can the user who created it be stored coming from mysql user and the app users mapped to mysql user 
+
+*/
