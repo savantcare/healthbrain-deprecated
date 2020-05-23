@@ -2,6 +2,8 @@
 # 1. There is no delete related 4 fields since it is a time travel DB
 # 2. There is no need for firstParentID and discontinue related 4 fields and since it will be MariDB temporal feature
 
+use DB_SC_SocialHistory;
+
 ALTER TABLE `birthplace`
   DROP `firstParentID`,
   DROP `deletedByUID`,
@@ -10,7 +12,7 @@ ALTER TABLE `birthplace`
   DROP `deletedFromIPAddress`,
   DROP `discontinuedByUID`,
   DROP `discontinuedOnDateTime`,
-  DROP `discontinuedOnTimeZone`,
+  DROP `discontinuedOnTimeZone`;
 
 
 # Why
@@ -26,7 +28,7 @@ ALTER TABLE `birthplace` CHANGE `createdOnTimeZone` `recordChangedOnTimeZone` VA
 
 # Why
 # I do not want to set change on date time from app and let mysql take care of it
-ALTER TABLE `birthplace` CHANGE `createdOnDateTime` `createdOnDateTime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `birthplace` CHANGE `recordChangedOnDateTime` `recordChangedOnDateTime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
 
 # Why?
 # Proper ordering helps
@@ -34,7 +36,7 @@ ALTER TABLE `birthplace` CHANGE `notes` `notes` TEXT CHARACTER SET latin1 COLLAT
 
 # Why?
 # Enabled temporal DB
-ALTER TABLE birthplace ADD SYSTEM VERSIONING;
+# ALTER TABLE birthplace ADD SYSTEM VERSIONING;
 # Ref: https://mariadb.com/kb/en/temporal-data-tables/#adding-or-removing-system-versioning-tofrom-a-table
 
 
@@ -43,11 +45,11 @@ ALTER TABLE birthplace ADD SYSTEM VERSIONING;
 # Ref: https://mariadb.com/kb/en/temporal-data-tables/
 
 # How to see all records that were also deleted?
-SELECT * FROM birthplace FOR SYSTEM_TIME ALL;
+# SELECT * FROM birthplace FOR SYSTEM_TIME ALL;
 # Ref: https://mariadb.com/kb/en/temporal-data-tables/#querying-historical-data
 
 # How to see rows between start and end time?
-SELECT * FROM birthplace FOR SYSTEM_TIME BETWEEN (NOW() - INTERVAL 1 YEAR) AND NOW();
+# SELECT * FROM birthplace FOR SYSTEM_TIME BETWEEN (NOW() - INTERVAL 1 YEAR) AND NOW();
 
 /* TODO:
 
