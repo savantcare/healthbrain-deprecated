@@ -2,9 +2,10 @@
 
 # Create the DB if not exist
 # Ref: https://stackoverflow.com/questions/51654041/loop-through-all-files-in-a-directory-and-subdirectories-using-bash
-for i in $(find . -type d -print)
+for file in $(find . -maxdepth 2 -type f -name "*.sql" -print)
 do
-    mysql -u stanford2008 --password=jaidurgama create database $i
+    echo "== executing create DB $i";
+    mysql -u stanford2008 --password=jaidurgama < $file 
 done
 
 
