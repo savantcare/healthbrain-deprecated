@@ -2,13 +2,13 @@
 # 1. There is no delete related 4 fields since it is a time travel DB
 # 2. There is no need for firstParentID and discontinue related 4 fields and since it will be MariDB temporal feature
 
-use DB_SC_SocialHistory;
+use DB_SC_Reminders;
 
-ALTER TABLE `birthplace`
+ALTER TABLE `reminders`
   DROP `firstParentID`,
   DROP `deletedByUID`,
   DROP `deletedOnDateTime`,
-  DROP `deletedOnTimeZone`,
+  DROP `deletedTimeZone`,
   DROP `deletedFromIPAddress`,
   DROP `discontinuedByUID`,
   DROP `discontinuedOnDateTime`,
@@ -16,40 +16,32 @@ ALTER TABLE `birthplace`
 
 
 # Why
-# 1. Notes can be written both during creation and deletion
-ALTER TABLE `birthplace` CHANGE `discontinueNotes` `notes` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
-
-# Why
 # 1. ipaddress and created (3 fields) needs to be recorded both during creation and deletion
-ALTER TABLE `birthplace` CHANGE `discontinuedFromIPAddress` `recordChangedFromIPAddress` VARCHAR(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
-ALTER TABLE `birthplace` CHANGE `createdByUID` `recordChangedByUID` INT(11) UNSIGNED NULL DEFAULT NULL;
-ALTER TABLE `birthplace` CHANGE `createdOnDateTime` `recordChangedOnDateTime` DATETIME NULL DEFAULT NULL;
-ALTER TABLE `birthplace` CHANGE `createdOnTimeZone` `recordChangedOnTimeZone` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `reminders` CHANGE `discontinuedFromIPAddress` `recordChangedFromIPAddress` VARCHAR(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `reminders` CHANGE `createdBy` `recordChangedByUID` INT(11) UNSIGNED NULL DEFAULT NULL;
+ALTER TABLE `reminders` CHANGE `createdOn` `recordChangedOnDateTime` DATETIME NULL DEFAULT NULL;
+ALTER TABLE `reminders` CHANGE `createdTimeZone` `recordChangedOnTimeZone` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
 
 # Why
 # I do not want to set change on date time from app and let mysql take care of it
-ALTER TABLE `birthplace` CHANGE `recordChangedOnDateTime` `recordChangedOnDateTime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
-
-# Why?
-# Proper ordering helps
-ALTER TABLE `birthplace` CHANGE `notes` `notes` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL AFTER `value`
+ALTER TABLE `reminders` CHANGE `recordChangedOnDateTime` `recordChangedOnDateTime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
 
 # Why?
 # Enabled temporal DB
-ALTER TABLE birthplace ADD SYSTEM VERSIONING;
+ALTER TABLE reminders ADD SYSTEM VERSIONING;
 # Ref: https://mariadb.com/kb/en/temporal-data-tables/#adding-or-removing-system-versioning-tofrom-a-table
 
 
 # How to see the extra columns created give the command?
-# SELECT value, ROW_START, ROW_END FROM birthplace;
+# SELECT value, ROW_START, ROW_END FROM reminders;
 # Ref: https://mariadb.com/kb/en/temporal-data-tables/
 
 # How to see all records that were also deleted?
-# SELECT * FROM birthplace FOR SYSTEM_TIME ALL;
+# SELECT * FROM reminders FOR SYSTEM_TIME ALL;
 # Ref: https://mariadb.com/kb/en/temporal-data-tables/#querying-historical-data
 
 # How to see rows between start and end time?
-# SELECT * FROM birthplace FOR SYSTEM_TIME BETWEEN (NOW() - INTERVAL 1 YEAR) AND NOW();
+# SELECT * FROM reminders FOR SYSTEM_TIME BETWEEN (NOW() - INTERVAL 1 YEAR) AND NOW();
 
 /* TODO:
 
