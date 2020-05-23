@@ -1,14 +1,14 @@
-use DB_SC_Brain
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_Brain;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Brain
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `reminders_bk_for_migration`;
 CREATE TABLE `reminders_bk_for_migration` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uidOfPatient` int(10) unsigned NOT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `reminderStartDate` datetime NOT NULL,
   `createdBy` int(10) unsigned NOT NULL,
   `createdOn` datetime DEFAULT NULL,

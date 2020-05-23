@@ -1,14 +1,14 @@
-use DB_SC_HR_V4
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR_V4;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR_V4
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,9 +27,9 @@ CREATE TABLE `ohrm_auth_provider_extra_details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `provider_id` int(10) NOT NULL,
   `provider_type` int(11) DEFAULT NULL,
-  `client_id` text,
-  `client_secret` text,
-  `developer_key` text,
+  `client_id` text DEFAULT NULL,
+  `client_secret` text DEFAULT NULL,
+  `developer_key` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `provider_id` (`provider_id`),
   CONSTRAINT `ohrm_auth_provider_extra_details_ibfk_1` FOREIGN KEY (`provider_id`) REFERENCES `ohrm_openid_provider` (`id`) ON DELETE CASCADE ON UPDATE CASCADE

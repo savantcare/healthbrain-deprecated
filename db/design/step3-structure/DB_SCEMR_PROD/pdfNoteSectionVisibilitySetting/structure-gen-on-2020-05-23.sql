@@ -1,14 +1,14 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,30 +26,30 @@ DROP TABLE IF EXISTS `pdfNoteSectionVisibilitySetting`;
 CREATE TABLE `pdfNoteSectionVisibilitySetting` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `providerId` int(10) NOT NULL,
-  `socialHistory` tinyint(1) NOT NULL DEFAULT '1',
-  `majorLifeEvents` tinyint(1) NOT NULL DEFAULT '1',
-  `selfHarmDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `substanceUseDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `hospitalisationHistory` tinyint(1) NOT NULL DEFAULT '1',
-  `diagnosisHistory` tinyint(1) NOT NULL DEFAULT '1',
-  `ruleOutDiagnosisHistory` tinyint(1) NOT NULL DEFAULT '1',
-  `pastPRSDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `pastMSEDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `MSEDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `allergiesHistory` tinyint(1) NOT NULL DEFAULT '1',
-  `bodyMeasurementDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `currentMedicineDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `discontinuedMedicineDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `currentPRSDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `medicationRefillDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `recommendationDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `reminderDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `serviceStatementDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `planCommentDetails` tinyint(1) NOT NULL DEFAULT '1',
-  `medicalHistory` tinyint(1) NOT NULL DEFAULT '1',
-  `outpatientTreatment` tinyint(1) NOT NULL DEFAULT '1',
-  `medsTrials` tinyint(1) NOT NULL DEFAULT '1',
-  `historyOfViolence` tinyint(1) NOT NULL DEFAULT '1',
+  `socialHistory` tinyint(1) NOT NULL DEFAULT 1,
+  `majorLifeEvents` tinyint(1) NOT NULL DEFAULT 1,
+  `selfHarmDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `substanceUseDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `hospitalisationHistory` tinyint(1) NOT NULL DEFAULT 1,
+  `diagnosisHistory` tinyint(1) NOT NULL DEFAULT 1,
+  `ruleOutDiagnosisHistory` tinyint(1) NOT NULL DEFAULT 1,
+  `pastPRSDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `pastMSEDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `MSEDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `allergiesHistory` tinyint(1) NOT NULL DEFAULT 1,
+  `bodyMeasurementDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `currentMedicineDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `discontinuedMedicineDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `currentPRSDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `medicationRefillDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `recommendationDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `reminderDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `serviceStatementDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `planCommentDetails` tinyint(1) NOT NULL DEFAULT 1,
+  `medicalHistory` tinyint(1) NOT NULL DEFAULT 1,
+  `outpatientTreatment` tinyint(1) NOT NULL DEFAULT 1,
+  `medsTrials` tinyint(1) NOT NULL DEFAULT 1,
+  `historyOfViolence` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `providerId` (`providerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;

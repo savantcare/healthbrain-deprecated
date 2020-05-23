@@ -1,14 +1,14 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,15 +26,15 @@ DROP TABLE IF EXISTS `deviceCellPhoneInformation`;
 CREATE TABLE `deviceCellPhoneInformation` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) unsigned NOT NULL,
-  `deviceID` bigint(20) NOT NULL DEFAULT '0',
+  `deviceID` bigint(20) NOT NULL DEFAULT 0,
   `primaryEmailIDOnTheDevice` varchar(255) DEFAULT NULL,
-  `gmtOffset` int(11) DEFAULT '0',
+  `gmtOffset` int(11) DEFAULT 0,
   `countryCode` char(2) DEFAULT 'in',
   `deviceName` varchar(255) DEFAULT NULL,
   `otherEmailsConfiguredOnDevice` varchar(255) DEFAULT NULL,
   `sessionKey` varchar(35) DEFAULT NULL,
-  `registeredOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `lastLogin` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `registeredOn` timestamp NOT NULL DEFAULT current_timestamp(),
+  `lastLogin` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

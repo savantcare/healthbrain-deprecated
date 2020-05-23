@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -34,10 +34,10 @@ CREATE TABLE `main_disciplinary_incident` (
   `violation_id` bigint(20) unsigned DEFAULT NULL,
   `violation_expiry` date DEFAULT NULL,
   `employee_job_title_id` bigint(20) unsigned DEFAULT NULL,
-  `employer_statement` text,
-  `employee_appeal` tinyint(1) DEFAULT '1' COMMENT '1=Yes,2=No',
-  `employee_statement` text,
-  `cao_verdict` tinyint(1) DEFAULT '1' COMMENT '1=guilty,2=not guilty',
+  `employer_statement` text DEFAULT NULL,
+  `employee_appeal` tinyint(1) DEFAULT 1 COMMENT '1=Yes,2=No',
+  `employee_statement` text DEFAULT NULL,
+  `cao_verdict` tinyint(1) DEFAULT 1 COMMENT '1=guilty,2=not guilty',
   `corrective_action` enum('Suspension With Pay','Suspension W/O Pay','Termination','Other') DEFAULT 'Suspension With Pay',
   `corrective_action_text` varchar(255) DEFAULT NULL,
   `incident_status` enum('Initiated','Appealed','Closed') DEFAULT 'Initiated',
@@ -45,7 +45,7 @@ CREATE TABLE `main_disciplinary_incident` (
   `modifiedby` bigint(20) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT '1',
+  `isactive` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

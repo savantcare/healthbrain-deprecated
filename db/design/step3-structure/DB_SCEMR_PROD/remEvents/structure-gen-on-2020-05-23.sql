@@ -1,14 +1,14 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,7 +27,7 @@ CREATE TABLE `remEvents` (
   `eventID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `publicUniqueEventId` varchar(36) DEFAULT NULL,
   `managedByRecurringEventParentID` int(11) DEFAULT NULL,
-  `eventTypeID` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `eventTypeID` tinyint(4) unsigned NOT NULL DEFAULT 0,
   `uidOfCreatedBy` int(11) unsigned DEFAULT NULL,
   `title` varchar(1000) DEFAULT NULL,
   `startDateTime` datetime DEFAULT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `remEvents` (
   `cacheFieldCronCreatedForEventTimeZone` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `companyID` int(11) unsigned DEFAULT NULL,
   `isItLocked` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'This field decides whether the event is locked or not',
-  `isNoteContainerMinimized` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '0 : link has not been clicked. 1. Nornal size open 2 : minimized, 3 : user chosen custom size',
+  `isNoteContainerMinimized` tinyint(4) unsigned NOT NULL DEFAULT 0 COMMENT '0 : link has not been clicked. 1. Nornal size open 2 : minimized, 3 : user chosen custom size',
   `checkin_status` int(11) DEFAULT NULL,
   `checkingUpdatedAt` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `remEvents` (
   `uidOfUpdatedBy` int(11) unsigned DEFAULT NULL,
   `timeZoneForCreatedAt` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `timeZoneForUpdatedAt` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `isCached` tinyint(1) NOT NULL DEFAULT '0',
+  `isCached` tinyint(1) NOT NULL DEFAULT 0,
   `priority` enum('Green','Yellow','Red') NOT NULL DEFAULT 'Green',
   `googleCalendarEventID` varchar(255) DEFAULT NULL,
   `startDateTimeOfIntake` datetime DEFAULT NULL,

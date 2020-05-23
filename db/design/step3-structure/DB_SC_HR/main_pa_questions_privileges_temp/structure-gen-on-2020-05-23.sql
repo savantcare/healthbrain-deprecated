@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -28,8 +28,8 @@ CREATE TABLE `main_pa_questions_privileges_temp` (
   `pa_initialization_id` bigint(20) unsigned DEFAULT NULL COMMENT 'Appraisal initialization id for appraisal else feedforward initialization id for feedforward',
   `group_id` bigint(20) unsigned DEFAULT NULL,
   `employee_id` bigint(20) unsigned DEFAULT NULL COMMENT 'id of the employee',
-  `hr_qs` text COMMENT 'Comma separated question ids created by hr',
-  `hr_group_qs_privileges` text COMMENT '{''groupid:''{''Q1'':{''Manager Comments'':1,''Employee Comments'':1,''Manager Ratings'':1,''Employee Ratings'':1}}}',
+  `hr_qs` text DEFAULT NULL COMMENT 'Comma separated question ids created by hr',
+  `hr_group_qs_privileges` text DEFAULT NULL COMMENT '{''groupid:''{''Q1'':{''Manager Comments'':1,''Employee Comments'':1,''Manager Ratings'':1,''Employee Ratings'':1}}}',
   `line_manager_1` bigint(20) DEFAULT NULL COMMENT 'Line 1 reporting manager',
   `line_manager_2` bigint(20) DEFAULT NULL COMMENT 'Line 2 reporting manager',
   `line_manager_3` bigint(20) DEFAULT NULL COMMENT 'Line 3 reporting manager',
@@ -45,7 +45,7 @@ CREATE TABLE `main_pa_questions_privileges_temp` (
   `modifiedby_group` bigint(20) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) unsigned DEFAULT '1',
+  `isactive` tinyint(1) unsigned DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='Stores the questions, privileges and groups when initialized';
 /*!40101 SET character_set_client = @saved_cs_client */;

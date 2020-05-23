@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,7 +29,7 @@ CREATE TABLE `main_organisationinfo` (
   `org_image` varchar(255) DEFAULT NULL,
   `domain` varchar(255) DEFAULT NULL,
   `website` varchar(255) DEFAULT NULL,
-  `orgdescription` text,
+  `orgdescription` text DEFAULT NULL,
   `totalemployees` int(11) unsigned DEFAULT NULL,
   `registration_number` varchar(255) DEFAULT NULL,
   `org_startdate` date DEFAULT NULL,
@@ -41,17 +41,17 @@ CREATE TABLE `main_organisationinfo` (
   `country` int(11) unsigned DEFAULT NULL,
   `state` int(11) unsigned DEFAULT NULL,
   `city` int(11) unsigned DEFAULT NULL,
-  `address1` text,
-  `address2` text,
-  `address3` text,
-  `description` text,
+  `address1` text DEFAULT NULL,
+  `address2` text DEFAULT NULL,
+  `address3` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `orghead` varchar(255) DEFAULT NULL,
   `designation` varchar(255) DEFAULT NULL,
   `createdby` int(11) unsigned DEFAULT NULL,
   `modifiedby` int(11) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) unsigned DEFAULT '1',
+  `isactive` tinyint(1) unsigned DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

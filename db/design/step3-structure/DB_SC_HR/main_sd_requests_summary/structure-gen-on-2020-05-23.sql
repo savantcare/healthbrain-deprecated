@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `main_sd_requests_summary`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `main_sd_requests_summary` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `request_for` tinyint(1) DEFAULT '1' COMMENT '1=service request,2=asset request',
+  `request_for` tinyint(1) DEFAULT 1 COMMENT '1=service request,2=asset request',
   `sd_requests_id` bigint(20) DEFAULT NULL,
   `service_desk_id` bigint(20) unsigned DEFAULT NULL COMMENT 'If request_for equal to 2 then dump asset id from asset table',
   `service_desk_name` varchar(250) DEFAULT NULL COMMENT 'If request_for equal to 2 then dump asset name from asset table',
@@ -34,7 +34,7 @@ CREATE TABLE `main_sd_requests_summary` (
   `service_request_id` bigint(20) unsigned DEFAULT NULL COMMENT 'If request_for equal to 2 then dump asset name from asset_categories table',
   `priority` tinyint(1) unsigned DEFAULT NULL COMMENT '1=low,2=medium,3=high',
   `description` varchar(250) DEFAULT NULL,
-  `attachment` text,
+  `attachment` text DEFAULT NULL,
   `status` varchar(35) DEFAULT NULL,
   `raised_by` bigint(20) unsigned DEFAULT NULL,
   `raised_by_name` varchar(250) DEFAULT NULL,

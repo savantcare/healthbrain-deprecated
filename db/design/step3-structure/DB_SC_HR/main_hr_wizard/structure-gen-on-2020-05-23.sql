@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,10 +25,10 @@ DROP TABLE IF EXISTS `main_hr_wizard`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `main_hr_wizard` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `leavetypes` tinyint(1) DEFAULT '1' COMMENT '1=No,2=Yes',
-  `holidays` tinyint(1) DEFAULT '1' COMMENT '1=No,2=Yes',
-  `perf_appraisal` tinyint(1) DEFAULT '1' COMMENT '1=No,2=Yes',
-  `iscomplete` tinyint(1) DEFAULT '1' COMMENT '0=later,1=No,2=Yes',
+  `leavetypes` tinyint(1) DEFAULT 1 COMMENT '1=No,2=Yes',
+  `holidays` tinyint(1) DEFAULT 1 COMMENT '1=No,2=Yes',
+  `perf_appraisal` tinyint(1) DEFAULT 1 COMMENT '1=No,2=Yes',
+  `iscomplete` tinyint(1) DEFAULT 1 COMMENT '0=later,1=No,2=Yes',
   `createdby` bigint(20) unsigned DEFAULT NULL,
   `modifiedby` bigint(20) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,

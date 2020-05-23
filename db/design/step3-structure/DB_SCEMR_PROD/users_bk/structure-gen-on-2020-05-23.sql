@@ -1,14 +1,14 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `users_bk`;
 CREATE TABLE `users_bk` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `publicUniqueId` varchar(36) DEFAULT NULL,
-  `facebookID` text,
+  `facebookID` text DEFAULT NULL,
   `emailAddress` varchar(255) DEFAULT NULL,
   `password` varchar(128) DEFAULT NULL,
   `wikiUid` varchar(255) DEFAULT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `users_bk` (
   `namePrefix` varchar(100) DEFAULT NULL,
   `nameSuffix` varchar(256) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
-  `isDeleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0: not deleted, 1: deleted',
+  `isDeleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: not deleted, 1: deleted',
   `companyID` int(11) unsigned DEFAULT NULL,
   `emailValidatedOn` datetime DEFAULT NULL,
   `emailValidationCode` varchar(6) DEFAULT NULL,
@@ -48,15 +48,15 @@ CREATE TABLE `users_bk` (
   `allowedToLogin` enum('Yes','No') NOT NULL DEFAULT 'Yes',
   `allowedToMasterDB` enum('Yes','No') NOT NULL DEFAULT 'No',
   `dateOfBirth` date DEFAULT NULL COMMENT 'On 19th sept 2015 changed from 2 seperate tables to reduce complexity',
-  `dateOfBirthNotes` text,
+  `dateOfBirthNotes` text DEFAULT NULL,
   `preferredTimeZone` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `uidOfCreatedBy` int(11) unsigned DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `timeZoneAbbreviationForCreated_at` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `timeZoneAbbreviationForUpdated_at` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `isCachedForUserReport` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = Not Cached, 1 = Cached',
-  `numberOfLoggedIn` tinyint(11) NOT NULL DEFAULT '0',
+  `isCachedForUserReport` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = Not Cached, 1 = Cached',
+  `numberOfLoggedIn` tinyint(11) NOT NULL DEFAULT 0,
   `lastLoggedIn` datetime DEFAULT NULL,
   `timeZoneAbbreviationOfLastLoggedIn` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `TFASecretCode` varchar(50) DEFAULT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE `users_bk` (
   `associatedCalendarColorCode` varchar(10) DEFAULT NULL,
   `sentDataToGoogleCalender` enum('yes','no') NOT NULL DEFAULT 'yes',
   `recieveDataFromGoogleCalender` enum('yes','no') NOT NULL DEFAULT 'yes',
-  `snapShot` longblob,
+  `snapShot` longblob DEFAULT NULL,
   `snapShotTime` datetime DEFAULT NULL,
   `skypeId` varchar(255) DEFAULT NULL,
   `facetimeId` varchar(255) DEFAULT NULL,

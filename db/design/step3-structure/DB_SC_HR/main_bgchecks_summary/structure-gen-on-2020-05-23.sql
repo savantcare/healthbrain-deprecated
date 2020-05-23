@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -28,7 +28,7 @@ CREATE TABLE `main_bgchecks_summary` (
   `detail_id` bigint(11) unsigned DEFAULT NULL,
   `specimen_name` varchar(200) DEFAULT NULL,
   `specimen_id` bigint(11) unsigned DEFAULT NULL,
-  `specimen_flag` tinyint(1) DEFAULT '1',
+  `specimen_flag` tinyint(1) DEFAULT 1,
   `specimen_flag_name` enum('Employee','Candidate') DEFAULT 'Employee',
   `employee_id` varchar(200) DEFAULT NULL,
   `screeningtypeid` bigint(11) unsigned DEFAULT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `main_bgchecks_summary` (
   `createdname` varchar(200) DEFAULT NULL,
   `modifiedby` bigint(11) unsigned DEFAULT NULL,
   `modifiedname` varchar(200) DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT '1',
+  `isactive` tinyint(1) DEFAULT 1,
   `isactive_text` varchar(50) DEFAULT 'Active',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

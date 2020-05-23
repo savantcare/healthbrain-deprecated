@@ -29,7 +29,7 @@ for db in $allDatabases; do
 
     for table in $allTableNames; do
 	mkdir $db/$table
-	echo "use $db" > $db/$table/structure-gen-on-$when.sql
+	echo "use $db;" > $db/$table/structure-gen-on-$when.sql
 	$MYSQLDUMP $db --force --opt --user=$MYSQL_USER -p$MYSQL_PASSWORD $table --no-data --skip-dump-date >> "$BACKUP_DIR/$db/$table/structure-gen-on-$when.sql"
     done
 done

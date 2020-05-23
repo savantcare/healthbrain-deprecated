@@ -1,14 +1,14 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,8 +27,8 @@ CREATE TABLE `preferredInsuranceCompaniesOfProvider` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uidOfProvider` int(11) unsigned NOT NULL,
   `uidOfInsuranceCompany` int(11) unsigned DEFAULT NULL COMMENT 'user id of Insurance company - In contract with SC',
-  `flgNoInsuranceCompany` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0: false, 1: true',
-  `flgAssignmentFromSCPsychiatrist` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0: false, 1: true',
+  `flgNoInsuranceCompany` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0: false, 1: true',
+  `flgAssignmentFromSCPsychiatrist` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0: false, 1: true',
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uidOfProvider` (`uidOfProvider`)

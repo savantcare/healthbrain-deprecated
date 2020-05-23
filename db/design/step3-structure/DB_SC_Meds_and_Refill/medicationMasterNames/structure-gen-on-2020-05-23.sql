@@ -1,14 +1,14 @@
-use DB_SC_Meds_and_Refill
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_Meds_and_Refill;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Meds_and_Refill
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,19 +27,19 @@ CREATE TABLE `medicationMasterNames` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `PharmGKBAccessionId` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `genericNames` text,
-  `tradeNames` text,
-  `brandMixtures` text,
+  `genericNames` text DEFAULT NULL,
+  `tradeNames` text DEFAULT NULL,
+  `brandMixtures` text DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
-  `crossReferences` text,
-  `smiles` text,
-  `dosingGuideline` text,
-  `externalVocabulary` text,
+  `crossReferences` text DEFAULT NULL,
+  `smiles` text DEFAULT NULL,
+  `dosingGuideline` text DEFAULT NULL,
+  `externalVocabulary` text DEFAULT NULL,
   `brandOrGeneric` enum('Brand','Generic') DEFAULT NULL,
   `maxFDAapproved` int(11) DEFAULT NULL,
   `reviewedBy` int(10) unsigned DEFAULT NULL,
-  `reviewedOn` datetime DEFAULT CURRENT_TIMESTAMP,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reviewedOn` datetime DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)

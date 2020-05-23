@@ -1,14 +1,14 @@
-use DB_SCEMR_voiceMail
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_voiceMail;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_voiceMail
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,14 +25,14 @@ DROP TABLE IF EXISTS `voicemails`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `voicemails` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `audioFile` longblob,
-  `autoTranslationText` text,
+  `audioFile` longblob DEFAULT NULL,
+  `autoTranslationText` text DEFAULT NULL,
   `autoTranslationDoneBy` enum('Google','Microsoft') DEFAULT NULL,
   `autoTranslationConfidenceValue` float DEFAULT NULL,
   `autoTranslationConfidencePercentage` float DEFAULT NULL,
   `autoTranslationConfidenceType` varchar(50) DEFAULT NULL,
   `autoTranslationStatus` varchar(100) DEFAULT NULL,
-  `manualTranslationText` text,
+  `manualTranslationText` text DEFAULT NULL,
   `manualTranslationDoneByUID` int(11) DEFAULT NULL,
   `manualTranslationDoneByFullName` varchar(100) DEFAULT NULL,
   `datetimeOfManualTranslationDoneOn` datetime DEFAULT NULL,

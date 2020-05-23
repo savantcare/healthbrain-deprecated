@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,20 +26,20 @@ DROP TABLE IF EXISTS `main_bgcheckdetails`;
 CREATE TABLE `main_bgcheckdetails` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `specimen_id` int(11) unsigned DEFAULT NULL,
-  `flag` tinyint(1) DEFAULT '1' COMMENT '1 - employee, 2- candidate',
+  `flag` tinyint(1) DEFAULT 1 COMMENT '1 - employee, 2- candidate',
   `process_status` enum('In process','On hold','Complete') DEFAULT 'In process',
   `bgagency_id` int(11) unsigned DEFAULT NULL,
   `bgcheck_type` varchar(100) DEFAULT NULL,
   `bgagency_pocid` int(11) unsigned DEFAULT NULL,
   `bgcheck_status` enum('Yet to start','In process','On hold','Complete') DEFAULT 'In process',
-  `explanation` text,
+  `explanation` text DEFAULT NULL,
   `feedback_file` varchar(50) DEFAULT NULL,
   `feedback_deletedby` int(11) DEFAULT NULL,
   `createdby` int(11) unsigned DEFAULT NULL,
   `modifiedby` int(11) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT '1' COMMENT '0 - Process deleted, 1 - Active, 2 - Agency deleted',
+  `isactive` tinyint(1) DEFAULT 1 COMMENT '0 - Process deleted, 1 - Active, 2 - Agency deleted',
   `recentlycommentedby` int(11) unsigned DEFAULT NULL,
   `recentlycommenteddate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)

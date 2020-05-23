@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,14 +27,14 @@ CREATE TABLE `main_empmedicalclaims` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) DEFAULT NULL,
   `injury_type` tinyint(1) DEFAULT NULL COMMENT '1-injury,2-maternity,3-paternity,4-disablity',
-  `injury_description` text,
+  `injury_description` text DEFAULT NULL,
   `injury_indicator` tinyint(1) DEFAULT NULL COMMENT '1-yes,2-no',
   `injured_date` date DEFAULT NULL,
   `injury_name` varchar(100) DEFAULT NULL,
   `injury_severity` tinyint(1) DEFAULT NULL COMMENT '1-Major,2-Minor',
   `disability_type` varchar(100) DEFAULT NULL,
   `other_disability_type` varchar(100) DEFAULT NULL,
-  `disablity_approved` tinyint(1) DEFAULT '1' COMMENT '1-yes,2-no',
+  `disablity_approved` tinyint(1) DEFAULT 1 COMMENT '1-yes,2-no',
   `medical_insurer_name` varchar(100) DEFAULT NULL COMMENT 'Medical insurer name',
   `expected_date_join` date DEFAULT NULL,
   `leavebyemployeer_to_date` date DEFAULT NULL,
@@ -44,10 +44,10 @@ CREATE TABLE `main_empmedicalclaims` (
   `leaveappliedbyemployee_from_date` date DEFAULT NULL,
   `leaveappliedbyemployee_days` bigint(20) DEFAULT NULL,
   `hospital_name` varchar(100) DEFAULT NULL,
-  `hospital_address` text,
+  `hospital_address` text DEFAULT NULL,
   `room_number` varchar(50) DEFAULT NULL,
   `concerned_physician_name` varchar(100) DEFAULT NULL,
-  `treatment_details` text,
+  `treatment_details` text DEFAULT NULL,
   `total_cost` bigint(20) DEFAULT NULL,
   `amount_claimed_for` bigint(20) DEFAULT NULL,
   `amount_approved` bigint(20) DEFAULT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `main_empmedicalclaims` (
   `modifiedby` bigint(20) DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT '1',
+  `isactive` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `unique_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;

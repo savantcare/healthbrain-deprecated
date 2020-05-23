@@ -1,14 +1,14 @@
-use DB_SC_OfficialLetter
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_OfficialLetter;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_OfficialLetter
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,9 +29,9 @@ CREATE TABLE `savedLetterTemplate` (
   `createdOn` datetime NOT NULL,
   `createdOnTimeZone` char(3) NOT NULL,
   `templateName` varchar(255) NOT NULL,
-  `letterSubject` text,
-  `letterText` text,
-  `letterClosingText` text,
+  `letterSubject` text DEFAULT NULL,
+  `letterText` text DEFAULT NULL,
+  `letterClosingText` text DEFAULT NULL,
   `isDeleted` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0=Not deleted, 1= deleted',
   `deletedBy` int(11) DEFAULT NULL,
   `deletedOn` datetime DEFAULT NULL,

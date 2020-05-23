@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -36,9 +36,9 @@ CREATE TABLE `main_candidatedetails` (
   `cand_resume_deletedby` int(11) DEFAULT NULL,
   `qualification` varchar(100) NOT NULL,
   `experience` float DEFAULT NULL,
-  `skillset` text,
-  `education_summary` text,
-  `summary` text COMMENT 'instead of resume',
+  `skillset` text DEFAULT NULL,
+  `education_summary` text DEFAULT NULL,
+  `summary` text DEFAULT NULL COMMENT 'instead of resume',
   `cand_status` enum('Shortlisted','Selected','Rejected','On hold','Disqualified','Scheduled','Not Scheduled','Recruited','Requisition Closed/Completed') NOT NULL,
   `backgroundchk_status` enum('In process','Completed','Not Applicable','Yet to start','On hold') DEFAULT 'Yet to start',
   `cand_location` varchar(150) DEFAULT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `main_candidatedetails` (
   `modifiedby` int(11) unsigned DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) unsigned DEFAULT '1',
+  `isactive` tinyint(1) unsigned DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

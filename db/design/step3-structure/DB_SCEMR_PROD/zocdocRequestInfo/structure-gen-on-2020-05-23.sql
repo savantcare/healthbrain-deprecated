@@ -1,14 +1,14 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,14 +26,14 @@ DROP TABLE IF EXISTS `zocdocRequestInfo`;
 CREATE TABLE `zocdocRequestInfo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `requestReceivedOn` datetime NOT NULL,
-  `summary` text,
-  `googleCalendarID` text,
-  `googleCalendarEventID` text,
-  `doctorEmail` text,
-  `status` text,
-  `startDate` text,
-  `endDate` text,
-  `description` text,
+  `summary` text DEFAULT NULL,
+  `googleCalendarID` text DEFAULT NULL,
+  `googleCalendarEventID` text DEFAULT NULL,
+  `doctorEmail` text DEFAULT NULL,
+  `status` text DEFAULT NULL,
+  `startDate` text DEFAULT NULL,
+  `endDate` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=521399 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

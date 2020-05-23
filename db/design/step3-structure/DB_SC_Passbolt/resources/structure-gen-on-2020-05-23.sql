@@ -1,14 +1,14 @@
-use DB_SC_Passbolt
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_Passbolt;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Passbolt
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,8 +29,8 @@ CREATE TABLE `resources` (
   `username` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `expiry_date` timestamp NULL DEFAULT NULL,
   `uri` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `description` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `created_by` varchar(36) COLLATE utf8_unicode_ci NOT NULL,

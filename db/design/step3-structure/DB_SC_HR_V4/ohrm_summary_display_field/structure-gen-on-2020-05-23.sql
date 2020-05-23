@@ -1,14 +1,14 @@
-use DB_SC_HR_V4
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR_V4;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR_V4
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -36,7 +36,7 @@ CREATE TABLE `ohrm_summary_display_field` (
   `width` varchar(255) NOT NULL,
   `is_exportable` varchar(10) DEFAULT NULL,
   `text_alignment_style` varchar(20) DEFAULT NULL,
-  `is_value_list` tinyint(1) NOT NULL DEFAULT '0',
+  `is_value_list` tinyint(1) NOT NULL DEFAULT 0,
   `display_field_group_id` int(10) unsigned DEFAULT NULL,
   `default_value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`summary_display_field_id`),

@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,22 +27,22 @@ CREATE TABLE `main_sd_configurations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `businessunit_id` bigint(20) unsigned DEFAULT NULL,
   `department_id` bigint(20) unsigned DEFAULT NULL,
-  `service_desk_flag` tinyint(1) DEFAULT '1' COMMENT '1=businessunitwise,0=departmentwise',
-  `request_for` tinyint(1) DEFAULT '1' COMMENT '1=service request,2=asset request',
+  `service_desk_flag` tinyint(1) DEFAULT 1 COMMENT '1=businessunitwise,0=departmentwise',
+  `request_for` tinyint(1) DEFAULT 1 COMMENT '1=service request,2=asset request',
   `service_desk_id` bigint(20) DEFAULT NULL,
-  `request_recievers` text,
-  `cc_mail_recievers` text,
+  `request_recievers` text DEFAULT NULL,
+  `cc_mail_recievers` text DEFAULT NULL,
   `approver_1` bigint(20) unsigned DEFAULT NULL,
   `approver_2` bigint(20) unsigned DEFAULT NULL,
   `approver_3` bigint(20) unsigned DEFAULT NULL,
-  `attachment` tinyint(1) DEFAULT '0' COMMENT '1=yes,0=no',
+  `attachment` tinyint(1) DEFAULT 0 COMMENT '1=yes,0=no',
   `description` varchar(255) DEFAULT NULL,
   `sd_category` varchar(255) DEFAULT NULL,
   `createdby` bigint(20) DEFAULT NULL,
   `modifiedby` bigint(20) DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
   `modifieddate` datetime DEFAULT NULL,
-  `isactive` tinyint(1) DEFAULT '1',
+  `isactive` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

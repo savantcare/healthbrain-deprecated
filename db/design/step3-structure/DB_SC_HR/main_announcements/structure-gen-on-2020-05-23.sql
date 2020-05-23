@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `main_announcements`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `main_announcements` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `businessunit_id` text,
-  `department_id` text,
+  `businessunit_id` text DEFAULT NULL,
+  `department_id` text DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `description` text,
-  `attachments` text,
+  `description` text DEFAULT NULL,
+  `attachments` text DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL COMMENT '1-Save as draft, 2-Posted',
   `isactive` tinyint(1) DEFAULT NULL,
   `createdby` bigint(20) DEFAULT NULL,

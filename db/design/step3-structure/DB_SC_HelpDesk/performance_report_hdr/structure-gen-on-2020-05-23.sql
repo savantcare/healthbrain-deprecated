@@ -1,14 +1,14 @@
-use DB_SC_HelpDesk
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HelpDesk;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HelpDesk
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -24,22 +24,24 @@ DROP TABLE IF EXISTS `performance_report_hdr`;
 /*!50001 DROP VIEW IF EXISTS `performance_report_hdr`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `performance_report_hdr` AS SELECT 
- 1 AS `user_id`,
- 1 AS `role`,
- 1 AS `Fullname`,
- 1 AS `total`,
- 1 AS `resolved`,
- 1 AS `reopen`,
- 1 AS `avg_response`,
- 1 AS `avg_resolution_time_in_min`,
- 1 AS `avg_response_time_in_min`*/;
+/*!50001 CREATE TABLE `performance_report_hdr` (
+  `user_id` tinyint NOT NULL,
+  `role` tinyint NOT NULL,
+  `Fullname` tinyint NOT NULL,
+  `total` tinyint NOT NULL,
+  `resolved` tinyint NOT NULL,
+  `reopen` tinyint NOT NULL,
+  `avg_response` tinyint NOT NULL,
+  `avg_resolution_time_in_min` tinyint NOT NULL,
+  `avg_response_time_in_min` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
 -- Final view structure for view `performance_report_hdr`
 --
 
+/*!50001 DROP TABLE IF EXISTS `performance_report_hdr`*/;
 /*!50001 DROP VIEW IF EXISTS `performance_report_hdr`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;

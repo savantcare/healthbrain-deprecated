@@ -1,14 +1,14 @@
-use DB_SC_SocialHistory
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_SocialHistory;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_SocialHistory
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,7 +27,7 @@ CREATE TABLE `highestEducation` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uidOfPatient` int(11) unsigned NOT NULL,
   `value` varchar(255) NOT NULL,
-  `firstParentID` int(11) unsigned NOT NULL DEFAULT '0',
+  `firstParentID` int(11) unsigned NOT NULL DEFAULT 0,
   `createdByUID` int(11) unsigned DEFAULT NULL,
   `createdOnDateTime` datetime DEFAULT NULL,
   `createdOnTimeZone` varchar(255) DEFAULT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `highestEducation` (
   `discontinuedOnDateTime` datetime DEFAULT NULL,
   `discontinuedOnTimeZone` varchar(255) DEFAULT NULL,
   `discontinuedFromIPAddress` varchar(20) DEFAULT NULL,
-  `discontinueNotes` text,
+  `discontinueNotes` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8532 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

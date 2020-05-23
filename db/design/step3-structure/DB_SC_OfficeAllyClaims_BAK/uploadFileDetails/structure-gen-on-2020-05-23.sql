@@ -1,14 +1,14 @@
-use DB_SC_OfficeAllyClaims_BAK
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_OfficeAllyClaims_BAK;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_OfficeAllyClaims_BAK
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,7 +29,7 @@ CREATE TABLE `uploadFileDetails` (
   `eventId` int(11) DEFAULT NULL,
   `planID` int(11) DEFAULT NULL COMMENT '[1=>''Other'', 2=>''Medicare'',3=>''Medicaid'',4=>''Tricare'',5=>''Champva'',6=>''Group health'',7=>''Feca blk lung'']',
   `fileName` varchar(100) DEFAULT NULL,
-  `requestData` longtext,
+  `requestData` longtext DEFAULT NULL,
   `createdById` int(11) DEFAULT NULL,
   `createdOn` datetime DEFAULT NULL,
   `createdTimeZone` varchar(10) DEFAULT NULL,

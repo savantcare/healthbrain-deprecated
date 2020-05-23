@@ -1,14 +1,14 @@
-use DB_SC_HR
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,9 +27,9 @@ CREATE TABLE `main_logmanager` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `menuId` bigint(20) DEFAULT NULL,
   `user_action` tinyint(4) unsigned DEFAULT NULL COMMENT '1-add,2-edit,3-delete,4-active/inactive,5-cancel',
-  `log_details` text,
+  `log_details` text DEFAULT NULL,
   `last_modifiedby` int(11) unsigned DEFAULT NULL,
-  `last_modifieddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modifieddate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `key_flag` varchar(255) DEFAULT NULL,
   `is_active` tinyint(1) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),

@@ -1,14 +1,14 @@
-use DB_SC_ServiceStatement
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_ServiceStatement;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_ServiceStatement
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `serviceStatementsForEvent`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `serviceStatementsForEvent` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `firstParentId` int(11) unsigned NOT NULL DEFAULT '0',
+  `firstParentId` int(11) unsigned NOT NULL DEFAULT 0,
   `serviceStatementID` int(10) unsigned NOT NULL,
   `createdByUID` int(11) NOT NULL,
   `patientID` int(11) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `serviceStatementsForEvent` (
   `startDate` datetime DEFAULT NULL,
   `endDate` datetime DEFAULT NULL,
   `isItLocked` enum('yes','no') NOT NULL DEFAULT 'no',
-  `isDeleted` tinyint(1) NOT NULL DEFAULT '0',
+  `isDeleted` tinyint(1) NOT NULL DEFAULT 0,
   `notes` varchar(255) DEFAULT NULL,
   `discontinuedByUID` int(11) DEFAULT NULL,
   `discontinuedOnDateTime` datetime DEFAULT NULL,

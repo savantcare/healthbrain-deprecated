@@ -1,14 +1,14 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -30,8 +30,8 @@ CREATE TABLE `remEventNotes` (
   `noteTypeID` tinyint(4) unsigned NOT NULL,
   `uidOfCreatedBy` int(11) unsigned DEFAULT NULL,
   `notes` text CHARACTER SET utf8 NOT NULL,
-  `IsNoteMinimized` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '0: not minimized, 1: minimized',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `IsNoteMinimized` tinyint(4) unsigned NOT NULL DEFAULT 0 COMMENT '0: not minimized, 1: minimized',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `timeZoneAbbreviationForCreatedAt` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`noteID`),

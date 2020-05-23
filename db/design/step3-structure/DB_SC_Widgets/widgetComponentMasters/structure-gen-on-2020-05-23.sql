@@ -1,14 +1,14 @@
-use DB_SC_Widgets
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_Widgets;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Widgets
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS `widgetComponentMasters`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `widgetComponentMasters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `widgetComponentCategoryMastersID` int(11) NOT NULL DEFAULT '0',
+  `widgetComponentCategoryMastersID` int(11) NOT NULL DEFAULT 0,
   `componentName` varchar(150) DEFAULT NULL,
-  `isDeleted` tinyint(1) NOT NULL DEFAULT '0',
+  `isDeleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `widgetComponentCategoryMastersID` (`widgetComponentCategoryMastersID`),
   CONSTRAINT `widgetcomponentmasters_ibfk_1` FOREIGN KEY (`widgetComponentCategoryMastersID`) REFERENCES `widgetComponentCategoryMasters` (`id`)

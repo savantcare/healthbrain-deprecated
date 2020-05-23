@@ -1,14 +1,14 @@
-use DB_SC_shareStory
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_shareStory;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_shareStory
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,13 +26,13 @@ DROP TABLE IF EXISTS `shareConsentLetterDetails`;
 CREATE TABLE `shareConsentLetterDetails` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `driveID` int(11) DEFAULT NULL,
-  `signatureData` longblob,
+  `signatureData` longblob DEFAULT NULL,
   `userName` varchar(50) DEFAULT NULL,
   `signatureDateTime` datetime DEFAULT NULL,
   `signatureTimeZone` varchar(5) DEFAULT NULL,
   `filePath` varchar(100) DEFAULT NULL,
   `InsertDateTime` datetime DEFAULT NULL,
-  `isDeleted` int(11) DEFAULT '0',
+  `isDeleted` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

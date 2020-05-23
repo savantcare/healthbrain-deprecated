@@ -1,14 +1,14 @@
-use DB_SC_HR_V4
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SC_HR_V4;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HR_V4
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -24,17 +24,17 @@ DROP TABLE IF EXISTS `hs_hr_emp_attachment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `hs_hr_emp_attachment` (
-  `emp_number` int(7) NOT NULL DEFAULT '0',
-  `eattach_id` int(11) NOT NULL DEFAULT '0',
+  `emp_number` int(7) NOT NULL DEFAULT 0,
+  `eattach_id` int(11) NOT NULL DEFAULT 0,
   `eattach_desc` varchar(200) DEFAULT NULL,
   `eattach_filename` varchar(100) DEFAULT NULL,
-  `eattach_size` int(11) DEFAULT '0',
-  `eattach_attachment` mediumblob,
+  `eattach_size` int(11) DEFAULT 0,
+  `eattach_attachment` mediumblob DEFAULT NULL,
   `eattach_type` varchar(200) DEFAULT NULL,
   `screen` varchar(100) DEFAULT '',
   `attached_by` int(11) DEFAULT NULL,
   `attached_by_name` varchar(200) DEFAULT NULL,
-  `attached_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `attached_time` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`emp_number`,`eattach_id`),
   KEY `screen` (`screen`),
   CONSTRAINT `hs_hr_emp_attachment_ibfk_1` FOREIGN KEY (`emp_number`) REFERENCES `hs_hr_employee` (`emp_number`) ON DELETE CASCADE

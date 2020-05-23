@@ -1,14 +1,14 @@
-use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+use DB_SCEMR_PROD;
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1-log
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,17 +26,17 @@ DROP TABLE IF EXISTS `remEventNotesLockingPermissionSetting`;
 CREATE TABLE `remEventNotesLockingPermissionSetting` (
   `settingsId` int(10) NOT NULL AUTO_INCREMENT,
   `roleId` int(10) NOT NULL,
-  `mse` tinyint(1) NOT NULL DEFAULT '0',
-  `ros` tinyint(1) NOT NULL DEFAULT '0',
-  `subjective` tinyint(1) NOT NULL DEFAULT '0',
-  `assessment` tinyint(1) NOT NULL DEFAULT '0',
-  `plan` tinyint(1) NOT NULL DEFAULT '0',
-  `coding` tinyint(1) NOT NULL DEFAULT '0',
-  `reason` tinyint(1) NOT NULL DEFAULT '0',
-  `diagnosis` tinyint(1) NOT NULL DEFAULT '0',
+  `mse` tinyint(1) NOT NULL DEFAULT 0,
+  `ros` tinyint(1) NOT NULL DEFAULT 0,
+  `subjective` tinyint(1) NOT NULL DEFAULT 0,
+  `assessment` tinyint(1) NOT NULL DEFAULT 0,
+  `plan` tinyint(1) NOT NULL DEFAULT 0,
+  `coding` tinyint(1) NOT NULL DEFAULT 0,
+  `reason` tinyint(1) NOT NULL DEFAULT 0,
+  `diagnosis` tinyint(1) NOT NULL DEFAULT 0,
   `isLocked` enum('yes','no') NOT NULL DEFAULT 'no',
-  `medication` tinyint(1) NOT NULL DEFAULT '0',
-  `medicineRefill` tinyint(1) NOT NULL DEFAULT '0',
+  `medication` tinyint(1) NOT NULL DEFAULT 0,
+  `medicineRefill` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`settingsId`),
   UNIQUE KEY `roleId` (`roleId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
