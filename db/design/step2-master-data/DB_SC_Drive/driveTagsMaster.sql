@@ -1,9 +1,9 @@
 use DB_SC_Drive
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Drive
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,8 +30,7 @@ CREATE TABLE `driveTagsMaster` (
   `createdOnTimezone` varchar(10) DEFAULT NULL,
   `uidOfCreatedBy` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`tagID`),
-  KEY `tagMasterUidOfCreatedByIndex` (`uidOfCreatedBy`),
-  CONSTRAINT `driveTagsMaster_ibfk_1` FOREIGN KEY (`uidOfCreatedBy`) REFERENCES `DB_SCEMR_PROD`.`users` (`id`)
+  KEY `tagMasterUidOfCreatedByIndex` (`uidOfCreatedBy`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

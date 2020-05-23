@@ -1,9 +1,9 @@
 use DB_SC_HelpDesk
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_HelpDesk
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,7 @@ CREATE TABLE `helpdeskSourceMaster` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `resourceName` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `helpdeskSourceMaster` (
 
 LOCK TABLES `helpdeskSourceMaster` WRITE;
 /*!40000 ALTER TABLE `helpdeskSourceMaster` DISABLE KEYS */;
-INSERT INTO `helpdeskSourceMaster` VALUES (1,'support@savantcare.com'),(2,'convert-to-hdr@savantcare.com'),(3,'HDR extension'),(4,'My health'),(5,'SC brain'),(6,'https://www.savantcare.com/v3/app/helpdesk/'),(7,'Feedback to co-founders'),(8,'Auto converted from VM'),(9,'Auto login url'),(10,'Old HDR system'),(11,'See skill'),(12,'Official letter app'),(13,'SC brain recommendations'),(14,'My health app'),(15,'My health app feedback'),(16,'Screen Recording Extension'),(17,'System health management'),(18,'Smartbar popup'),(19,'Medication Consent');
+INSERT INTO `helpdeskSourceMaster` VALUES (1,'support@savantcare.com'),(2,'convert-to-hdr@savantcare.com'),(3,'HDR extension'),(4,'My health'),(5,'SC brain'),(6,'https://www.savantcare.com/v3/app/helpdesk/'),(7,'Feedback to co-founders'),(8,'Auto converted from VM'),(9,'Auto login url'),(10,'Old HDR system'),(11,'See skill'),(12,'Official letter app'),(13,'SC brain recommendations'),(14,'My health app'),(15,'My health app feedback'),(16,'Screen Recording Extension'),(17,'System health management');
 /*!40000 ALTER TABLE `helpdeskSourceMaster` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

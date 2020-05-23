@@ -1,9 +1,9 @@
 use DB_SC_Monitoring
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Monitoring
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,7 +35,7 @@ CREATE TABLE `conditionOfMonitoringNameMaster` (
   PRIMARY KEY (`id`),
   KEY `monitoring_type_id` (`monitoring_type_id`),
   CONSTRAINT `conditionOfMonitoringNameMaster_ibfk_1` FOREIGN KEY (`monitoring_type_id`) REFERENCES `monitoringType` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `conditionOfMonitoringNameMaster` (
 
 LOCK TABLES `conditionOfMonitoringNameMaster` WRITE;
 /*!40000 ALTER TABLE `conditionOfMonitoringNameMaster` DISABLE KEYS */;
-INSERT INTO `conditionOfMonitoringNameMaster` VALUES (1,'VPA level (trough)',NULL,1,1,699,'2018-08-20 10:06:58','IST'),(2,'CBC with differential + platelets',NULL,1,1,699,'2018-08-20 10:17:34','IST'),(3,'Ammonia level',NULL,1,1,699,'2018-08-20 10:17:45','IST'),(4,'Coagulation profile (platelet count, aPTT, PT with INR)',NULL,1,1,699,'2018-08-20 10:17:57','IST'),(5,'LFT',NULL,1,1,699,'2018-08-20 10:18:08','IST'),(6,'Pregnancy test',NULL,1,5,699,'2018-08-20 10:19:06','IST'),(7,'Written consent',NULL,1,1,699,'2018-08-20 10:19:26','IST'),(8,'Ask  - is patient on birth control? - hx of bleeding disorders and liver problems',NULL,1,1,699,'2018-08-20 10:19:43','IST'),(9,'Medications reconciled, drug interactions checked',NULL,1,1,699,'2018-08-20 10:19:57','IST'),(10,'Written consent for prescribing Lamotrigine',NULL,1,1,699,'2018-08-20 10:23:22','IST'),(11,'BUN',NULL,1,1,699,'2018-08-20 10:26:10','IST'),(12,'Creatinine',NULL,1,1,699,'2018-08-20 10:26:19','IST'),(13,'TSH',NULL,1,4,699,'2018-08-20 10:26:29','IST'),(14,'free T4',NULL,1,1,699,'2018-08-20 10:26:37','IST'),(15,'free T3',NULL,1,1,699,'2018-08-20 10:26:50','IST'),(16,'12 lead ECG',NULL,1,1,699,'2018-08-20 10:27:01','IST'),(17,'Lithium Level (trough)',NULL,1,1,699,'2018-08-20 10:27:56','IST'),(18,'Written consent for prescribing Lithium',NULL,1,1,699,'2018-08-20 10:28:10','IST'),(21,'Get patient consent',NULL,2,NULL,699,'2018-10-25 00:00:00','IST'),(22,'Blood pressure',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(23,'Blood Sugar',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(24,'BMI',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(25,'Height',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(26,'Oxigen Saturation',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(27,'Pulse',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(28,'Temperature',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(29,'Waist Circumference',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(30,'Weight',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(31,'Check Cures Report',NULL,4,NULL,699,'2018-11-01 06:53:56','IST'),(32,'TEst 2',NULL,1,1,699,'2019-08-06 10:21:04','Ind');
+INSERT INTO `conditionOfMonitoringNameMaster` VALUES (1,'VPA level (trough)',NULL,1,1,699,'2018-08-20 10:06:58','IST'),(2,'CBC with differential + platelets',NULL,1,1,699,'2018-08-20 10:17:34','IST'),(3,'Ammonia level',NULL,1,1,699,'2018-08-20 10:17:45','IST'),(4,'Coagulation profile (platelet count, aPTT, PT with INR)',NULL,1,1,699,'2018-08-20 10:17:57','IST'),(5,'LFT',NULL,1,1,699,'2018-08-20 10:18:08','IST'),(6,'Pregnancy test',NULL,1,5,699,'2018-08-20 10:19:06','IST'),(7,'Written consent',NULL,1,1,699,'2018-08-20 10:19:26','IST'),(8,'Ask  - is patient on birth control? - hx of bleeding disorders and liver problems',NULL,1,1,699,'2018-08-20 10:19:43','IST'),(9,'Medications reconciled, drug interactions checked',NULL,1,1,699,'2018-08-20 10:19:57','IST'),(10,'Written consent for prescribing Lamotrigine',NULL,1,1,699,'2018-08-20 10:23:22','IST'),(11,'BUN',NULL,1,1,699,'2018-08-20 10:26:10','IST'),(12,'Creatinine',NULL,1,1,699,'2018-08-20 10:26:19','IST'),(13,'TSH',NULL,1,4,699,'2018-08-20 10:26:29','IST'),(14,'free T4',NULL,1,1,699,'2018-08-20 10:26:37','IST'),(15,'free T3',NULL,1,1,699,'2018-08-20 10:26:50','IST'),(16,'12 lead ECG',NULL,1,1,699,'2018-08-20 10:27:01','IST'),(17,'Lithium Level (trough)',NULL,1,1,699,'2018-08-20 10:27:56','IST'),(18,'Written consent for prescribing Lithium',NULL,1,1,699,'2018-08-20 10:28:10','IST'),(21,'Get patient consent',NULL,2,NULL,699,'2018-10-25 00:00:00','IST'),(22,'Blood pressure',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(23,'Blood Sugar',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(24,'BMI',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(25,'Height',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(26,'Oxigen Saturation',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(27,'Pulse',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(28,'Temperature',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(29,'Waist Circumference',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(30,'Weight',NULL,3,NULL,699,'2018-11-01 06:53:56','IST'),(31,'Check Cures Report',NULL,4,NULL,699,'2018-11-01 06:53:56','IST');
 /*!40000 ALTER TABLE `conditionOfMonitoringNameMaster` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

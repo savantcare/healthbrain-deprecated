@@ -1,9 +1,9 @@
 use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,8 +31,7 @@ CREATE TABLE `siteWideHelpMaster` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`helpID`),
   KEY `uid` (`uid`),
-  KEY `helpID` (`helpID`),
-  CONSTRAINT `siteWideHelpMaster_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`id`)
+  KEY `helpID` (`helpID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -1,9 +1,9 @@
 use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,7 +32,7 @@ CREATE TABLE `activityLogForMasterDB` (
   `oldValue` varchar(100) NOT NULL,
   `newValue` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `activityLogForMasterDB` (
 
 LOCK TABLES `activityLogForMasterDB` WRITE;
 /*!40000 ALTER TABLE `activityLogForMasterDB` DISABLE KEYS */;
-INSERT INTO `activityLogForMasterDB` VALUES (1,538,11,'Running frequency','2020-01-16 06:20:58','30','30'),(2,5985,6,'Running frequency','2020-01-24 08:12:40','10','10'),(3,5985,6,'Running frequency','2020-01-24 09:13:45','10','10'),(4,5985,6,'Running frequency','2020-01-24 09:16:32','10','1'),(5,5985,6,'Running frequency','2020-01-24 12:32:28','1','10');
+INSERT INTO `activityLogForMasterDB` VALUES (1,5985,2,'Status','2019-08-26 10:22:58','on','off'),(2,5985,2,'Status','2019-08-26 12:02:44','off','on');
 /*!40000 ALTER TABLE `activityLogForMasterDB` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -1,9 +1,9 @@
 use DB_SC_Notification
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Notification
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `notifierMasterTemplateSettingsForCalls` (
   `callTemplate` text NOT NULL,
   `isItLatest` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0: old, 1: latest',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `notifierMasterTemplateSettingsForCalls` (
 
 LOCK TABLES `notifierMasterTemplateSettingsForCalls` WRITE;
 /*!40000 ALTER TABLE `notifierMasterTemplateSettingsForCalls` DISABLE KEYS */;
-INSERT INTO `notifierMasterTemplateSettingsForCalls` VALUES (1,6,'default','test',0),(2,6,'default','test.',0),(3,6,'default','This call is to remind you of your appointment with Doctor %doctorName% on %eStartTime% at SavantCare office in %city%.',0),(4,6,'default','This call is to remind you of your appointment with %doctorName% on %eStartTime% at SavantCare office in %city%.',1);
+INSERT INTO `notifierMasterTemplateSettingsForCalls` VALUES (1,6,'default','test',0),(2,6,'default','test.',0),(3,6,'default','This call is to remind you of your appointment with Doctor %doctorName% on %eStartTime% at SavantCare office in %city%.',0),(4,6,'default','This call is to remind you of your appointment with %doctorName% on %eStartTime% at SavantCare office in %city%.',0),(5,6,'default','This call is to remind you of your appointment with %doctorName% on %eStartTime% at SavantCare office in %city%.\n( %assetCode% )',1),(6,6,'phoneAppointment','This is an voice call notification of Appointment reminder for an Phone appointment',1);
 /*!40000 ALTER TABLE `notifierMasterTemplateSettingsForCalls` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

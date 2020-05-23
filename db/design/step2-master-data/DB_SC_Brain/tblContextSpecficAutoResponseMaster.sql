@@ -1,9 +1,9 @@
 use DB_SC_Brain
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Brain
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `tblContextSpecficAutoResponseMaster` (
   `contextID` decimal(10,0) NOT NULL,
   `skillName` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `tblContextSpecficAutoResponseMaster` (
 
 LOCK TABLES `tblContextSpecficAutoResponseMaster` WRITE;
 /*!40000 ALTER TABLE `tblContextSpecficAutoResponseMaster` DISABLE KEYS */;
-INSERT INTO `tblContextSpecficAutoResponseMaster` VALUES (4,NULL,35,1,'show me the plan for'),(5,NULL,32,1,'goal'),(6,NULL,32,1,'phone'),(7,NULL,7,1,'diagnosis'),(9,NULL,7,1,'show me the plan for');
+INSERT INTO `tblContextSpecficAutoResponseMaster` VALUES (29,NULL,18,1,'show me the assessment for'),(33,NULL,19,1,'goal'),(38,NULL,35,1,'diagnosis');
 /*!40000 ALTER TABLE `tblContextSpecficAutoResponseMaster` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

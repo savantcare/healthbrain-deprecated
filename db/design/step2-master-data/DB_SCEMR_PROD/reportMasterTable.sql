@@ -1,9 +1,9 @@
 use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -38,7 +38,7 @@ CREATE TABLE `reportMasterTable` (
 
 LOCK TABLES `reportMasterTable` WRITE;
 /*!40000 ALTER TABLE `reportMasterTable` DISABLE KEYS */;
-INSERT INTO `reportMasterTable` VALUES (1,'Payment Report','','2019-03-26 00:00:00'),(2,'Event Report','','2019-08-01 11:35:26');
+INSERT INTO `reportMasterTable` VALUES (1,'Payment Report','','2019-03-26 00:00:00'),(2,'Event Report','','2019-06-22 11:34:16');
 /*!40000 ALTER TABLE `reportMasterTable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

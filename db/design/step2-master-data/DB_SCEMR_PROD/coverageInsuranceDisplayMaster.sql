@@ -1,9 +1,9 @@
 use DB_SCEMR_PROD
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SCEMR_PROD
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `coverageInsuranceDisplayMaster` (
   `name` varchar(100) NOT NULL,
   `displayOrder` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `coverageInsuranceDisplayMaster` (
 
 LOCK TABLES `coverageInsuranceDisplayMaster` WRITE;
 /*!40000 ALTER TABLE `coverageInsuranceDisplayMaster` DISABLE KEYS */;
-INSERT INTO `coverageInsuranceDisplayMaster` VALUES (1,'Co-pay',1),(2,'Annual deductible remaining',3),(3,'Co-Insurance',4),(4,'Annual deductible',2),(5,'Tele-Health',5);
+INSERT INTO `coverageInsuranceDisplayMaster` VALUES (1,'Co-pay',1),(2,'Annual deductible remaining',3),(3,'Co-Insurance',4),(4,'Annual deductible',2);
 /*!40000 ALTER TABLE `coverageInsuranceDisplayMaster` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

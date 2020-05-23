@@ -1,9 +1,9 @@
 use DB_SC_GoogleVoicePhoneRead
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_GoogleVoicePhoneRead
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4-log
+-- Server version	5.7.26-0ubuntu0.18.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,8 +30,7 @@ CREATE TABLE `googleVoiceMaster` (
   `password` varchar(255) DEFAULT NULL,
   `passwordStatus` enum('success','wrong') DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `userID` (`uid`) USING BTREE,
-  CONSTRAINT `userID` FOREIGN KEY (`uid`) REFERENCES `DB_SCEMR_PROD`.`users` (`id`)
+  KEY `userID` (`uid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
