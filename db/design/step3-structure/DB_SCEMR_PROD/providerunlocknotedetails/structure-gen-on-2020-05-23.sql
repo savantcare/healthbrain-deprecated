@@ -17,14 +17,14 @@ use DB_SCEMR_PROD;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Temporary table structure for view `providerunlocknotedetails`
+-- Temporary table structure for view `providerUnlockNoteDetails`
 --
 
-DROP TABLE IF EXISTS `providerunlocknotedetails`;
-/*!50001 DROP VIEW IF EXISTS `providerunlocknotedetails`*/;
+DROP TABLE IF EXISTS `providerUnlockNoteDetails`;
+/*!50001 DROP VIEW IF EXISTS `providerUnlockNoteDetails`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `providerunlocknotedetails` AS SELECT 
+/*!50001 CREATE VIEW `providerUnlockNoteDetails` AS SELECT 
  1 AS `scEmployeeUID`,
  1 AS `eventId`,
  1 AS `eventStartDateTime`,
@@ -32,10 +32,10 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
--- Final view structure for view `providerunlocknotedetails`
+-- Final view structure for view `providerUnlockNoteDetails`
 --
 
-/*!50001 DROP VIEW IF EXISTS `providerunlocknotedetails`*/;
+/*!50001 DROP VIEW IF EXISTS `providerUnlockNoteDetails`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
@@ -44,7 +44,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `providerunlocknotedetails` AS (select `unlockedReportSlab`.`scEmployeeUID` AS `scEmployeeUID`,`unlockedReportSlab`.`eventID` AS `eventId`,`unlockedReportSlab`.`eventStartDateTime` AS `eventStartDateTime`,`unlockedReportSlab`.`slab` AS `slab` from `DB_SCEMR_PROD`.`unlockedReportSlab` where (`unlockedReportSlab`.`allNotesAreLocked` <> 'Yes') order by `unlockedReportSlab`.`scEmployeeUID`,`unlockedReportSlab`.`eventStartDateTime`) */;
+/*!50001 VIEW `providerUnlockNoteDetails` AS (select `table2`.`scEmployeeUID` AS `scEmployeeUID`,`table2`.`eventId` AS `eventId`,`table2`.`eventStartDateTime` AS `eventStartDateTime`,`table2`.`slab` AS `slab` from (select `table1`.`scEmployeeUID` AS `scEmployeeUID`,`table1`.`eventID` AS `eventId`,`table1`.`eventStartDateTime` AS `eventStartDateTime`,(case when (`table1`.`dateDifference` between 14 and 27) then '14-27' when (`table1`.`dateDifference` between 28 and 44) then '28-44' when (`table1`.`dateDifference` between 45 and 59) then '45-59' when (`table1`.`dateDifference` >= 60) then 'after60' end) AS `slab` from (select `DB_SCEMR_PROD`.`cronCreatedForCacheUsedByEventsReport`.`scEmployeeUID` AS `scEmployeeUID`,`DB_SCEMR_PROD`.`cronCreatedForCacheUsedByEventsReport`.`eventID` AS `eventID`,`DB_SCEMR_PROD`.`cronCreatedForCacheUsedByEventsReport`.`eventStartDateTime` AS `eventStartDateTime`,(to_days(curdate()) - to_days(`DB_SCEMR_PROD`.`cronCreatedForCacheUsedByEventsReport`.`eventStartDateTime`)) AS `dateDifference` from `DB_SCEMR_PROD`.`cronCreatedForCacheUsedByEventsReport` where ((`DB_SCEMR_PROD`.`cronCreatedForCacheUsedByEventsReport`.`eventTypeName` = 'Appointment') and (`DB_SCEMR_PROD`.`cronCreatedForCacheUsedByEventsReport`.`eventStatusName` = 'Step 4: Approved by doc') and (`DB_SCEMR_PROD`.`cronCreatedForCacheUsedByEventsReport`.`eventLockStatus` = 'No')) order by `DB_SCEMR_PROD`.`cronCreatedForCacheUsedByEventsReport`.`scEmployeeUID`) `table1`) `table2`) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
