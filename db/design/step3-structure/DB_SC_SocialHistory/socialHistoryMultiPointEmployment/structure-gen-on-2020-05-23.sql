@@ -1,7 +1,7 @@
-use DB_SCEMR_PROD;
+use DB_SC_SocialHistory;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: DB_SCEMR_PROD
+-- Host: localhost    Database: DB_SC_SocialHistory
 -- ------------------------------------------------------
 -- Server version	5.7.26-0ubuntu0.18.04.1-log
 
