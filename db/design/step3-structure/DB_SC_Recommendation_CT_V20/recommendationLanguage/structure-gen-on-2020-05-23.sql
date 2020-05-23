@@ -24,14 +24,15 @@ DROP TABLE IF EXISTS `recommendationLanguage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `recommendationLanguage` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
   `template` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
-  `createdBy` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `createdTimeZone` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
