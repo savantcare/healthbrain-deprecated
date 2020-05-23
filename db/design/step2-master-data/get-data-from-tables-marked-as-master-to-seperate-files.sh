@@ -26,11 +26,11 @@ for db in $allDatabaseNames; do
     allTableNames=`mysql $db -u $MYSQL_USER -p$MYSQL_PASSWORD -N -e 'show tables like "%Master%"'`
     for table in $allTableNames; do
 
-	echo "=== Stage3: Working on table $table"
-	echo "use $db" > $db/$table.sql
-	
-	echo "Executing the command mysqldump --databases $db -u $MYSQL_USER -p$MYSQL_PASSWORD $table --skip-dump-date > $db/$table.sql"
 	when=$(date +%F);
+	echo "=== Stage3: Working on table $table"
+	echo "use $db" > $db/$table-$when.sql
+	
+	echo "Executing the command mysqldump --databases $db -u $MYSQL_USER -p$MYSQL_PASSWORD $table --skip-dump-date > $db/$table-$when.sql"
 	mysqldump $db -u $MYSQL_USER -p$MYSQL_PASSWORD $table --skip-dump-date >> $db/$table-$when.sql
     done
 
