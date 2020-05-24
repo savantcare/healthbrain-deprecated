@@ -28,10 +28,12 @@ CREATE TABLE `dsmMasterCodes` (
   `name` varchar(128) DEFAULT NULL,
   `dsm5Code` varchar(50) DEFAULT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1226 DEFAULT CHARSET=utf8;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

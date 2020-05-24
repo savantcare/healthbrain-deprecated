@@ -31,22 +31,14 @@ CREATE TABLE `ruledOutDiagnosis_backup` (
   `diagnosisName` varchar(255) NOT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
-  `isItLocked` varchar(10) NOT NULL DEFAULT 'no',
-  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
   `endDate` timestamp NULL DEFAULT NULL,
-  `createdAtTimezone` varchar(30) DEFAULT NULL,
   `ruledOutBy` int(10) unsigned DEFAULT NULL,
   `ruledOutOn` datetime DEFAULT NULL,
-  `isDeleted` int(11) NOT NULL DEFAULT '0',
-  `deletedByUID` int(11) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedTimeZone` varchar(5) DEFAULT NULL,
-  `deletedFromIPAddress` varchar(20) DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedOnTimeZone` varchar(5) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -25,34 +25,20 @@ DROP TABLE IF EXISTS `diagnosis`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `diagnosis` (
   `uuid` BINARY(16) NOT NULL,
-  `firstParentId` int(11) unsigned DEFAULT NULL,
   `uid` int(11) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
   `agree` varchar(255) DEFAULT NULL,
   `assessment` varchar(255) DEFAULT NULL,
-  `isItLocked` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'This field decides whether the diagnosis is locked or not',
   `startDate` datetime DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
-  `updatedAtTimezone` varchar(10) DEFAULT NULL,
-  `createdAtTimezone` varchar(30) DEFAULT NULL,
   `createdByUid` int(11) DEFAULT NULL,
-  `isDeleted` tinyint(1) NOT NULL DEFAULT '0',
-  `deletedByUID` int(11) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedTimeZone` varchar(5) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedTimeZone` varchar(5) DEFAULT NULL,
-  `discontinueNotes` varchar(255) DEFAULT NULL,
-  `originId` int(11) DEFAULT NULL,
-  `deletedFromIPAddress` varchar(255) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=20067 DEFAULT CHARSET=latin1;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`),
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

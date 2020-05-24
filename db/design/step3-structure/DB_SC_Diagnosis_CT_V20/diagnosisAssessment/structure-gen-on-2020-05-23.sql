@@ -24,24 +24,16 @@ DROP TABLE IF EXISTS `diagnosisAssessment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `diagnosisAssessment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
   `diagnosisId` int(11) NOT NULL,
   `createdOnUID` int(11) NOT NULL,
-  `createdByUID` int(11) NOT NULL,
   `assessment` text,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `createdAtTimezone` varchar(255) DEFAULT NULL,
-  `updateAt` datetime DEFAULT NULL,
-  `updateAtTimezone` varchar(255) DEFAULT NULL,
-  `deletedByUID` int(11) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedTimeZone` varchar(5) DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedTimeZone` varchar(5) DEFAULT NULL,
-  `originId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2547 DEFAULT CHARSET=latin1;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,3 +46,7 @@ CREATE TABLE `diagnosisAssessment` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed
+
+/* Question:
+What is the createdOnUID field?
+*/

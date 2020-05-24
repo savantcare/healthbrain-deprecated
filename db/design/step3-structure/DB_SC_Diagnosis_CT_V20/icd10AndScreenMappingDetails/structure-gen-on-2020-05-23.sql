@@ -24,14 +24,15 @@ DROP TABLE IF EXISTS `icd10AndScreenMappingDetails`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `icd10AndScreenMappingDetails` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
   `icd10ID` int(11) NOT NULL,
   `screenID` int(11) NOT NULL,
-  `createdBy` int(11) NOT NULL,
-  `createdOn` datetime NOT NULL,
-  `createdOnTimeZone` char(3) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=255 DEFAULT CHARSET=latin1;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

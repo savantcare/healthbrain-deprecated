@@ -25,31 +25,22 @@ DROP TABLE IF EXISTS `ruledOutDiagnosis`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ruledOutDiagnosis` (
   `uuid` BINARY(16) NOT NULL,
-  `firstParentId` int(11) NOT NULL,
-  `ruledOutOnUID` int(11) unsigned NOT NULL,
-  `ruledOutByUID` int(11) unsigned NOT NULL,
+  `ruledOutOnUID` datetime unsigned NOT NULL,
+  `ruledOutByUID` BINARY(16) unsigned NOT NULL,
   `diagnosisId` int(11) NOT NULL,
   `diagnosisName` varchar(255) NOT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
-  `isItLocked` varchar(10) NOT NULL DEFAULT 'no',
   `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
   `endDate` timestamp NULL DEFAULT NULL,
-  `createdAtTimezone` varchar(30) DEFAULT NULL,
   `ruledOutBy` int(10) unsigned DEFAULT NULL,
   `ruledOutOn` datetime DEFAULT NULL,
-  `isDeleted` int(11) NOT NULL DEFAULT '0',
-  `deletedByUID` int(11) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedTimeZone` varchar(5) DEFAULT NULL,
-  `deletedFromIPAddress` varchar(20) DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedOnTimeZone` varchar(5) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ruledOutByUID` (`ruledOutByUID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6046 DEFAULT CHARSET=latin1;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -24,33 +24,22 @@ DROP TABLE IF EXISTS `patientReportedDiagnosis`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientReportedDiagnosis` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
   `createdOnUID` int(11) NOT NULL,
   `createdByUID` int(11) NOT NULL,
   `diagnosisName` varchar(255) NOT NULL,
   `whenHappened` datetime DEFAULT NULL,
   `status` enum('Patient reported','Other provider confirmed') NOT NULL DEFAULT 'Patient reported',
-  `isItLocked` varchar(10) NOT NULL DEFAULT 'No',
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `createdAtTimezone` varchar(30) DEFAULT NULL,
-  `updatedAt` datetime DEFAULT NULL,
-  `updatedAtTimezone` varchar(255) DEFAULT NULL,
-  `isDeleted` enum('No','Yes') NOT NULL,
   `startDate` date DEFAULT NULL,
   `endDate` date DEFAULT NULL,
   `agree` varchar(255) DEFAULT NULL,
-  `deletedByUID` int(11) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedOnTimeZone` varchar(5) DEFAULT NULL,
-  `originId` int(11) NOT NULL,
-  `deletedFromIPAddress` varchar(255) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedDateTime` datetime DEFAULT NULL,
-  `discontinuedTimeZone` varchar(50) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3404 DEFAULT CHARSET=latin1;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
