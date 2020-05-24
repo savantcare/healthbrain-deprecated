@@ -23,11 +23,3 @@ services:
     volumes:
       - ./node-server:/gt/sc-prog-repos/healthbrain/node-server # This will allow file changes on host to be available inside the docker container without recreating the docker image. 
       # For reasons of this volume mount see the vue: section comments
-  mysqld:
-    image: mattrayner/lamp:latest-1804
-    volumes:
-      - ./db/var-lib-mysql:/var/lib/mysql
-      - ./db/design:/var/lib/db-design
-    ports:
-      - "3306:3306"
-      - "81:80"
