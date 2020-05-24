@@ -1,5 +1,5 @@
 {
-  "HOST": "docker_mariadb_1",
+  "HOST": "localhost",
   "USER": "stanford2008",
   "PASSWORD": "jaidurgama"
 }

@@ -1,24 +1,23 @@
 version: '3'
 services:
   vue:
-    build: ./vue-client/
-    image: hb/vue
+    image: node:14
     tty: true
     ports:
-      - 80:5000    # "npm serve dist" listens on port 5000. This is prod minified build
-    command: npx serve -s dist  
+      - 8080:8080
+    working_dir: /gt/sc-prog-repos/healthbrain/vue-client
+#    command: bash -c "npm install && npm run serve"
+    volumes:
+      - /gt/sc-prog-repos/healthbrain/vue-client:/gt/sc-prog-repos/healthbrain/vue-client # This will allow hot reloading when files are changed on host
   node:
-    build: ./node-server/
-    image: hb/node
+    image: node:14
     tty: true
     environment:
-      - NODE_ENV=production      # This is neededed to load the correct override file from /node-server/config/ folder. For more read node-server/config/readme.md
+      - NODE_ENV=development      # This is neededed to load the correct override file from /node-server/config/ folder. For more read node-server/config/readme.md
     ports:
       - 8000:8000
-  mysqld:
-    image: mattrayner/lamp:latest-1804
+    working_dir: /gt/sc-prog-repos/healthbrain/node-server
+    command: bash -c "npm install && npm run start"
     volumes:
-      - /gt/sc-data-repos/mysql:/var/lib/mysql
-    ports:
-      - "3306:3306"
-      - "81:80"
+      -  /gt/sc-prog-repos/healthbrain/node-server:/gt/sc-prog-repos/healthbrain/node-server # This allows file changes on host to be available inside docker container without recreating docker image. 
+      # For reasons of this volume mount see the vue: section comments
