@@ -1,7 +1,7 @@
-use DB_SC_Documents_CT_V20;
+use DB_SC_Documents;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: DB_SC_Documents_CT_V20
+-- Host: localhost    Database: DB_SC_Documents
 -- ------------------------------------------------------
 -- Server version	5.7.26-0ubuntu0.18.04.1-log
 
@@ -24,18 +24,20 @@ DROP TABLE IF EXISTS `documentsTemp`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `documentsTemp` (
-  `uuid` BINARY(16) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `tempID` varchar(128) NOT NULL DEFAULT '0',
   `fileContent` longblob,
   `fileName` text,
   `fileType` varchar(128) NOT NULL DEFAULT '',
   `uidOfPatient` int(11) unsigned DEFAULT NULL,
   `folderID` int(11) unsigned NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `uidOfPatient` (`uidOfPatient`)
-) ENGINE=InnoDB AUTO_INCREMENT=14605 DEFAULT CHARSET=utf8 COMMENT='1. Documents are put in this table temporarily. Once we get the upload id than we move the documents to the documents table. 2. When the documents are uploaded the uploadID is still not available. The uploadID only becomes available when the user hits the "Save" button. Hence we need this temp table.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING COMMENT='1. Documents are put in this table temporarily. Once we get the upload id than we move the documents to the documents table. 2. When the documents are uploaded the uploadID is still not available. The uploadID only becomes available when the user hits the "Save" button. Hence we need this temp table.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

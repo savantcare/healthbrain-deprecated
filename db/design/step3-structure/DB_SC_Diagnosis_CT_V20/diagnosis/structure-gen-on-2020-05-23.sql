@@ -32,12 +32,11 @@ CREATE TABLE `diagnosis` (
   `agree` varchar(255) DEFAULT NULL,
   `assessment` varchar(255) DEFAULT NULL,
   `startDate` datetime DEFAULT NULL,
-  `createdByUid` int(11) DEFAULT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`uuid`),
+  PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -1,7 +1,7 @@
-use DB_SC_Documents_CT_V20;
+use DB_SC_Documents;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: DB_SC_Documents_CT_V20
+-- Host: localhost    Database: DB_SC_Documents
 -- ------------------------------------------------------
 -- Server version	5.7.26-0ubuntu0.18.04.1-log
 
@@ -24,18 +24,20 @@ DROP TABLE IF EXISTS `documents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `documents` (
-  `uuid` BINARY(16) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uploadID` int(11) unsigned NOT NULL DEFAULT '0',
   `fileContent` longblob,
   `fileName` text,
   `fileType` varchar(128) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `foruploadid` (`uploadID`),
   KEY `uploadID` (`uploadID`),
   CONSTRAINT `foruploadid` FOREIGN KEY (`uploadID`) REFERENCES `documentUploadFolder` (`uploadID`)
-) ENGINE=InnoDB AUTO_INCREMENT=24463 DEFAULT CHARSET=utf8 COMMENT='1. One upload ID can have multiple documents 2. File content is stored in the documents table since we do not want the app to depend on the file system.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING COMMENT='1. One upload ID can have multiple documents 2. File content is stored in the documents table since we do not want the app to depend on the file system.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
