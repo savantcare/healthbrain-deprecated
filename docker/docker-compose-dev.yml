@@ -6,11 +6,9 @@ services:
     ports:
       - 8080:8080
     working_dir: /gt/sc-prog-repos/healthbrain/vue-client
-    command: bash -c "npm install && npm run serve"
+#    command: bash -c "npm install && npm run serve"
     volumes:
-      - ./vue-client:/gt/sc-prog-repos/healthbrain/vue-client # This will allow hot reloading when files are changed on host
-      # dockerfile copied vue-client during image creation. On production this vue-client is used.
-      # On dev this volume specification in docker-compose mounts vue-client over the vue-client inside the image. Since this is a mount changes on host are seen in container.
+      - /gt/sc-prog-repos/healthbrain/vue-client:/gt/sc-prog-repos/healthbrain/vue-client # This will allow hot reloading when files are changed on host
   node:
     image: node:14
     tty: true
@@ -21,5 +19,5 @@ services:
     working_dir: /gt/sc-prog-repos/healthbrain/node-server
     command: bash -c "npm install && npm run start"
     volumes:
-      - ./node-server:/gt/sc-prog-repos/healthbrain/node-server # This will allow file changes on host to be available inside the docker container without recreating the docker image. 
+      -  /gt/sc-prog-repos/healthbrain/node-server:/gt/sc-prog-repos/healthbrain/node-server # This allows file changes on host to be available inside docker container without recreating docker image. 
       # For reasons of this volume mount see the vue: section comments

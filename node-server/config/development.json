@@ -1,5 +1,5 @@
 {
-  "HOST": "healthbrain_mysqld_1",
-  "USER": "admin",
-  "PASSWORD": "WUy3OsU5BYMM"
+  "HOST": "docker_mariadb_1",
+  "USER": "stanford2008",
+  "PASSWORD": "jaidurgama"
 }
