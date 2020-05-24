@@ -24,23 +24,15 @@ DROP TABLE IF EXISTS `livesWith`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `livesWith` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstParentId` int(11) DEFAULT NULL,
-  `uidOfPatient` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `value` varchar(255) DEFAULT NULL,
-  `discontinueNotes` text NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `createdTimeZone` varchar(255) DEFAULT NULL,
-  `discontinuedByUid` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedOnTimeZone` varchar(255) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(255) DEFAULT NULL,
-  `deletedByUID` int(11) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedOnTimeZone` varchar(255) DEFAULT NULL,
-  `deletedFromIPAddress` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `uuid` BINARY(16) NOT NULL,
+  `uuidOfPatient` BINARY(16) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  `notes` text DEFAULT NULL,
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6415 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -24,35 +24,21 @@ DROP TABLE IF EXISTS `socialHistoryOtherMajorLifeEvents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `socialHistoryOtherMajorLifeEvents` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
+  `uuidOfPatient` BINARY(16) NOT NULL,
   `majorLifeEventUniqueId` varchar(36) DEFAULT NULL,
-  `firstParentID` int(11) DEFAULT NULL,
-  `uidOfPatient` int(11) unsigned DEFAULT NULL,
   `eventName` varchar(255) NOT NULL,
   `timeValueType` enum('atAge','atYear','yearsAgo','date') DEFAULT NULL,
   `timeValue` varchar(128) DEFAULT '',
   `notes` text,
   `description` text,
   `entryCreatedFrom` enum('intake_psychiatrist','intake_therapist','intake_rehab','') DEFAULT NULL,
-  `isItLocked` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'This field decides whether the socialHistoryOtherMajorLifeEvents is locked or not',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `createdAtTimezone` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `updatedAtTimeZone` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `isDeleted` enum('No','Yes') NOT NULL,
-  `createdByUID` int(11) DEFAULT NULL,
-  `created_by` int(10) DEFAULT NULL,
-  `deletedByUID` int(10) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedOnTimeZone` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `deletedFromIPAddress` varchar(255) DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedTimeZone` varchar(50) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `uidOfPatient` (`uidOfPatient`)
-) ENGINE=InnoDB AUTO_INCREMENT=12207 DEFAULT CHARSET=utf8;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4315 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;

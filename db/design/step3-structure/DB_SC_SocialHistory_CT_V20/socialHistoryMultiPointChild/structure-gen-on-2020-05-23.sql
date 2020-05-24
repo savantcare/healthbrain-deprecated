@@ -30,19 +30,14 @@ CREATE TABLE `socialHistoryMultiPointChild` (
   `timeValueType` enum('atAge','atYear','yearsAgo','date') DEFAULT NULL,
   `timeValue` varchar(128) NOT NULL,
   `startDate` varchar(255) NOT NULL,
-  `isItLocked` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'This field decides whether the socialHistoryMultiPointChild is locked or not',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `isDeleted` enum('No','Yes') NOT NULL,
-  `created_by` int(11) NOT NULL,
   `notes` text NOT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedTimeZone` varchar(50) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(50) DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`UUid`),
   KEY `uidOfPatient` (`uidOfPatient`)
-) ENGINE=InnoDB AUTO_INCREMENT=1083 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1083 DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

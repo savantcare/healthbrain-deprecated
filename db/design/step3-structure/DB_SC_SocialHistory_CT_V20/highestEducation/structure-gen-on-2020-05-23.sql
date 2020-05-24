@@ -24,24 +24,16 @@ DROP TABLE IF EXISTS `highestEducation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `highestEducation` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uidOfPatient` int(11) unsigned NOT NULL,
+  `uuid` BINARY(16) NOT NULL,
+  `uuidOfPatient` BINARY(16) NOT NULL,
   `value` varchar(255) NOT NULL,
-  `firstParentID` int(11) unsigned NOT NULL DEFAULT '0',
-  `createdByUID` int(11) unsigned DEFAULT NULL,
-  `createdOnDateTime` datetime DEFAULT NULL,
-  `createdOnTimeZone` varchar(255) DEFAULT NULL,
-  `deletedByUID` int(11) unsigned DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedOnTimeZone` varchar(255) DEFAULT NULL,
-  `deletedFromIPAddress` varchar(20) DEFAULT NULL,
-  `discontinuedByUID` int(11) unsigned DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedOnTimeZone` varchar(255) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(20) DEFAULT NULL,
-  `discontinueNotes` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8532 DEFAULT CHARSET=latin1;
+  `notes` text DEFAULT NULL,
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=8532 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

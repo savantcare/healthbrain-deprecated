@@ -24,22 +24,16 @@ DROP TABLE IF EXISTS `socialHistoryFreeText`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `socialHistoryFreeText` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `createdOnUID` int(11) NOT NULL,
-  `createdByUID` int(11) NOT NULL,
+  `uuid` BINARY(16) NOT NULL,
+  `uuidOfPatient` BINARY(16) NOT NULL,
   `description` mediumtext NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `createdTimezone` varchar(255) DEFAULT NULL,
-  `updatedAt` datetime DEFAULT NULL,
-  `isDeleted` int(1) NOT NULL DEFAULT '0',
-  `isItLocked` varchar(10) DEFAULT NULL,
   `notes` text,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedTimeZone` varchar(100) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=858 DEFAULT CHARSET=latin1;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4315 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

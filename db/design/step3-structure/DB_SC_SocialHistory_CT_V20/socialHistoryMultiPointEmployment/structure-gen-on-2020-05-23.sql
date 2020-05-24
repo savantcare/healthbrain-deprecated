@@ -24,26 +24,21 @@ DROP TABLE IF EXISTS `socialHistoryMultiPointEmployment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `socialHistoryMultiPointEmployment` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uidOfPatient` int(11) unsigned DEFAULT NULL,
+  `uuid` BINARY(16) NOT NULL,
+  `uuidOfPatient` BINARY(16) NOT NULL,
   `value` varchar(128) DEFAULT NULL,
   `timeValueType` enum('atAge','atYear','yearsAgo','date') DEFAULT NULL,
   `timeValue` varchar(128) DEFAULT NULL,
   `startDate` varchar(255) NOT NULL,
   `endDate` varchar(255) NOT NULL,
-  `isItLocked` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'This field decides whether the socialHistoryMultiPointEmployment is locked or not',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `isDeleted` enum('No','Yes') NOT NULL,
-  `created_by` int(11) NOT NULL,
   `notes` text NOT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedTimeZone` varchar(50) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `uidOfPatient` (`uidOfPatient`)
-) ENGINE=InnoDB AUTO_INCREMENT=1998 DEFAULT CHARSET=utf8;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4315 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
