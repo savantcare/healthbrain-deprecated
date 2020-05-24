@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `socialHistoryMultiPointChild`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `socialHistoryMultiPointChild` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uidOfPatient` int(11) unsigned DEFAULT NULL,
+  `uuid` binary(16) NOT NULL,
+  `uuidOfPatient` binary(16) NOT NULL,
   `value` varchar(128) DEFAULT NULL,
   `timeValueType` enum('atAge','atYear','yearsAgo','date') DEFAULT NULL,
   `timeValue` varchar(128) NOT NULL,
@@ -35,9 +35,8 @@ CREATE TABLE `socialHistoryMultiPointChild` (
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`UUid`),
-  KEY `uidOfPatient` (`uidOfPatient`)
-) ENGINE=InnoDB AUTO_INCREMENT=1083 DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
