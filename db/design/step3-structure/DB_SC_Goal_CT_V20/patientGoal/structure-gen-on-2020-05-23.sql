@@ -24,28 +24,20 @@ DROP TABLE IF EXISTS `patientGoal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientGoal` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL,
+  `uuid` binary(16) NOT NULL,
+  `patientUUID` binary(16) NOT NULL,
   `goal` text NOT NULL,
   `priority` int(11) NOT NULL,
   `graphColor` varchar(50) NOT NULL,
   `firstParentId` int(11) NOT NULL,
-  `createdByUid` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `createdFromIPAddress` varchar(50) NOT NULL,
-  `createdAtTimeZone` varchar(100) NOT NULL,
-  `deletedByUID` int(11) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedFromIPAddress` varchar(50) DEFAULT NULL,
-  `deletedOnTimeZone` varchar(100) DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(50) DEFAULT NULL,
-  `discontinuedOnTimeZone` varchar(100) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `typeOfSection` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7537 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

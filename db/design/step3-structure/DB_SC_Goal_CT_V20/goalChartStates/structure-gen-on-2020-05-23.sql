@@ -24,14 +24,12 @@ DROP TABLE IF EXISTS `goalChartStates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `goalChartStates` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uidOfDoctor` int(11) unsigned DEFAULT NULL,
-  `uidOfPatient` int(11) unsigned DEFAULT NULL,
+  `uuid` BINARY(16) NOT NULL ,
+  `uidOfDoctor` BINARY(16) DEFAULT NULL,
+  `uidOfPatient` BINARY(16) DEFAULT NULL,
   `trackerOptions` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `uidOfDoctor` (`uidOfDoctor`),
-  KEY `uidOfPatient` (`uidOfPatient`)
-) ENGINE=InnoDB AUTO_INCREMENT=4199 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
