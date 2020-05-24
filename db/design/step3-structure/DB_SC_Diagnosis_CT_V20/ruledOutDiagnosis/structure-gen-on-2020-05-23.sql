@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `ruledOutDiagnosis`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ruledOutDiagnosis` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
   `firstParentId` int(11) NOT NULL,
   `ruledOutOnUID` int(11) unsigned NOT NULL,
   `ruledOutByUID` int(11) unsigned NOT NULL,

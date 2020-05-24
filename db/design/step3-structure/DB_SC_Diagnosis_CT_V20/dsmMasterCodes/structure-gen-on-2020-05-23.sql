@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `dsmMasterCodes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dsmMasterCodes` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
   `name` varchar(128) DEFAULT NULL,
   `dsm5Code` varchar(50) DEFAULT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,

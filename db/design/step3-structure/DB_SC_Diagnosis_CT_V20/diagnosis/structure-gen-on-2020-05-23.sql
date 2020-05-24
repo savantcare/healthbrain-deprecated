@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `diagnosis`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `diagnosis` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
   `firstParentId` int(11) unsigned DEFAULT NULL,
   `uid` int(11) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
