@@ -1,7 +1,7 @@
-use DB_SC_MSE_CT_V20_PROD;
+use DB_SC_MSE_CT_V20;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: DB_SC_MSE_CT_V20_PROD
+-- Host: localhost    Database: DB_SC_MSE_CT_V20
 -- ------------------------------------------------------
 -- Server version	5.7.26-0ubuntu0.18.04.1-log
 
