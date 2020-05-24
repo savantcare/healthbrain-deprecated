@@ -24,12 +24,15 @@ DROP TABLE IF EXISTS `MSENeurologicalOptionsMaster`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `MSENeurologicalOptionsMaster` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  `createdAtTimeStamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `isCommon` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `uuid` BINARY(16) NOT NULL,
+  `name` varchar(128) DEFAULT NULL,
+  `isCommon` tinyint(1) NOT NULL DEFAULT '0',
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

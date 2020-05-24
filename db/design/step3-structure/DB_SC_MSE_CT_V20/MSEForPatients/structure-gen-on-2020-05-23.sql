@@ -59,14 +59,13 @@ CREATE TABLE `MSEForPatients` (
   `neurologicalOptionsSelectedSumValue` int(11) NOT NULL DEFAULT '0',
   `neurologicalExtraInfo` varchar(255) DEFAULT NULL,
   `moodInfo` varchar(255) DEFAULT NULL,
-  `timezoneAbbreviationForCreatedAt` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
   `reviewedOn` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `uidOfPatient` (`uidOfPatient`),
-  KEY `uidOfDoctor` (`uidOfDoctor`)
-) ENGINE=InnoDB AUTO_INCREMENT=100017 DEFAULT CHARSET=utf8;
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnTimeZone` varchar(255) NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
+  PRIMARY KEY (`uuid`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8  WITH SYSTEM VERSIONING;;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
