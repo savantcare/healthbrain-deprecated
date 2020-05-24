@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `patientGoalRatings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientGoalRatings` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` BINARY(16) NOT NULL,
   `goalID` int(10) unsigned NOT NULL,
   `firstParentId` int(11) NOT NULL,
   `valueOfTheRating` tinyint(4) NOT NULL COMMENT 'Values are -3,-2,-1,0,1,2',
