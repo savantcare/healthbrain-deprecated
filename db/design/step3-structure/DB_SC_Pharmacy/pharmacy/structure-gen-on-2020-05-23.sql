@@ -24,14 +24,13 @@ DROP TABLE IF EXISTS `pharmacy`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pharmacy` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `firstParentId` int(11) NOT NULL,
-  `uidOfPatient` int(11) unsigned DEFAULT NULL,
-  `createdByUid` int(11) DEFAULT NULL,
+  `uuid` BINARY(16) NOT NULL,
+  `uuidOfPatient` BINARY(16) NOT NULL,
+  `createdByUUID` BINARY(16) DEFAULT NULL,
   `createdTimeZone` varchar(50) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `pharmacyName` varchar(128) DEFAULT NULL,
-  `pharmacyType` enum('On surescripts','Not on surescripts') DEFAULT NULL,
+  `isPharmacyOnSurescripts` enum('On surescripts','Not on surescripts') DEFAULT NULL,
   `NCPDPID` varchar(255) DEFAULT NULL,
   `NPI` varchar(100) DEFAULT NULL,
   `pharmacyStreetAddressLine1` varchar(128) DEFAULT NULL,
@@ -43,22 +42,15 @@ CREATE TABLE `pharmacy` (
   `pharmacyFax` varchar(128) DEFAULT NULL,
   `pharmacyURL` varchar(128) DEFAULT NULL,
   `pharmacyNotes` text,
-  `primaryOrSecondary` tinyint(4) unsigned DEFAULT '0' COMMENT '1: primary, 2: secondary',
-  `updated_at` datetime DEFAULT NULL,
-  `discontinuedByUID` int(11) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedTimeZone` varchar(50) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(50) NOT NULL,
+  `isItPrimaryOrSecondary` tinyint(4) unsigned DEFAULT '0' COMMENT '1: primary, 2: secondary',
+  `recordChangedByUUID` BINARY(16) NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `notes` text,
-  `deletedByUID` int(11) DEFAULT NULL,
-  `deletedOnDateTime` datetime DEFAULT NULL,
-  `deletedOnTimeZone` varchar(5) DEFAULT NULL,
-  `deletedFromIPAddress` varchar(50) DEFAULT NULL,
-  `originId` int(11) DEFAULT NULL,
   `isDeleted` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uidOfPatient` (`uidOfPatient`)
-) ENGINE=InnoDB AUTO_INCREMENT=526 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`uuid`),
+  KEY `uuidOfPatient` (`uuidOfPatient`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
