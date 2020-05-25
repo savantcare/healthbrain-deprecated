@@ -34,8 +34,6 @@ CREATE TABLE `doctorRecommendationsForPatient` (
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  `originId` int(11) NOT NULL,
-  `parentId` int(11) DEFAULT NULL,
   `order_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30139 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -55,7 +53,5 @@ CREATE TABLE `doctorRecommendationsForPatient` (
 /*
 Question:
 What are the following fields needed for: 
- `originId` int(11) NOT NULL,
-  `parentId` int(11) DEFAULT NULL,
-  `order_id` int(11) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL -> Needs a better name.
 */
