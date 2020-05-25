@@ -168,16 +168,7 @@ https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoe
 
 ## How to start mysqld inside docker?
 
-/healthbrain> docker-compose -f docker-compose-dev.yml up -d mysqld
-
-To access phpmyadmin:
-http://localhost:81/phpmyadmin/
-
-The admin password is given in: 
-healthbrain/node-server/config/development.json
-
-To enter the docker container:
-> docker exec -ti healthbrain_mysqld_1 bash
+Read: /docker/readme.md
 
 ## Mins of meeting
 

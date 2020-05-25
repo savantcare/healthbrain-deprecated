@@ -30,7 +30,6 @@ CREATE TABLE `reminders` (
   `notes` varchar(255) DEFAULT NULL,
   `whatDateShouldIRemindOn` datetime NOT NULL,
   `priority` int(4) DEFAULT NULL,
-  `originId` int(11) NOT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedOnTimeZone` varchar(255) NOT NULL,
