@@ -14,8 +14,17 @@ C. There are 2 systems before _V20 and V20. For them to co-exist UUID is needed 
 
 Ref: https://www.mysqltutorial.org/mysql-uuid/
 
+
+3. How is time stored?
+
+A. We use datetime as the field type. Since tiemstamp is 4 bytes and cannot store beyond 2038
+B. In the field the value is always in UTC. Hence timezone need not be stored.
+
+
 Questions:
 1. Should I use binary_short?
 https://mariadb.com/kb/en/uuid_short/
 2. Should I use sequntial UUID?
 https://stackoverflow.com/questions/50493449/how-can-i-generate-a-uuid-guid-in-mariadb-10-1
+
+

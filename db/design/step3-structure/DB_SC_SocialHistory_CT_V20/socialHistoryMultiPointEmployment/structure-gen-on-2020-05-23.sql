@@ -34,7 +34,6 @@ CREATE TABLE `socialHistoryMultiPointEmployment` (
   `notes` text NOT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4315 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

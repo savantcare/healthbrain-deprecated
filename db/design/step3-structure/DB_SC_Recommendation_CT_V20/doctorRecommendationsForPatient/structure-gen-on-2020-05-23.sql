@@ -32,7 +32,6 @@ CREATE TABLE `doctorRecommendationsForPatient` (
   `isAutoRex` int(11) DEFAULT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `order_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`uuid`)

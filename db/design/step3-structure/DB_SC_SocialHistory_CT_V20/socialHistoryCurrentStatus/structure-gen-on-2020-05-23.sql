@@ -30,16 +30,7 @@ CREATE TABLE `socialHistoryCurrentStatus` (
   `socialHistoryUniqueId` varchar(36) DEFAULT NULL,
   `socialHistoryCurrentStatusMasterID` tinyint(4) unsigned DEFAULT NULL,
   `uidOfPatient` int(11) unsigned DEFAULT NULL,
-  `value` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `createdTimeZone` varchar(255) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `isDeleted` enum('No','Yes') NOT NULL,
-  `discontinuedByUid` int(11) DEFAULT NULL,
-  `discontinuedFromIPAddress` varchar(255) DEFAULT NULL,
-  `discontinuedOnDateTime` datetime DEFAULT NULL,
-  `discontinuedOnTimeZone` varchar(100) DEFAULT NULL,
+  `value` varchar(255) NOT NULL
   PRIMARY KEY (`id`),
   KEY `uidOfPatient` (`uidOfPatient`),
   KEY `socialHistoryCurrentStatusMasterId` (`socialHistoryCurrentStatusMasterID`),
@@ -86,3 +77,5 @@ DELIMITER ;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed
+
+/* Question: From the name it is not clear what this table stores */
