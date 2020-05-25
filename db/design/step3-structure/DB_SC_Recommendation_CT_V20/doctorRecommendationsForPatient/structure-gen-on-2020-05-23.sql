@@ -33,7 +33,7 @@ CREATE TABLE `doctorRecommendationsForPatient` (
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  `order_id` int(11) DEFAULT NULL,
+  `autoRecommendationsOrderId` int(11) DEFAULT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30139 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
