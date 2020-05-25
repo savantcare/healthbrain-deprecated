@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `patientReportedDiagnosisNote`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientReportedDiagnosisNote` (
   `uuid` BINARY(16)  NOT NULL,
-  `diagnosisReportedId` int(11) NOT NULL,
+  `diagnosisReportedId` BINARY(16)  NOT NULL,
   `note` text NOT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,

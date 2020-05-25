@@ -25,8 +25,7 @@ DROP TABLE IF EXISTS `patientReportedDiagnosis`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientReportedDiagnosis` (
   `uuid` BINARY(16) NOT NULL,
-  `createdOnUID` int(11) NOT NULL,
-  `createdByUID` int(11) NOT NULL,
+  `uid` BINARY(16) NOT NULL,
   `diagnosisName` varchar(255) NOT NULL,
   `whenHappened` datetime DEFAULT NULL,
   `status` enum('Patient reported','Other provider confirmed') NOT NULL DEFAULT 'Patient reported',

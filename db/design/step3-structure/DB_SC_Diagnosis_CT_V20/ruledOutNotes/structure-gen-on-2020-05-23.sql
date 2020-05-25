@@ -26,7 +26,6 @@ DROP TABLE IF EXISTS `ruledOutNotes`;
 CREATE TABLE `ruledOutNotes` (
   `uuid` BINARY(16) NOT NULL,
   `ruledOutId` BINARY(16) NOT NULL,
-  `createdByUID` BINARY(16) NOT NULL,
   `note` text,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,

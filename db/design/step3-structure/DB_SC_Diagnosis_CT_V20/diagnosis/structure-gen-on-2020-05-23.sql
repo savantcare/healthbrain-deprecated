@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `diagnosis`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `diagnosis` (
   `uuid` BINARY(16) NOT NULL,
-  `uid` int(11) unsigned NOT NULL,
+  `uid` BINARY(16) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
