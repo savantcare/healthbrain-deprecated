@@ -29,13 +29,12 @@ CREATE TABLE `patientGoal` (
   `goal` text NOT NULL,
   `priority` int(11) NOT NULL,
   `graphColor` varchar(50) NOT NULL,
-  `firstParentId` int(11) NOT NULL,
   `notes` varchar(255) DEFAULT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  `typeOfSection` varchar(100) DEFAULT NULL,
+  `recordChangedFromSection` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
