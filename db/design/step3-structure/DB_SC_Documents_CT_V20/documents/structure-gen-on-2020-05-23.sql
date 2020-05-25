@@ -32,7 +32,7 @@ CREATE TABLE `documents` (
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`uuid`),
   KEY `foruploadid` (`uploadID`),
   KEY `uploadID` (`uploadID`),
   CONSTRAINT `foruploadid` FOREIGN KEY (`uploadID`) REFERENCES `documentUploadFolder` (`uploadID`)

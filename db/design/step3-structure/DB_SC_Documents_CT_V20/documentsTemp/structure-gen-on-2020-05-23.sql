@@ -34,7 +34,7 @@ CREATE TABLE `documentsTemp` (
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`uuid`),
   KEY `uidOfPatient` (`uidOfPatient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING COMMENT='1. Documents are put in this table temporarily. Once we get the upload id than we move the documents to the documents table. 2. When the documents are uploaded the uploadID is still not available. The uploadID only becomes available when the user hits the "Save" button. Hence we need this temp table.';
 /*!40101 SET character_set_client = @saved_cs_client */;
