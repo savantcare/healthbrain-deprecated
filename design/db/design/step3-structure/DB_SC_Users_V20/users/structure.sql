@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `userActiveTabDetails`
 --
+use DB_SC_Users_V20;
 
 CREATE TABLE `userActiveTabDetails` (
   `id` int(11) NOT NULL,
