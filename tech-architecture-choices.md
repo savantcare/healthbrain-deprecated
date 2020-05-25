@@ -43,10 +43,17 @@ In the current angular app the recommendation panel was listening on socket to u
     2. https://github.com/vue-generators/vue-form-generator ( https://blog.logrocket.com/how-to-build-reusable-forms-using-vue-form-generator/ )
     3. https://github.com/robinvdvleuten/vuex-persistedstate
     4. https://github.com/shentao/vue-multiselect
+    5. https://dafrok.github.io/v-hotkey/#/step/4
+    6. https://github.com/ElemeFE/element
+       A. Add and close tab good design: https://element.eleme.io/#/en-US/component/tabs#add-close-tab
+       B. Inline form validation: https://element.eleme.io/#/en-US/component/form#validation
+       C. Good looking form: https://element.eleme.io/#/en-US/component/form#basic-form
+    7. Table: Responsive and Draggable.
 
 4. Simple concepts to do common UI patterns
-    Doing multiple adds in same form https://www.youtube.com/watch?v=Efr7SUrBUQw
-
+    Doing multiple adds in same form:
+	https://element.eleme.io/#/en-US/component/form#delete-or-add-form-items-dynamically
+	https://www.youtube.com/watch?v=Efr7SUrBUQw
 
 # Q4) Should a table library be used or developed internally?
 
