@@ -1,4 +1,4 @@
-use DB_SC_Pharmacy;
+use DB_SC_Pharmacy_CT_V20;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: DB_SC_Pharmacy
