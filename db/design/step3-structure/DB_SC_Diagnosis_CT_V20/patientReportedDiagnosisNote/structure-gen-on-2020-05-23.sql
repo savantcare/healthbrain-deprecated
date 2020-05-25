@@ -25,11 +25,10 @@ DROP TABLE IF EXISTS `patientReportedDiagnosisNote`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientReportedDiagnosisNote` (
   `uuid` BINARY(16)  NOT NULL,
-  `diagnosisReportedId` int(11) NOT NULL,
+  `diagnosisReportedId` BINARY(16)  NOT NULL,
   `note` text NOT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

@@ -26,11 +26,10 @@ DROP TABLE IF EXISTS `diagnosisAssessment`;
 CREATE TABLE `diagnosisAssessment` (
   `uuid` BINARY(16) NOT NULL,
   `diagnosisId` int(11) NOT NULL,
-  `createdOnUID` int(11) NOT NULL,
+  `uid` BINARY(16) NOT NULL,
   `assessment` text,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;;

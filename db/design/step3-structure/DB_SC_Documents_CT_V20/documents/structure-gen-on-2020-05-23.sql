@@ -1,7 +1,7 @@
-use DB_SC_Documents;
+use DB_SC_Documents_CT_V20;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: DB_SC_Documents
+-- Host: localhost    Database: DB_SC_Documents_CT_V20
 -- ------------------------------------------------------
 -- Server version	5.7.26-0ubuntu0.18.04.1-log
 
@@ -24,14 +24,13 @@ DROP TABLE IF EXISTS `documents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `documents` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid`  BINARY(16) NOT NULL,
   `uploadID` int(11) unsigned NOT NULL DEFAULT '0',
   `fileContent` longblob,
   `fileName` text,
   `fileType` varchar(128) NOT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `foruploadid` (`uploadID`),

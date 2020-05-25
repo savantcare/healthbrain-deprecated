@@ -25,8 +25,7 @@ DROP TABLE IF EXISTS `ruledOutDiagnosis`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ruledOutDiagnosis` (
   `uuid` BINARY(16) NOT NULL,
-  `ruledOutOnUID` datetime unsigned NOT NULL,
-  `ruledOutByUID` BINARY(16) unsigned NOT NULL,
+  `uid` BINARY(16)  NOT NULL,
   `diagnosisId` int(11) NOT NULL,
   `diagnosisName` varchar(255) NOT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,
@@ -37,7 +36,6 @@ CREATE TABLE `ruledOutDiagnosis` (
   `ruledOutOn` datetime DEFAULT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

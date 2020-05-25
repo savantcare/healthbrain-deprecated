@@ -25,8 +25,7 @@ DROP TABLE IF EXISTS `patientReportedDiagnosis`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientReportedDiagnosis` (
   `uuid` BINARY(16) NOT NULL,
-  `createdOnUID` int(11) NOT NULL,
-  `createdByUID` int(11) NOT NULL,
+  `uid` BINARY(16) NOT NULL,
   `diagnosisName` varchar(255) NOT NULL,
   `whenHappened` datetime DEFAULT NULL,
   `status` enum('Patient reported','Other provider confirmed') NOT NULL DEFAULT 'Patient reported',
@@ -36,7 +35,6 @@ CREATE TABLE `patientReportedDiagnosis` (
   `notes` varchar(255) DEFAULT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

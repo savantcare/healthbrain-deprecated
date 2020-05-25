@@ -26,11 +26,9 @@ DROP TABLE IF EXISTS `ruledOutNotes`;
 CREATE TABLE `ruledOutNotes` (
   `uuid` BINARY(16) NOT NULL,
   `ruledOutId` BINARY(16) NOT NULL,
-  `createdByUID` BINARY(16) NOT NULL,
   `note` text,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
