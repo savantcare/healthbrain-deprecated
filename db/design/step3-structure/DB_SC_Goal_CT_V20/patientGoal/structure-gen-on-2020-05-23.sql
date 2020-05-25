@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `patientGoal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientGoal` (
-  `uuid` binary(16) NOT NULL,
-  `patientUUID` binary(16) NOT NULL,
+  `uuid` BINARY(16) NOT NULL,
+  `patientUUID` BINARY(16) NOT NULL,
   `goal` text NOT NULL,
   `priority` int(11) NOT NULL,
   `graphColor` varchar(50) NOT NULL,

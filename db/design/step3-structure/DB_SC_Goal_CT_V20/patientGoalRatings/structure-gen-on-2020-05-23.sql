@@ -25,14 +25,14 @@ DROP TABLE IF EXISTS `patientGoalRatings`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientGoalRatings` (
   `uuid` BINARY(16) NOT NULL,
-  `goalID` int(10) unsigned NOT NULL,
+  `goalUUID` BINARY(16) NOT NULL,
   `valueOfTheRating` tinyint(4) NOT NULL COMMENT 'Values are -3,-2,-1,0,1,2',
   `comments` varchar(255) NOT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
