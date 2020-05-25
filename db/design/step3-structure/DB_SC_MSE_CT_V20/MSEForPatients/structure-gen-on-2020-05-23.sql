@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS `MSEForPatients`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `MSEForPatients` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uidOfPatient` int(11) unsigned DEFAULT NULL,
-  `uidOfDoctor` int(11) unsigned DEFAULT NULL,
+  `uuid` BINARY(16) NOT NULLT,
+  `uuidOfPatient` BINARY(16) NOT NULL,
+  `uuidOfDoctor` BINARY(16) NOT NULL,
   `isReviewed` enum('yes','no') NOT NULL DEFAULT 'no',
   `affectOptionsSelectedSumValue` int(11) unsigned NOT NULL DEFAULT '0',
   `affectExtraInfo` varchar(255) DEFAULT NULL,
@@ -62,7 +62,6 @@ CREATE TABLE `MSEForPatients` (
   `reviewedOn` date DEFAULT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8  WITH SYSTEM VERSIONING;;
