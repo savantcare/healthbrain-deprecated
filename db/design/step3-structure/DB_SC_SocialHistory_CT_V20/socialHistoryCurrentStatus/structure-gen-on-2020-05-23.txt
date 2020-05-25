@@ -79,3 +79,4 @@ DELIMITER ;
 -- Dump completed
 
 /* Question: From the name it is not clear what this table stores */
+/* -- deprecated table - socialHistoryCurrentStatus and socialHistoryCurrentStatusMasterTypes */
