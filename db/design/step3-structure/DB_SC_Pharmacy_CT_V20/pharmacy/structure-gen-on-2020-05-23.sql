@@ -43,7 +43,7 @@ CREATE TABLE `pharmacy` (
   `pharmacyNotes` text,
   `isItPrimaryOrSecondary` tinyint(4) unsigned DEFAULT '0' COMMENT '1: primary, 2: secondary',
   `recordChangedByUUID` BINARY(16) NOT NULL,
-  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `notes` text,
   `isDeleted` int(1) NOT NULL DEFAULT '0',

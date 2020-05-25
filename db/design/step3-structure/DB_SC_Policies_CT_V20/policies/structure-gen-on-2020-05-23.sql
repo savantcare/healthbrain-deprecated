@@ -32,7 +32,7 @@ CREATE TABLE `policies` (
   `fillableValuesFromPolicy` text NOT NULL,
   `signature` blob NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `recordChangedFromSection` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`uuid`),

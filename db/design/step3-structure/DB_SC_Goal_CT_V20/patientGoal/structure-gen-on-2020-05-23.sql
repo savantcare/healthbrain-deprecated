@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `patientGoal`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patientGoal` (
   `uuid` BINARY(16) NOT NULL,
-  `patientUUID` BINARY(16) NOT NULL,
+  `uuidOfPatient` BINARY(16) NOT NULL,
   `goal` text NOT NULL,
   `priority` int(11) NOT NULL,
   `graphColor` varchar(50) NOT NULL,
   `notes` varchar(255) DEFAULT NULL,
   `recordChangedByUUID` BINARY(16) NOT NULL,
-  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `recordChangedFromSection` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`uuid`)
