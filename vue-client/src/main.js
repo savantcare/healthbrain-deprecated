@@ -1,7 +1,6 @@
 import '@babel/polyfill'
 import 'mutationobserver-shim'
 import Vue from 'vue'
-import './plugins/bootstrap-vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
@@ -25,11 +24,6 @@ Vue.use(new VueSocketIO({
 import VueSplit from 'vue-split-panel'
 Vue.use(VueSplit)
 
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
-
-Vue.use(BootstrapVue)
-Vue.use(BootstrapVueIcons)
-
 const VueScrollTo = require('vue-scrollto')
 Vue.use(VueScrollTo)
 
@@ -51,6 +45,12 @@ Vue.use(VueTabs)
 
 import * as ElResize from 'vue-element-resize-event'
 Vue.use(ElResize)
+
+// Integrate Element.io library
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
 
 Vue.config.productionTip = false
 
