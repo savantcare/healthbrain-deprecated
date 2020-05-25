@@ -1,7 +1,7 @@
-use DB_SC_Goal;
+use DB_SC_Policies;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: DB_SC_Goal
+-- Host: localhost    Database: DB_SC_Policies
 -- ------------------------------------------------------
 -- Server version	5.7.26-0ubuntu0.18.04.1-log
 
@@ -15,28 +15,6 @@ use DB_SC_Goal;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `patientGoal`
---
-
-DROP TABLE IF EXISTS `patientGoal`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `patientGoal` (
-  `uuid` BINARY(16) NOT NULL,
-  `patientUUID` BINARY(16) NOT NULL,
-  `goal` text NOT NULL,
-  `priority` int(11) NOT NULL,
-  `graphColor` varchar(50) NOT NULL,
-  `notes` varchar(255) DEFAULT NULL,
-  `recordChangedByUUID` BINARY(16) NOT NULL,
-  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
-  `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  `recordChangedFromSection` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
-/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

@@ -1,7 +1,7 @@
-use DB_SC_Pharmacy;
+use DB_SC_Policies;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: DB_SC_Pharmacy
+-- Host: localhost    Database: DB_SC_Policies
 -- ------------------------------------------------------
 -- Server version	5.7.26-0ubuntu0.18.04.1-log
 
@@ -17,38 +17,27 @@ use DB_SC_Pharmacy;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pharmacy`
+-- Table structure for table `policies`
 --
 
-DROP TABLE IF EXISTS `pharmacy`;
+DROP TABLE IF EXISTS `policies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pharmacy` (
+CREATE TABLE `policies` (
   `uuid` BINARY(16) NOT NULL,
-  `uuidOfPatient` BINARY(16) NOT NULL,
-  `createdByUUID` BINARY(16) DEFAULT NULL,
+  `uuidOfPatientWhoSignedThePolicy` BINARY(16) DEFAULT NULL,
+  `policyMasterUUID` BINARY(16) DEFAULT NULL,
+  `uploadUUID` BINARY(16) DEFAULT NULL,
+  `isThisPolicySigned` enum('Not signed','Draft','Signed') NOT NULL DEFAULT 'Not signed',
+  `fillableValuesFromPolicy` text NOT NULL,
+  `signature` blob NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `pharmacyName` varchar(128) DEFAULT NULL,
-  `isPharmacyOnSurescripts` enum('On surescripts','Not on surescripts') DEFAULT NULL,
-  `NCPDPID` varchar(255) DEFAULT NULL,
-  `NPI` varchar(100) DEFAULT NULL,
-  `pharmacyStreetAddressLine1` varchar(128) DEFAULT NULL,
-  `pharmacyStreetAddressLine2` varchar(128) DEFAULT NULL,
-  `pharmacyCity` varchar(128) DEFAULT NULL,
-  `pharmacyState` varchar(128) DEFAULT NULL,
-  `pharmacyZip` varchar(50) DEFAULT NULL,
-  `pharmacyPhone` varchar(128) DEFAULT NULL,
-  `pharmacyFax` varchar(128) DEFAULT NULL,
-  `pharmacyURL` varchar(128) DEFAULT NULL,
-  `pharmacyNotes` text,
-  `isItPrimaryOrSecondary` tinyint(4) unsigned DEFAULT '0' COMMENT '1: primary, 2: secondary',
-  `recordChangedByUUID` BINARY(16) NOT NULL,
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  `notes` text,
-  `isDeleted` int(1) NOT NULL DEFAULT '0',
+  `recordChangedFromSection` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`uuid`),
-  KEY `uuidOfPatient` (`uuidOfPatient`)
+  KEY `policyForWhichPatient` (`uuidOfPatientWhoSignedThePolicy`),
+  KEY `policyType` (`policyMasterUUID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

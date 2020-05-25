@@ -25,10 +25,10 @@ DROP TABLE IF EXISTS `goalChartStates`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `goalChartStates` (
   `uuid` BINARY(16) NOT NULL ,
-  `uidOfDoctor` BINARY(16) DEFAULT NULL,
-  `uidOfPatient` BINARY(16) DEFAULT NULL,
+  `uuidOfDoctor` BINARY(16) DEFAULT NULL,
+  `uuidOfPatient` BINARY(16) DEFAULT NULL,
   `trackerOptions` text NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
