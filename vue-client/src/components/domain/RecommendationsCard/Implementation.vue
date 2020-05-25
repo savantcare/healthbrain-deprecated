@@ -154,12 +154,6 @@ export default {
       });
       this.$store.dispatch("updateRightPanelRow");
     },
-    getStyle() {
-      if (this.focusRow == `${this.$options.name}-0`) {
-        return "success";
-      }
-      return this.style;
-    },
     selectTableRow(item) {
       let newList = [];
       let isExistsRow = false;
@@ -178,13 +172,6 @@ export default {
     },
     focusPanel() {
       console.log("focus panel");
-    },
-    getRowStyleClass(row) {
-      const { originalIndex } = row;
-      if (this.focusRow == `${this.$options.name}-${originalIndex + 1}`) {
-        return "table-primary";
-      }
-      return "";
     }
   }
 };
