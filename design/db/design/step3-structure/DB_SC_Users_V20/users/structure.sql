@@ -365,8 +365,7 @@ CREATE TABLE `userRoleTypesMaster` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `publicUniqueId` varchar(36) DEFAULT NULL,
+  `uuid`  BINARY(16) NOT NULL,
   `facebookID` text DEFAULT NULL,
   `emailAddress` varchar(255) DEFAULT NULL,
   `password` varchar(128) DEFAULT NULL,
@@ -907,7 +906,7 @@ ALTER TABLE `userRoleTypesMaster`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`uuid`),
   ADD UNIQUE KEY `emailAddress` (`emailAddress`),
   ADD KEY `roleID` (`roleID`),
   ADD KEY `companyID` (`companyID`),
