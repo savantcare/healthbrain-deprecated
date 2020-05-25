@@ -13,6 +13,7 @@
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.6.4",
+    "element-ui": "^2.13.2",
     "jquery": "^3.5.1",
     "mysql": "^2.18.1",
     "register-service-worker": "^1.7.1",
