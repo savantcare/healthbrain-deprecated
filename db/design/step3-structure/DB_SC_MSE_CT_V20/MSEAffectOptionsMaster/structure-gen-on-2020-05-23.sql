@@ -28,7 +28,7 @@ CREATE TABLE `MSEAffectOptionsMaster` (
   `name` varchar(128) DEFAULT NULL,
   `isCommon` tinyint(1) NOT NULL DEFAULT '0',
   `recordChangedByUUID` BINARY(16) NOT NULL,
-  `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
+  `recordChangedOnDateTime` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
   `recordChangedOnTimeZone` varchar(255) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
