@@ -18,6 +18,11 @@ const routes = [
     path: '/test',
     name: 'test',
     component: () => import(/* webpackChunkName: "MultiChangeSocialHistory" */ '@/views/Test.vue')
+  },
+  {
+    path: '/reminder',
+    name: 'reminder',
+    component: () => import('@/views/Reminder.vue')
   }
 ]
 
