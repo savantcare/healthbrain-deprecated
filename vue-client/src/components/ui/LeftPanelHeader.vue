@@ -1,54 +1,32 @@
 <template>
-  <div>
-    <b-row id="left-panel-header">
-      <b-col cols="3" id="patient-info" class="pr-0">
-        <b class="ml-2" v-if="patientInfo">{{patientInfo.name}}</b>
-        <span class="ml-2" v-if="patientInfo">({{patientInfo.age + " years old"}})</span>
-        <b-badge
-          class="ml-2"
-          :variant="activityStatus ? 'success' : 'danger'"
-        >{{activityStatus ? "Online" : "Offline"}}</b-badge>
-      </b-col>
-      <b-col cols="7" class="pl-0 pr-0">
-        <date-slider></date-slider>
-      </b-col>
-      <b-col cols="2" style="display: flex; align-items: center;" class="pl-0">
-        <!-- <div>
-          <b-icon-dash-circle
-            style="cursor: pointer;"
-            v-b-tooltip.hover.bottom="'Zoom out'"
-            @click="zoomOut"
-          ></b-icon-dash-circle>
-          <b-icon-plus-circle
-            class="ml-2"
-            style="cursor: pointer;"
-            v-b-tooltip.hover.bottom="'Zoom in'"
-            @click="zoomIn"
-          ></b-icon-plus-circle>
-        </div>-->
-        <b-form-checkbox
-          style="font-size: 12px;"
-          v-model="tabMode"
-          name="check-button"
-          switch
-        >Switch components</b-form-checkbox>
-      </b-col>
-    </b-row>
-  </div>
+  <el-row type="flex" align="middle" id="left-panel-header">
+    <el-col :span="6" class="ml-2">
+      <span style="font-size: 20px;">Alexey D</span>
+      <span style="font-size: 14px; margin-left: 6px;">(28 years old)</span>
+    </el-col>
+    <el-col :span="12">
+      <el-slider v-model="slider" :step="10" show-stops></el-slider>
+    </el-col>
+    <el-col :span="6">
+      <el-switch
+        v-model="tabMode"
+        active-text="Health components"
+        style="float: right; margin-right: 12px;"
+      ></el-switch>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
 import { USER_API_URL } from "@/const.js";
-// import $ from "jquery";
-import DateSlider from "../ui/DateSlider";
+
 export default {
-  components: {
-    DateSlider
-  },
+  components: {},
   data() {
     return {
       tabMode: true,
-      patientInfo: null
+      patientInfo: null,
+      slider: 0
     };
   },
   computed: {
@@ -149,12 +127,8 @@ export default {
 
 <style scoped>
 #left-panel-header {
-  background-color: #563d7c;
-  /* height: 50px; */
-  /* width: 100%; */
-  /* display: flex; */
-  color: white;
-  align-items: center;
-  /* justify-content: space-between; */
+  height: 30px;
+  margin-bottom: 6px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 </style>
