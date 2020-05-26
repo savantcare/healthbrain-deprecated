@@ -23,6 +23,11 @@ const routes = [
     path: '/reminder',
     name: 'reminder',
     component: () => import('@/views/Reminder.vue')
+  },
+  {
+    path: '/recommendation',
+    name: 'recommendation',
+    component: () => import('@/views/Recommendation.vue')
   }
 ]
 
