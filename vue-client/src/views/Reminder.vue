@@ -1,5 +1,8 @@
 <template>
-  <el-container>
+  <el-dialog
+  :visible.sync="dialogVisible"
+  width="80%"
+  :before-close="handleClose">
     <!--<el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
       <el-tab-pane
         v-for="(item) in editableTabs"
@@ -12,9 +15,10 @@
     </el-tabs>-->
 
     <el-tabs type="card">
+      <!--Start Multi Change reminder-->
       <el-tab-pane>
         <span slot="label" style="font-size:22px"> Multi change reminder</span>
-        <el-row :gutter="12">
+        <el-row>
           <el-col :span="8">
             <el-card class="box-card">
               <el-form label-position="top" ref="form" :model="form" >
@@ -22,7 +26,7 @@
                   <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="success" @click="onSubmit">Save</el-button>
+                  <el-button type="success" @click="onSubmit" size="small">Save</el-button>
                 </el-form-item>
               </el-form>
               <el-row><span style="font-size:14px"> History:</span></el-row><br>
@@ -47,7 +51,7 @@
                   <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="success" @click="onSubmit">Save</el-button>
+                  <el-button type="success" @click="onSubmit" size="small">Save</el-button>
                 </el-form-item>
               </el-form>
               <el-row><span style="font-size:14px"> History:</span></el-row><br>
@@ -72,7 +76,7 @@
                   <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="success" @click="onSubmit">Save</el-button>
+                  <el-button type="success" @click="onSubmit" size="small">Save</el-button>
                 </el-form-item>
               </el-form>
               <el-row><span style="font-size:14px"> History:</span></el-row><br>
@@ -90,30 +94,66 @@
               </el-row>
             </el-card> 
           </el-col>
-          
         </el-row>
       </el-tab-pane>
+      <!--End Multi Change reminder-->
+
+      <!--Start Multi Change reminder-->
       <el-tab-pane>
         <span slot="label" style="font-size:22px"> Add reminder</span>
         <el-row :gutter="12">
           <el-col :span="24">
             <el-card class="box-card">
-              <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item  style="font-weight:bold" label="Description:">
-                  <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
+              <!--<el-form label-position="top" ref="form" :model="form" >
+                <el-form-item  style="font-weight:bold" label="Description:" required>
+                  <el-input :span="8" type="textarea" v-model="form.desc" placeholder="You may enter multi line text"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="success" @click="onSubmit">Save</el-button>
-                  <el-button type="primary" @click="onSubmit">Add one more</el-button>
+                  <el-button type="success" @click="onSubmit" size="small">Save</el-button>
+                  <el-button type="primary" @click="onSubmit" size="small">Add one more</el-button>
+                </el-form-item>
+              </el-form>-->
+
+
+              <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="120px" class="demo-dynamic">
+                <el-form-item
+                  v-for="(domain, index) in dynamicValidateForm.domains"
+                  :label="'Description'"
+                  :key="domain.key"
+                  :prop="'domains.' + index + '.value'"
+                  :rules="{
+                    required: true, message: 'domain can not be null', trigger: 'blur'
+                  }"
+                >
+                  <el-row><el-col :span="2" :offset="24"><i class="el-icon-close" @click.prevent="removeDomain(domain)"></i></el-col></el-row>
+                  <el-input :span="8" type="textarea" v-model="domain.value" placeholder="You may enter multi line text"></el-input>
+                  
+
+
+
+                </el-form-item>
+                <!--<el-form-item>
+                  <el-button type="primary" @click="submitForm('dynamicValidateForm')">Submit</el-button>
+                  <el-button @click="addDomain">New domain</el-button>
+                  <el-button @click="resetForm('dynamicValidateForm')">Reset</el-button>
+                </el-form-item>-->
+                <el-form-item>
+                  <el-button type="success" @click="submitForm('dynamicValidateForm')" size="small">Save</el-button>
+                  <el-button type="primary" @click="addDomain" size="small">Add one more</el-button>
                 </el-form-item>
               </el-form>
+
+
             </el-card> 
           </el-col>
         </el-row>
       </el-tab-pane>
+
+      
+      <!--End Multi Add reminder-->
     </el-tabs>
 
-  </el-container>
+  </el-dialog>
 </template>   
 <script>
   export default {
@@ -132,7 +172,15 @@
         }],
         tabIndex: 2,
         form: {
-          desc: ''
+          desc: 'Reminder1'
+        },
+        dialogVisible: true,
+        dynamicValidateForm: {
+          domains: [{
+            key: 1,
+            value: ''
+          }],
+          email: ''
         }
       }
     },
@@ -167,7 +215,35 @@
       },
       onSubmit() {
         console.log('submit!');
+      },
+      handleClose(done) {
+        done();
+      },
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      },
+      removeDomain(item) {
+        var index = this.dynamicValidateForm.domains.indexOf(item);
+        if (index !== -1) {
+          this.dynamicValidateForm.domains.splice(index, 1);
+        }
+      },
+      addDomain() {
+        this.dynamicValidateForm.domains.push({
+          key: Date.now(),
+          value: ''
+        });
       }
-    }
+    } 
   }
 </script>
