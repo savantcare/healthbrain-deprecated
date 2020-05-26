@@ -66,6 +66,11 @@
                     </el-timeline>
                   </div>
               </el-row><br>
+              <el-pagination
+                small
+                layout="prev, pager, next"
+                :total="50">
+              </el-pagination>
             </el-card> 
           </el-col>
           <el-col :span="8">
