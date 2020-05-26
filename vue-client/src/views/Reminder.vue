@@ -25,15 +25,15 @@
                   <el-button type="success" @click="onSubmit">Save</el-button>
                 </el-form-item>
               </el-form>
-              <el-row><span> History:</span></el-row><br>
+              <el-row><span style="font-size:14px"> History:</span></el-row><br>
               <el-row :gutter="12">
-                  <el-card shadow="always">
+                  <el-card shadow="always" style="font-size:12px">
                     <span> Reminder1</span><br>
                     <span> Changed by User1 on 25th May, 2020</span>
                   </el-card>
               </el-row><br>
               <el-row :gutter="12">
-                <el-card shadow="always">
+                <el-card shadow="always" style="font-size:12px">
                     <span> Rem1</span><br>
                     <span> Added by User1 on 20th May, 2020</span>
                 </el-card>
@@ -50,15 +50,15 @@
                   <el-button type="success" @click="onSubmit">Save</el-button>
                 </el-form-item>
               </el-form>
-              <el-row><span> History:</span></el-row><br>
+              <el-row><span style="font-size:14px"> History:</span></el-row><br>
               <el-row :gutter="12">
-                  <el-card shadow="always">
+                  <el-card shadow="always" style="font-size:12px">
                     <span> Reminder1</span><br>
                     <span> Changed by User1 on 25th May, 2020</span>
                   </el-card>
               </el-row><br>
               <el-row :gutter="12">
-                <el-card shadow="always">
+                <el-card shadow="always" style="font-size:12px">
                     <span> Rem1</span><br>
                     <span> Added by User1 on 20th May, 2020</span>
                 </el-card>
@@ -75,15 +75,15 @@
                   <el-button type="success" @click="onSubmit">Save</el-button>
                 </el-form-item>
               </el-form>
-              <el-row><span> History:</span></el-row><br>
+              <el-row><span style="font-size:14px"> History:</span></el-row><br>
               <el-row :gutter="12">
-                  <el-card shadow="always">
+                  <el-card shadow="always" style="font-size:12px">
                     <span> Reminder1</span><br>
                     <span> Changed by User1 on 25th May, 2020</span>
                   </el-card>
               </el-row><br>
               <el-row :gutter="12">
-                <el-card shadow="always">
+                <el-card shadow="always" style="font-size:12px">
                     <span> Rem1</span><br>
                     <span> Added by User1 on 20th May, 2020</span>
                 </el-card>
@@ -92,8 +92,24 @@
           </el-col>
           
         </el-row>
-             
-
+      </el-tab-pane>
+      <el-tab-pane>
+        <span slot="label" style="font-size:22px"> Add reminder</span>
+        <el-row :gutter="12">
+          <el-col :span="24">
+            <el-card class="box-card">
+              <el-form label-position="top" ref="form" :model="form" >
+                <el-form-item  style="font-weight:bold" label="Description:">
+                  <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="success" @click="onSubmit">Save</el-button>
+                  <el-button type="primary" @click="onSubmit">Add one more</el-button>
+                </el-form-item>
+              </el-form>
+            </el-card> 
+          </el-col>
+        </el-row>
       </el-tab-pane>
     </el-tabs>
 
