@@ -49,7 +49,7 @@ In the current angular app the recommendation panel was listening on socket to u
        B. Inline form validation: https://element.eleme.io/#/en-US/component/form#validation
        C. Good looking form: https://element.eleme.io/#/en-US/component/form#basic-form
        D. History shown as timeline https://element.eleme.io/#/en-US/component/timeline
-       E. Card for right side: https://element.eleme.io/#/en-US/component/timeline
+       E. Card for right side: https://element.eleme.io/#/en-US/component/card
        F. confirming actions does not take huge mouse movement: https://element.eleme.io/#/en-US/component/popconfirm
        G. https://element.eleme.io/#/en-US/component/popover#popover -> Mouse over help looks good.
     7. Table: Responsive and Draggable.
