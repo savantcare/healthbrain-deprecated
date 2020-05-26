@@ -37,7 +37,7 @@ CREATE TABLE `socialHistoryOtherMajorLifeEvents` (
   `recordChangedOnDateTime` datetime DEFAULT current_timestamp() NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4315 DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
