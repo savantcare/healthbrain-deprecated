@@ -11,7 +11,7 @@
           <el-col :span="8">
             <el-card class="box-card">
               <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item  style="font-weight:bold" label="Description:">
+                <el-form-item>
                   <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
@@ -37,7 +37,7 @@
           <el-col :span="8">
             <el-card class="box-card">
               <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item  style="font-weight:bold" label="Description:">
+                <el-form-item>
                   <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
@@ -63,7 +63,7 @@
           <el-col :span="8">
             <el-card class="box-card">
               <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item  style="font-weight:bold" label="Description:">
+                <el-form-item>
                   <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
@@ -110,9 +110,9 @@
               <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="120px" class="demo-dynamic">
                 <el-form-item
                   v-for="(domain, index) in dynamicValidateForm.domains"
-                  :label="'Description'"
                   :key="domain.key"
                   :prop="'domains.' + index + '.value'"
+                  label-position="top"
                   :rules="{
                     required: true, message: 'domain can not be null', trigger: 'blur'
                   }"
