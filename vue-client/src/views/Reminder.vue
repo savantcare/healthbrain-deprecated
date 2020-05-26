@@ -128,12 +128,12 @@
 
               <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="120px" class="demo-dynamic">
                 <el-form-item
-                  v-for="(domain, index) in dynamicValidateForm.domains"
+                  v-for="(domain) in dynamicValidateForm.domains"
                   :key="domain.key"
-                  :prop="'domains.' + index + '.value'"
+                  :prop="'desc'"
                   label-position="top"
                   :rules="{
-                    required: true, message: 'domain can not be null', trigger: 'blur'
+                    required: true, message: 'Description can not be blank', trigger: 'blur'
                   }"
                 >
                   <el-row><el-col :span="2" :offset="24"><i class="el-icon-close" @click.prevent="removeDomain(domain)"></i></el-col></el-row>
@@ -190,8 +190,7 @@
           domains: [{
             key: 1,
             value: ''
-          }],
-          email: ''
+          }]
         },
         activities: [{
           content: 'Remider1',
