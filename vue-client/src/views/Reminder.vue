@@ -7,9 +7,9 @@
       <!--Start Multi Change reminder-->
       <el-tab-pane>
         <span slot="label" style="font-size:22px"> Multi change reminder</span>
-        <el-row>
+        <el-row :gutter="12">
           <el-col :span="8">
-            <el-card class="box-card">
+            <el-card  class="box-card" shadow="hover">
               <el-form label-position="top" ref="form" :model="form" >
                 <el-form-item>
                   <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
@@ -39,7 +39,7 @@
             </el-card> 
           </el-col>
           <el-col :span="8">
-            <el-card class="box-card">
+            <el-card  class="box-card" shadow="hover">
               <el-form label-position="top" ref="form" :model="form" >
                 <el-form-item>
                   <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
@@ -69,7 +69,7 @@
             </el-card> 
           </el-col>
           <el-col :span="8">
-            <el-card class="box-card">
+            <el-card  class="box-card" shadow="hover">
               <el-form label-position="top" ref="form" :model="form" >
                 <el-form-item>
                   <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
@@ -98,6 +98,7 @@
               </el-row><br>
             </el-card> 
           </el-col>
+          
           
         </el-row>
       </el-tab-pane>
