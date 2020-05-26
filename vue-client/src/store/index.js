@@ -10,6 +10,7 @@ import settingModule from './modules/setting'
 import rightPanelModule from './modules/rightPanel'
 import tabDialogModule from './modules/tabDialog'
 import leftPanelModule from './modules/leftPanel'
+import dialogModule from './modules/dialog'
 
 import { ROLE_API_URL } from "@/const.js"
 
@@ -61,7 +62,8 @@ export default new Vuex.Store({
     setting: settingModule,
     rightPanel: rightPanelModule,
     tabDialog: tabDialogModule,
-    leftPanel: leftPanelModule
+    leftPanel: leftPanelModule,
+    dialog: dialogModule
   },
   plugins: [
     createPersistedState()
