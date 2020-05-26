@@ -12,7 +12,7 @@
             <el-card class="box-card">
               <el-form label-position="top" ref="form" :model="form" >
                 <el-form-item>
-                  <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
+                  <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -42,7 +42,7 @@
             <el-card class="box-card">
               <el-form label-position="top" ref="form" :model="form" >
                 <el-form-item>
-                  <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
+                  <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -72,7 +72,7 @@
             <el-card class="box-card">
               <el-form label-position="top" ref="form" :model="form" >
                 <el-form-item>
-                  <el-input :span="8" type="textarea" v-model="form.desc"></el-input>
+                  <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -98,6 +98,7 @@
               </el-row><br>
             </el-card> 
           </el-col>
+          
         </el-row>
       </el-tab-pane>
       <!--End Multi Change reminder-->
@@ -130,7 +131,7 @@
                   }"
                 >
                   <el-row><el-col :span="2" :offset="24"><i class="el-icon-close" @click.prevent="removeDomain(domain)"></i></el-col></el-row>
-                  <el-input :span="8" type="textarea" v-model="domain.value" placeholder="You may enter multi line text"></el-input>
+                  <el-input :span="8" type="textarea" v-model="domain.value" placeholder="You may enter multi line text" :autosize="{ minRows: 4}"></el-input>
                   
 
 
