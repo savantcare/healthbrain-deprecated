@@ -4,9 +4,9 @@
   width="80%"
   :before-close="handleClose">
     <el-tabs type="card">
-      <!--Start Multi Change reminder-->
+      <!--Start Multi Change recommendation-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px"> Multi change reminder</span>
+        <span slot="label" style="font-size:22px"> Multi change recommendation</span>
         <el-row :gutter="12">
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
@@ -116,11 +116,11 @@
           
         </el-row>
       </el-tab-pane>
-      <!--End Multi Change reminder-->
+      <!--End Multi Change recommendation-->
 
-      <!--Start Multi Change reminder-->
+      <!--Start Multi Change recommendation-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px"> Add reminder</span>
+        <span slot="label" style="font-size:22px"> Add recommendation</span>
         <el-row :gutter="12">
           <el-col :span="24">
             <el-card class="box-card">
@@ -159,7 +159,7 @@
       </el-tab-pane>
 
       
-      <!--End Multi Add reminder-->
+      <!--End Multi Add recommendation-->
     </el-tabs>
 
   </el-dialog>
@@ -170,9 +170,9 @@
       return {
         editableTabsValue: '2',
         editableTabs: [{
-          title: 'Multi change reminder',
-          name: 'reminder',
-          content: 'reminder'
+          title: 'Multi change recommendation',
+          name: 'recommendation',
+          content: 'recommendation'
         }, 
         {
           title: 'Tab 2',
@@ -181,7 +181,7 @@
         }],
         tabIndex: 2,
         form: {
-          desc: 'Reminder1',
+          desc: 'Recommendation1',
           when: ''
         },
         dialogVisible: true,
@@ -192,12 +192,12 @@
           }]
         },
         activities: [{
-          content: 'Reminder1',
+          content: 'Recommendation1',
           timestamp: '25th May, 2020',
           size: 'large',
           type: 'primary',
         }, {
-          content: 'Rem1',
+          content: 'Rex1',
           timestamp: '25th May, 2020',
           color: '#0bbd87'
         }]
