@@ -3,17 +3,6 @@
   :visible.sync="dialogVisible"
   width="80%"
   :before-close="handleClose">
-    <!--<el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
-      <el-tab-pane
-        v-for="(item) in editableTabs"
-        :key="item.name"
-        :label="item.title"
-        :name="item.name"
-      >
-        {{item.content}}
-      </el-tab-pane>
-    </el-tabs>-->
-
     <el-tabs type="card">
       <!--Start Multi Change reminder-->
       <el-tab-pane>
@@ -27,6 +16,7 @@
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
+                  <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
                 </el-form-item>
               </el-form>
               <el-row><span style="font-size:14px"> History:</span></el-row><br>
@@ -52,6 +42,7 @@
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
+                  <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
                 </el-form-item>
               </el-form>
               <el-row><span style="font-size:14px"> History:</span></el-row><br>
@@ -77,6 +68,7 @@
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
+                  <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
                 </el-form-item>
               </el-form>
               <el-row><span style="font-size:14px"> History:</span></el-row><br>
