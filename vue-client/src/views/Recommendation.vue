@@ -11,8 +11,11 @@
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
               <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item>
+                <el-form-item style="font-weight:bold" label="Description">
                   <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
+                </el-form-item>
+                <el-form-item style="font-weight:bold" label="When">
+                  <el-date-picker type="date" placeholder="Pick a date" v-model="form.when" style="width: 100%;"></el-date-picker>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -41,8 +44,11 @@
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
               <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item>
+                <el-form-item style="font-weight:bold" label="Description">
                   <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
+                </el-form-item>
+                <el-form-item style="font-weight:bold" label="When">
+                  <el-date-picker type="date" placeholder="Pick a date" v-model="form.when" style="width: 100%;"></el-date-picker>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -65,7 +71,7 @@
                       </el-timeline-item>
                     </el-timeline>
                   </div>
-              </el-row><br>
+              </el-row>
               <el-pagination
                 small
                 layout="prev, pager, next"
@@ -76,8 +82,11 @@
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
               <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item>
+                <el-form-item style="font-weight:bold" label="Description">
                   <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
+                </el-form-item>
+                <el-form-item style="font-weight:bold" label="When">
+                  <el-date-picker type="date" placeholder="Pick a date" v-model="form.when" style="width: 100%;"></el-date-picker>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -103,6 +112,8 @@
               </el-row><br>
             </el-card> 
           </el-col>
+          
+          
         </el-row>
       </el-tab-pane>
       <!--End Multi Change recommendation-->
@@ -170,7 +181,8 @@
         }],
         tabIndex: 2,
         form: {
-          desc: 'Recommendation1'
+          desc: 'Recommendation1',
+          when: ''
         },
         dialogVisible: true,
         dynamicValidateForm: {
@@ -180,7 +192,7 @@
           }]
         },
         activities: [{
-          content: 'Remider1',
+          content: 'Recommendation1',
           timestamp: '25th May, 2020',
           size: 'large',
           type: 'primary',
