@@ -24,9 +24,10 @@ cd /gt/sc-prog-repos/healthbrain/vue-client
 npm install
 npm run serve
 
-Step2: Start node-server
+Step3: Start node-server
 cd /gt/sc-prog-repos/healthbrain/node-server
 npm install
 npm run start
 
 
+Then in your browser go to: http://localhost:8080/
