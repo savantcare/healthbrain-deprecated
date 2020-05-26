@@ -21,17 +21,21 @@
               </el-form>
               <el-row><span style="font-size:14px"> History:</span></el-row><br>
               <el-row :gutter="12">
-                  <el-card shadow="always" style="font-size:12px">
-                    <span> Reminder1</span><br>
-                    <span> Changed by User1 on 25th May, 2020</span>
-                  </el-card>
+                  <div class="block">
+                    <el-timeline>
+                      <el-timeline-item
+                        v-for="(activity, index) in activities"
+                        :key="index"
+                        :icon="activity.icon"
+                        :type="activity.type"
+                        :color="activity.color"
+                        :size="activity.size"
+                        :timestamp="activity.timestamp">
+                        {{activity.content}}
+                      </el-timeline-item>
+                    </el-timeline>
+                  </div>
               </el-row><br>
-              <el-row :gutter="12">
-                <el-card shadow="always" style="font-size:12px">
-                    <span> Rem1</span><br>
-                    <span> Added by User1 on 20th May, 2020</span>
-                </el-card>
-              </el-row>
             </el-card> 
           </el-col>
           <el-col :span="8">
@@ -47,17 +51,21 @@
               </el-form>
               <el-row><span style="font-size:14px"> History:</span></el-row><br>
               <el-row :gutter="12">
-                  <el-card shadow="always" style="font-size:12px">
-                    <span> Reminder1</span><br>
-                    <span> Changed by User1 on 25th May, 2020</span>
-                  </el-card>
+                  <div class="block">
+                    <el-timeline>
+                      <el-timeline-item
+                        v-for="(activity, index) in activities"
+                        :key="index"
+                        :icon="activity.icon"
+                        :type="activity.type"
+                        :color="activity.color"
+                        :size="activity.size"
+                        :timestamp="activity.timestamp">
+                        {{activity.content}}
+                      </el-timeline-item>
+                    </el-timeline>
+                  </div>
               </el-row><br>
-              <el-row :gutter="12">
-                <el-card shadow="always" style="font-size:12px">
-                    <span> Rem1</span><br>
-                    <span> Added by User1 on 20th May, 2020</span>
-                </el-card>
-              </el-row>
             </el-card> 
           </el-col>
           <el-col :span="8">
@@ -73,17 +81,21 @@
               </el-form>
               <el-row><span style="font-size:14px"> History:</span></el-row><br>
               <el-row :gutter="12">
-                  <el-card shadow="always" style="font-size:12px">
-                    <span> Reminder1</span><br>
-                    <span> Changed by User1 on 25th May, 2020</span>
-                  </el-card>
+                  <div class="block">
+                    <el-timeline>
+                      <el-timeline-item
+                        v-for="(activity, index) in activities"
+                        :key="index"
+                        :icon="activity.icon"
+                        :type="activity.type"
+                        :color="activity.color"
+                        :size="activity.size"
+                        :timestamp="activity.timestamp">
+                        {{activity.content}}
+                      </el-timeline-item>
+                    </el-timeline>
+                  </div>
               </el-row><br>
-              <el-row :gutter="12">
-                <el-card shadow="always" style="font-size:12px">
-                    <span> Rem1</span><br>
-                    <span> Added by User1 on 20th May, 2020</span>
-                </el-card>
-              </el-row>
             </el-card> 
           </el-col>
         </el-row>
@@ -173,7 +185,17 @@
             value: ''
           }],
           email: ''
-        }
+        },
+        activities: [{
+          content: 'Remider1',
+          timestamp: '25th May, 2020',
+          size: 'large',
+          type: 'primary',
+        }, {
+          content: 'Rem1',
+          timestamp: '25th May, 2020',
+          color: '#0bbd87'
+        }]
       }
     },
     methods: {
