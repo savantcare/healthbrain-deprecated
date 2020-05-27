@@ -6,7 +6,7 @@
     <el-tabs type="card">
       <!--Start Multi Change recommendation-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px;font-family: Helvetica;"> Assessment diagnosis</span>
+        <span slot="label" style="font-size:22px;font-family: Helvetica;">Assessment diagnosis</span>
         <el-row :gutter="12">
           <el-col :span="8"
               v-for="(diagnoses, index) in diagnosis"
@@ -23,7 +23,7 @@
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
                 </el-form-item>
               </el-form>
-              <el-row><span style="font-size:14px"> History:</span></el-row><br>
+              <el-row><span style="font-size:14px">History:</span></el-row><br>
               <el-row :gutter="12">
                   <div class="block">
                     <el-timeline>
@@ -53,22 +53,20 @@
 
       <!--Start Multi Change recommendation-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px"> Add diagnosis</span>
+        <span slot="label" style="font-size:20px"> Add diagnosis</span>
         <el-row :gutter="12">
           <el-col :span="24">
             <el-card class="box-card">
-              <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" class="demo-dynamic">
-                <el-form-item
-                  v-for="(domain) in dynamicValidateForm.domains"
-                  :key="domain.key"
-                  :prop="'desc'"
-                  label-position="top"
-                  :rules="{
-                    required: true, message: 'Description can not be blank', trigger: 'blur'
-                  }"
-                >
-                  <el-row><el-col :span="2" :offset="24"><i class="el-icon-close" @click.prevent="removeDomain(domain)"></i></el-col></el-row>
-                  <el-form-item style="font-weight:bold" label="Name">
+              <el-form label-position="top" :model="dynamicValidateForm" ref="dynamicValidateForm" class="demo-dynamic">
+
+
+                <el-card class="box-card" v-for="(domain) in dynamicValidateForm.domains" :key="domain.key" style="margin-bottom: 20px;">
+                  <el-row>
+                    <el-col :span="2" :offset="24">
+                      <i class="el-icon-close" @click.prevent="removeDomain(domain)"></i>
+                    </el-col>
+                  </el-row>
+                  <el-form-item style="font-weight:bold" label="Name" :prop="'value'" label-position="top" :rules="{required: true, message: 'Diagnosis can not be blank', trigger: 'blur'}">
                     <el-select v-model="domain.value" filterable placeholder="Select" style="width: 100%;"> 
                       <el-option
                         v-for="item in diagnosisList"
@@ -78,30 +76,21 @@
                       </el-option>
                     </el-select>
                   </el-form-item>
-                  <el-form-item style="font-weight:bold" label="When diagnosed">
+                  <el-form-item style="font-weight:bold" label="When diagnosed" :prop="'when'" label-position="top" :rules="{required: true, message: 'Date can not be blank', trigger: 'blur'}">
                     <el-date-picker type="date" placeholder="Pick a date" v-model="domain.when" style="width: 100%;"></el-date-picker>
                   </el-form-item>
+                </el-card>
 
 
-
-                </el-form-item>
-                <!--<el-form-item>
-                  <el-button type="primary" @click="submitForm('dynamicValidateForm')">Submit</el-button>
-                  <el-button @click="addDomain">New domain</el-button>
-                  <el-button @click="resetForm('dynamicValidateForm')">Reset</el-button>
-                </el-form-item>-->
                 <el-form-item>
                   <el-button type="success" @click="submitForm('dynamicValidateForm')" size="small">Save</el-button>
                   <el-button type="primary" @click="addDomain" size="small">Add one more</el-button>
                 </el-form-item>
               </el-form>
-
-
             </el-card> 
           </el-col>
         </el-row>
       </el-tab-pane>
-
       
       <!--End Multi Add recommendation-->
     </el-tabs>
@@ -169,38 +158,7 @@
             timestamp: 'Apr 22, 2020',
             color: '#0bbd87'
           }]
-        }/*, {
-          name: 'Adjustment disorder, With anxiety',
-          addedBy: 'Dr. Sonia P',
-          addedOn: 'Mar 22, 2020',
-          currentAssessment: 'Current assessment for this diagnosis',
-          assessments: [{
-            content: 'Current assessment for this diagnosis',
-            timestamp: 'May 25, 2020',
-            size: 'large',
-            type: 'primary',
-          }, {
-            content: 'Previous assessment for this diagnosis',
-            timestamp: 'May 14, 2020',
-            color: '#0bbd87'
-          }, {
-            content: 'Old assessment for this diagnosis',
-            timestamp: 'Apr 27, 2020',
-            color: '#0bbd87'
-          }, {
-            content: 'Older assessment for this diagnosis',
-            timestamp: 'Apr 22, 2020',
-            color: '#0bbd87'
-          }, {
-            content: 'Even older assessment for this diagnosis',
-            timestamp: 'Apr 02, 2020',
-            color: '#0bbd87'
-          }, {
-            content: 'First assessment for this diagnosis',
-            timestamp: 'Mar 22, 2020',
-            color: '#0bbd87'
-          }]
-        }*/, {
+        }, {
           name: 'Generalized anxiety disorder',
           addedBy: 'Dr. Sonia P',
           addedOn: 'Mar 22, 2020',
