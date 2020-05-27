@@ -46,8 +46,8 @@ export default {
     }
   },
   mounted() {
-    this.getPatientInfo();
-    this.updateLeftPanel();
+    // this.getPatientInfo();
+    // this.updateLeftPanel();
     // this.zoomValue = this.$store.state.leftPanel.zoomValue;
     // this.zoomLeftPanel();
   },

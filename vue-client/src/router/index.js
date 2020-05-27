@@ -33,6 +33,11 @@ const routes = [
     path: '/recommendation',
     name: 'recommendation',
     component: () => import('@/views/Recommendation.vue')
+  },
+  {
+    path: '/social-history',
+    name: 'social-history',
+    component: () => import('@/views/social-history/Index.vue')
   }
 ]
 

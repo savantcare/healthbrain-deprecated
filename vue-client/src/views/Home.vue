@@ -3,7 +3,7 @@
     <Split style="height: 100vh;" @onDrag="onDrag">
       <SplitArea :size="70" :minsize="100" id="leftPanel">
         <left-panel-header></left-panel-header>
-        <div id="leftPanelContainer">
+        <!-- <div id="leftPanelContainer">
           <div id="leftPanelContent">
             <div v-if="leftPanelComponents.length > 0">
               <component
@@ -13,38 +13,38 @@
               ></component>
             </div>
           </div>
-        </div>
+        </div>-->
       </SplitArea>
       <SplitArea :size="30" :minsize="100">
-        <div v-if="rightPanelComponents.length > 0">
+        <!-- <div v-if="rightPanelComponents.length > 0">
           <component
             v-for="(component, index) in rightPanelComponents"
             :key="`right-component-${index}`"
             :is="component.value"
           ></component>
-        </div>
+        </div>-->
 
         <search-box ref="search_box" @renderRightPanel="renderRightPanel"></search-box>
       </SplitArea>
     </Split>
 
-    <tab-dialog></tab-dialog>
+    <!-- <tab-dialog></tab-dialog> -->
   </div>
 </template>
 
 <script>
-const TabDialog = () => import("@/components/ui/TabDialog.vue");
+// const TabDialog = () => import("@/components/ui/TabDialog.vue");
 
 // Left panel components
-const RecommendationsPanel = () =>
-  import("@/components/domain/RecommendationsPanel/Implementation.vue");
-const RemindersPanel = () =>
-  import("@/components/domain/RemindersPanel/Implementation.vue");
-const DiagnosisPanel = () =>
-  import("@/components/domain/DiagnosisPanel/Implementation.vue");
+// const RecommendationsPanel = () =>
+import("@/components/domain/RecommendationsPanel/Implementation.vue");
+// const RemindersPanel = () =>
+import("@/components/domain/RemindersPanel/Implementation.vue");
+// const DiagnosisPanel = () =>
+import("@/components/domain/DiagnosisPanel/Implementation.vue");
 const LeftPanelHeader = () => import("@/components/ui/LeftPanelHeader.vue");
-const DateSlider = () => import("@/components/ui/DateSlider.vue");
-const TestPanel = () => import("@/components/LeftPanelTestComponent.vue");
+// const DateSlider = () => import("@/components/ui/DateSlider.vue");
+// const TestPanel = () => import("@/components/LeftPanelTestComponent.vue");
 
 // Right panel components
 const SearchBox = () => import("@/components/ui/SearchBox.vue");
@@ -52,25 +52,25 @@ const RecommendationsCard = () =>
   import("@/components/domain/RecommendationsCard/Implementation.vue");
 const RemindersCard = () =>
   import("@/components/domain/RemindersCard/Implementation.vue");
-const CombinationCard = () => import("@/components/CombinationCard.vue");
+// const CombinationCard = () => import("@/components/CombinationCard.vue");
 
 export default {
   name: "Home",
   components: {
-    TabDialog,
+    // TabDialog,
     // Left panel components
-    RecommendationsPanel,
-    RemindersPanel,
-    DiagnosisPanel,
+    // RecommendationsPanel,
+    // RemindersPanel,
+    // DiagnosisPanel,
     LeftPanelHeader,
-    DateSlider,
-    TestPanel,
+    // DateSlider,
+    // TestPanel,
 
     // Right panel components
-    SearchBox,
-    RecommendationsCard,
-    RemindersCard,
-    CombinationCard
+    SearchBox
+    // RecommendationsCard,
+    // RemindersCard,
+    // CombinationCard
   },
   data() {
     return {
@@ -91,25 +91,23 @@ export default {
   },
   beforeCreate() {
     // Initialize rightPanel components
-    const rightPanelList = [
-      { key: "recommendation", value: RecommendationsCard },
-      { key: "reminder", value: RemindersCard }
-      // { key: "combination", value: CombinationCard }
-    ];
-
-    this.$store.commit("setRightPanelList", rightPanelList);
-
+    // const rightPanelList = [
+    //   { key: "recommendation", value: RecommendationsCard },
+    //   { key: "reminder", value: RemindersCard }
+    //   // { key: "combination", value: CombinationCard }
+    // ];
+    // this.$store.commit("setRightPanelList", rightPanelList);
     // Initialize leftPanel components
     // const leftPanelList = [RecommendationsPanel, RemindersPanel];
     // this.$store.commit("setLeftPanelList", leftPanelList);
   },
   mounted() {
-    this.$store.dispatch("loadSetting");
+    // this.$store.dispatch("loadSetting");
     // Join room
-    const patientId = this.$route.query.patient_id;
-    const role = this.$store.state.userRole;
+    // const patientId = this.$route.query.patient_id;
+    // const role = this.$store.state.userRole;
 
-    this.$socket.emit("CREATE_ROOM", `room-${patientId}-${role}`);
+    // this.$socket.emit("CREATE_ROOM", `room-${patientId}-${role}`);
 
     // Get Keyevent
     window.addEventListener("keydown", this.keydownHandler);
@@ -117,7 +115,7 @@ export default {
     this.$store.commit("setFocusComponent", "");
     this.$store.commit("setRightPanelFocusRowIndex", -1);
 
-    this.updateRightPanelRows();
+    // this.updateRightPanelRows();
   },
   methods: {
     onDrag(size) {
