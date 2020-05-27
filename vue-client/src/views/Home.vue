@@ -28,7 +28,7 @@
       </SplitArea>
     </Split>
 
-    <!-- <tab-dialog></tab-dialog> -->
+    <tab-dialog></tab-dialog>
   </div>
 </template>
 
@@ -53,11 +53,12 @@ const SearchBox = () => import("@/components/ui/SearchBox.vue");
 // const RemindersCard = () =>
 // import("@/components/domain/RemindersCard/Implementation.vue");
 // const CombinationCard = () => import("@/components/CombinationCard.vue");
+const TabDialog = () => import("./TabDialog");
 
 export default {
   name: "Home",
   components: {
-    // TabDialog,
+    TabDialog,
     // Left panel components
     // RecommendationsPanel,
     // RemindersPanel,
@@ -91,15 +92,6 @@ export default {
   },
   beforeCreate() {
     // Initialize rightPanel components
-    // const rightPanelList = [
-    //   { key: "recommendation", value: RecommendationsCard },
-    //   { key: "reminder", value: RemindersCard }
-    //   // { key: "combination", value: CombinationCard }
-    // ];
-    // this.$store.commit("setRightPanelList", rightPanelList);
-    // Initialize leftPanel components
-    // const leftPanelList = [RecommendationsPanel, RemindersPanel];
-    // this.$store.commit("setLeftPanelList", leftPanelList);
     const rightPanelCards = [
       {
         key: "recommendation",
@@ -113,6 +105,9 @@ export default {
       }
     ];
     this.$store.commit("setRightPanelList", rightPanelCards);
+    // Initialize leftPanel components
+    // const leftPanelList = [RecommendationsPanel, RemindersPanel];
+    // this.$store.commit("setLeftPanelList", leftPanelList);
   },
   mounted() {
     // this.$store.dispatch("loadSetting");

@@ -12,7 +12,6 @@
 export default {
   data() {
     return {
-      visibility: true,
       tabIndex: 0
     };
   },
@@ -27,24 +26,18 @@ export default {
       set(value) {
         this.$store.commit("setTabValue", value);
       }
+    },
+    visibility: {
+      get() {
+        return this.$store.state.tabDialog.visibility;
+      },
+      set(value) {
+        this.$store.commit("setTabDialogVisibility", value);
+      }
     }
   },
   mounted() {
     this.tabIndex = this.tabList.length;
-    // Initialize TabList
-    // const addRecommendationTab = {
-    //   label: "Add Recommendation",
-    //   value: require("../components/element.io-tab/AddRecommendation.vue")
-    //     .default
-    // };
-    // const multiChangeRecommendationTab = {
-    //   label: "Multi change recommendation",
-    //   value: require("../components/element.io-tab/MultiChangeRecommendation")
-    //     .default
-    // };
-    // this.tabList.push(addRecommendationTab);
-    // this.tabList.push(multiChangeRecommendationTab);
-    // this.tabList.push(addNewTab);
   },
   methods: {
     handleTabsEdit(targetName, action) {

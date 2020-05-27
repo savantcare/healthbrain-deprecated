@@ -1,6 +1,12 @@
 <template>
   <div>
-    <el-input v-model="inputValue" @input="updateValue" placeholder="Please input " clearable></el-input>
+    <el-input
+      :class="{'changed': isChanged}"
+      v-model="inputValue"
+      @input="updateValue"
+      placeholder="Please input "
+      clearable
+    ></el-input>
     <el-date-picker
       type="date"
       :picker-options="pickerOptions"
@@ -12,7 +18,7 @@
 
 <script>
 export default {
-  props: ["value"],
+  props: ["value", "field"],
   data() {
     return {
       pickerOptions: {
@@ -42,10 +48,27 @@ export default {
         ]
       },
       dateValue: "",
-      inputValue: ""
+      inputValue: "",
+      originValue: ""
     };
   },
-  mounted() {},
+  mounted() {
+    this.inputValue = this.value;
+    this.originValue = this.value;
+  },
+  computed: {
+    isChanged() {
+      if (this.inputValue != this.originValue) {
+        this.$emit("updateValidateChanges", {
+          field: this.field,
+          value: false
+        });
+        return true;
+      }
+      this.$emit("updateValidateChanges", { field: this.field, value: true });
+      return false;
+    }
+  },
   methods: {
     updateValue(value) {
       this.$emit("input", value);

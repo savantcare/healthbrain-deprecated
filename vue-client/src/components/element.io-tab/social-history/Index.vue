@@ -5,7 +5,12 @@
         <label>
           <span class="hl-label">B</span>iological Gender
         </label>
-        <el-select v-model="biologicalGender" clearable placeholder="please select gender">
+        <el-select
+          v-model="biologicalGender"
+          clearable
+          placeholder="please select gender"
+          :class="{'changed': changeStatus.biologicalGender != true}"
+        >
           <el-option
             v-for="item in genderOptions"
             :key="item.value"
@@ -18,7 +23,12 @@
         <label>
           <span class="hl-label">P</span>atient preferred Gender
         </label>
-        <el-select v-model="patientPreferredGender" clearable placeholder="please select gender">
+        <el-select
+          v-model="patientPreferredGender"
+          clearable
+          placeholder="please select gender"
+          :class="{'changed': changeStatus.prefferedGender != true}"
+        >
           <el-option
             v-for="item in genderOptions"
             :key="item.value"
@@ -32,36 +42,62 @@
         <label>
           <span class="hl-label">D</span>ate of birth
         </label>
-        <date-picker v-model="dateOfBirth"></date-picker>
+        <date-picker
+          @updateValidateChanges="updateValidateChanges"
+          v-model="dateOfBirth"
+          field="dateOfBirth"
+        ></date-picker>
       </el-col>
     </el-row>
     <el-row class="mt-2" :gutter="10">
       <el-col :span="6">
         <label>
           <span>Bi</span>
-          <span class="hl-label">r</span>th place
+          <span class="hl-label">r</span>
+          th place
         </label>
-        <el-input v-model="birthPlace" placeholder="Please input" clearable></el-input>
+        <input-box
+          @updateValidateChanges="updateValidateChanges"
+          v-model="birthPlace"
+          placeholder="please input birthplace"
+          field="birthPlace"
+        ></input-box>
       </el-col>
       <el-col :span="6">
         <label>
           <span class="hl-label">L</span>ives with
         </label>
-        <el-input v-model="livesWith" placeholder="Please input " clearable></el-input>
+        <input-box
+          @updateValidateChanges="updateValidateChanges"
+          v-model="livesWith"
+          placeholder="please input lives with"
+          field="livesWith"
+        ></input-box>
       </el-col>
       <el-col :span="6">
         <label>
           <span>Li</span>
           <span class="hl-label">v</span>es in
         </label>
-        <el-input v-model="livesIn" placeholder="Please input " clearable></el-input>
+
+        <input-box
+          @updateValidateChanges="updateValidateChanges"
+          v-model="livesIn"
+          placeholder="please input lives in"
+          field="livesIn"
+        ></input-box>
       </el-col>
       <el-col :span="6">
         <label>
           #
           <span class="hl-label">o</span>f living children
         </label>
-        <el-input v-model="numberOfLivingChildren" placeholder="Please input " clearable></el-input>
+        <input-box
+          @updateValidateChanges="updateValidateChanges"
+          v-model="numberOfLivingChildren"
+          placeholder="please input number of living children"
+          field="numberOfLivingChildren"
+        ></input-box>
       </el-col>
     </el-row>
     <el-row :gutter="10" class="mt-2">
@@ -70,42 +106,43 @@
           <label>
             <span class="hl-label">S</span>upports
           </label>
-          <el-input
-            type="textarea"
-            :autosize="{ minRows: 2, maxRows: 4}"
-            placeholder="Please input"
+          <text-area
             v-model="supports"
-            clearable
-          />
+            field="supports"
+            @updateValidateChanges="updateValidateChanges"
+          ></text-area>
         </div>
         <div class="mt-2">
           <label>Free text</label>
-          <el-input
-            type="textarea"
-            :autosize="{ minRows: 2, maxRows: 4}"
-            placeholder="Please input"
-            v-model="supports"
-            clearable
-          />
+          <text-area
+            v-model="freeText"
+            field="freeText"
+            @updateValidateChanges="updateValidateChanges"
+          ></text-area>
         </div>
       </el-col>
       <el-col :span="8">
-        <marital-history></marital-history>
+        <marital-history @updateValidateChanges="updateValidateChanges"></marital-history>
       </el-col>
       <el-col :span="8">
-        <other-major-event></other-major-event>
+        <other-major-event @updateValidateChanges="updateValidateChanges"></other-major-event>
       </el-col>
     </el-row>
     <el-row :gutter="10" class="mt-2">
       <el-col :span="8">
-        <development-history></development-history>
+        <development-history @updateValidateChanges="updateValidateChanges"></development-history>
       </el-col>
       <el-col :span="8" class="history-component">
-        <education-history></education-history>
+        <education-history @updateValidateChanges="updateValidateChanges"></education-history>
       </el-col>
       <el-col :span="8" class="history-component">
-        <employment-history></employment-history>
+        <employment-history @updateValidateChanges="updateValidateChanges"></employment-history>
       </el-col>
+    </el-row>
+
+    <el-row type="flex" justify="center" class="mt-2">
+      <el-button type="primary" :disabled="validateChanges">Submit</el-button>
+      <el-button type="primary" :disabled="validateChanges">Submit and exit</el-button>
     </el-row>
   </div>
 </template>
@@ -118,6 +155,8 @@ import EducationHistory from "./components/EducationHistory";
 import EmploymentHistory from "./components/EmploymentHistory";
 
 import DatePicker from "@/components/custom/DatePicker";
+import InputBox from "@/components/custom/InputBox";
+import TextArea from "@/components/custom/TextArea";
 export default {
   components: {
     MaritalHistory,
@@ -125,7 +164,9 @@ export default {
     OtherMajorEvent,
     EducationHistory,
     EmploymentHistory,
-    DatePicker
+    DatePicker,
+    InputBox,
+    TextArea
   },
   data() {
     return {
@@ -151,69 +192,58 @@ export default {
           label: "Female"
         }
       ],
+
       biologicalGender: "",
       patientPreferredGender: "",
       dateOfBirth: "",
-      pickerOptions: {
-        shortcuts: [
-          {
-            text: "Today",
-            onClick(picker) {
-              picker.$emit("pick", new Date());
-            }
-          },
-          {
-            text: "Yesterday",
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              picker.$emit("pick", date);
-            }
-          },
-          {
-            text: "A week ago",
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit("pick", date);
-            }
-          }
-        ]
-      },
       birthPlace: "",
       livesWith: "",
       livesIn: "",
       numberOfLivingChildren: "",
       supports: "",
-      activeNames: ["1", "2", "3", "4", "5"]
+      freeText: "",
+
+      changeStatus: {
+        birthPlace: true,
+        livesWith: true,
+        livesIn: true,
+        numberOfLivingChildren: true,
+        biologicalGender: true,
+        prefferedGender: true,
+        dateOfBirth: true,
+        supports: true,
+        freeText: true,
+        maritalHistory: true,
+        otherMajorEvent: true,
+        developmentHistory: true,
+        educationHistory: true,
+        employmentHistory: true
+      }
     };
   },
-  methods: {
-    addTab() {
-      let newTabName = ++this.tabIndex + "";
-      this.editableTabs.push({
-        title: "New Tab",
-        name: newTabName,
-        content: "New Tab content"
+  computed: {
+    validateChanges() {
+      let result = true;
+      Object.keys(this.changeStatus).forEach(key => {
+        if (this.changeStatus[key] != true) {
+          result = false;
+        }
       });
-      this.editableTabsValue = newTabName;
+      return result;
+    }
+  },
+  watch: {
+    biologicalGender() {
+      this.changeStatus.biologicalGender = false;
     },
-    removeTab(targetName) {
-      let tabs = this.editableTabs;
-      let activeName = this.editableTabsValue;
-      if (activeName === targetName) {
-        tabs.forEach((tab, index) => {
-          if (tab.name === targetName) {
-            let nextTab = tabs[index + 1] || tabs[index - 1];
-            if (nextTab) {
-              activeName = nextTab.name;
-            }
-          }
-        });
-      }
-
-      this.editableTabsValue = activeName;
-      this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+    patientPreferredGender() {
+      this.changeStatus.prefferedGender = false;
+    }
+  },
+  methods: {
+    updateValidateChanges(object) {
+      const { field, value } = object;
+      this.changeStatus[field] = value;
     }
   }
 };
@@ -231,5 +261,10 @@ export default {
 }
 .el-date-editor.el-input .el-input__inner {
   visibility: hidden;
+}
+
+.changed .el-input__inner,
+.changed .el-textarea__inner {
+  border-color: #e6a23c;
 }
 </style>

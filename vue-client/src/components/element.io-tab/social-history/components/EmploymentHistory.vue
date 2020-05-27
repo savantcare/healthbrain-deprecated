@@ -13,28 +13,37 @@
           @click="dialogVisible = true"
         ></el-button>
       </div>
-      <el-table :data="tableData" height="200" style="width: 100%" size="mini">
+      <el-table
+        :data="tableData"
+        height="200"
+        style="width: 100%"
+        size="mini"
+        :row-style="handleRowStyle"
+      >
         <el-table-column prop="date" label="Date"></el-table-column>
         <el-table-column prop="description" label="Description"></el-table-column>
       </el-table>
     </el-card>
 
     <el-dialog
-      title="Add EmploymentHistory"
+      title="Add Employment History"
       :visible.sync="dialogVisible"
       width="30%"
       append-to-body
     >
-      <label for>Description:</label>
-      <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="Please input" />
-      <div style="width: 90%; margin-top: 12px;">
-        <label for>Date:</label>
-        <date-picker v-model="date"></date-picker>
-      </div>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false">Save</el-button>
-      </span>
+      <el-form :model="form" :rules="rules" ref="form" label-width="120px" class="demo-ruleForm">
+        <el-form-item label="Description" prop="description">
+          <el-input v-model="form.description"></el-input>
+        </el-form-item>
+
+        <el-form-item label="Date" prop="date" style="width: 90%">
+          <date-picker v-model="form.date"></date-picker>
+        </el-form-item>
+
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('form')">Save</el-button>
+        </el-form-item>
+      </el-form>
     </el-dialog>
   </div>
 </template>
@@ -47,31 +56,59 @@ export default {
   },
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-03",
-          description: "Description - 1"
-        },
-        {
-          date: "2016-05-02",
-          description: "Description - 2"
-        },
-        {
-          date: "2016-05-04",
-          description: "Description - 3"
-        },
-        {
-          date: "2016-05-01",
-          description: "Description - 4"
-        },
-        {
-          date: "2016-05-08",
-          description: "Description - 5"
-        }
-      ],
+      tableData: [],
       dialogVisible: false,
-      date: ""
+      date: "",
+      form: {
+        description: "",
+        date: ""
+      },
+      description: "",
+      rules: {
+        description: [
+          {
+            required: true,
+            message: "Please input description",
+            trigger: "blur"
+          }
+        ],
+        date: [
+          {
+            required: true,
+            message: "Please input date",
+            trigger: "blur"
+          }
+        ]
+      }
     };
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.form["isNew"] = true;
+          this.tableData.push(this.form);
+          this.form = {
+            description: "",
+            date: ""
+          };
+          this.$emit("updateValidateChanges", {
+            field: "employmentHistory",
+            value: false
+          });
+          this.dialogVisible = false;
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    handleRowStyle(object) {
+      const { row } = object;
+      if (row.isNew) {
+        return { "background-color": "#fdf5e6" };
+      }
+    }
   }
 };
 </script>

@@ -42,12 +42,15 @@ export default {
       state.reminderData = value
     },
     showAddRecommendationModal(state) {
-      const addRecommendationTab = require("@/components/tab/AddRecommendationTab.vue");
-      state.tabList = [
-        { key: ADD_RECOMMENDATION, value: addRecommendationTab.default }
-      ]
+      const tab = {
+        label: "Add Recommendation",
+        value: require("@/components/element.io-tab/AddRecommendation.vue").default,
+        name: "tab-add-recommendation"
+      }
+      state.tabList = [tab]
       state.recommendationTabType = ADD_RECOMMENDATION
       state.visibility = true
+      state.tabValue = tab.name
     },
     showMultiChangeRecommendationModal(state) {
       const tab = require("@/components/tab/MultiChangeRecommendationTab.vue");
