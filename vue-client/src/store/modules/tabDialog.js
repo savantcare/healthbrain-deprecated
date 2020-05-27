@@ -6,7 +6,8 @@ export default {
     recommendationTabType: '',
     recommendationData: null,
     reminderTabType: '',
-    reminderData: null
+    reminderData: null,
+    tabValue: ""
   },
   mutations: {
     setTabDialogVisibility(state, value) {
@@ -19,7 +20,17 @@ export default {
       state.recommendationData = value
     },
     addNewTab(state, newTab) {
-      state.tabList.push(newTab)
+      const { name } = newTab
+      const checkArray = state.tabList.filter(tab => {
+        return tab.name == name
+      })
+      if (checkArray.length == 0) {
+        state.tabList.push(newTab)
+      }
+      state.tabValue = name
+    },
+    setTabValue(state, value) {
+      state.tabValue = value
     },
     setTabList(state, value) {
       state.tabList = value

@@ -42,7 +42,7 @@ export default {
   },
   watch: {
     tabMode() {
-      this.updateLeftPanel();
+      // this.updateLeftPanel();
     }
   },
   mounted() {

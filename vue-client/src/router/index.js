@@ -43,6 +43,11 @@ const routes = [
     path: '/social-history',
     name: 'social-history',
     component: () => import('@/views/social-history/Index.vue')
+  },
+  {
+    path: '/tab-dialog',
+    name: 'tab-dialog',
+    component: () => import("@/views/TabDialog.vue")
   }
 ]
 
