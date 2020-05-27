@@ -6,12 +6,12 @@
     <el-tabs type="card">
       <!--Start Multi Change recommendation-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px"> Assessment diagnosis</span>
+        <span slot="label" style="font-size:22px;font-family: Helvetica;"> Assessment diagnosis</span>
         <el-row :gutter="12">
           <el-col :span="8"
               v-for="(diagnoses, index) in diagnosis"
               :key="index">
-            <el-card  class="box-card" shadow="hover">
+            <el-card  class="box-card" shadow="hover" style="font-family: Helvetica;">
               <div><b>Name:</b> {{diagnoses.name}}</div>
               <div><b>Added by:</b> {{diagnoses.addedBy}} on {{diagnoses.addedOn}}</div>
               <el-divider></el-divider>
@@ -68,10 +68,19 @@
                   }"
                 >
                   <el-row><el-col :span="2" :offset="24"><i class="el-icon-close" @click.prevent="removeDomain(domain)"></i></el-col></el-row>
-                  <el-input :span="8" type="textarea" v-model="domain.value" placeholder="You may enter multi line text" :autosize="{ minRows: 4}"></el-input>
+                  <el-form-item style="font-weight:bold" label="Name">
+                    <el-select v-model="domain.value" filterable placeholder="Select" style="width: 100%;"> 
+                      <el-option
+                        v-for="item in diagnosisList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </el-form-item>
                   <el-form-item style="font-weight:bold" label="When diagnosed">
-                  <el-date-picker type="date" placeholder="Pick a date" v-model="domain.when" style="width: 100%;"></el-date-picker>
-                </el-form-item>
+                    <el-date-picker type="date" placeholder="Pick a date" v-model="domain.when" style="width: 100%;"></el-date-picker>
+                  </el-form-item>
 
 
 
@@ -206,7 +215,38 @@
             timestamp: 'Mar 22, 2020',
             color: '#0bbd87'
           }]
-        }]
+        }],
+        diagnosisList: [{
+          value: 'Bacterial intestinal infection, unspecified',
+          label: 'Bacterial intestinal infection, unspecified'
+        }, {
+          value: 'Adjustment disorder, With depressed mood',
+          label: 'Adjustment disorder, With depressed mood'
+        }, {
+          value: 'Adjustment disorder, With anxiety',
+          label: 'Adjustment disorder, With anxiety'
+        }, {
+          value: 'Generalized anxiety disorder',
+          label: 'Generalized anxiety disorder'
+        }, {
+          value: 'Other specified bacterial intestinal infections',
+          label: 'Other specified bacterial intestinal infections'
+        }, {
+          value: 'Catatonia associated with another mental disorder (catatonia specifier)',
+          label: 'Catatonia associated with another mental disorder (catatonia specifier)'
+        }, {
+          value: 'Adult antisocial behavior',
+          label: 'Adult antisocial behavior'
+        }, {
+          value: 'Spouse or partner abuse, Psychological, Confirmed, Initial encounter',
+          label: 'Spouse or partner abuse, Psychological, Confirmed, Initial encounter'
+        }, {
+          value: 'Adjustment disorder, Unspecified',
+          label: 'Adjustment disorder, Unspecified'
+        }, {
+          value: 'Child neglect or abandonment, confirmed subsequent encounter',
+          label: 'Child neglect or abandonment, confirmed subsequent encounter'
+        }],
       }
     },
     methods: {
