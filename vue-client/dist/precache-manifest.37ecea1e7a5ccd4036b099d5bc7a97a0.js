@@ -48,7 +48,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fonts/element-icons.732389de.ttf"
   },
   {
-    "revision": "182c13ff25b985341a80600078cf7e6d",
+    "revision": "e3b0a98e9daaede4553e8b64545aee67",
     "url": "/index.html"
   },
   {
@@ -56,8 +56,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/MultiChangeSocialHistory.e489a07f.js"
   },
   {
-    "revision": "b13415c21cc31bb42d76",
-    "url": "/js/app.3886e48e.js"
+    "revision": "4334c3bf89c9911b08cb",
+    "url": "/js/app.91784864.js"
+  },
+  {
+    "revision": "c638d60679662027ce0e",
+    "url": "/js/chunk-13177140.e068b05d.js"
   },
   {
     "revision": "ae4818738fc03da35b8c",
