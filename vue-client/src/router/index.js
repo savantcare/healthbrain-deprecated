@@ -43,6 +43,11 @@ const routes = [
     path: '/recommendation',
     name: 'recommendation',
     component: () => import('@/views/Recommendation.vue')
+  },
+  {
+    path: '/service-statements',
+    name: 'Service statements',
+    component: () => import('@/views/ServiceStatements.vue')
   }
 ]
 
