@@ -42,9 +42,6 @@
             <label>
               <span class="hl-label">D</span>ate of birth
             </label>
-            {{dateOfBirth}}
-            <!-- <el-input v-model="dateOfBirth" placeholder="Please input " clearable></el-input>
-            <el-date-picker type="date" :picker-options="pickerOptions"></el-date-picker>-->
             <date-picker v-model="dateOfBirth"></date-picker>
           </el-col>
         </el-row>
@@ -120,7 +117,6 @@
             <employment-history></employment-history>
           </el-col>
         </el-row>
-        <el-row :gutter="10" class="mt-2"></el-row>
       </el-tab-pane>
     </el-tabs>
   </el-dialog>
@@ -236,14 +232,6 @@ export default {
 </script>
 
 <style lang="scss">
-.multi-tab-dialog {
-  .el-dialog__header {
-    display: none;
-  }
-  .el-dialog__body {
-    padding: 0px;
-  }
-}
 .mr-2 {
   margin-right: 12px;
 }

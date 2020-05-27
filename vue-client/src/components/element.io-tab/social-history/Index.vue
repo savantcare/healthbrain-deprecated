@@ -220,14 +220,6 @@ export default {
 </script>
 
 <style lang="scss">
-.multi-tab-dialog {
-  .el-dialog__header {
-    display: none;
-  }
-  .el-dialog__body {
-    padding: 0px;
-  }
-}
 .mr-2 {
   margin-right: 12px;
 }
