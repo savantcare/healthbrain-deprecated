@@ -17,7 +17,11 @@ import { ROLE_API_URL } from "@/const.js"
 export default new Vuex.Store({
   state: {
     userRole: '',
-    searchComponentList: [],
+    searchComponentList: [
+      "recommendation (rex)",
+      "reminder (rem)",
+      "clear"
+    ],
     focusComponent: "",
     connectionStatus: true, // true: online, false: offline
     userId: -1

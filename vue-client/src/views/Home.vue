@@ -136,11 +136,10 @@ export default {
       if (searchKeyword.length > 0) {
         return;
       }
-
       if (event.key == "`") {
         // Set focus to the <search-box>
         focusRowIndex = rows.length - 1;
-        // this.$refs.search_box.setFocus();
+        this.$refs.search_box.setFocus();
         this.$store.commit("setRightPanelFocusRowIndex", focusRowIndex);
       } else if (event.key == "ArrowDown") {
         if (focusRowIndex == rows.length - 1) {

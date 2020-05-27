@@ -41,12 +41,14 @@
     <el-autocomplete
       v-model="searchKeyword"
       :fetch-suggestions="querySearch"
-      placeholder="(Type here - use backstick to highlight)"
       :trigger-on-focus="false"
-      @select="handleSelect"
+      placeholder="(Type here - use backstick to highlight)"
       prefix-icon="el-icon-search"
       style="width: 100%"
       ref="search_box"
+      @select="handleSelect"
+      @focus="handleFocus"
+      @input="handleInput"
     ></el-autocomplete>
   </div>
 </template>
@@ -107,7 +109,6 @@ export default {
       if (this.searchKeyword.length == 0) {
         this.selectedIndex = 0;
       }
-      console.log(this.selectedIndex);
       this.$store.commit("setRightPanelSearchKeyword", this.searchKeyword);
     },
     setFocus() {
@@ -121,10 +122,9 @@ export default {
       // }, 50);
       console.log("removeFocus from the searchBox");
     },
-    onClickSearchBox() {
-      console.log("clicked");
-      // const { rows } = this.$store.state.rightPanel;
-      // this.$store.commit("setRightPanelFocusRowIndex", rows.length - 1);
+    handleFocus() {
+      const { rows } = this.$store.state.rightPanel;
+      this.$store.commit("setRightPanelFocusRowIndex", rows.length - 1);
     },
     checkRowFocusStatus(object) {
       const { rowIndex } = object;
@@ -134,23 +134,28 @@ export default {
     },
     querySearch(queryString, cb) {
       const componentList = this.$store.state.searchComponentList;
+      let results = [];
+      if (queryString.length == 0) {
+        results = [];
+      }
 
-      var results = queryString
-        ? componentList.filter(this.createFilter(queryString))
-        : componentList;
-      // call callback function to return suggestions
+      results = componentList.filter(item => {
+        return item.search(queryString) > -1;
+      });
+
       results = results.map(result => {
         return { value: result };
       });
       cb(results);
     },
-    createFilter(queryString) {
-      return link => {
-        return link.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
-      };
-    },
+
     handleSelect(item) {
-      console.log(item);
+      const action = item.value;
+      this.$emit("renderRightPanel", action);
+      this.searchKeyword = "";
+    },
+    handleInput() {
+      this.$store.commit("setRightPanelSearchKeyword", this.searchKeyword);
     }
   }
 };
