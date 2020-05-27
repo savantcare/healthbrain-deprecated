@@ -6,7 +6,7 @@
     <el-tabs type="card">
       <!--Start Multi Change goals-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px"> Multi change goals</span>
+        <span slot="label" style="font-size:22px"> Multi rate goals</span>
         <el-row :gutter="12">
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
