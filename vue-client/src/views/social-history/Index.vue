@@ -241,14 +241,4 @@ export default {
 .mt-2 {
   margin-top: 12px;
 }
-.el-date-editor.el-input {
-  width: 0px;
-}
-.el-input--prefix .el-input__inner {
-  visibility: hidden;
-}
-.history-component {
-  max-height: 300px;
-  overflow: auto;
-}
 </style>

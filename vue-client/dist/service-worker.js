@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.7b078a226877f5dff45a8fa85b3f48c3.js"
+  "/precache-manifest.30de9b4b6ca21a55ae6363da99f824aa.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "new-architecture"});

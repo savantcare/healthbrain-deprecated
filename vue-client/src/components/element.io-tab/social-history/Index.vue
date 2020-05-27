@@ -219,24 +219,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.mr-2 {
-  margin-right: 12px;
-}
-.hl-label {
-  color: #409eff;
-}
-.mt-2 {
-  margin-top: 12px;
-}
+<style lang="scss" scope>
 .el-date-editor.el-input {
   width: 0px;
 }
 .el-input--prefix .el-input__inner {
   visibility: hidden;
-}
-.history-component {
-  max-height: 300px;
-  overflow: auto;
 }
 </style>
