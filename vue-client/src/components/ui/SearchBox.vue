@@ -115,6 +115,7 @@ export default {
       const action = item.value;
       this.$emit("renderRightPanel", action);
       this.searchKeyword = "";
+      this.$store.commit("setRightPanelSearchKeyword", "");
     },
     handleInput() {
       this.$store.commit("setRightPanelSearchKeyword", this.searchKeyword);

@@ -16,13 +16,13 @@
         </div>-->
       </SplitArea>
       <SplitArea :size="30" :minsize="100">
-        <!-- <div v-if="rightPanelComponents.length > 0">
+        <div v-if="rightPanelComponents.length > 0">
           <component
             v-for="(component, index) in rightPanelComponents"
             :key="`right-component-${index}`"
             :is="component.value"
           ></component>
-        </div>-->
+        </div>
 
         <search-box ref="search_box" @renderRightPanel="renderRightPanel"></search-box>
       </SplitArea>
@@ -48,10 +48,10 @@ const LeftPanelHeader = () => import("@/components/ui/LeftPanelHeader.vue");
 
 // Right panel components
 const SearchBox = () => import("@/components/ui/SearchBox.vue");
-const RecommendationsCard = () =>
-  import("@/components/domain/RecommendationsCard/Implementation.vue");
-const RemindersCard = () =>
-  import("@/components/domain/RemindersCard/Implementation.vue");
+// const RecommendationsCard = () =>
+// import("@/components/domain/RecommendationsCard/Implementation.vue");
+// const RemindersCard = () =>
+// import("@/components/domain/RemindersCard/Implementation.vue");
 // const CombinationCard = () => import("@/components/CombinationCard.vue");
 
 export default {
@@ -100,6 +100,19 @@ export default {
     // Initialize leftPanel components
     // const leftPanelList = [RecommendationsPanel, RemindersPanel];
     // this.$store.commit("setLeftPanelList", leftPanelList);
+    const rightPanelCards = [
+      {
+        key: "recommendation",
+        value: require("../components/element.io-rightpanel/RecommendationCard")
+          .default
+      },
+      {
+        key: "reminder",
+        value: require("../components/element.io-rightpanel/ReminderCard")
+          .default
+      }
+    ];
+    this.$store.commit("setRightPanelList", rightPanelCards);
   },
   mounted() {
     // this.$store.dispatch("loadSetting");
@@ -138,6 +151,7 @@ export default {
       }
       if (event.key == "`") {
         // Set focus to the <search-box>
+        console.log("set focus to the search box");
         focusRowIndex = rows.length - 1;
         this.$refs.search_box.setFocus();
         this.$store.commit("setRightPanelFocusRowIndex", focusRowIndex);
@@ -233,7 +247,8 @@ export default {
         });
         newList.push({
           key: "recommendation",
-          value: RecommendationsCard
+          value: require("../components/element.io-rightpanel/RecommendationCard")
+            .default
         });
 
         this.$store.commit("setRightPanelList", newList);
@@ -246,7 +261,8 @@ export default {
         });
         newList.push({
           key: "reminder",
-          value: RemindersCard
+          value: require("../components/element.io-rightpanel/ReminderCard")
+            .default
         });
 
         this.$store.commit("setRightPanelList", newList);
