@@ -4,9 +4,9 @@
   width="80%"
   :before-close="handleClose">
     <el-tabs type="card">
-      <!--Start Multi Change reminder-->
+      <!--Start Multi Change Service Statement-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px"> Multi change reminder</span>
+        <span slot="label" style="font-size:22px"> Multi change Service Statement</span>
         <el-row :gutter="12">
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
@@ -116,11 +116,11 @@
           
         </el-row>
       </el-tab-pane>
-      <!--End Multi Change reminder-->
+      <!--End Multi Change Service Statement-->
 
-      <!--Start Multi Change reminder-->
+      <!--Start Multi Change Service Statement-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px"> Add reminder</span>
+        <span slot="label" style="font-size:22px"> Add Service Statement</span>
         <el-row :gutter="12">
           <el-col :span="24">
             <el-card class="box-card">
@@ -162,7 +162,7 @@
       </el-tab-pane>
 
       
-      <!--End Multi Add reminder-->
+      <!--End Multi Add Service Statement-->
     </el-tabs>
 
   </el-dialog>
@@ -173,9 +173,9 @@
       return {
         editableTabsValue: '2',
         editableTabs: [{
-          title: 'Multi change reminder',
-          name: 'reminder',
-          content: 'reminder'
+          title: 'Multi change Service Statement',
+          name: 'Service Statement',
+          content: 'Service Statement'
         }, 
         {
           title: 'Tab 2',
@@ -184,7 +184,7 @@
         }],
         tabIndex: 2,
         form: {
-          desc: 'Reminder1',
+          desc: 'Service Statement1',
           when: ''
         },
         dialogVisible: true,
@@ -195,7 +195,7 @@
           }]
         },
         activities: [{
-          content: 'Reminder1',
+          content: 'Service Statement1',
           timestamp: '25th May, 2020',
           size: 'large',
           type: 'primary',

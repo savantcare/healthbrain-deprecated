@@ -14,9 +14,6 @@
                 <el-form-item style="font-weight:bold" label="Description">
                   <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
                 </el-form-item>
-                <el-form-item style="font-weight:bold" label="When">
-                  <el-date-picker type="date" placeholder="Pick a date" v-model="form.when" style="width: 100%;"></el-date-picker>
-                </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
                   <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
@@ -46,9 +43,6 @@
               <el-form label-position="top" ref="form" :model="form" >
                 <el-form-item style="font-weight:bold" label="Description">
                   <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
-                </el-form-item>
-                <el-form-item style="font-weight:bold" label="When">
-                  <el-date-picker type="date" placeholder="Pick a date" v-model="form.when" style="width: 100%;"></el-date-picker>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -84,9 +78,6 @@
               <el-form label-position="top" ref="form" :model="form" >
                 <el-form-item style="font-weight:bold" label="Description">
                   <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
-                </el-form-item>
-                <el-form-item style="font-weight:bold" label="When">
-                  <el-date-picker type="date" placeholder="Pick a date" v-model="form.when" style="width: 100%;"></el-date-picker>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>

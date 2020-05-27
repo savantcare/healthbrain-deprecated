@@ -31,3 +31,11 @@ npm run start
 
 
 Then in your browser go to: http://localhost:8080/
+
+
+# How to deploy to Heroky?
+cd vue-client
+npm run build
+git push to the Repository
+Heroku updates the staging server automatically when the master branch is updated
+

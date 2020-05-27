@@ -25,6 +25,11 @@ const routes = [
     component: () => import('@/views/Reminder.vue')
   },
   {
+    path: '/service-statement',
+    name: 'service-statement',
+    component: () => import('@/views/ServiceStatement.vue')
+  },
+  {
     path: '/recommendation',
     name: 'recommendation',
     component: () => import('@/views/Recommendation.vue')
