@@ -219,11 +219,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss">
+.hl-label {
+  color: #409eff;
+}
+.mt-2 {
+  margin-top: 12px;
+}
 .el-date-editor.el-input {
   width: 0px;
 }
-.el-input--prefix .el-input__inner {
+.el-date-editor.el-input .el-input__inner {
   visibility: hidden;
 }
 </style>
