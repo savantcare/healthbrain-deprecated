@@ -12,8 +12,7 @@ module.exports = {
 
   LEFT_SIDE_COMPONENTS: [
     { key: "recommendation", value: () => import('./components/domain/RecommendationsPanel/Implementation.vue') },
-    { key: "reminder", value: () => import('./components/domain/RemindersPanel/Implementation.vue') },
-    { key: "other", value: () => import('./components/LeftSideOtherPanel.vue') }
+    { key: "reminder", value: () => import('./components/domain/RemindersPanel/Implementation.vue') }
   ],
 
   ADD_DIALOG: 1,

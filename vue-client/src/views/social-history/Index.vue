@@ -42,8 +42,10 @@
             <label>
               <span class="hl-label">D</span>ate of birth
             </label>
-            <el-input v-model="dateOfBirth" placeholder="Please input " clearable></el-input>
-            <el-date-picker type="date" :picker-options="pickerOptions"></el-date-picker>
+            {{dateOfBirth}}
+            <!-- <el-input v-model="dateOfBirth" placeholder="Please input " clearable></el-input>
+            <el-date-picker type="date" :picker-options="pickerOptions"></el-date-picker>-->
+            <date-picker v-model="dateOfBirth"></date-picker>
           </el-col>
         </el-row>
         <el-row class="mt-2" :gutter="10">
@@ -89,7 +91,7 @@
                 clearable
               />
             </div>
-            <div>
+            <div class="mt-2">
               <label>Free text</label>
               <el-input
                 type="textarea"
@@ -130,13 +132,16 @@ import DevelopmentHistory from "./components/DevelopmentHistory";
 import OtherMajorEvent from "./components/OtherMajorEvent";
 import EducationHistory from "./components/EducationHistory";
 import EmploymentHistory from "./components/EmploymentHistory";
+
+import DatePicker from "@/components/custom/DatePicker";
 export default {
   components: {
     MaritalHistory,
     DevelopmentHistory,
     OtherMajorEvent,
     EducationHistory,
-    EmploymentHistory
+    EmploymentHistory,
+    DatePicker
   },
   data() {
     return {

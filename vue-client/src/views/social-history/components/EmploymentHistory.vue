@@ -29,8 +29,7 @@
       <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="Please input" />
       <div style="width: 90%; margin-top: 12px;">
         <label for>Date:</label>
-        <el-input placeholder="Please input " clearable></el-input>
-        <el-date-picker type="date" :picker-options="pickerOptions"></el-date-picker>
+        <date-picker v-model="date"></date-picker>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">Cancel</el-button>
@@ -41,7 +40,11 @@
 </template>
 
 <script>
+import DatePicker from "@/components/custom/DatePicker";
 export default {
+  components: {
+    DatePicker
+  },
   data() {
     return {
       tableData: [
@@ -67,32 +70,7 @@ export default {
         }
       ],
       dialogVisible: false,
-      pickerOptions: {
-        shortcuts: [
-          {
-            text: "Today",
-            onClick(picker) {
-              picker.$emit("pick", new Date());
-            }
-          },
-          {
-            text: "Yesterday",
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              picker.$emit("pick", date);
-            }
-          },
-          {
-            text: "A week ago",
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit("pick", date);
-            }
-          }
-        ]
-      }
+      date: ""
     };
   }
 };
