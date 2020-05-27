@@ -6,13 +6,67 @@
     <el-tabs type="card">
       <!--Start Multi Change Service Statement-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px"> Multi change Service Statement</span>
+        <span slot="label" style="font-size:18px"> Multi change Service Statement</span>
         <el-row :gutter="12">
+          <el-carousel :interval="5000" arrow="always" :autoplay="false">
+            <el-carousel-item v-for="item in sliderSet" :key="item">
+              
+              <el-col :span="8" v-for="serviveStatement in item.serviveStatement" :key="serviveStatement">
+                <el-card  class="box-card" shadow="hover">
+                  <el-form label-position="top" ref="form" :model="form" >
+                    <el-form-item label="Description" style="font-weight:bold">
+                      <el-select style="width:100%" v-model="serviveStatement.description" filterable placeholder="Select from dropdown">
+                        <el-option
+                          v-for="item in form.options"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                      <el-button type="success" @click="onSubmit" size="small">Save</el-button>
+                      <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
+                    </el-form-item>
+                  </el-form>
+                  <el-row><span style="font-size:14px;font-weight:bold"> History:</span></el-row><br>
+                  <el-row :gutter="12">
+                      <div class="block">
+                        <el-timeline>
+                          <el-timeline-item
+                            v-for="(activity, index) in activities"
+                            :key="index"
+                            :icon="activity.icon"
+                            :type="activity.type"
+                            :color="activity.color"
+                            :size="activity.size"
+                            :timestamp="activity.timestamp">
+                            {{activity.content}}
+                          </el-timeline-item>
+                        </el-timeline>
+                      </div>
+                  </el-row><br>
+                </el-card> 
+              
+              </el-col>
+        
+
+            </el-carousel-item>
+          </el-carousel>
+
+<!--
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
               <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item style="font-weight:bold">
-                  <el-input :span="8" type="select" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
+                <el-form-item label="Description" style="font-weight:bold">
+                  <el-select style="width:100%" v-model="form.value" filterable placeholder="Select from dropdown">
+                    <el-option
+                      v-for="item in form.options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -41,8 +95,15 @@
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
               <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item style="font-weight:bold">
-                  <el-input :span="8" type="select" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
+                <el-form-item label="Description" style="font-weight:bold">
+                  <el-select style="width:100%" v-model="form.value" filterable placeholder="Select from dropdown">
+                    <el-option
+                      v-for="item in form.options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -76,8 +137,15 @@
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
               <el-form label-position="top" ref="form" :model="form" >
-                <el-form-item style="font-weight:bold">
-                  <el-input :span="8" type="select" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
+                <el-form-item label="Description" style="font-weight:bold">
+                  <el-select style="width:100%" v-model="form.value" filterable placeholder="Select from dropdown">
+                    <el-option
+                      v-for="item in form.options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -103,48 +171,48 @@
               </el-row><br>
             </el-card> 
           </el-col>
-          
+-->
           
         </el-row>
       </el-tab-pane>
       <!--End Multi Change Service Statement-->
 
-      <!--Start Multi Change Service Statement-->
+      <!--Start Add Service Statement-->
       <el-tab-pane>
-        <span slot="label" style="font-size:22px"> Add Service Statement</span>
+        <span slot="label" style="font-size:18px"> Add Service Statement</span>
         <el-row :gutter="12">
           <el-col :span="24">
             <el-card class="box-card">
-              <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" class="demo-dynamic">
-                  <el-col :span="12">
-    <el-autocomplete
-      class="inline-input"
-      v-model="state1"
-      :fetch-suggestions="querySearch"
-      placeholder="Please Input"
-      @select="handleSelect"
-    ></el-autocomplete>
-  </el-col>
-             
-                <!--<el-form-item>
-                  <el-button type="primary" @click="submitForm('dynamicValidateForm')">Submit</el-button>
-                  <el-button @click="addDomain">New domain</el-button>
-                  <el-button @click="resetForm('dynamicValidateForm')">Reset</el-button>
-                </el-form-item>-->
+              <el-form label-position="top" :model="dynamicValidateForm" ref="dynamicValidateForm" class="demo-dynamic">
+                  <el-card class="box-card" v-for="(domain) in dynamicValidateForm.domains" :key="domain.key" style="margin-bottom: 20px;">
+                    <el-row>
+                      <el-col :span="2" :offset="24">
+                        <i class="el-icon-close" @click.prevent="removeDomain(domain)"></i>
+                      </el-col>
+                    </el-row>
+                    <el-form-item label="Description" style="font-weight:bold">
+                      <el-select style="width:100%" v-model="domain.value2" filterable placeholder="Select from dropdown">
+                        <el-option
+                          v-for="item in form.options"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-card>
                 <el-form-item>
                   <el-button type="success" @click="submitForm('dynamicValidateForm')" size="small">Save</el-button>
                   <el-button type="primary" @click="addDomain" size="small">Add one more</el-button>
                 </el-form-item>
               </el-form>
-
-
             </el-card> 
           </el-col>
         </el-row>
       </el-tab-pane>
 
       
-      <!--End Multi Add Service Statement-->
+      <!--End Add Service Statement-->
     </el-tabs>
 
   </el-dialog>
@@ -167,24 +235,63 @@
         tabIndex: 2,
         form: {
           desc: 'Service Statement1',
-          when: ''
+          options: [{
+            value: 'Patient is deemed low risk.',
+            label: 'Patient is deemed low risk.'
+          }, {
+            value: 'Pertinent Medical Records, Labs, and Diagnostic Tests Reviewed.',
+            label: 'Pertinent Medical Records, Labs, and Diagnostic Tests Reviewed.'
+          }, {
+            value: 'Further data and history obtained from family member as per patient’s consent.',
+            label: 'Further data and history obtained from family member as per patient’s consent.'
+          }, {
+            value: 'The risks, benefits and side effects of psychotropic medications have been discussed with the patient.',
+            label: 'The risks, benefits and side effects of psychotropic medications have been discussed with the patient.'
+          }],
+          value: 'Patient is deemed low risk.',
+          value2: ''
         },
         dialogVisible: true,
         dynamicValidateForm: {
           domains: [{
             key: 1,
-            value: ''
+            value: 'Patient is deemed low risk.'
           }]
         },
         activities: [{
-          content: 'Service Statement1',
+          content: 'Pertinent Medical Records, Labs, and Diagnostic Tests Reviewed.',
           timestamp: '25th May, 2020',
           size: 'large',
           type: 'primary',
         }, {
-          content: 'Rem1',
+          content: 'Patient is deemed low risk.',
           timestamp: '25th May, 2020',
           color: '#0bbd87'
+        }],
+        sliderSet:[{
+          serviveStatement: [{
+            description: 'Patient is deemed low risk.'
+          }, {
+            description: 'The risks, benefits and side effects of psychotropic medications have been discussed with the patient.'
+          }, {
+            description: 'Pertinent Medical Records, Labs, and Diagnostic Tests Reviewed.'
+          }]
+        }, {
+          serviveStatement: [{
+            description: 'Patient is deemed low risk.'
+          }, {
+            description: 'Pertinent Medical Records, Labs, and Diagnostic Tests Reviewed.'
+          }, {
+            description: 'The risks, benefits and side effects of psychotropic medications have been discussed with the patient.'
+          }]
+        }, {
+          serviveStatement: [{
+            description: 'Further data and history obtained from family member as per patient’s consent.'
+          }, {
+            description: 'Patient is deemed low risk.'
+          }, {
+            description: 'Pertinent Medical Records, Labs, and Diagnostic Tests Reviewed.'
+          }]
         }]
       }
     },
@@ -213,6 +320,21 @@
       },
       handleSelect(item) {
         console.log(item);
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      },
+      removeDomain(item) {
+        var index = this.dynamicValidateForm.domains.indexOf(item);
+        if (index !== -1) {
+          this.dynamicValidateForm.domains.splice(index, 1);
+        }
+      },
+      addDomain() {
+        this.dynamicValidateForm.domains.push({
+          key: Date.now(),
+          value: ''
+        });
       }
     },
     mounted() {
@@ -220,3 +342,12 @@
     }
   }
 </script>
+
+<style>
+body {
+    font-family: Helvetica;
+}
+label.el-form-item__label {
+    line-height: 0;
+}
+</style>
