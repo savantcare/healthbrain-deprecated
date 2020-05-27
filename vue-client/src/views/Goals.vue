@@ -6,7 +6,7 @@
     <el-tabs type="card">
       <!--Start Multi Change goals-->
       <el-tab-pane>
-        <span slot="label" style="font-size:20px"> Multi rate goals</span>
+        <span slot="label" style="font-size:18px"> Multi rate goals</span>
         <el-row :gutter="12">
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
@@ -129,7 +129,7 @@
 
       <!--Start Multi Change goals-->
       <el-tab-pane>
-        <span slot="label" style="font-size:20px"> Add goals</span>
+        <span slot="label" style="font-size:18px"> Add goals</span>
         <el-row :gutter="12">
           <el-col :span="24">
             <el-card class="box-card">
@@ -314,6 +314,9 @@
 </script>
 
 <style>
+body {
+    font-family: Helvetica;
+}
 label.el-form-item__label {
     line-height: 0;
 }
