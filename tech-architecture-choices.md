@@ -22,16 +22,20 @@
 
 ## B. Developer benefits
 
-1. On server side interaction with the DB should happen through a ORM like [sequelize](https://sequelize.org/). 
+1. **Temporal DB**: No need to maintain created and discontinued on related fields. Each table 8 fields are replaced with 3 fields.
+
+2. **ORM**: On server side interaction with DB is through ORM [sequelize](https://sequelize.org/). 
 
     1A. So standard queries are already written.
 
     1B. DB versioning and migrations can happen. [https://github.com/savantcare/healthbrain/blob/master/node-server/models/recommendation.model.js]
 
-2. Maintian state on the client. When recommendation card state changes the rec panel changes its view automatically.
-In the current angular app the recommendation panel was listening on socket to update its view.
+3. **elelemt.io**
 
-3. No HTML is generated on server. All view is inside the .vue component. This view works on json returned by the server api. This allows different UIs to be written.
+4. Maintain state on the client. When recommendation card state changes the rec panel changes its view automatically.
+In the current angular app the recommendation panel was listening on socket and then receiving HTML to update its view.
+
+5. No HTML is generated on server. All view is inside the .vue component. This view works on json returned by the server api. This allows different UIs to be written.
 
 # Q3) Why was vue chosen over angular latest version?
 1. More github stars. Take this as a voting from worldwide developers.
@@ -52,15 +56,11 @@ In the current angular app the recommendation panel was listening on socket to u
        E. Card for right side: https://element.eleme.io/#/en-US/component/card
        F. confirming actions does not take huge mouse movement: https://element.eleme.io/#/en-US/component/popconfirm
        G. https://element.eleme.io/#/en-US/component/popover#popover -> Mouse over help looks good.
-    7. Table: Responsive and Draggable.
+       H. Doing multiple adds in same form: https://element.eleme.io/#/en-US/component/form#delete-or-add-form-items-dynamically
+	7. Table: Responsive and Draggable.
 
-4. Simple concepts to do common UI patterns
-    Doing multiple adds in same form:
-	https://element.eleme.io/#/en-US/component/form#delete-or-add-form-items-dynamically
-	https://www.youtube.com/watch?v=Efr7SUrBUQw
-
+   
 # Q4) Should a table library be used or developed internally?
-
 
 ![card-table-features](./docs/analyzing-features-of-card-table.png)
 
@@ -202,3 +202,11 @@ Advantages of architecture 2:
 
 Dis-Advantages of architecture 2:
 1. How to run sql query over a JSON on the browser client side. Use https://vuex-orm.org/ with https://github.com/vuex-orm/plugin-axios and https://github.com/vuex-orm/plugin-soft-delete (bring discontinued to industry standard by calling it soft delete)
+
+
+ # How is doc generated?
+
+ Decided not to use storybook since want something where the code is auto parsed.
+
+ So for vue client side code decided to use vue-styleguidist
+ Ref: https://www.youtube.com/watch?v=ryyAiUYvfY8
