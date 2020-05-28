@@ -2,8 +2,8 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>O</span>
-        <span class="hl-label">t</span>her major event
+        <span>M</span>
+        <span class="hl-label">a</span>jor life event
         <el-button
           style="float: right;"
           type="primary"
@@ -26,7 +26,7 @@
     </el-card>
 
     <el-dialog
-      title="Add Other major event"
+      title="Add major life event"
       :visible.sync="dialogVisible"
       width="30%"
       append-to-body
