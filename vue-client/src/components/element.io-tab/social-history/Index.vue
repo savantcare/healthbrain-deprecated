@@ -138,7 +138,7 @@
         <marital-history @updateValidateChanges="updateValidateChanges"></marital-history>
       </el-col>
       <el-col :span="8">
-        <other-major-event @updateValidateChanges="updateValidateChanges"></other-major-event>
+        <major-life-event @updateValidateChanges="updateValidateChanges"></major-life-event>
       </el-col>
     </el-row>
     <el-row :gutter="10" class="mt-2">
