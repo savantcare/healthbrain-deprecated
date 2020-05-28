@@ -1,5 +1,3 @@
-# HealthBrain
-
 ![patient file](./docs/patient-file.png)
 
 
