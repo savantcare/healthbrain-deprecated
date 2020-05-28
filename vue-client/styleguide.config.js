@@ -1,6 +1,6 @@
 module.exports = {
 	// set your styleguidist configuration here
-	title: 'Default Style Guide',
+	title: 'Healthbrain documentation',
 	// components: 'src/components/**/[A-Z]*.vue',
 	// defaultExample: true,
 	// sections: [
@@ -16,9 +16,17 @@ module.exports = {
 	exampleMode: 'expand',
 	sections: [
 		{
-			name: 'Getting Started',
-			content: './README.md',
-			sectionDepth: 1
+			name: 'Getting-started',
+			content: '../README.md',
+			pagePerSection: true,
+			sectionDepth: 1,
+			sections: [
+				{
+				name: 'UI-decisions',
+				content: './docs/UI-DECISIONS.md',
+				sectionDepth: 4
+				},		
+			],
 		},
 		{
 			name: 'Elements',

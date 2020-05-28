@@ -27,7 +27,7 @@
     <el-dialog title="Add Martial History" :visible.sync="dialogVisible" width="30%" append-to-body>
       <el-form :model="form" :rules="rules" ref="form" label-width="120px" class="demo-ruleForm">
         <el-form-item label="Description" prop="description">
-          <el-input v-model="form.description"></el-input>
+          <el-input type="textarea" v-model="form.description"></el-input>
         </el-form-item>
 
         <el-form-item label="Date" prop="date" style="width: 90%">
@@ -36,6 +36,7 @@
 
         <el-form-item>
           <el-button type="primary" @click="submitForm('form')">Save</el-button>
+          <el-button type="primary" @click="submitForm('form')">Add one more</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -68,7 +69,7 @@ export default {
         ],
         date: [
           {
-            required: true,
+            required: false,
             message: "Please input date",
             trigger: "blur"
           }
