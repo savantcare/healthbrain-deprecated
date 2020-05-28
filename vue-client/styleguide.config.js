@@ -1,17 +1,6 @@
 module.exports = {
-	// set your styleguidist configuration here
-	title: 'Healthbrain documentation',
-	// components: 'src/components/**/[A-Z]*.vue',
-	// defaultExample: true,
-	// sections: [
-	//   {
-	//     name: 'First Section',
-	//     components: 'src/components/**/[A-Z]*.vue'
-	//   }
-	// ],
-	// webpackConfig: {
-	//   // custom config goes here
-	// },
+	// Ref: https://vue-styleguidist.github.io/docs/GettingStarted.html
+	title: 'Docs',
 	pagePerSection: true,
 	exampleMode: 'expand',
 	sections: [
@@ -20,11 +9,12 @@ module.exports = {
 			content: '../README.md',
 			pagePerSection: true,
 			sectionDepth: 1,
+			// Ref: https://vue-styleguidist.github.io/docs/Components.html#sections
 			sections: [
 				{
-				name: 'ui-why',
-				content: './docs/ui-why.md',
-				sectionDepth: 4
+					name: 'ui-why',
+					content: './docs/ui-why.md',
+					sectionDepth: 4
 				},		
 				{
 					name: 'tech-how',
@@ -44,11 +34,44 @@ module.exports = {
 			],
 		},
 		{
-			name: 'Elements',
-			content: './docs/elements.md',
+			name: 'Components',
+			content: './docs/components.md',
 			pagePerSection: true,
 			components: './src/components/**/[A-Z]*.vue',
-			sectionDepth: 2
+			sectionDepth: 2,
+			sections: [
+				{
+					name: 'Recommendations',
+					content: './docs/ui-why.md',
+					sectionDepth: 4
+				},		
+				{
+					name: 'Reminders',
+					content: './docs/ui-why.md',
+					sectionDepth: 4
+				},		
+				{
+					name: 'Goals',
+					content: './docs/ui-why.md',
+					sectionDepth: 4
+				},		
+				{
+					name: 'Service statement',
+					content: './docs/ui-why.md',
+					sectionDepth: 4
+				},		
+				{
+					name: 'Assessment',
+					content: './docs/ui-why.md',
+					sectionDepth: 4
+				},		
+				{
+					name: 'Social history',
+					content: './docs/ui-why.md',
+					sectionDepth: 4
+				},		
+
+			],
 		}
 	]	
 }
