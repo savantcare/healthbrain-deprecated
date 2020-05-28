@@ -12,5 +12,20 @@ module.exports = {
 	// webpackConfig: {
 	//   // custom config goes here
 	// },
-	exampleMode: 'expand'
+	pagePerSection: true,
+	exampleMode: 'expand',
+	sections: [
+		{
+			name: 'Getting Started',
+			content: './README.md',
+			sectionDepth: 1
+		},
+		{
+			name: 'Elements',
+			content: './docs/elements.md',
+			pagePerSection: true,
+			components: './src/components/**/[A-Z]*.vue',
+			sectionDepth: 2
+		}
+	]	
 }
