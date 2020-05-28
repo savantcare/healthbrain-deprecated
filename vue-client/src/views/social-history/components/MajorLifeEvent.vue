@@ -19,7 +19,7 @@
       </el-table>
     </el-card>
 
-    <el-dialog title="Add OtherMajorEvent" :visible.sync="dialogVisible" width="30%" append-to-body>
+    <el-dialog title="Add MajorLifeEvent" :visible.sync="dialogVisible" width="30%" append-to-body>
       <label for>Description:</label>
       <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="Please input" />
       <div style="width: 90%; margin-top: 12px;">
