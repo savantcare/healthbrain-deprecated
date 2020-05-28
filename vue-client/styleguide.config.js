@@ -22,9 +22,19 @@ module.exports = {
 			sectionDepth: 1,
 			sections: [
 				{
-				name: 'UI-decisions',
-				content: './docs/UI-DECISIONS.md',
+				name: 'ui-why',
+				content: './docs/ui-why.md',
 				sectionDepth: 4
+				},		
+				{
+					name: 'tech-how',
+					content: '../docs/tech-howto.md',
+					sectionDepth: 4
+				},		
+				{
+					name: 'tech-why',
+					content: '../docs/tech-why.md',
+					sectionDepth: 4
 				},		
 			],
 		},
