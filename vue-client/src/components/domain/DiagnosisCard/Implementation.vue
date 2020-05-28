@@ -5,7 +5,7 @@
       :header="getStyle()"
       :header-bg-variant="getStyle()"
       header-text-variant="white"
-      id="reminderCard"
+      id="diagnosisCard"
     >
       <template v-slot:header>
         <b-row align-h="between" style="height: 30px">
@@ -16,7 +16,7 @@
               variant="primary"
               v-if="selected.length == 0"
               @click="showAddModal"
-              v-b-tooltip.hover.bottom="'Add reminder'"
+              v-b-tooltip.hover.bottom="'Add diagnosis'"
             >A</b-button>
             <b-button
               variant="primary"
@@ -24,16 +24,16 @@
               @click="showMultiChangeModal"
               class="ml-2"
               size="sm"
-              v-b-tooltip.hover.bottom="'Multi change reminder'"
+              v-b-tooltip.hover.bottom="'Multi change diagnosis'"
             >M</b-button>
             <b-button
               variant="primary"
               v-if="selected.length == 0"
               class="ml-2"
               size="sm"
-              v-b-tooltip.hover.bottom="'Focus to reminder'"
+              v-b-tooltip.hover.bottom="'Focus to diagnosis'"
               v-scroll-to="{
-                el: '#reminder',
+                el: '#diagnosis',
                 container: '#leftPanel',
                 duration: 500,
                 easing: 'linear',
@@ -74,7 +74,7 @@
                 >C</b-button>
                 <b-button
                   variant="outline-danger"
-                  @click="discontinueReminder(item)"
+                  @click="discontinuediagnosis(item)"
                   class="ml-2"
                   size="sm"
                   v-b-tooltip.hover.bottom="'Discontinue'"
@@ -90,7 +90,7 @@
 
 <script>
 export default {
-  name: "reminder",
+  name: "diagnosis",
   components: {},
   data() {
     return {
@@ -100,7 +100,7 @@ export default {
   },
   computed: {
     items() {
-      return this.$store.state.reminder.list.filter(item => {
+      return this.$store.state.diagnosis.list.filter(item => {
         return item.patientId == this.id && item.discontinue != true;
       });
     },
@@ -132,16 +132,16 @@ export default {
       this.selected = items;
     },
     showAddModal() {
-      this.$store.commit("showAddReminderModal");
+      this.$store.commit("showAdddiagnosisModal");
     },
     showMultiChangeModal() {
-      this.$store.commit("showMultiChangeReminderModal");
+      this.$store.commit("showMultiChangediagnosisModal");
     },
     openEditModal(item) {
       this.$store.commit("showEditDiagnosisModal", item);
     },
-    discontinueReminder(item) {
-      this.$store.dispatch("discontinueReminder", {
+    discontinuediagnosis(item) {
+      this.$store.dispatch("discontinuediagnosis", {
         data: item,
         toast: this.$bvToast
       });
@@ -157,7 +157,7 @@ export default {
       });
       this.selected = [];
 
-      this.$store.dispatch("multidiscontinueReminder", {
+      this.$store.dispatch("multidiscontinuediagnosis", {
         selectedIds: selectedIds,
         selectedDatas: selectedDatas,
         toast: this.$bvToast
@@ -209,7 +209,7 @@ export default {
 </script>
 
 <style>
-#reminderCard {
+#diagnosisCard {
   cursor: pointer;
 }
 </style>

@@ -167,7 +167,7 @@
 <script>
 import MaritalHistory from "./components/MaritalHistory.vue";
 import DevelopmentHistory from "./components/DevelopmentHistory";
-import OtherMajorEvent from "./components/OtherMajorEvent";
+import MajorLifeEvent from "./components/MajorLifeEvent";
 import EducationHistory from "./components/EducationHistory";
 import EmploymentHistory from "./components/EmploymentHistory";
 
@@ -178,7 +178,7 @@ export default {
   components: {
     MaritalHistory,
     DevelopmentHistory,
-    OtherMajorEvent,
+    MajorLifeEvent,
     EducationHistory,
     EmploymentHistory,
     DatePicker,

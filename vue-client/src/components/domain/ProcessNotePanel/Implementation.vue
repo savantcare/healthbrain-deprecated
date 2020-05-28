@@ -1,4 +1,6 @@
 <template>
+    <label>Description:</label>
+
 </template>
 
 <script>

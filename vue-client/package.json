@@ -6,7 +6,9 @@
     "serve": "npx vue-cli-service serve",
     "build": "npx vue-cli-service build",
     "lint": "npx vue-cli-service lint",
-    "_comment": "VK added npx in may 20 since Ubuntu was not finding vue-cli-service in command line"
+    "_comment": "VK added npx in may 20 since Ubuntu was not finding vue-cli-service in command line",
+    "styleguide": "vue-cli-service styleguidist",
+    "styleguide:build": "vue-cli-service styleguidist:build"
   },
   "dependencies": {
     "@syncfusion/ej2-vue-inputs": "^18.1.52",
@@ -54,6 +56,7 @@
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-bootstrap-vue": "~0.6.0",
+    "vue-cli-plugin-styleguidist": "~4.23.3",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

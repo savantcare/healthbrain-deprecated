@@ -45,6 +45,11 @@ const routes = [
     component: () => import('@/views/social-history/Index.vue')
   },
   {
+    path: '/screening',
+    name: 'screening',
+    component: () => import('@/views/Screening.vue')
+  },
+  {
     path: '/tab-dialog',
     name: 'tab-dialog',
     component: () => import("@/views/TabDialog.vue")
