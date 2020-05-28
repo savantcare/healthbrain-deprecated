@@ -17,7 +17,9 @@
 import {
   ADD_RECOMMENDATION,
   MULTIPLE_CHANGE_RECOMMENDATION,
-  SOCIAL_HISTORY
+  SOCIAL_HISTORY,
+  ADD_DIAGNOSIS,
+  MULTIPLE_CHANGE_ASSESSMENT
 } from "@/const.js";
 export default {
   data() {
@@ -35,6 +37,14 @@ export default {
         {
           value: "Social History",
           key: SOCIAL_HISTORY
+        },
+        {
+          value: "Add Diagnosis",
+          key: ADD_DIAGNOSIS
+        },
+        {
+          value: "Multi change assessment",
+          key: MULTIPLE_CHANGE_ASSESSMENT
         }
       ]
     };
@@ -76,6 +86,20 @@ export default {
           name: "tab-social-history"
         };
         this.$store.commit("addNewTab", socialHistoryTab);
+      } else if (key == ADD_DIAGNOSIS) {
+        const addDiagnosisTab = {
+          label: "Add Diagnosis",
+          value: require("./diagnosis/AddDiagnosis.vue").default,
+          name: "tab-add-diagnosis"
+        };
+        this.$store.commit("addNewTab", addDiagnosisTab);
+      } else if (key == MULTIPLE_CHANGE_ASSESSMENT) {
+        const multiChangeAssessmentTab = {
+          label: "Multi change assessment diagnosis",
+          value: require("./diagnosis/MultiChangeAssessment.vue").default,
+          name: "tab-multi-change-assessment"
+        };
+        this.$store.commit("addNewTab", multiChangeAssessmentTab);
       }
     }
   }

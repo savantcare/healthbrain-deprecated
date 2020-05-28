@@ -1,4 +1,4 @@
-import { ADD_RECOMMENDATION, MULTIPLE_CHANGE_RECOMMENDATION, EDIT_RECOMMENDATION, ADD_REMINDER, EDIT_REMINDER, MULTIPLE_CHANGE_REMINDER } from "@/const.js"
+import { ADD_RECOMMENDATION, MULTIPLE_CHANGE_RECOMMENDATION, EDIT_RECOMMENDATION, ADD_REMINDER, EDIT_REMINDER, MULTIPLE_CHANGE_REMINDER, ADD_DIAGNOSIS, MULTIPLE_CHANGE_ASSESSMENT } from "@/const.js"
 export default {
   state: {
     visibility: false,
@@ -93,6 +93,28 @@ export default {
       state.visibility = true
       state.reminderTabType = EDIT_REMINDER
       state.reminderData = data
+    },
+    showAddDiagnosisModal(state) {
+      const tab = {
+        label: "Add Diagnosis",
+        value: require("@/components/element.io-tab/diagnosis/AddDiagnosis.vue").default,
+        name: "tab-add-diagnosis"
+      }
+      state.tabList = [tab]
+      state.diagnosisTabType = ADD_DIAGNOSIS
+      state.visibility = true
+      state.tabValue = tab.name
+    },
+    showMultiChangeAssessmentModal(state) {
+      const tab = {
+        label: "Multi change assessment diagnosis",
+        value: require("@/components/element.io-tab/diagnosis/MultiChangeAssessment.vue").default,
+        name: "tab-multi-change-assessment"
+      }
+      state.tabList = [tab]
+      state.diagnosisTabType = MULTIPLE_CHANGE_ASSESSMENT
+      state.visibility = true
+      state.tabValue = tab.name
     }
   }
 }

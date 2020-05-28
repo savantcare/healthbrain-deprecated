@@ -102,6 +102,11 @@ export default {
         key: "reminder",
         value: require("../components/element.io-rightpanel/ReminderCard")
           .default
+      },
+      {
+        key: "diagnosis",
+        value: require("../components/element.io-rightpanel/DiagnosisCard")
+          .default
       }
     ];
     this.$store.commit("setRightPanelList", rightPanelCards);
