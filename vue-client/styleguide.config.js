@@ -42,33 +42,27 @@ module.exports = {
 			sections: [
 				{
 					name: 'Recommendations',
-					content: './docs/ui-why.md',
-					sectionDepth: 4
+					components: './src/components/**/*Recomm*.vue'
 				},		
 				{
 					name: 'Reminders',
-					content: './docs/ui-why.md',
-					sectionDepth: 4
+					components: './src/components/**/*Remin*.vue'
 				},		
 				{
 					name: 'Goals',
-					content: './docs/ui-why.md',
-					sectionDepth: 4
+					components: './src/components/**/*Goal*.vue'
 				},		
 				{
 					name: 'Service statement',
-					content: './docs/ui-why.md',
-					sectionDepth: 4
+					components: './src/components/**/*Service*.vue'
 				},		
 				{
 					name: 'Assessment',
-					content: './docs/ui-why.md',
-					sectionDepth: 4
+					components: './src/components/**/*Assess*.vue'
 				},		
 				{
 					name: 'Social history',
-					content: './docs/ui-why.md',
-					sectionDepth: 4
+					components: './src/components/**/*Social*.vue'
 				},		
 
 			],
