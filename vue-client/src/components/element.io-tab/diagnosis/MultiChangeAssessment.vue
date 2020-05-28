@@ -62,11 +62,11 @@
                 }, {
                     content: 'Previous assessment for this diagnosis',
                     timestamp: 'May 14, 2020',
-                    color: '#0bbd87'
+                    type: 'primary'
                 }, {
                     content: 'First assessment for this diagnosis',
                     timestamp: 'Apr 27, 2020',
-                    color: '#0bbd87'
+                    type: 'success'
                 }]
                 }, {
                 name: 'Adjustment disorder, With depressed mood',
@@ -81,7 +81,7 @@
                 }, {
                     content: 'First assessment for this diagnosis',
                     timestamp: 'Apr 22, 2020',
-                    color: '#0bbd87'
+                    type: 'success'
                 }]
                 }, {
                 name: 'Generalized anxiety disorder',
@@ -96,7 +96,7 @@
                 }, {
                     content: 'First assessment for this diagnosis',
                     timestamp: 'Mar 22, 2020',
-                    color: '#0bbd87'
+                    type: 'success'
                 }]
             }]
           },
@@ -114,11 +114,11 @@
                 }, {
                     content: 'Previous assessment for this diagnosis',
                     timestamp: 'May 14, 2020',
-                    color: '#0bbd87'
+                    type: 'primary'
                 }, {
                     content: 'First assessment for this diagnosis',
                     timestamp: 'Apr 27, 2020',
-                    color: '#0bbd87'
+                    type: 'success'
                 }]
             }, {
                 name: 'Adjustment disorder, With depressed mood',
@@ -133,7 +133,7 @@
                 }, {
                     content: 'First assessment for this diagnosis',
                     timestamp: 'Apr 22, 2020',
-                    color: '#0bbd87'
+                    type: 'success'
                 }]
             }, {
                 name: 'Generalized anxiety disorder',
@@ -148,7 +148,7 @@
                 }, {
                     content: 'First assessment for this diagnosis',
                     timestamp: 'Mar 22, 2020',
-                    color: '#0bbd87'
+                    type: 'success'
                 }]
             }]
           }],
