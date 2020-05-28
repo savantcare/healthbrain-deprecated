@@ -10,6 +10,9 @@
           clearable
           placeholder="please select gender"
           :class="{'changed': changeStatus.biologicalGender != true}"
+          v-shortkey="['alt', 'b']"
+          ref="biological_gender"
+          @shortkey.native="$refs.biological_gender.focus()"
         >
           <el-option
             v-for="item in genderOptions"
@@ -28,6 +31,9 @@
           clearable
           placeholder="please select gender"
           :class="{'changed': changeStatus.prefferedGender != true}"
+          v-shortkey="['alt', 'p']"
+          ref="preferred_gender"
+          @shortkey.native="$refs.preferred_gender.focus()"
         >
           <el-option
             v-for="item in genderOptions"
@@ -44,8 +50,9 @@
         </label>
         <date-picker
           @updateValidateChanges="updateValidateChanges"
-          v-model="dateOfBirth"
-          field="dateOfBirth"
+          v-model="userDateOfBirth"
+          field="userDateOfBirth"
+          shortkey="d"
         ></date-picker>
       </el-col>
     </el-row>
@@ -53,14 +60,14 @@
       <el-col :span="6">
         <label>
           <span>Bi</span>
-          <span class="hl-label">r</span>
-          th place
+          <span class="hl-label">r</span>th place
         </label>
         <input-box
           @updateValidateChanges="updateValidateChanges"
           v-model="birthPlace"
           placeholder="please input birthplace"
           field="birthPlace"
+          shortkey="r"
         ></input-box>
       </el-col>
       <el-col :span="6">
@@ -72,6 +79,7 @@
           v-model="livesWith"
           placeholder="please input lives with"
           field="livesWith"
+          shortkey="l"
         ></input-box>
       </el-col>
       <el-col :span="6">
@@ -85,6 +93,7 @@
           v-model="livesIn"
           placeholder="please input lives in"
           field="livesIn"
+          shortkey="v"
         ></input-box>
       </el-col>
       <el-col :span="6">
@@ -97,6 +106,7 @@
           v-model="numberOfLivingChildren"
           placeholder="please input number of living children"
           field="numberOfLivingChildren"
+          shortkey="o"
         ></input-box>
       </el-col>
     </el-row>
@@ -110,6 +120,9 @@
             v-model="supports"
             field="supports"
             @updateValidateChanges="updateValidateChanges"
+            v-shortkey="['alt', 's']"
+            ref="supports"
+            @shortkey.native="$refs.supports.$el.getElementsByTagName('textarea')[0].focus()"
           ></text-area>
         </div>
         <div class="mt-2">
@@ -141,8 +154,12 @@
     </el-row>
 
     <el-row type="flex" justify="center" class="mt-2">
-      <el-button type="primary" :disabled="validateChanges">Submit</el-button>
-      <el-button type="primary" :disabled="validateChanges">Submit and exit</el-button>
+      <el-button type="primary" :disabled="validateChanges" @click="onClickSubmit">Submit</el-button>
+      <el-button
+        type="primary"
+        :disabled="validateChanges"
+        @click="onClickSubmitAndExit"
+      >Submit and exit</el-button>
     </el-row>
   </div>
 </template>
@@ -193,13 +210,6 @@ export default {
         }
       ],
 
-      biologicalGender: "",
-      patientPreferredGender: "",
-      dateOfBirth: "",
-      birthPlace: "",
-      livesWith: "",
-      livesIn: "",
-      numberOfLivingChildren: "",
       supports: "",
       freeText: "",
 
@@ -210,7 +220,7 @@ export default {
         numberOfLivingChildren: true,
         biologicalGender: true,
         prefferedGender: true,
-        dateOfBirth: true,
+        userDateOfBirth: true,
         supports: true,
         freeText: true,
         maritalHistory: true,
@@ -230,6 +240,72 @@ export default {
         }
       });
       return result;
+    },
+    historyData() {
+      return this.$store.state.socialHistory.history;
+    },
+    birthPlace: {
+      get() {
+        return this.$store.state.socialHistory.history.birthPlace;
+      },
+      set(value) {
+        this.historyData["birthPlace"] = value;
+        this.$store.commit("setSocialHistoryData", this.historyData);
+      }
+    },
+    livesWith: {
+      get() {
+        return this.$store.state.socialHistory.history.livesWith;
+      },
+      set(value) {
+        this.historyData["livesWith"] = value;
+        this.$store.commit("setSocialHistoryData", this.historyData);
+      }
+    },
+    livesIn: {
+      get() {
+        return this.$store.state.socialHistory.history.livesIn;
+      },
+      set(value) {
+        this.historyData["livesIn"] = value;
+        this.$store.commit("setSocialHistoryData", this.historyData);
+      }
+    },
+    numberOfLivingChildren: {
+      get() {
+        return this.$store.state.socialHistory.history.numberOfChildren;
+      },
+      set(value) {
+        this.historyData["numberOfChildren"] = value;
+        this.$store.commit("setSocialHistoryData", this.historyData);
+      }
+    },
+    biologicalGender: {
+      get() {
+        return this.$store.state.socialHistory.history.biologicalGender;
+      },
+      set(value) {
+        this.historyData["biologicalGender"] = value;
+        this.$store.commit("setSocialHistoryData", this.historyData);
+      }
+    },
+    patientPreferredGender: {
+      get() {
+        return this.$store.state.socialHistory.history.patientPreferredGender;
+      },
+      set(value) {
+        this.historyData["patientPreferredGender"] = value;
+        this.$store.commit("setSocialHistoryData", this.historyData);
+      }
+    },
+    userDateOfBirth: {
+      get() {
+        return this.$store.state.socialHistory.history.userDateOfBirth;
+      },
+      set(value) {
+        this.historyData["userDateOfBirth"] = value;
+        this.$store.commit("setSocialHistoryData", this.historyData);
+      }
     }
   },
   watch: {
@@ -244,7 +320,23 @@ export default {
     updateValidateChanges(object) {
       const { field, value } = object;
       this.changeStatus[field] = value;
+    },
+    onClickSubmit() {
+      this.$store.dispatch("saveSocialHistory", {
+        notify: this.$notify,
+        changeStatus: this.changeStatus
+      });
+    },
+    onClickSubmitAndExit() {
+      this.$store.dispatch("saveSocialHistory", {
+        notify: this.$notify,
+        changeStatus: this.changeStatus
+      });
+      this.$emit("closeDialog");
     }
+  },
+  mounted() {
+    this.$store.dispatch("getSocialHistory");
   }
 };
 </script>

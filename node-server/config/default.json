@@ -14,5 +14,6 @@
   "DB_REMINDER": "sc_reminder",
   "DB_USER": "sc_user",
   "DB_SETTING": "sc_setting",
-  "DB_COMPONENT": "sc_component"
+  "DB_COMPONENT": "sc_component",
+  "DB_SOCIALHISTORY": "DB_SC_SocialHistory_CT_V20"
 }

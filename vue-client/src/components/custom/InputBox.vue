@@ -5,12 +5,15 @@
     :placeholder="placeholder"
     clearable
     @input="updateValue"
+    v-shortkey="['alt', shortkey]"
+    @shortkey.native="theAction()"
+    ref="inputBox"
   ></el-input>
 </template>
 
 <script>
 export default {
-  props: ["value", "placeholder", "field"],
+  props: ["value", "placeholder", "field", "shortkey"],
   data() {
     return {
       inputValue: "",
@@ -37,6 +40,11 @@ export default {
   methods: {
     updateValue(value) {
       this.$emit("input", value);
+    },
+    theAction() {
+      if (this.shortkey != null) {
+        this.$refs.inputBox.$el.getElementsByTagName("input")[0].focus();
+      }
     }
   }
 };

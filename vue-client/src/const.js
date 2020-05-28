@@ -9,6 +9,7 @@ module.exports = {
   SOCKET_API_URL: "http://localhost:8000",
   USER_API_URL: "http://localhost:8000/users",
   COMPONENT_API_URL: "http://localhost:8000/components",
+  SOCIALHISTORY_API_URL: "http://localhost:8000/social-histories",
 
   LEFT_SIDE_COMPONENTS: [
     { key: "recommendation", value: () => import('./components/domain/RecommendationsPanel/Implementation.vue') },

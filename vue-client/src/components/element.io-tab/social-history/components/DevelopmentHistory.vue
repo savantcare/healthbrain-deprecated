@@ -92,7 +92,7 @@ export default {
             date: ""
           };
           this.$emit("updateValidateChanges", {
-            field: "developmentHistory",
+            field: "maritalHistory",
             value: false
           });
           this.dialogVisible = false;

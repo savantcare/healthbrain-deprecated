@@ -44,13 +44,13 @@
 
 <script>
 import DatePicker from "@/components/custom/DatePicker";
+import { uuid } from "uuidv4";
 export default {
   components: {
     DatePicker
   },
   data() {
     return {
-      tableData: [],
       dialogVisible: false,
       date: "",
       form: {
@@ -76,12 +76,25 @@ export default {
       }
     };
   },
+  computed: {
+    historyData() {
+      return this.$store.state.socialHistory.history;
+    },
+    tableData() {
+      return this.$store.state.socialHistory.history.maritalHistory;
+    }
+  },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.form["isNew"] = true;
-          this.tableData.push(this.form);
+          this.form["uuid"] = uuid();
+          let tableData = this.tableData;
+          tableData.push(this.form);
+          this.historyData["maritalHistory"] = tableData;
+          this.$store.commit("setSocialHistoryData", this.historyData);
+          // this.tableData.push(this.form);
           this.form = {
             description: "",
             date: ""

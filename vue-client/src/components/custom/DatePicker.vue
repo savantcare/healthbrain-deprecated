@@ -5,6 +5,9 @@
       v-model="inputValue"
       @input="updateValue"
       placeholder="Please input "
+      v-shortkey="['alt', shortkey]"
+      @shortkey.native="theAction()"
+      ref="inputBox"
       clearable
     ></el-input>
     <el-date-picker
@@ -18,7 +21,7 @@
 
 <script>
 export default {
-  props: ["value", "field"],
+  props: ["value", "field", "shortkey"],
   data() {
     return {
       pickerOptions: {
@@ -81,6 +84,11 @@ export default {
 
       this.inputValue = yyyy + "/" + mm + "/" + dd;
       this.$emit("input", this.inputValue);
+    },
+    theAction() {
+      if (this.shortkey != null) {
+        this.$refs.inputBox.$el.getElementsByTagName("input")[0].focus();
+      }
     }
   }
 };

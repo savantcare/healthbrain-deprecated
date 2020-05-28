@@ -7,7 +7,7 @@
           <el-button type="primary" size="mini" style="padding: 2px;">Reviewed: {{lastViewDate}}</el-button>
         </span>
 
-        <SocialHistoryTab />
+        <SocialHistoryTab @closeDialog="closeDialog" />
       </el-tab-pane>
     </el-tabs>
   </el-dialog>
@@ -27,7 +27,11 @@ export default {
       lastViewDate: "Jan 15th 20"
     };
   },
-  methods: {}
+  methods: {
+    closeDialog() {
+      this.visibility = false;
+    }
+  }
 };
 </script>
 

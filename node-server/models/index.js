@@ -3,11 +3,13 @@ const reminderDB = require("./database/reminder.database.js")
 const userDB = require("./database/user.database.js")
 const settingDB = require("./database/setting.database.js")
 const componentDB = require('./database/component.database.js')
+const socialHistoryDB = require('./database/socialhistory.database.js')
 
 module.exports = {
   recommendationDB: recommendationDB,
   reminderDB: reminderDB,
   userDB: userDB,
   settingDB: settingDB,
-  componentDB: componentDB
+  componentDB: componentDB,
+  socialHistoryDB: socialHistoryDB
 }
