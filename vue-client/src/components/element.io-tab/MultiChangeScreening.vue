@@ -44,7 +44,7 @@ export default {
         }
       ],
        tags: [
-          { name: 'SPIN', type: 'warning' }
+          { name: 'SPIN', type: 'light' }
         ],
        questionList: [
           { id: 1, selectedAnswer: '', name: 'How much the following problems have bothered you during the past week... I am afraid of people in authority',  },
