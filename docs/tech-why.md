@@ -208,5 +208,7 @@ Dis-Advantages of architecture 2:
 
  Decided not to use storybook since want something where the code is auto parsed.
 
- So for vue client side code decided to use vue-styleguidist
+ So for vue client side code decided to use [vue-styleguidist](https://github.com/vue-styleguidist/vue-styleguidist)
  Ref: https://www.youtube.com/watch?v=ryyAiUYvfY8
+
+Click here for [steps to run the doc generator](/#/Getting-started/tech-how)

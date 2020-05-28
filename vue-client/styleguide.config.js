@@ -16,7 +16,7 @@ module.exports = {
 	exampleMode: 'expand',
 	sections: [
 		{
-			name: 'Getting-started',
+			name: 'Why',
 			content: '../README.md',
 			pagePerSection: true,
 			sectionDepth: 1,
@@ -34,6 +34,11 @@ module.exports = {
 				{
 					name: 'tech-why',
 					content: '../docs/tech-why.md',
+					sectionDepth: 4
+				},		
+				{
+					name: 'misc',
+					content: '../docs/misc.md',
 					sectionDepth: 4
 				},		
 			],
