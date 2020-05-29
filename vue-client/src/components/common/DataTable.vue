@@ -2,6 +2,22 @@
   <div v-elresize @elresize="handleResize">
     <el-tabs type="card">
       <el-tab-pane v-for="(tab, index) in tabData" :key="`tab-${index}`" :label="tab.label">
+        <el-select
+          v-model="tab.selectedColumn"
+          size="mini"
+          clearable
+          multiple
+          placeholder="Select"
+          style="position: fixed;top: 60px;right: 10px;"
+          collapse-tags
+        >
+          <el-option
+            v-for="item in tab.columns"
+            :key="item.field"
+            :label="item.label"
+            :value="item.field"
+          ></el-option>
+        </el-select>
         <el-table-draggable>
           <el-table
             ref="dataTable"
@@ -35,13 +51,13 @@
             </el-table-column>
             <el-table-column type="selection"></el-table-column>
             <el-table-column
-              v-for="(column, index_column) in tab.columns"
+              v-for="(column, index_column) in getSelectedColumns(tab.selectedColumn, tab.columns)"
               :key="`tab-${index}-column-${index_column}`"
               :label="column.label "
               :property="column.field"
               :sortable="column.sortable"
             ></el-table-column>
-            <el-table-column v-if="width > 380">
+            <el-table-column v-if="false">
               <template slot-scope="scope" v-if="scope.row.id == mouseOverRowId">
                 <el-button
                   size="mini"
@@ -77,7 +93,30 @@ export default {
       mouseOverRowId: "",
       isExpandable: false,
       width: 0,
-      showActionColumn: false
+      showActionColumn: false,
+      columns: [],
+      options: [
+        {
+          value: "Option1",
+          label: "Option1"
+        },
+        {
+          value: "Option2",
+          label: "Option2"
+        },
+        {
+          value: "Option3",
+          label: "Option3"
+        },
+        {
+          value: "Option4",
+          label: "Option4"
+        },
+        {
+          value: "Option5",
+          label: "Option5"
+        }
+      ]
     };
   },
   methods: {
@@ -102,6 +141,21 @@ export default {
         this.isExpandable = true;
       } else {
         this.isExpandable = false;
+      }
+    },
+    getSelectedColumns(selectedColumn, columns) {
+      if (selectedColumn) {
+        return columns.filter(column => {
+          let result = false;
+          selectedColumn.forEach(selColumn => {
+            if (column.field == selColumn) {
+              result = true;
+            }
+          });
+          if (result) {
+            return column;
+          }
+        });
       }
     }
   },

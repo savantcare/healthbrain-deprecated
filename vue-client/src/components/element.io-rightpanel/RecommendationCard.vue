@@ -31,7 +31,8 @@ export default {
           label: "Yours",
           tableData: [
             {
-              description: "Recommendation 1",
+              description:
+                "Recommendation 1-xxxx   xxx  xxxxxxx  aasdf   asdfasdf asdfa sdfxxxxxxxxxx",
               createdAt: "29th May, 2020",
               id: 1
             },
@@ -53,7 +54,8 @@ export default {
               sortable: true
             }
           ],
-          rowActions: ["C", "D"]
+          rowActions: ["C", "D"],
+          selectedColumn: ["description"]
         },
         {
           label: "Other's",
