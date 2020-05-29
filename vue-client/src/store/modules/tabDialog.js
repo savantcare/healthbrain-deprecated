@@ -1,4 +1,4 @@
-import { ADD_RECOMMENDATION, MULTIPLE_CHANGE_RECOMMENDATION, EDIT_RECOMMENDATION, ADD_REMINDER, EDIT_REMINDER, MULTIPLE_CHANGE_REMINDER, ADD_DIAGNOSIS, MULTIPLE_CHANGE_ASSESSMENT } from "@/const.js"
+import { ADD_RECOMMENDATION, MULTIPLE_CHANGE_RECOMMENDATION, EDIT_RECOMMENDATION, ADD_REMINDER, EDIT_REMINDER, MULTIPLE_CHANGE_REMINDER, ADD_DIAGNOSIS, MULTIPLE_CHANGE_ASSESSMENT, ADD_SERVICE_STATEMENTS, MULTIPLE_CHANGE_SERVICE_STATEMENTS } from "@/const.js"
 export default {
   state: {
     visibility: false,
@@ -113,6 +113,28 @@ export default {
       }
       state.tabList = [tab]
       state.diagnosisTabType = MULTIPLE_CHANGE_ASSESSMENT
+      state.visibility = true
+      state.tabValue = tab.name
+    },
+    showAddServiceStatementsModal(state) {
+      const tab = {
+        label: "Add service statements",
+        value: require("@/components/element.io-tab/service-statements/AddServiceStatements.vue").default,
+        name: "tab-service-statements"
+      }
+      state.tabList = [tab]
+      state.serviceStatementsTabType = ADD_SERVICE_STATEMENTS
+      state.visibility = true
+      state.tabValue = tab.name
+    },
+    showMultiChangeServiceStatementsModal(state) {
+      const tab = {
+        label: "Multi change service statements",
+        value: require("@/components/element.io-tab/service-statements/MultiChangeServiceStatements.vue").default,
+        name: "tab-multi-change-service-statements"
+      }
+      state.tabList = [tab]
+      state.serviceStatementsTabType = MULTIPLE_CHANGE_SERVICE_STATEMENTS
       state.visibility = true
       state.tabValue = tab.name
     }
