@@ -1,38 +1,64 @@
 <template>
     <el-row :gutter="12">
         <el-col :span="24">
-        <el-card class="box-card">
-            <el-form label-position="top" :model="dynamicValidateForm" ref="dynamicValidateForm" class="demo-dynamic">
+            <el-card class="box-card">
+                <el-form 
+                label-position="top" 
+                :model="dynamicValidateForm" 
+                ref="dynamicValidateForm" 
+                class="demo-dynamic">
+
+                    <el-card 
+                    class="box-card" 
+                    v-for="(domain) in dynamicValidateForm.domains" 
+                    :key="domain.key" 
+                    style="margin-bottom: 20px;">
+                        <el-row>
+                            <el-col :span="2" :offset="24">
+                                <i class="el-icon-close" @click.prevent="removeDomain(domain)"></i>
+                            </el-col>
+                        </el-row>
+                        <el-form-item 
+                        style="font-weight:bold" 
+                        label="Name" 
+                        :prop="'value'" 
+                        label-position="top" 
+                        :rules="{required: true, message: 'Diagnosis can not be blank', trigger: 'blur'}">
+                            <el-select
+                            v-model="domain.value" 
+                            filterable 
+                            placeholder="Select" 
+                            style="width: 100%;"> 
+                                <el-option
+                                v-for="item in diagnosesList"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item 
+                        style="font-weight:bold" 
+                        label="When diagnosed" 
+                        :prop="'when'" 
+                        label-position="top" 
+                        :rules="{required: true, message: 'Date can not be blank', trigger: 'blur'}">
+                            <el-date-picker 
+                            type="date" 
+                            placeholder="Pick a date" 
+                            v-model="domain.when" 
+                            style="width: 100%;">
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-card>
 
 
-            <el-card class="box-card" v-for="(domain) in dynamicValidateForm.domains" :key="domain.key" style="margin-bottom: 20px;">
-                <el-row>
-                <el-col :span="2" :offset="24">
-                    <i class="el-icon-close" @click.prevent="removeDomain(domain)"></i>
-                </el-col>
-                </el-row>
-                <el-form-item style="font-weight:bold" label="Name" :prop="'value'" label-position="top" :rules="{required: true, message: 'Diagnosis can not be blank', trigger: 'blur'}">
-                <el-select v-model="domain.value" filterable placeholder="Select" style="width: 100%;"> 
-                    <el-option
-                    v-for="item in diagnosisList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-                    </el-option>
-                </el-select>
-                </el-form-item>
-                <el-form-item style="font-weight:bold" label="When diagnosed" :prop="'when'" label-position="top" :rules="{required: true, message: 'Date can not be blank', trigger: 'blur'}">
-                <el-date-picker type="date" placeholder="Pick a date" v-model="domain.when" style="width: 100%;"></el-date-picker>
-                </el-form-item>
-            </el-card>
-
-
-            <el-form-item>
-                <el-button type="success" @click="submitForm('dynamicValidateForm')" size="small">Save</el-button>
-                <el-button type="primary" @click="addDomain" size="small">Add one more</el-button>
-            </el-form-item>
-            </el-form>
-        </el-card> 
+                    <el-form-item>
+                        <el-button type="success" @click="submitForm('dynamicValidateForm')" size="small">Save</el-button>
+                        <el-button type="primary" @click="addDomain" size="small">Add one more</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-card> 
         </el-col>
     </el-row>
 </template>
@@ -63,7 +89,7 @@
             when: ''
           }]
         },
-        diagnosisList: [{
+        diagnosesList: [{
           value: 'Bacterial intestinal infection, unspecified',
           label: 'Bacterial intestinal infection, unspecified'
         }, {

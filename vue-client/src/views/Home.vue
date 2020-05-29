@@ -104,7 +104,7 @@ export default {
           .default
       },
       {
-        key: "diagnosis",
+        key: "diagnoses",
         value: require("../components/element.io-rightpanel/DiagnosesCard")
           .default
       },

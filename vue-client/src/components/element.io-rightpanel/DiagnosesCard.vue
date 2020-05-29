@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>Diagnosis</span>
+        <span>Diagnoses</span>
         <div style="float: right">
           <el-button type="text" size="mini" @click="showAddDiagnosisDialog">A</el-button>
           <el-button type="text" size="mini" @click="showMultiChangeAssessmentDialog">C</el-button>

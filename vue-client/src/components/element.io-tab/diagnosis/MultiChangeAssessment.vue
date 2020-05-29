@@ -1,16 +1,31 @@
 <template>
     <el-row :gutter="12">
 
-        <el-carousel :interval="5000" arrow="always" :autoplay="false">
-            <el-carousel-item v-for="item in sliderSet" :key="item">
-                <el-col :span="8" v-for="(diagnoses, index) in item.diagnosis" :key="index">
+        <el-carousel 
+        :interval="5000" 
+        arrow="always" 
+        :autoplay="false">
+            <el-carousel-item 
+            v-for="item in sliderSet" 
+            :key="item">
+                <el-col 
+                :span="8" 
+                v-for="(diagnosis, index) in item.diagnoses" 
+                :key="index">
                     <el-card  class="box-card" shadow="hover" style="font-family: Helvetica;">
-                        <div><b>Name:</b> {{diagnoses.name}}</div>
-                        <div><b>Added by:</b> {{diagnoses.addedBy}} on {{diagnoses.addedOn}}</div>
+                        <div><b>Name:</b> {{diagnosis.name}}</div>
+                        <div><b>Added by:</b> {{diagnosis.addedBy}} on {{diagnosis.addedOn}}</div>
                         <el-divider></el-divider>
-                        <el-form label-position="top" ref="diagnoses" :model="diagnoses" >
+                        <el-form 
+                        label-position="top" 
+                        ref="diagnosis" 
+                        :model="diagnosis" >
                         <el-form-item style="font-weight:bold" label="Change assessment">
-                            <el-input :span="8" type="textarea" v-model="diagnoses.currentAssessment" :autosize="{ minRows: 4}"></el-input>
+                            <el-input 
+                            :span="8" 
+                            type="textarea" 
+                            v-model="diagnosis.currentAssessment" 
+                            :autosize="{ minRows: 4}"></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="success" @click="onSubmit" size="small">Save</el-button>
@@ -21,7 +36,7 @@
                             <div class="block">
                             <el-timeline>
                                 <el-timeline-item
-                                v-for="(assessment, index) in diagnoses.assessments"
+                                v-for="(assessment, index) in diagnosis.assessments"
                                 :key="index"
                                 :icon="assessment.icon"
                                 :type="assessment.type"
@@ -49,7 +64,7 @@
     data() {
       return {
           sliderSet:[{
-              diagnosis: [{
+              diagnoses: [{
                 name: 'Bacterial intestinal infection, unspecified',
                 addedBy: 'Dr. Sonia P',
                 addedOn: 'Apr 27, 2020',
@@ -101,7 +116,7 @@
             }]
           },
           {
-              diagnosis: [{
+              diagnoses: [{
                 name: 'Bacterial intestinal infection, unspecified',
                 addedBy: 'Dr. Sonia P',
                 addedOn: 'Apr 27, 2020',
@@ -152,7 +167,7 @@
                 }]
             }]
           }],
-        diagnosisList: [{
+        diagnosesList: [{
           value: 'Bacterial intestinal infection, unspecified',
           label: 'Bacterial intestinal infection, unspecified'
         }, {
