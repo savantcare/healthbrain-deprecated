@@ -51,7 +51,7 @@ export default {
           label: "Yours",
           tableData: [
             {
-              name: 'Bacterial intestinal infection, unspecified 139817235',
+              name: 'Bacterial intestinal infection, unspecified',
               addedBy: 'Dr. Sonia P',
               addedOn: 'Apr 27, 2020',
               currentAssessment: 'Current assessment for this diagnosis',
