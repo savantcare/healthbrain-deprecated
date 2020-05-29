@@ -172,6 +172,26 @@ export default {
         key: "substancesAbuse",
         value: require("../components/element.io-rightpanel/SubstancesAbuseCard")
           .default
+      },
+      {
+        key: "selfHarm",
+        value: require("../components/element.io-rightpanel/SelfHarmCard")
+          .default
+      },
+      {
+        key: "processNote",
+        value: require("../components/element.io-rightpanel/ProcessNoteCard")
+          .default
+      },
+      {
+        key: "profileCard",
+        value: require("../components/element.io-rightpanel/ProfileCard")
+          .default
+      },
+      {
+        key: "pastPsychHistoryCard",
+        value: require("../components/element.io-rightpanel/PastPsychHistoryCard")
+          .default
       }
 ];
     this.$store.commit("setRightPanelList", rightPanelCards);

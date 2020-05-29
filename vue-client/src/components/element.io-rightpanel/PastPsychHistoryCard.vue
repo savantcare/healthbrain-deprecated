@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>Policies</span>
+        <span>Past Psych History</span>
       </div>
     </el-card>
   </div>
