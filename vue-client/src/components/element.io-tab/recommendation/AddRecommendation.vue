@@ -81,7 +81,8 @@ export default {
             });
             await this.$store.dispatch("addRecommendation", {
               data: recList,
-              notify: this.$notify
+              notify: this.$notify,
+              patientId: this.id
             });
             await this.$store.dispatch("getRecommendations", {
               patientId: this.id,

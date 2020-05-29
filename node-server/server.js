@@ -86,7 +86,9 @@ io.on("connection", socket => {
   console.log(`Socket connected: ${socket.id}`)
 
   socket.on("CREATE_ROOM", roomId => {
+    console.log('------------------------')
     console.log(`join to room ${roomId}`)
+    console.log('------------------------')
     socket.join(roomId)
   })
 })

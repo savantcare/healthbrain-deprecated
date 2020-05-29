@@ -7,14 +7,17 @@ const { Op } = require("sequelize")
 module.exports = (io) => {
   router.post('/', async (req, res) => {
     try {
-      const newRecommendation = await Recommendation.bulkCreate(req.body)       // See 
+      const { data, patientId } = req.body
+      const newRecommendation = await Recommendation.bulkCreate(data)       // See 
       console.log(newRecommendation)
       /* this informs all the clients.
        -doctor is added so that DA does not get high security messages on their socket. 
        So components that DA does not have access to they will not get the message
        Question: What is inside newRecommendation?
        */
-      io.to(`room-${req.body.patientId}-doctor`).emit("ADD_RECOMMENDATION", newRecommendation)
+      console.log(`room-${patientId}-Doctor`)
+      console.log(newRecommendation)
+      io.to(`room-${patientId}-Doctor`).emit("ADD_RECOMMENDATION", newRecommendation)
 
       res.send(newRecommendation) /* Fix: Instead of sending the whole object only OK needs to be sent*/
     } catch (err) {
@@ -66,7 +69,7 @@ module.exports = (io) => {
       }
       await Recommendation.create(newData)
 
-      io.to(`room-${req.body.patientId}-doctor`).emit("UPDATE_RECOMMENDATION", req.body)
+      io.to(`room-${req.body.patientId}-Doctor`).emit("UPDATE_RECOMMENDATION", req.body)
       res.send("ok") /* Fix: Instead of sending the whole object only OK needs to be sent*/
     } catch (err) {
       res.status(500).send({
@@ -85,7 +88,7 @@ module.exports = (io) => {
           id: req.params.id
         }
       })
-      io.to(`room-${req.body.patientId}-doctor`).emit("DISCONTINUE_RECOMMENDATION", req.params.id)
+      io.to(`room-${req.body.patientId}-Doctor`).emit("DISCONTINUE_RECOMMENDATION", req.params.id)
       res.send(queryResult) /* Fix: Instead of sending the whole objefct only OK needs to be sent*/
     } catch (err) {
       res.status(500).send({

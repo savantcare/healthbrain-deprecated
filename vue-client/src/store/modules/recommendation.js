@@ -9,8 +9,10 @@ export default {
     setRecommendationList(state, data) {
       state.list = data
     },
-    addNewRecommendation(state, data) {
-      state.list.push(data)
+    addNewRecommendation(state, newList) {
+      newList.forEach(item => {
+        state.list.push(item)
+      })
     },
     removeNewRecommendation(state) {
       state.list.pop()
@@ -25,14 +27,17 @@ export default {
     SOCKET_ON_UPDATE_RECOMMENDATIONS(state, updateList) {   // Message received from socket server
       state.list = updateList
     },
-    SOCKET_ADD_RECOMMENDATION(state, newData) {         // Msg recd from node-server/routes/recommendation.route.js
+    SOCKET_ADD_RECOMMENDATION(state, newDataList) {         // Msg recd from node-server/routes/recommendation.route.js
       if (state.list.length > 0) {                      // At the client where this data was added it needs to be skipped
         const lastData = state.list[state.list.length - 1]
-        if (lastData.recommendationID == newData.recommendationID) {
+        if (lastData.recommendationID == newDataList[newDataList.length - 1].recommendationID) {
           return
         }
       }
-      state.list.push(newData)
+      // state.list.push(newData)
+      newDataList.forEach(item => {
+        state.list.push(item)
+      })
     },
     SOCKET_UPDATE_RECOMMENDATION(state, updateData) {
       let newList = []
@@ -54,10 +59,11 @@ export default {
     }
   },
   actions: {
-    async addRecommendation(_, json) {
-      const { data, notify } = json
+    async addRecommendation({ state, commit }, json) {
+      const { data, notify, patientId } = json
+      const originList = state.list
 
-      // commit("addNewRecommendation", data)
+      commit("addNewRecommendation", data)
 
       try {
         const response = await fetch(RECOMMENDATION_API_URL, {
@@ -66,14 +72,15 @@ export default {
             "Content-Type": "application/json;charset=utf-8",
             "Authorization": "Bearer " + TOKEN
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify({ data: data, patientId: patientId })
         })
         if (!response.ok) {
           notify({
             title: "Error",
             message: "Failed to add recommendation data"
           })
-          // commit("removeNewRecommendation")
+
+          commit("setRecommendationList", originList)
         } else {
           notify({
             title: "Success",
@@ -85,7 +92,7 @@ export default {
           title: "Error",
           message: "Server connection error"
         })
-        // commit("removeNewRecommendation")
+        commit("setRecommendationList", originList)
       }
     },
     async updateRecommendation({ state, commit }, json) {

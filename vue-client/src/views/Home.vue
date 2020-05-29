@@ -97,18 +97,15 @@ export default {
       },
       {
         key: "reminder",
-        value: require("../components/element.io-panel/RemindersCard")
-          .default
+        value: require("../components/element.io-panel/RemindersCard").default
       },
       {
         key: "diagnoses",
-        value: require("../components/element.io-panel/DiagnosesCard")
-          .default
+        value: require("../components/element.io-panel/DiagnosesCard").default
       },
       {
         key: "goals",
-        value: require("../components/element.io-panel/GoalsCard")
-          .default
+        value: require("../components/element.io-panel/GoalsCard").default
       },
       {
         key: "socialHistory",
@@ -127,13 +124,11 @@ export default {
       },
       {
         key: "contacts",
-        value: require("../components/element.io-panel/ContactsCard")
-          .default
+        value: require("../components/element.io-panel/ContactsCard").default
       },
       {
         key: "documents",
-        value: require("../components/element.io-panel/DocumentsCard")
-          .default
+        value: require("../components/element.io-panel/DocumentsCard").default
       },
       {
         key: "familyHistory",
@@ -147,23 +142,19 @@ export default {
       },
       {
         key: "AIScribe",
-        value: require("../components/element.io-panel/AIScribeCard")
-          .default
+        value: require("../components/element.io-panel/AIScribeCard").default
       },
       {
         key: "allergiess",
-        value: require("../components/element.io-panel/AllergiesCard")
-          .default
+        value: require("../components/element.io-panel/AllergiesCard").default
       },
       {
         key: "policies",
-        value: require("../components/element.io-panel/PoliciesCard")
-          .default
+        value: require("../components/element.io-panel/PoliciesCard").default
       },
       {
         key: "referral",
-        value: require("../components/element.io-panel/ReferralCard")
-          .default
+        value: require("../components/element.io-panel/ReferralCard").default
       },
       {
         key: "substancesAbuse",
@@ -172,25 +163,22 @@ export default {
       },
       {
         key: "selfHarm",
-        value: require("../components/element.io-panel/SelfHarmCard")
-          .default
+        value: require("../components/element.io-panel/SelfHarmCard").default
       },
       {
         key: "processNote",
-        value: require("../components/element.io-panel/ProcessNoteCard")
-          .default
+        value: require("../components/element.io-panel/ProcessNoteCard").default
       },
       {
         key: "profileCard",
-        value: require("../components/element.io-panel/ProfileCard")
-          .default
+        value: require("../components/element.io-panel/ProfileCard").default
       },
       {
         key: "pastPsychHistoryCard",
         value: require("../components/element.io-panel/PastPsychHistoryCard")
           .default
       }
-];
+    ];
     this.$store.commit("setRightPanelList", rightPanelCards);
     // Initialize leftPanel components
     // const leftPanelList = [RecommendationsPanel, RemindersPanel];
@@ -199,10 +187,11 @@ export default {
   mounted() {
     // this.$store.dispatch("loadSetting");
     // Join room
-    // const patientId = this.$route.query.patient_id;
-    // const role = this.$store.state.userRole;
+    const patientId = this.$route.query.patient_id;
+    const role = this.$store.state.userRole;
+    console.log(role);
 
-    // this.$socket.emit("CREATE_ROOM", `room-${patientId}-${role}`);
+    this.$socket.emit("CREATE_ROOM", `room-${patientId}-${role}`);
 
     // Get Keyevent
     window.addEventListener("keydown", this.keydownHandler);
@@ -343,8 +332,7 @@ export default {
         });
         newList.push({
           key: "reminder",
-          value: require("../components/element.io-panel/RemindersCard")
-            .default
+          value: require("../components/element.io-panel/RemindersCard").default
         });
 
         this.$store.commit("setRightPanelList", newList);
