@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import DatePicker from "@/components/custom/DatePicker";
+import DatePicker from "@/components/common/DatePicker";
 import { uuid } from "uuidv4";
 export default {
   components: {

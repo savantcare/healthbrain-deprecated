@@ -42,7 +42,7 @@ const routes = [
   {
     path: '/social-history',
     name: 'social-history',
-    component: () => import('@/views/social-history/Index.vue')
+    component: () => import('@/views/SocialHistory.vue')
   },
   {
     path: '/screening',

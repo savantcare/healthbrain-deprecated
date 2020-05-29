@@ -42,7 +42,7 @@
 
         <el-form-item>
           <el-button type="primary" @click="submitForm('form')">Save</el-button>
-           <el-button type="primary" @click="submitForm('form')">Add one more</el-button>
+          <el-button type="primary" @click="submitForm('form')">Add one more</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import DatePicker from "@/components/custom/DatePicker";
+import DatePicker from "@/components/common/DatePicker";
 import { uuid } from "uuidv4";
 export default {
   components: {

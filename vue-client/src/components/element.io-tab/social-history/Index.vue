@@ -171,9 +171,9 @@ import MajorLifeEvent from "./components/MajorLifeEvent";
 import EducationHistory from "./components/EducationHistory";
 import EmploymentHistory from "./components/EmploymentHistory";
 
-import DatePicker from "@/components/custom/DatePicker";
-import InputBox from "@/components/custom/InputBox";
-import TextArea from "@/components/custom/TextArea";
+import DatePicker from "@/components/common/DatePicker";
+import InputBox from "@/components/common/InputBox";
+import TextArea from "@/components/common/TextArea";
 export default {
   components: {
     MaritalHistory,

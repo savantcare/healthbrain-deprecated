@@ -1,5 +1,3 @@
-// If changed then show orange border
-
 <template>
   <div>
     <el-input

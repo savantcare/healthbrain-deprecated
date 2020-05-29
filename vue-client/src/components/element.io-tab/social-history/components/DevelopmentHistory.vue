@@ -1,4 +1,4 @@
-<template>
+ vd<template>
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import DatePicker from "@/components/custom/DatePicker";
+import DatePicker from "@/components/common/DatePicker";
 export default {
   components: {
     DatePicker
