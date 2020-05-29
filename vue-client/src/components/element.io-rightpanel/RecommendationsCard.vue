@@ -95,6 +95,7 @@ export default {
     },
     showMultiChangeDialog() {
       console.log("show multi-change dialog");
+      this.$store.commit("showMultiChangeRecommendationModal");
     },
     focusPanel() {
       console.log("focus panel");

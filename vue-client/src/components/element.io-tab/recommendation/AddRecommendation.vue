@@ -43,7 +43,6 @@
 <script>
   /**
  * Multi Add Recommendation form.
- * @example ../../../../docs/add-recommendation.md
  * @displayName Add Recommendation
  */
 export default {
