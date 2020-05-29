@@ -30,7 +30,9 @@ export default {
     DataTable
   },
   data() {
-    return {};
+    return {
+      selectedRows: []
+    };
   },
   methods: {
     showAddDialog() {
@@ -38,16 +40,25 @@ export default {
       this.$store.commit("showAddRecommendationModal");
     },
     showMultiChangeDialog() {
-      console.log("show multi-change dialog");
+      this.$store.commit("showMultiChangeRecommendationModal");
     },
     focusPanel() {
       console.log("focus panel");
     },
     multiDiscontinue() {
-      console.log("mult-discontinue");
+      let selectedIds = [];
+      this.selectedRows.forEach(item => {
+        selectedIds.push(item.id);
+      });
+      this.$store.dispatch("multidiscontinueRecommendation", {
+        selectedIds: selectedIds,
+        notify: this.$notify,
+        selectedDatas: this.selectedRows
+      });
     },
     handleSelectionChange(value) {
       this.$refs.table_header.selected = value;
+      this.selectedRows = value;
     },
     handleEdit(data) {
       console.log("show edit dialog");

@@ -166,7 +166,7 @@ export default {
       }
     },
     async multidiscontinueRecommendation({ state, commit }, json) {
-      const { selectedIds, toast, selectedDatas } = json
+      const { selectedIds, notify, selectedDatas } = json
       const originList = state.list
       const newList = originList.filter(item => {
         return !selectedIds.includes(item.id)
@@ -187,10 +187,9 @@ export default {
             body: JSON.stringify(item)
           });
         } catch (ex) {
-          toast.toast("Server connection error", {
+          notify({
             title: "Error",
-            variant: "danger",
-            solid: true
+            message: "Server connection error"
           })
           commit('setRecommendationList', originList)
         }
