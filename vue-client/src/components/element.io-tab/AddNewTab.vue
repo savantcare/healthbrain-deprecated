@@ -19,7 +19,9 @@ import {
   MULTIPLE_CHANGE_RECOMMENDATION,
   SOCIAL_HISTORY,
   ADD_DIAGNOSIS,
-  MULTIPLE_CHANGE_ASSESSMENT
+  MULTIPLE_CHANGE_ASSESSMENT,
+  ADD_SERVICE_STATEMENTS, 
+  MULTIPLE_CHANGE_SERVICE_STATEMENTS
 } from "@/const.js";
 export default {
   data() {
@@ -45,6 +47,14 @@ export default {
         {
           value: "Multi change assessment",
           key: MULTIPLE_CHANGE_ASSESSMENT
+        },
+        {
+          value: "Add service statements",
+          key: ADD_SERVICE_STATEMENTS
+        },
+        {
+          value: "Multi change service statements",
+          key: MULTIPLE_CHANGE_SERVICE_STATEMENTS
         }
       ]
     };
@@ -100,6 +110,20 @@ export default {
           name: "tab-multi-change-assessment"
         };
         this.$store.commit("addNewTab", multiChangeAssessmentTab);
+      } else if (key == ADD_SERVICE_STATEMENTS) {
+        const addServiceStatementsTab = {
+          label: "Add service statements",
+          value: require("./service-statements/AddServiceStatements.vue").default,
+          name: "tab-add-service-statements"
+        };
+        this.$store.commit("addNewTab", addServiceStatementsTab);
+      } else if (key == MULTIPLE_CHANGE_SERVICE_STATEMENTS) {
+        const multiChangeServiceStatementsTab = {
+          label: "Multi change service statements",
+          value: require("./service-statements/MultiChangeServiceStatements.vue").default,
+          name: "tab-multi-change-service-statements"
+        };
+        this.$store.commit("addNewTab", multiChangeServiceStatementsTab);
       }
     }
   }
