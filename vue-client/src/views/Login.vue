@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <!-- <b-container>
     <b-row class="mt-4">
       <b-col style="display: flex; justify-content: center;">
         <b-card style="width: 500px;" title="Login to HealthBrain">
@@ -29,7 +29,27 @@
         </b-card>
       </b-col>
     </b-row>
-  </b-container>
+  </b-container>-->
+  <el-row type="flex" justify="center">
+    <el-col :span="6">
+      <el-card class="box-card" shadow="hover" style="width: 500px;">
+        <div slot="header" class="clearfix">
+          <span>Login to HealthBrain</span>
+        </div>
+        <el-form :model="form" status-icon :rules="rules" ref="form" label-width="120px">
+          <el-form-item label="Email" prop="email">
+            <el-input v-model="form.email"></el-input>
+          </el-form-item>
+          <el-form-item label="Password" prop="password">
+            <el-input type="password" v-model="form.password"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('form')">Submit</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -38,8 +58,12 @@ export default {
   data() {
     return {
       form: {
-        email: "",
-        password: ""
+        password: "",
+        email: ""
+      },
+      rules: {
+        password: [{ required: true, trigger: "blur" }],
+        email: [{ required: true, trigger: "blur" }]
       }
     };
   },
@@ -86,6 +110,42 @@ export default {
       this.show = false;
       this.$nextTick(() => {
         this.show = true;
+      });
+    },
+    submitForm(formName) {
+      this.$refs[formName].validate(async valid => {
+        if (valid) {
+          console.log(this.form);
+          try {
+            const response = await fetch(LOGIN_API_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json;charset=utf-8"
+              },
+              body: JSON.stringify(this.form)
+            });
+            if (response.ok) {
+              const json = await response.json();
+              const { access_token, roleId, userId } = json;
+              localStorage.setItem("token", access_token);
+              this.$store.dispatch("getRoleDetails", roleId);
+              this.$router.push(
+                "/?patient_id=bfe041fa-073b-4223-8c69-0540ee678ff8"
+              );
+              this.$store.commit("setUserId", userId);
+            } else {
+              this.$notify({
+                title: "Error",
+                message: "Authentication failed"
+              });
+            }
+          } catch (ex) {
+            console.log(ex.message);
+          }
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
       });
     }
   }

@@ -19,16 +19,17 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     discontinue: {
-      type: Sequelize.BOOLEAN
+      type: Sequelize.BOOLEAN,
+      defaultValue: 0
     },
     patientId: {
-      type: Sequelize.DECIMAL
+      type: Sequelize.STRING
     },
     createdByUserId: {
-      type: Sequelize.DECIMAL
+      type: Sequelize.STRING
     },
     discontinuedByUserId: {
-      type: Sequelize.DECIMAL
+      type: Sequelize.STRING
     },
     // Timestamps
     createdAt: Sequelize.DATE,

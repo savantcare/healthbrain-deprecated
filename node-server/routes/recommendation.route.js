@@ -7,8 +7,8 @@ const { Op } = require("sequelize")
 module.exports = (io) => {
   router.post('/', async (req, res) => {
     try {
-      const newRecommendation = await Recommendation.create(req.body)       // See 
-
+      const newRecommendation = await Recommendation.bulkCreate(req.body)       // See 
+      console.log(newRecommendation)
       /* this informs all the clients.
        -doctor is added so that DA does not get high security messages on their socket. 
        So components that DA does not have access to they will not get the message
@@ -29,7 +29,10 @@ module.exports = (io) => {
       const { patientId } = req.query
       const queryResult = await Recommendation.findAll({
         where: {
-          patientId: patientId
+          patientId: patientId,
+          discontinue: {
+            [Op.ne]: 1
+          }
         }
       })
       res.send(queryResult)

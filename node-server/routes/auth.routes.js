@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
+const { uuid } = require('uuidv4');
 
 const db = require('../models')
 const User = db.userDB.users
@@ -19,7 +20,9 @@ router.post('/register', async (req, res) => {
   }
 
   try {
-    const newUser = await User.create(req.body)
+    const userObj = req.body
+    userObj["id"] = uuid()
+    const newUser = await User.create(userObj)
     const access_token = createToken({ email })
     res.status(200).json({ access_token: access_token, role: newUser.roleId })
   } catch (err) {

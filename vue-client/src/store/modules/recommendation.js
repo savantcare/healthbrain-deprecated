@@ -54,10 +54,10 @@ export default {
     }
   },
   actions: {
-    async addRecommendation({ commit }, json) {
-      const { data, toast } = json
+    async addRecommendation(_, json) {
+      const { data, notify } = json
 
-      commit("addNewRecommendation", data)
+      // commit("addNewRecommendation", data)
 
       try {
         const response = await fetch(RECOMMENDATION_API_URL, {
@@ -69,24 +69,27 @@ export default {
           body: JSON.stringify(data)
         })
         if (!response.ok) {
-          toast.toast("Failed to add recommendation data", {
+          notify({
             title: "Error",
-            variant: "danger",
-            solid: true
+            message: "Failed to add recommendation data"
           })
-          commit("removeNewRecommendation")
+          // commit("removeNewRecommendation")
+        } else {
+          notify({
+            title: "Success",
+            message: "Saved!"
+          })
         }
       } catch (ex) {
-        toast.toast("Server connection error", {
+        notify({
           title: "Error",
-          variant: "danger",
-          solid: true
+          message: "Server connection error"
         })
-        commit("removeNewRecommendation")
+        // commit("removeNewRecommendation")
       }
     },
     async updateRecommendation({ state, commit }, json) {
-      const { data, toast } = json
+      const { data, notify } = json
       const originList = state.list
       let newList = []
       originList.forEach(item => {
@@ -113,21 +116,18 @@ export default {
           body: JSON.stringify(data)
         });
         if (!response.ok) {
-          toast.toast("Failed to update recommendation data", {
+          notify({
             title: "Error",
-            variant: "danger",
-            solid: true
+            message: "Failed to update recommendation data"
           })
 
           commit("setRecommendationList", originList)
         }
       } catch (ex) {
-        toast.toast("Server connection error", {
+        notify({
           title: "Error",
-          variant: "danger",
-          solid: true
+          message: "Server connection error"
         })
-
         commit("setRecommendationList", originList)
       }
     },
@@ -200,7 +200,7 @@ export default {
       })
     },
     async getRecommendations({ commit }, json) {
-      const { patientId, toast } = json
+      const { patientId, notify } = json
       if (TOKEN == null) {
         TOKEN = localStorage.getItem("token")
       }
@@ -210,34 +210,31 @@ export default {
           headers: {
             "Authorization": "Bearer " + TOKEN
           }
-        }
-        );
+        });
         if (response.ok) {
           let json = await response.json();
           commit('setRecommendationList', json)
         } else {
           if (response.status == '401') {
-            toast.toast("Token is expired", {
+            notify({
               title: "Error",
-              variant: "danger",
-              solid: true
+              message: "Token is expired."
             })
             localStorage.removeItem("token")
             window.location = "/"
           } else {
-            toast.toast("Failed to get recommendation data", {
+            notify({
               title: "Error",
-              variant: "danger",
-              solid: true
+              message: "Failed to get recommendation data"
             })
           }
         }
       } catch (ex) {
-        toast.toast("Server connection error", {
+        notify({
           title: "Error",
-          variant: "danger",
-          solid: true
+          message: "Server connection error"
         })
+
       }
     }
   },

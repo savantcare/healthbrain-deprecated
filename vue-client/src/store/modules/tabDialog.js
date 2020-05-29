@@ -61,13 +61,16 @@ export default {
       state.visibility = true
     },
     showEditRecommendationsModal(state, data) {
-      const addRecommendationTab = require("@/components/tab/AddRecommendationTab.vue");
-      state.tabList = [
-        { key: ADD_RECOMMENDATION, value: addRecommendationTab.default }
-      ]
+      const tab = {
+        label: "Edit Recommendation",
+        value: require("@/components/element.io-tab/AddRecommendation.vue").default,
+        name: "tab-edit-recommendation"
+      }
+      state.tabList = [tab]
       state.visibility = true
       state.recommendationTabType = EDIT_RECOMMENDATION
       state.recommendationData = data
+      state.tabValue = tab.name
     },
     showAddReminderModal(state) {
       const addReminderTab = require("@/components/tab/AddReminderTab.vue");

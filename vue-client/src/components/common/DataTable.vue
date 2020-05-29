@@ -2,22 +2,24 @@
   <div v-elresize @elresize="handleResize">
     <el-tabs type="card">
       <el-tab-pane v-for="(tab, index) in tabData" :key="`tab-${index}`" :label="tab.label">
-        <el-select
-          v-model="tab.selectedColumn"
-          size="mini"
-          clearable
-          multiple
-          placeholder="Select"
-          style="position: fixed;top: 60px;right: 10px;"
-          collapse-tags
-        >
-          <el-option
-            v-for="item in tab.columns"
-            :key="item.field"
-            :label="item.label"
-            :value="item.field"
-          ></el-option>
-        </el-select>
+        <el-popover placement="bottom" width="200" trigger="click">
+          <el-select
+            v-model="selectedColumn"
+            size="mini"
+            clearable
+            multiple
+            placeholder="Select"
+            collapse-tags
+          >
+            <el-option
+              v-for="item in tab.columns"
+              :key="item.field"
+              :label="item.label"
+              :value="item.field"
+            ></el-option>
+          </el-select>
+          <i slot="reference" class="el-icon-s-tools settingsIcon"></i>
+        </el-popover>
         <el-table-draggable>
           <el-table
             ref="dataTable"
@@ -50,14 +52,15 @@
               </template>
             </el-table-column>
             <el-table-column type="selection"></el-table-column>
+
             <el-table-column
-              v-for="(column, index_column) in getSelectedColumns(tab.selectedColumn, tab.columns)"
+              v-for="(column, index_column) in getSelectedColumns(selectedColumn, tab.columns)"
               :key="`tab-${index}-column-${index_column}`"
               :label="column.label "
               :property="column.field"
               :sortable="column.sortable"
             ></el-table-column>
-            <el-table-column v-if="false">
+            <el-table-column>
               <template slot-scope="scope" v-if="scope.row.id == mouseOverRowId">
                 <el-button
                   size="mini"
@@ -116,7 +119,8 @@ export default {
           value: "Option5",
           label: "Option5"
         }
-      ]
+      ],
+      selectedColumn: ["description"]
     };
   },
   methods: {
@@ -124,6 +128,7 @@ export default {
       this.$emit("handleSelectionChange", val);
     },
     handleEdit(index, row) {
+      this.$emit("handleEdit", row);
       console.log(index, row);
     },
     handleDelete(index, row) {

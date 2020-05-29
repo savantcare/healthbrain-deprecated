@@ -12,7 +12,11 @@
         ref="table_header"
       />
     </div>
-    <DataTable :tabData="tabData" @handleSelectionChange="handleSelectionChange" />
+    <DataTable
+      :tabData="tabData"
+      @handleSelectionChange="handleSelectionChange"
+      @handleEdit="handleEdit"
+    />
   </el-card>
 </template>
 
@@ -25,68 +29,7 @@ export default {
     DataTable
   },
   data() {
-    return {
-      tabData: [
-        {
-          label: "Yours",
-          tableData: [
-            {
-              description:
-                "Recommendation 1-xxxx   xxx  xxxxxxx  aasdf   asdfasdf asdfa sdfxxxxxxxxxx",
-              createdAt: "29th May, 2020",
-              id: 1
-            },
-            {
-              description: "Recommendation 2",
-              createdAt: "29th May, 2020",
-              id: 2
-            }
-          ],
-          columns: [
-            {
-              label: "Description",
-              field: "description",
-              sortable: true
-            },
-            {
-              label: "Created At",
-              field: "createdAt",
-              sortable: true
-            }
-          ],
-          rowActions: ["C", "D"],
-          selectedColumn: ["description"]
-        },
-        {
-          label: "Other's",
-          tableData: [
-            {
-              description: "Recommendation 3",
-              createdAt: "29th May, 2020",
-              id: 3
-            },
-            {
-              description: "Recommendation 4",
-              createdAt: "29th May, 2020",
-              id: 4
-            }
-          ],
-          columns: [
-            {
-              label: "Description",
-              field: "description",
-              sortable: true
-            },
-            {
-              label: "Created At",
-              field: "createdAt",
-              sortable: true
-            }
-          ],
-          rowActions: ["C", "D"]
-        }
-      ]
-    };
+    return {};
   },
   methods: {
     showAddDialog() {
@@ -104,9 +47,61 @@ export default {
     },
     handleSelectionChange(value) {
       this.$refs.table_header.selected = value;
+    },
+    handleEdit(data) {
+      console.log("show edit dialog");
+      this.$store.commit("showEditRecommendationsModal", data);
     }
   },
-  mounted() {}
+  mounted() {
+    const params = {
+      patientId: this.$route.query.patient_id,
+      notify: this.$notify
+    };
+    this.$store.dispatch("getRecommendations", params);
+  },
+  computed: {
+    tabData() {
+      const recList = this.$store.state.recommendation.list;
+      return [
+        {
+          label: "Yours",
+          tableData: recList,
+          columns: [
+            {
+              label: "Description",
+              field: "description",
+              sortable: true
+            },
+            {
+              label: "Created At",
+              field: "createdAt",
+              sortable: true
+            }
+          ],
+          rowActions: ["C", "D"]
+        },
+        {
+          label: "Other's",
+          tableData: recList,
+          columns: [
+            {
+              label: "Description",
+              field: "description",
+              sortable: true
+            },
+            {
+              label: "Created At",
+              field: "createdAt",
+              sortable: true
+            }
+          ],
+          rowActions: ["C", "D"],
+          selectedColumn: ["description"]
+        }
+      ];
+    }
+  }
 };
 </script>
 

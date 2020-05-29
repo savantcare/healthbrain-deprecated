@@ -1,10 +1,16 @@
 const router = require('express').Router()
+const { uuid } = require('uuidv4');
+
 const db = require('../models')
 const UserRole = db.userDB.userRoles
 
 router.post('/', async (req, res) => {
   try {
-    const newUserRole = await UserRole.create(req.body)
+    const { name } = req.body
+    const newUserRole = await UserRole.create({
+      id: uuid(),
+      name: name
+    })
     res.send(newUserRole)
   } catch (err) {
     res.status(500).send({
