@@ -12,8 +12,6 @@ module.exports = {
   SOCIALHISTORY_API_URL: "http://localhost:8000/social-histories",
 
   LEFT_SIDE_COMPONENTS: [
-    { key: "recommendation", value: () => import('./components/domain/RecommendationsPanel/Implementation.vue') },
-    { key: "reminder", value: () => import('./components/domain/RemindersPanel/Implementation.vue') }
   ],
 
   ADD_DIALOG: 1,

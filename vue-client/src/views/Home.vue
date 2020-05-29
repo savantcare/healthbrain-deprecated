@@ -37,11 +37,8 @@
 
 // Left panel components
 // const RecommendationsPanel = () =>
-import("@/components/domain/RecommendationsPanel/Implementation.vue");
 // const RemindersPanel = () =>
-import("@/components/domain/RemindersPanel/Implementation.vue");
 // const DiagnosisPanel = () =>
-import("@/components/domain/DiagnosisPanel/Implementation.vue");
 const LeftPanelHeader = () => import("@/components/ui/LeftPanelHeader.vue");
 // const DateSlider = () => import("@/components/ui/DateSlider.vue");
 // const TestPanel = () => import("@/components/LeftPanelTestComponent.vue");
@@ -95,102 +92,102 @@ export default {
     const rightPanelCards = [
       {
         key: "recommendation",
-        value: require("../components/element.io-rightpanel/RecommendationsCard")
+        value: require("../components/element.io-panel/RecommendationsCard")
           .default
       },
       {
         key: "reminder",
-        value: require("../components/element.io-rightpanel/RemindersCard")
+        value: require("../components/element.io-panel/RemindersCard")
           .default
       },
       {
         key: "diagnoses",
-        value: require("../components/element.io-rightpanel/DiagnosesCard")
+        value: require("../components/element.io-panel/DiagnosesCard")
           .default
       },
       {
         key: "goals",
-        value: require("../components/element.io-rightpanel/GoalsCard")
+        value: require("../components/element.io-panel/GoalsCard")
           .default
       },
       {
         key: "socialHistory",
-        value: require("../components/element.io-rightpanel/SocialHistoryCard")
+        value: require("../components/element.io-panel/SocialHistoryCard")
           .default
       },
       {
         key: "serviceStatements",
-        value: require("../components/element.io-rightpanel/ServiceStatementsCard")
+        value: require("../components/element.io-panel/ServiceStatementsCard")
           .default
       },
       {
         key: "bodyMeasurements",
-        value: require("../components/element.io-rightpanel/BodyMeasurementsCard")
+        value: require("../components/element.io-panel/BodyMeasurementsCard")
           .default
       },
       {
         key: "contacts",
-        value: require("../components/element.io-rightpanel/ContactsCard")
+        value: require("../components/element.io-panel/ContactsCard")
           .default
       },
       {
         key: "documents",
-        value: require("../components/element.io-rightpanel/DocumentsCard")
+        value: require("../components/element.io-panel/DocumentsCard")
           .default
       },
       {
         key: "familyHistory",
-        value: require("../components/element.io-rightpanel/FamilyHistoryCard")
+        value: require("../components/element.io-panel/FamilyHistoryCard")
           .default
       },
       {
         key: "hospitalizations",
-        value: require("../components/element.io-rightpanel/HospitalizationsCard")
+        value: require("../components/element.io-panel/HospitalizationsCard")
           .default
       },
       {
         key: "AIScribe",
-        value: require("../components/element.io-rightpanel/AIScribeCard")
+        value: require("../components/element.io-panel/AIScribeCard")
           .default
       },
       {
         key: "allergiess",
-        value: require("../components/element.io-rightpanel/AllergiesCard")
+        value: require("../components/element.io-panel/AllergiesCard")
           .default
       },
       {
         key: "policies",
-        value: require("../components/element.io-rightpanel/PoliciesCard")
+        value: require("../components/element.io-panel/PoliciesCard")
           .default
       },
       {
         key: "referral",
-        value: require("../components/element.io-rightpanel/ReferralCard")
+        value: require("../components/element.io-panel/ReferralCard")
           .default
       },
       {
         key: "substancesAbuse",
-        value: require("../components/element.io-rightpanel/SubstancesAbuseCard")
+        value: require("../components/element.io-panel/SubstancesAbuseCard")
           .default
       },
       {
         key: "selfHarm",
-        value: require("../components/element.io-rightpanel/SelfHarmCard")
+        value: require("../components/element.io-panel/SelfHarmCard")
           .default
       },
       {
         key: "processNote",
-        value: require("../components/element.io-rightpanel/ProcessNoteCard")
+        value: require("../components/element.io-panel/ProcessNoteCard")
           .default
       },
       {
         key: "profileCard",
-        value: require("../components/element.io-rightpanel/ProfileCard")
+        value: require("../components/element.io-panel/ProfileCard")
           .default
       },
       {
         key: "pastPsychHistoryCard",
-        value: require("../components/element.io-rightpanel/PastPsychHistoryCard")
+        value: require("../components/element.io-panel/PastPsychHistoryCard")
           .default
       }
 ];
@@ -332,7 +329,7 @@ export default {
         });
         newList.push({
           key: "recommendation",
-          value: require("../components/element.io-rightpanel/RecommendationsCard")
+          value: require("../components/element.io-panel/RecommendationsCard")
             .default
         });
 
@@ -346,7 +343,7 @@ export default {
         });
         newList.push({
           key: "reminder",
-          value: require("../components/element.io-rightpanel/RemindersCard")
+          value: require("../components/element.io-panel/RemindersCard")
             .default
         });
 
