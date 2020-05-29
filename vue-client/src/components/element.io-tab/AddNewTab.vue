@@ -78,14 +78,14 @@ export default {
       if (key == ADD_RECOMMENDATION) {
         const addRecommendationTab = {
           label: "Add Recommendation",
-          value: require("./AddRecommendation.vue").default,
+          value: require("./recommendation/AddRecommendation.vue").default,
           name: "tab-add-recommendation"
         };
         this.$store.commit("addNewTab", addRecommendationTab);
       } else if (key == MULTIPLE_CHANGE_RECOMMENDATION) {
         const multiChangeRecommendationTab = {
           label: "Multi change recommendation",
-          value: require("./MultiChangeRecommendation").default,
+          value: require("./recommendation/MultiChangeRecommendation").default,
           name: "tab-multi-change-recommendation"
         };
         this.$store.commit("addNewTab", multiChangeRecommendationTab);

@@ -44,7 +44,7 @@ export default {
     showAddRecommendationModal(state) {
       const tab = {
         label: "Add Recommendation",
-        value: require("@/components/element.io-tab/AddRecommendation.vue").default,
+        value: require("@/components/element.io-tab/recommendation/AddRecommendation.vue").default,
         name: "tab-add-recommendation"
       }
       state.tabList = [tab]
@@ -53,17 +53,20 @@ export default {
       state.tabValue = tab.name
     },
     showMultiChangeRecommendationModal(state) {
-      const tab = require("@/components/tab/MultiChangeRecommendationTab.vue");
-      state.tabList = [
-        { key: MULTIPLE_CHANGE_RECOMMENDATION, value: tab.default }
-      ]
+      const tab = {
+        label: "Multi change Recommendation",
+        value: require("@/components/element.io-tab/recommendation/MultiChangeRecommendation.vue").default,
+        name: "tab-multi-change-recommendation"
+      }
+      state.tabList = [tab]
       state.recommendationTabType = MULTIPLE_CHANGE_RECOMMENDATION
       state.visibility = true
+      state.tabValue = tab.name
     },
     showEditRecommendationsModal(state, data) {
       const tab = {
         label: "Edit Recommendation",
-        value: require("@/components/element.io-tab/AddRecommendation.vue").default,
+        value: require("@/components/element.io-tab/recommendation/AddRecommendation.vue").default,
         name: "tab-edit-recommendation"
       }
       state.tabList = [tab]
