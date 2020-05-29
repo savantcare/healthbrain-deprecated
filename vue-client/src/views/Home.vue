@@ -147,6 +147,31 @@ export default {
         key: "hospitalizations",
         value: require("../components/element.io-rightpanel/HospitalizationsCard")
           .default
+      },
+      {
+        key: "AIScribe",
+        value: require("../components/element.io-rightpanel/AIScribeCard")
+          .default
+      },
+      {
+        key: "allergiess",
+        value: require("../components/element.io-rightpanel/AllergiesCard")
+          .default
+      },
+      {
+        key: "policies",
+        value: require("../components/element.io-rightpanel/PoliciesCard")
+          .default
+      },
+      {
+        key: "referral",
+        value: require("../components/element.io-rightpanel/ReferralCard")
+          .default
+      },
+      {
+        key: "substancesAbuse",
+        value: require("../components/element.io-rightpanel/SubstancesAbuseCard")
+          .default
       }
 ];
     this.$store.commit("setRightPanelList", rightPanelCards);
