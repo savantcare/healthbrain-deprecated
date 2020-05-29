@@ -1,105 +1,103 @@
 <template>
   <el-row :gutter="12">
-    <el-col :span="8">
-      <el-card class="box-card" shadow="hover">
-        <el-form label-position="top" ref="form" :model="form">
-          <el-form-item style="font-weight:bold" label="Description">
-            <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="success" @click="onSubmit" size="small">Save</el-button>
-            <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
-          </el-form-item>
-        </el-form>
-        <el-row>
-          <span style="font-size:14px">History:</span>
+          <el-col :span="8">
+            <el-card  class="box-card" shadow="hover">
+              <el-form label-position="top" ref="form" :model="form" >
+                <el-form-item style="font-weight:bold" label="Description">
+                  <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="success" @click="onSubmit" size="small">Save</el-button>
+                  <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
+                </el-form-item>
+              </el-form>
+              <el-row><span style="font-size:14px"> History:</span></el-row><br>
+              <el-row :gutter="12">
+                  <div class="block">
+                    <el-timeline>
+                      <el-timeline-item
+                        v-for="(activity, index) in activities"
+                        :key="index"
+                        :icon="activity.icon"
+                        :type="activity.type"
+                        :color="activity.color"
+                        :size="activity.size"
+                        :timestamp="activity.timestamp">
+                        {{activity.content}}
+                      </el-timeline-item>
+                    </el-timeline>
+                  </div>
+              </el-row><br>
+            </el-card> 
+          </el-col>
+          <el-col :span="8">
+            <el-card  class="box-card" shadow="hover">
+              <el-form label-position="top" ref="form" :model="form" >
+                <el-form-item style="font-weight:bold" label="Description">
+                  <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="success" @click="onSubmit" size="small">Save</el-button>
+                  <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
+                </el-form-item>
+              </el-form>
+              <el-row><span style="font-size:14px"> History:</span></el-row><br>
+              <el-row :gutter="12">
+                  <div class="block">
+                    <el-timeline>
+                      <el-timeline-item
+                        v-for="(activity, index) in activities"
+                        :key="index"
+                        :icon="activity.icon"
+                        :type="activity.type"
+                        :color="activity.color"
+                        :size="activity.size"
+                        :timestamp="activity.timestamp">
+                        {{activity.content}}
+                      </el-timeline-item>
+                    </el-timeline>
+                  </div>
+              </el-row>
+              <el-pagination
+                small
+                layout="prev, pager, next"
+                :total="50">
+              </el-pagination>
+            </el-card> 
+          </el-col>
+          <el-col :span="8">
+            <el-card  class="box-card" shadow="hover">
+              <el-form label-position="top" ref="form" :model="form" >
+                <el-form-item style="font-weight:bold" label="Description">
+                  <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="success" @click="onSubmit" size="small">Save</el-button>
+                  <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
+                </el-form-item>
+              </el-form>
+              <el-row><span style="font-size:14px"> History:</span></el-row><br>
+              <el-row :gutter="12">
+                  <div class="block">
+                    <el-timeline>
+                      <el-timeline-item
+                        v-for="(activity, index) in activities"
+                        :key="index"
+                        :icon="activity.icon"
+                        :type="activity.type"
+                        :color="activity.color"
+                        :size="activity.size"
+                        :timestamp="activity.timestamp">
+                        {{activity.content}}
+                      </el-timeline-item>
+                    </el-timeline>
+                  </div>
+              </el-row><br>
+            </el-card> 
+          </el-col>
+          
+          
         </el-row>
-        <br />
-        <el-row :gutter="12">
-          <div class="block">
-            <el-timeline>
-              <el-timeline-item
-                v-for="(activity, index) in activities"
-                :key="index"
-                :icon="activity.icon"
-                :type="activity.type"
-                :color="activity.color"
-                :size="activity.size"
-                :timestamp="activity.timestamp"
-              >{{activity.content}}</el-timeline-item>
-            </el-timeline>
-          </div>
-        </el-row>
-        <br />
-      </el-card>
-    </el-col>
-    <el-col :span="8">
-      <el-card class="box-card" shadow="hover">
-        <el-form label-position="top" ref="form" :model="form">
-          <el-form-item style="font-weight:bold" label="Description">
-            <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="success" @click="onSubmit" size="small">Save</el-button>
-            <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
-          </el-form-item>
-        </el-form>
-        <el-row>
-          <span style="font-size:14px">History:</span>
-        </el-row>
-        <br />
-        <el-row :gutter="12">
-          <div class="block">
-            <el-timeline>
-              <el-timeline-item
-                v-for="(activity, index) in activities"
-                :key="index"
-                :icon="activity.icon"
-                :type="activity.type"
-                :color="activity.color"
-                :size="activity.size"
-                :timestamp="activity.timestamp"
-              >{{activity.content}}</el-timeline-item>
-            </el-timeline>
-          </div>
-        </el-row>
-        <el-pagination small layout="prev, pager, next" :total="50"></el-pagination>
-      </el-card>
-    </el-col>
-    <el-col :span="8">
-      <el-card class="box-card" shadow="hover">
-        <el-form label-position="top" ref="form" :model="form">
-          <el-form-item style="font-weight:bold" label="Description">
-            <el-input :span="8" type="textarea" v-model="form.desc" :autosize="{ minRows: 4}"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="success" @click="onSubmit" size="small">Save</el-button>
-            <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
-          </el-form-item>
-        </el-form>
-        <el-row>
-          <span style="font-size:14px">History:</span>
-        </el-row>
-        <br />
-        <el-row :gutter="12">
-          <div class="block">
-            <el-timeline>
-              <el-timeline-item
-                v-for="(activity, index) in activities"
-                :key="index"
-                :icon="activity.icon"
-                :type="activity.type"
-                :color="activity.color"
-                :size="activity.size"
-                :timestamp="activity.timestamp"
-              >{{activity.content}}</el-timeline-item>
-            </el-timeline>
-          </div>
-        </el-row>
-        <br />
-      </el-card>
-    </el-col>
-  </el-row>
 </template>
 
 <script>
