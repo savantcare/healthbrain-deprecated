@@ -2,7 +2,7 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <TableHeader
-        title="Recommendation"
+        title="Recommendations"
         actions="A,M,F,D"
         type="card"
         @showAddDialog="showAddDialog"

@@ -95,20 +95,60 @@ export default {
     const rightPanelCards = [
       {
         key: "recommendation",
-        value: require("../components/element.io-rightpanel/RecommendationCard")
+        value: require("../components/element.io-rightpanel/RecommendationsCard")
           .default
       },
       {
         key: "reminder",
-        value: require("../components/element.io-rightpanel/ReminderCard")
+        value: require("../components/element.io-rightpanel/RemindersCard")
           .default
       },
       {
         key: "diagnosis",
-        value: require("../components/element.io-rightpanel/DiagnosisCard")
+        value: require("../components/element.io-rightpanel/DiagnosesCard")
+          .default
+      },
+      {
+        key: "goals",
+        value: require("../components/element.io-rightpanel/GoalsCard")
+          .default
+      },
+      {
+        key: "socialHistory",
+        value: require("../components/element.io-rightpanel/SocialHistoryCard")
+          .default
+      },
+      {
+        key: "serviceStatements",
+        value: require("../components/element.io-rightpanel/ServiceStatementsCard")
+          .default
+      },
+      {
+        key: "bodyMeasurements",
+        value: require("../components/element.io-rightpanel/BodyMeasurementsCard")
+          .default
+      },
+      {
+        key: "contacts",
+        value: require("../components/element.io-rightpanel/ContactsCard")
+          .default
+      },
+      {
+        key: "documents",
+        value: require("../components/element.io-rightpanel/DocumentsCard")
+          .default
+      },
+      {
+        key: "familyHistory",
+        value: require("../components/element.io-rightpanel/FamilyHistoryCard")
+          .default
+      },
+      {
+        key: "hospitalizations",
+        value: require("../components/element.io-rightpanel/HospitalizationsCard")
           .default
       }
-    ];
+];
     this.$store.commit("setRightPanelList", rightPanelCards);
     // Initialize leftPanel components
     // const leftPanelList = [RecommendationsPanel, RemindersPanel];
@@ -247,7 +287,7 @@ export default {
         });
         newList.push({
           key: "recommendation",
-          value: require("../components/element.io-rightpanel/RecommendationCard")
+          value: require("../components/element.io-rightpanel/RecommendationsCard")
             .default
         });
 
@@ -261,7 +301,7 @@ export default {
         });
         newList.push({
           key: "reminder",
-          value: require("../components/element.io-rightpanel/ReminderCard")
+          value: require("../components/element.io-rightpanel/RemindersCard")
             .default
         });
 

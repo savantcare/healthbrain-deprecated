@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>Reminder Card</span>
+        <span>Contacts</span>
       </div>
     </el-card>
   </div>
