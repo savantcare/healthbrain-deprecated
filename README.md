@@ -7,3 +7,4 @@
     [Go out of the way of patient doctor relationship](https://khn.org/news/death-by-a-thousand-clicks/)
 * Correlate 
 
+Detailed documentation is at: /styleguidist/

@@ -1,3 +1,5 @@
+// If changed then show orange border
+
 <template>
   <el-input
     :class="{'changed': isChanged}"
