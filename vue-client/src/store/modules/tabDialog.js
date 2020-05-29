@@ -1,4 +1,4 @@
-import { ADD_RECOMMENDATION, MULTIPLE_CHANGE_RECOMMENDATION, EDIT_RECOMMENDATION, ADD_REMINDER, EDIT_REMINDER, MULTIPLE_CHANGE_REMINDER, ADD_DIAGNOSIS, MULTIPLE_CHANGE_ASSESSMENT, ADD_SERVICE_STATEMENTS, MULTIPLE_CHANGE_SERVICE_STATEMENTS } from "@/const.js"
+import { ADD_RECOMMENDATION, MULTIPLE_CHANGE_RECOMMENDATION, EDIT_RECOMMENDATION, ADD_DIAGNOSIS, MULTIPLE_CHANGE_ASSESSMENT, ADD_SERVICE_STATEMENTS, MULTIPLE_CHANGE_SERVICE_STATEMENTS } from "@/const.js"
 export default {
   state: {
     visibility: false,
@@ -74,31 +74,6 @@ export default {
       state.recommendationTabType = EDIT_RECOMMENDATION
       state.recommendationData = data
       state.tabValue = tab.name
-    },
-    showAddReminderModal(state) {
-      const addReminderTab = require("@/components/tab/AddReminderTab.vue");
-      state.tabList = [
-        { key: ADD_REMINDER, value: addReminderTab.default }
-      ]
-      state.reminderTabType = ADD_REMINDER
-      state.visibility = true
-    },
-    showMultiChangeReminderModal(state) {
-      const tab = require("@/components/tab/MultiChangeReminderTab.vue");
-      state.tabList = [
-        { key: MULTIPLE_CHANGE_REMINDER, value: tab.default }
-      ]
-      state.reminderTabType = MULTIPLE_CHANGE_REMINDER
-      state.visibility = true
-    },
-    showEditReminderModal(state, data) {
-      const addReminderTab = require("@/components/tab/AddReminderTab.vue");
-      state.tabList = [
-        { key: ADD_REMINDER, value: addReminderTab.default }
-      ]
-      state.visibility = true
-      state.reminderTabType = EDIT_REMINDER
-      state.reminderData = data
     },
     showAddDiagnosisModal(state) {
       const tab = {
