@@ -68,24 +68,25 @@ export default {
               data: this.updateData,
               notify: this.$notify
             });
-          }
-          let recList = [];
-          this.recForm.recs.forEach(item => {
-            recList.push({
-              description: item.description,
-              patientId: vm.id,
-              recommendationID: uniqid()
+          } else {
+            let recList = [];
+            this.recForm.recs.forEach(item => {
+              recList.push({
+                description: item.description,
+                patientId: vm.id,
+                recommendationID: uniqid()
+              });
             });
-          });
-          await this.$store.dispatch("addRecommendation", {
-            data: recList,
-            notify: this.$notify
-          });
-          await this.$store.dispatch("getRecommendations", {
-            patientId: this.id,
-            notify: this.$notify
-          });
-          this.recForm = { recs: [{ description: "" }] };
+            await this.$store.dispatch("addRecommendation", {
+              data: recList,
+              notify: this.$notify
+            });
+            await this.$store.dispatch("getRecommendations", {
+              patientId: this.id,
+              notify: this.$notify
+            });
+            this.recForm = { recs: [{ description: "" }] };
+          }
         } else {
           console.log("error submit!!");
           return false;
