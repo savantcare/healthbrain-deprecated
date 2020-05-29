@@ -122,6 +122,11 @@ export default {
           })
 
           commit("setRecommendationList", originList)
+        } else {
+          notify({
+            title: "Title",
+            message: "Updated!"
+          })
         }
       } catch (ex) {
         notify({
@@ -155,6 +160,11 @@ export default {
             message: "Failed to discontinue recommendation data"
           })
           commit("setRecommendationList", originList)
+        } else {
+          notify({
+            title: "Title",
+            message: "Deleted"
+          })
         }
       } catch (ex) {
         notify({

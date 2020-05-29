@@ -69,12 +69,14 @@ export default {
               notify: this.$notify
             });
           } else {
+            // Add
             let recList = [];
             this.recForm.recs.forEach(item => {
               recList.push({
                 description: item.description,
                 patientId: vm.id,
-                recommendationID: uniqid()
+                recommendationID: uniqid(),
+                createdByUserId: this.userId
               });
             });
             await this.$store.dispatch("addRecommendation", {
