@@ -1,3 +1,0 @@
-[submodule "vue-client/src/components/domain/RecommendationsPanel"]
-	path = vue-client/src/components/domain/RecommendationsPanel
-	url = https://github.com/savantcare/RecommendationsPanel
