@@ -132,7 +132,7 @@ export default {
       }
     },
     async discontinueRecommendation({ state, commit }, json) {
-      const { data, toast } = json
+      const { data, notify } = json
       const originList = state.list
       const newList = originList.filter(item => {
         return item.id != data.id
@@ -150,19 +150,16 @@ export default {
           body: JSON.stringify(data)
         });
         if (!response.ok) {
-          toast.toast("Failed to discontinue recommendation data", {
+          notify({
             title: "Error",
-            variant: "danger",
-            solid: true
+            message: "Failed to discontinue recommendation data"
           })
-
           commit("setRecommendationList", originList)
         }
       } catch (ex) {
-        toast.toast("Server connection error", {
+        notify({
           title: "Error",
-          variant: "danger",
-          solid: true
+          message: "Server connection error"
         })
 
         commit("setRecommendationList", originList)

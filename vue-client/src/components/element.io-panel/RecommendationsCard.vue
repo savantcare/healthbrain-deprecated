@@ -16,6 +16,7 @@
       :tabData="tabData"
       @handleSelectionChange="handleSelectionChange"
       @handleEdit="handleEdit"
+      @handleDelete="handleDelete"
     />
   </el-card>
 </template>
@@ -51,6 +52,12 @@ export default {
     handleEdit(data) {
       console.log("show edit dialog");
       this.$store.commit("showEditRecommendationsModal", data);
+    },
+    handleDelete(data) {
+      this.$store.dispatch("discontinueRecommendation", {
+        data: data,
+        toast: this.$notify
+      });
     }
   },
   mounted() {

@@ -129,10 +129,9 @@ export default {
     },
     handleEdit(index, row) {
       this.$emit("handleEdit", row);
-      console.log(index, row);
     },
     handleDelete(index, row) {
-      console.log(index, row);
+      this.$emit("handleDelete", row);
     },
     handleCellMouseEnter(row) {
       this.mouseOverRowId = row.id;
