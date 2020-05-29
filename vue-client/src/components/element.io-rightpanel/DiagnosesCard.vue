@@ -5,7 +5,7 @@
         <span>Diagnoses</span>
         <div style="float: right">
           <el-button type="text" size="mini" @click="showAddDiagnosisDialog">A</el-button>
-          <el-button type="text" size="mini" @click="showMultiChangeAssessmentDialog">C</el-button>
+          <el-button type="text" size="mini" @click="showMultiChangeAssessmentDialog">M</el-button>
           <el-popover
             placement="bottom"
             width="200"
