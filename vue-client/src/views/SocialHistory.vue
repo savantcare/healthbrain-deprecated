@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import SocialHistoryTab from "@/components/element.io-tab/social-history/Index.vue";
+import SocialHistoryTab from "@/components/composition-layer2/social-history/Index.vue";
 export default {
   components: {
     SocialHistoryTab

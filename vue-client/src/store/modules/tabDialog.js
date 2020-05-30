@@ -44,7 +44,7 @@ export default {
     showAddRecommendationModal(state) {
       const tab = {
         label: "Add Recommendation",
-        value: require("@/components/element.io-tab/recommendation/AddRecommendation.vue").default,
+        value: require("@/components/composition-layer2/recommendation/AddRecommendation.vue").default,
         name: "tab-add-recommendation"
       }
       state.tabList = [tab]
@@ -55,7 +55,7 @@ export default {
     showMultiChangeRecommendationModal(state) {
       const tab = {
         label: "Multi change Recommendation",
-        value: require("@/components/element.io-tab/recommendation/MultiChangeRecommendation.vue").default,
+        value: require("@/components/composition-layer2/recommendation/MultiChangeRecommendation.vue").default,
         name: "tab-multi-change-recommendation"
       }
       state.tabList = [tab]
@@ -66,7 +66,7 @@ export default {
     showEditRecommendationsModal(state, data) {
       const tab = {
         label: "Edit Recommendation",
-        value: require("@/components/element.io-tab/recommendation/AddRecommendation.vue").default,
+        value: require("@/components/composition-layer2/recommendation/AddRecommendation.vue").default,
         name: "tab-edit-recommendation"
       }
       state.tabList = [tab]
@@ -78,7 +78,7 @@ export default {
     showAddDiagnosisModal(state) {
       const tab = {
         label: "Add Diagnosis",
-        value: require("@/components/element.io-tab/diagnosis/AddDiagnosis.vue").default,
+        value: require("@/components/composition-layer2/diagnosis/AddDiagnosis.vue").default,
         name: "tab-add-diagnosis"
       }
       state.tabList = [tab]
@@ -89,7 +89,7 @@ export default {
     showMultiChangeAssessmentModal(state) {
       const tab = {
         label: "Multi change assessment diagnosis",
-        value: require("@/components/element.io-tab/diagnosis/MultiChangeAssessment.vue").default,
+        value: require("@/components/composition-layer2/diagnosis/MultiChangeAssessment.vue").default,
         name: "tab-multi-change-assessment"
       }
       state.tabList = [tab]
@@ -100,7 +100,7 @@ export default {
     showAddServiceStatementsModal(state) {
       const tab = {
         label: "Add service statements",
-        value: require("@/components/element.io-tab/service-statements/AddServiceStatements.vue").default,
+        value: require("@/components/composition-layer2/service-statements/AddServiceStatements.vue").default,
         name: "tab-service-statements"
       }
       state.tabList = [tab]
@@ -111,7 +111,7 @@ export default {
     showMultiChangeServiceStatementsModal(state) {
       const tab = {
         label: "Multi change service statements",
-        value: require("@/components/element.io-tab/service-statements/MultiChangeServiceStatements.vue").default,
+        value: require("@/components/composition-layer2/service-statements/MultiChangeServiceStatements.vue").default,
         name: "tab-multi-change-service-statements"
       }
       state.tabList = [tab]

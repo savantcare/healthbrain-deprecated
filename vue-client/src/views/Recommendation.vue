@@ -18,8 +18,8 @@
   </el-dialog>
 </template>   
 <script>
-import AddRecommendationTab from "@/components/element.io-tab/recommendation/AddRecommendation";
-import MultiChangeRecommendationTab from "@/components/element.io-tab/recommendation/MultiChangeRecommendation";
+import AddRecommendationTab from "@/components/composition-layer2/recommendation/AddRecommendation";
+import MultiChangeRecommendationTab from "@/components/composition-layer2/recommendation/MultiChangeRecommendation";
 export default {
   components: {
     AddRecommendationTab,

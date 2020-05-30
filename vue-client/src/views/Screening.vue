@@ -18,8 +18,8 @@
   </el-dialog>
 </template>
 <script>
-import AddScreeningTab from "@/components/element.io-tab/AddScreening";
-import MultiChangeScreeningTab from "@/components/element.io-tab/MultiChangeScreening";
+import AddScreeningTab from "@/components/composition-layer2/AddScreening";
+import MultiChangeScreeningTab from "@/components/composition-layer2/MultiChangeScreening";
 export default {
   components: {
     AddScreeningTab,

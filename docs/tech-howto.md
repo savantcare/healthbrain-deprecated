@@ -27,7 +27,7 @@ var-lib-mysql> zip may-22-2020.zip * -r
 #### Step 1
 A new componet called AddRecommendationTab is created inside: 
 
-/Users/vk-tech/gt/sc-prog-repos/healthbrain/vue-client/src/components/element.io-tab/AddRecommendation.vue
+/Users/vk-tech/gt/sc-prog-repos/healthbrain/vue-client/src/components/composition-layer2/AddRecommendation.vue
 
 #### Step 2
 Now there is a route defined in vue-client/src/router/index.js: 
@@ -44,7 +44,7 @@ Now when ever someone comes to http://ip-address/recommendation the router sends
 Inside views/recommendation.vue the component created in step 1 is used. By the following codes:
 
 1. Component is imported: 
-import AddRecommendationTab from "@/components/element.io-tab/AddRecommendation";
+import AddRecommendationTab from "@/components/composition-layer2/AddRecommendation";
 
 2. Component is displayed:
 ```

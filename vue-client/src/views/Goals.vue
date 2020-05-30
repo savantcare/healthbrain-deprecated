@@ -6,7 +6,7 @@
     <el-tabs type="card">
       <!--Start Multi Change goals-->
       <el-tab-pane>
-        <span slot="label" style="font-size:18px"> Multi rate goals</span>
+        <span slot="label" style="font-size:18px">Multi rate goals</span>
         <el-row :gutter="12">
           <el-col :span="8">
             <el-card  class="box-card" shadow="hover">
@@ -25,7 +25,7 @@
                   <el-button type="danger" @click="onSubmit" size="small">Discontinue</el-button>
                 </el-form-item>
               </el-form>
-              <el-row><span style="font-size:14px;font-weight:bold"> History:</span></el-row><br>
+              <el-row><span style="font-size:14px;font-weight:bold">History:</span></el-row><br>
               <el-row :gutter="12">
                   <div class="block">
                     <el-timeline>
