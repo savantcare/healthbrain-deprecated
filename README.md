@@ -1,6 +1,6 @@
 ![patient file](./docs/patient-file.png)
 
-## Why write a new patient file app?
+## Why write a new patient file vue app?
 
 * Be atleast as good as paper
 * Maintain eye contact with patient
